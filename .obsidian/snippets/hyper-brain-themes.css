@@ -1,0 +1,160 @@
+/* HYPER BRAIN v3.0 — Neurodivergent CSS Themes
+   Enhanced accessibility + sensory profiles for ADHD + Dyslexia
+   Enable in Obsidian: Settings → Appearance → CSS Snippets */
+
+/* ============================================
+   THEME 1: HYPERFOCUS MODE 🔴
+   High contrast, minimal distraction
+   ============================================ */
+.theme-hyperfocus {
+  --background-primary: #0a0a0f;
+  --background-secondary: #12121a;
+  --text-normal: #e8e8ff;
+  --text-muted: #8888aa;
+  --interactive-accent: #ff4444;
+  --text-accent: #ff6666;
+  --font-size-normal: 16px;
+  --line-height-normal: 1.8;
+}
+
+/* ============================================
+   THEME 2: CALM FOCUS 🟢
+   Low stimulation, soft greens for low-energy days
+   ============================================ */
+.theme-calm {
+  --background-primary: #0d1a0d;
+  --background-secondary: #142014;
+  --text-normal: #d4f0d4;
+  --text-muted: #6a9a6a;
+  --interactive-accent: #44aa44;
+  --text-accent: #66cc66;
+  --font-size-normal: 17px;
+  --line-height-normal: 2.0;
+}
+
+/* ============================================
+   THEME 3: DYSLEXIA FRIENDLY 📖
+   OpenDyslexic-style spacing + warm background
+   ============================================ */
+.theme-dyslexia {
+  --background-primary: #fdf6e3;
+  --background-secondary: #f5edd4;
+  --text-normal: #2c2416;
+  --text-muted: #7a6a52;
+  --interactive-accent: #c8720a;
+  --font-size-normal: 18px;
+  --line-height-normal: 2.2;
+  --font-text: "OpenDyslexic", "Comic Sans MS", sans-serif;
+  letter-spacing: 0.05em;
+  word-spacing: 0.15em;
+}
+
+/* ============================================
+   THEME 4: NIGHT OWL 🦉
+   Deep purple, for late night builds
+   ============================================ */
+.theme-night-owl {
+  --background-primary: #1a0a2e;
+  --background-secondary: #240d3d;
+  --text-normal: #e8d5ff;
+  --text-muted: #9966cc;
+  --interactive-accent: #aa44ff;
+  --text-accent: #cc66ff;
+  --font-size-normal: 16px;
+  --line-height-normal: 1.9;
+}
+
+/* ============================================
+   GLOBAL ENHANCEMENTS — All themes
+   ============================================ */
+
+/* Larger click targets for ADHD mis-clicks */
+.nav-file-title,
+.nav-folder-title {
+  padding: 6px 8px !important;
+  min-height: 32px;
+}
+
+/* Softer scrollbars — less visual noise */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: var(--text-muted);
+  opacity: 0.5;
+}
+
+/* Focus indicator — clear but not jarring */
+.cm-focused .cm-cursor {
+  border-left: 3px solid var(--interactive-accent) !important;
+  animation: blink 1.2s step-end infinite;
+}
+
+/* Checkbox style — satisfying to tick 🎉 */
+input[type="checkbox"]:checked {
+  accent-color: var(--interactive-accent);
+  transform: scale(1.2);
+}
+
+/* Heading hierarchy — clear visual anchors for ADHD navigation */
+.cm-header-1 { font-size: 1.8em !important; font-weight: 800 !important; }
+.cm-header-2 { font-size: 1.4em !important; font-weight: 700 !important; }
+.cm-header-3 { font-size: 1.2em !important; font-weight: 600 !important; }
+
+/* Tag pills — colourful, scannable */
+.tag {
+  border-radius: 12px !important;
+  padding: 2px 10px !important;
+  font-size: 0.85em !important;
+  font-weight: 600 !important;
+}
+
+/* Callout blocks — enhanced for ADHD scanning */
+.callout {
+  border-radius: 8px !important;
+  border-left-width: 4px !important;
+  margin: 1.2em 0 !important;
+}
+
+/* Table improvements — alternating rows for dyslexia */
+table tr:nth-child(even) {
+  background: rgba(128, 128, 255, 0.05);
+}
+table th {
+  font-weight: 700 !important;
+  border-bottom: 2px solid var(--interactive-accent) !important;
+}
+
+/* Code blocks — clearer monospace */
+.cm-inline-code,
+code {
+  font-size: 0.9em !important;
+  border-radius: 4px !important;
+  padding: 1px 5px !important;
+}
+
+/* HYPER BRAIN status bar indicator */
+.status-bar .status-bar-item[data-section="hyper-brain"] {
+  color: var(--interactive-accent);
+  font-weight: 700;
+}
+
+/* Animation: pulse for active focus session indicator */
+@keyframes hyperpulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.hyper-focus-active {
+  animation: hyperpulse 2s ease-in-out infinite;
+  color: #ff4444;
+  font-weight: 800;
+}
+
+/* Print / export — clean output */
+@media print {
+  .sidebar-left, .sidebar-right, .status-bar {
+    display: none !important;
+  }
+}
