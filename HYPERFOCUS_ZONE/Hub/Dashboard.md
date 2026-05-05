@@ -1,4 +1,4 @@
-# 🧠 BROski Brain — Hyperfocus Zone Dashboard
+# 🧠 BROski♾️ Brain — Hyperfocus Zone Dashboard
 
 > One view. All projects. Always know your next move.
 
