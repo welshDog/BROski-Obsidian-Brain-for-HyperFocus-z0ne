@@ -1,0 +1,38 @@
+/* ==============================
+   HYPERFOCUS ZONE — Theme Modes
+   BROski Brain CSS Snippets
+   ============================== */
+
+/* 🔥 FOCUS MODE — Dark terminal, high contrast */
+body.focus-mode {
+  --background-primary: #0d0d0d;
+  --background-secondary: #111111;
+  --text-normal: #00ff88;
+  --text-accent: #00ccff;
+  --text-muted: #44aa66;
+  font-family: 'IA Writer Duo', 'Courier New', monospace;
+  line-height: 1.7;
+}
+
+/* 🌙 CALM MODE — Warm, soft, dyslexia-friendly */
+body.calm-mode {
+  --background-primary: #faf6f0;
+  --background-secondary: #f0ebe3;
+  --text-normal: #3d2b1f;
+  --text-accent: #8b4513;
+  --text-muted: #9a7d6b;
+  font-family: 'OpenDyslexic', 'Verdana', sans-serif;
+  line-height: 1.9;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+}
+
+/* ⚡ HYPERFOCUS BLAST — Ultra focus, violet accent */
+body.hyper-mode {
+  --background-primary: #080818;
+  --background-secondary: #0f0f2a;
+  --text-normal: #e0e0ff;
+  --text-accent: #aa00ff;
+  font-family: 'IA Writer Duo', monospace;
+  line-height: 1.6;
+}

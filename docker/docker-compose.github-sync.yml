@@ -1,0 +1,27 @@
+# docker-compose.github-sync.yml
+# Add this to HyperCode-V2.4 stack OR run standalone
+# BROski♾️
+
+version: '3.8'
+
+services:
+  github-sync:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.github-sync
+    container_name: github-sync
+    environment:
+      - GITHUB_PAT=${GITHUB_PAT}
+      - OBSIDIAN_VAULT_PATH=/vault/00-Inbox/GitHub
+    volumes:
+      - ${OBSIDIAN_VAULT_PATH:-C:/Users/Lyndz/Obsidian/HYPERFOCUS_ZONE}:/vault
+    restart: unless-stopped
+    mem_limit: 128m
+    healthcheck:
+      test: ["CMD", "pgrep", "cron"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "com.hyperfocuszone.service=github-sync"
+      - "com.hyperfocuszone.tier=brain"

@@ -1,0 +1,18 @@
+# Dockerfile.github-sync
+# Runs github_to_obsidian.py on schedule
+# BROski♾️
+
+FROM python:3.11-slim
+
+WORKDIR /app
+
+RUN pip install --no-cache-dir requests
+
+COPY scripts/github_to_obsidian.py .
+
+# Run every 4 hours via cron
+RUN apt-get update && apt-get install -y cron && rm -rf /var/lib/apt/lists/*
+
+RUN echo "0 */4 * * * cd /app && python github_to_obsidian.py >> /var/log/github-sync.log 2>&1" | crontab -
+
+CMD ["cron", "-f"]
