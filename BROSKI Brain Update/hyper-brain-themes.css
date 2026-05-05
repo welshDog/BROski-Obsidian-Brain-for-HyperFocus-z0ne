@@ -1,0 +1,201 @@
+/* ==============================
+   THE HYPER BRAIN v3.0 — Theme Modes
+   Enhanced neurodivergent-first CSS
+   ============================== */
+
+/* 🔥 FOCUS MODE — Dark terminal, high contrast */
+body.focus-mode {
+  --background-primary: #0a0a0a;
+  --background-secondary: #111111;
+  --background-modifier-border: #1a1a1a;
+  --text-normal: #00ff88;
+  --text-accent: #00ccff;
+  --text-muted: #44aa66;
+  --text-faint: #226633;
+  --interactive-accent: #00ff88;
+  --interactive-accent-hover: #00cc66;
+  font-family: 'IA Writer Duo', 'Courier New', monospace;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+body.focus-mode .workspace-tab-header-container,
+body.focus-mode .workspace-ribbon,
+body.focus-mode .status-bar {
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+body.focus-mode .workspace-tab-header-container:hover,
+body.focus-mode .workspace-ribbon:hover,
+body.focus-mode .status-bar:hover {
+  opacity: 1;
+}
+
+body.focus-mode .markdown-preview-view {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* 🌙 CALM MODE — Warm, soft, dyslexia-friendly */
+body.calm-mode {
+  --background-primary: #faf6f0;
+  --background-secondary: #f0ebe3;
+  --background-modifier-border: #e0d8cc;
+  --text-normal: #3d2b1f;
+  --text-accent: #8b4513;
+  --text-muted: #9a7d6b;
+  --text-faint: #b8a89a;
+  --interactive-accent: #8b4513;
+  --interactive-accent-hover: #6b3503;
+  font-family: 'OpenDyslexic', 'Verdana', 'Comic Sans MS', sans-serif;
+  line-height: 1.9;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  word-spacing: 0.05em;
+}
+
+body.calm-mode .markdown-preview-view p,
+body.calm-mode .markdown-source-view .cm-line {
+  text-align: left;
+  hyphens: none;
+}
+
+/* ⚡ HYPERFOCUS BLAST — Ultra focus, violet accent */
+body.hyper-mode {
+  --background-primary: #050510;
+  --background-secondary: #0a0a1a;
+  --background-modifier-border: #151530;
+  --text-normal: #e0e0ff;
+  --text-accent: #aa00ff;
+  --text-muted: #8888aa;
+  --text-faint: #444466;
+  --interactive-accent: #aa00ff;
+  --interactive-accent-hover: #8800cc;
+  font-family: 'IA Writer Duo', 'Fira Code', monospace;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+body.hyper-mode .markdown-preview-view {
+  background: linear-gradient(180deg, #050510 0%, #0a0a1a 100%);
+}
+
+body.hyper-mode ::selection {
+  background: #aa00ff;
+  color: #ffffff;
+}
+
+/* 🧠 THE HYPER BRAIN — Dashboard enhancements */
+.hyper-dashboard .dataview.table-view-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.hyper-dashboard .dataview.table-view-table th {
+  background: var(--background-secondary);
+  color: var(--text-accent);
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid var(--interactive-accent);
+}
+
+.hyper-dashboard .dataview.table-view-table td {
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.hyper-dashboard .dataview.table-view-table tr:hover {
+  background: var(--background-secondary);
+}
+
+/* Focus session indicators */
+.focus-active {
+  border-left: 4px solid #00ff88;
+  padding-left: 12px;
+  animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+  0%, 100% { border-left-color: #00ff88; }
+  50% { border-left-color: #00cc66; }
+}
+
+.focus-paused {
+  border-left: 4px solid #ffaa00;
+  padding-left: 12px;
+}
+
+/* Task checkboxes — ADHD dopamine hits */
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--interactive-accent);
+}
+
+input[type="checkbox"]:checked + * {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* Streak flame animation */
+.streak-flame {
+  display: inline-block;
+  animation: flame-flicker 1.5s ease-in-out infinite;
+}
+
+@keyframes flame-flicker {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* Time-blindness alert banner */
+.time-alert {
+  background: linear-gradient(90deg, #ff4444, #ff8800);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-align: center;
+  animation: alert-pulse 1s infinite;
+}
+
+@keyframes alert-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* DifficultyDial badges */
+.difficulty-easy { color: #00ff88; font-weight: bold; }
+.difficulty-medium { color: #ffaa00; font-weight: bold; }
+.difficulty-hard { color: #ff4444; font-weight: bold; }
+
+/* XP bar styling */
+.xp-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--background-modifier-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.xp-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ff88, #00ccff);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+/* Smooth transitions for mode switching */
+body {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Print-friendly */
+@media print {
+  body.focus-mode, body.hyper-mode {
+    --background-primary: #ffffff;
+    --text-normal: #000000;
+  }
+}

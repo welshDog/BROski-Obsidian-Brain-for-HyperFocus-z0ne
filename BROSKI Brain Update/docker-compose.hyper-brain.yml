@@ -1,0 +1,44 @@
+# docker-compose.hyper-brain.yml
+# THE HYPER BRAIN v3.0 — Container #30
+# Add to HyperCode-V2.4 stack OR run standalone
+# BROski♾️
+
+version: '3.8'
+
+services:
+  hyper-brain:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.hyper-brain
+    container_name: hyper-brain
+    ports:
+      - "8100:8100"
+    environment:
+      - OBSIDIAN_VAULT_PATH=/vault
+      - REDIS_URL=redis://redis:6379/4
+      - MCP_PORT=8099
+      - GITHUB_WEBHOOK_SECRET=${GITHUB_WEBHOOK_SECRET}
+    volumes:
+      - ${OBSIDIAN_VAULT_PATH:-C:/Users/Lyndz/Obsidian/HYPERFOCUS_ZONE}:/vault
+      - ./scripts:/app/scripts:ro
+    networks:
+      - app-net
+      - agent-net
+    restart: unless-stopped
+    mem_limit: 256m
+    cpus: 0.5
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8100/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "com.hyperfocuszone.service=hyper-brain"
+      - "com.hyperfocuszone.tier=brain"
+      - "com.hyperfocuszone.version=3.0.0"
+
+networks:
+  app-net:
+    external: true
+  agent-net:
+    external: true

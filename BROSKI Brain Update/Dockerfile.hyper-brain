@@ -1,0 +1,29 @@
+# Dockerfile.hyper-brain
+# THE HYPER BRAIN v3.0 — Container #30 in the Hyperfocus Zone
+# FastAPI + all focus/AI/analytics engines
+# BROski♾️
+
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install system deps
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    cron \
+    && rm -rf /var/lib/apt/lists/*
+
+# Python deps
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy all scripts
+COPY scripts/ ./scripts/
+
+# Healthcheck
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8100/health')" || exit 1
+
+EXPOSE 8100
+
+CMD ["python", "scripts/hyper_brain_core.py"]
