@@ -1,8 +1,6 @@
 # HYPER BRAIN v3.0 — The 30th Container
 # docker compose -f docker/docker-compose.hyper-brain.yml up -d
 
-version: '3.8'
-
 services:
   hyper-brain:
     build:
@@ -32,8 +30,7 @@ services:
         reservations:
           memory: 128M
     networks:
-      - app-net
-      - agent-net
+      - hyper-brain-net
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8100/health')"]
       interval: 30s
@@ -46,9 +43,6 @@ services:
       - "com.hyperfocus.level=20"
 
 networks:
-  app-net:
+  hyper-brain-net:
     external: true
-    name: hypercode-v24_app-net
-  agent-net:
-    external: true
-    name: hypercode-v24_agent-net
+    name: hyper-brain-net
