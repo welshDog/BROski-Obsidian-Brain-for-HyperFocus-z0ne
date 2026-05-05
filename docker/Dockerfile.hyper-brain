@@ -1,0 +1,37 @@
+# HYPER BRAIN v3.0 — The 30th Container
+# Port 8100 | 256MB RAM | 0.5 CPU
+FROM python:3.11-slim
+
+LABEL maintainer="welshDog <lyndzwills@gmail.com>"
+LABEL version="3.0.0"
+LABEL description="HYPER BRAIN v3.0 — Neurodivergent-first focus intelligence"
+
+# Security: run as non-root
+RUN groupadd -r hyperbrain && useradd -r -g hyperbrain hyperbrain
+
+WORKDIR /app
+
+# Install dependencies first (layer cache)
+COPY docker/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy scripts
+COPY scripts/ ./scripts/
+
+# Vault mount point
+RUN mkdir -p /vault && chown hyperbrain:hyperbrain /vault
+
+# Switch to non-root
+USER hyperbrain
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
+  CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8100/health')" || exit 1
+
+EXPOSE 8100 8101
+
+ENV VAULT_PATH=/vault
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+
+CMD ["python", "-m", "uvicorn", "scripts.hyper_brain_core:app", "--host", "0.0.0.0", "--port", "8100"]

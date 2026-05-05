@@ -1,0 +1,22 @@
+# HYPER BRAIN v3.0 — Python Dependencies
+# Pin versions for reproducible builds
+
+# Web framework
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+
+# HTTP client (for MCP bridge / LLM queries)
+httpx==0.27.0
+
+# Data validation
+pydantic==2.7.1
+
+# File watching (focus tracker)
+watchdog==4.0.0
+
+# Async support
+anyio==4.3.0
+
+# Utilities
+python-multipart==0.0.9
+python-dotenv==1.0.1

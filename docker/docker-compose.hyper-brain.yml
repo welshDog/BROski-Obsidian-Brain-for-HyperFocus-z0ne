@@ -1,0 +1,54 @@
+# HYPER BRAIN v3.0 — The 30th Container
+# docker compose -f docker/docker-compose.hyper-brain.yml up -d
+
+version: '3.8'
+
+services:
+  hyper-brain:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.hyper-brain
+    container_name: hyper-brain
+    restart: unless-stopped
+    ports:
+      - "8100:8100"   # Main API
+      - "8101:8101"   # GitHub webhook receiver
+    volumes:
+      - type: bind
+        source: ${VAULT_PATH:-.}
+        target: /vault
+    environment:
+      - VAULT_PATH=/vault
+      - LLM_BASE_URL=${LLM_BASE_URL:-http://host.docker.internal:11434}
+      - LMSTUDIO_URL=${LMSTUDIO_URL:-http://host.docker.internal:1234}
+      - LLM_MODEL=${LLM_MODEL:-llama3}
+      - GITHUB_WEBHOOK_SECRET=${GITHUB_WEBHOOK_SECRET:-}
+      - PYTHONUNBUFFERED=1
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.5'
+        reservations:
+          memory: 128M
+    networks:
+      - app-net
+      - agent-net
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8100/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    labels:
+      - "com.hyperfocus.service=hyper-brain"
+      - "com.hyperfocus.version=3.0.0"
+      - "com.hyperfocus.level=20"
+
+networks:
+  app-net:
+    external: true
+    name: hypercode-v24_app-net
+  agent-net:
+    external: true
+    name: hypercode-v24_agent-net
