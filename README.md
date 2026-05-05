@@ -2,13 +2,14 @@
 
 > Built by [@welshDog](https://github.com/welshDog) — Lyndz Williams, S.Wales 🏴󠁧󠁢󠁷󠁬󠁳󠁠
 > Neurodivergent-first Second Brain. ADHD + Dyslexia + Autistic friendly.
+> **Last updated: May 5, 2026 — Levels 9–12 COMPLETE ✅**
 
 ---
 
 ## 🚀 What This Is
 
 Your **Obsidian vault scaffold** for the Hyperfocus Zone ecosystem.
-Links all 3 repos + BROskiPets + BROski$ economy into one brain.
+Links all 4 repos + BROskiPets + BROski$ economy into one living brain.
 
 ## 🏗️ Vault Structure
 
@@ -22,41 +23,53 @@ HYPERFOCUS_ZONE/
 │   ├── Hyper-Vibe-Course
 │   └── BROskiPets
 ├── 02-Areas/          # Ongoing life zones
-├── 03-Resources/      # Snippets, prompts, diagrams
+│   ├── Health/
+│   ├── Admin/
+│   └── DevOps/
+├── 03-Resources/      # Snippets, economy table, diagrams
 ├── 04-Archive/        # Done wins
-├── 99-Templates/      # All templates
-└── Hub/               # Dashboard + Maps
+├── 99-Templates/      # Daily, Project, Task, Morning Briefing
+└── Hub/               # Dashboard + Maps of Content
 ```
 
 ## ⚡ Features
 
 | Feature | Status |
 |---------|--------|
-| 🔄 Obsidian Git auto-sync | ✅ Ready |
-| 💰 BROski$ Coin Tracker | ✅ Ready |
-| ⏰ Pomodoro + Focus/Calm Mode | ✅ Ready |
-| 🐛 GitHub Issues → Inbox | ✅ Script ready |
+| 🔄 Obsidian Git auto-sync (10 min) | ✅ LIVE |
+| 💰 BROski$ Coin Tracker + XP | ✅ LIVE |
+| ⏰ Pomodoro + Focus/Calm/Hyper Mode | ✅ LIVE |
+| 🐛 GitHub Issues → Inbox (4 repos) | ✅ LIVE |
 | 🌅 Morning Briefing template | ✅ Ready |
-| 🎮 8 Levels + XP system | ✅ Built-in |
+| 🎮 15 Levels + XP system | ✅ Built-in |
+| 🐳 Docker github-sync container | ✅ Ready (30th container) |
+| 🛠️ setup.ps1 one-run bootstrap | ✅ Ready |
 
-## 🎮 Levels
+## 🎮 Level Tracker
 
-- [ ] Level 1-8 — Vault + folders + plugins (v2.0)
-- [ ] Level 9 — GitHub bridge live
-- [ ] Level 10 — Vault immortal (Git)
-- [ ] Level 11 — BROski$ flows
-- [ ] Level 12 — Hyperfocus Mode armed
-- [ ] Level 13 — Morning Briefing live
-- [ ] Level 14 — GitHub Webhooks real-time
-- [ ] Level 15 — HyperAgent AI Briefing
+- [x] **Level 1–8** — Vault + folders + plugins ✅
+- [x] **Level 9** — GitHub bridge LIVE 🌉 ✅ *May 5*
+- [x] **Level 10** — Vault immortal (Obsidian Git) 🔒 ✅ *May 5*
+- [x] **Level 11** — BROski$ flowing 💰 ✅ *May 5*
+- [x] **Level 12** — Hyperfocus Mode armed ⚡ ✅ *May 5*
+- [ ] **Level 13** — Morning Briefing live
+- [ ] **Level 14** — GitHub Webhooks real-time
+- [ ] **Level 15** — HyperAgent AI Daily Briefing
 
 ## 🛠️ Setup
 
-1. Clone this repo
-2. Open `HYPERFOCUS_ZONE/` as Obsidian vault
-3. Run `scripts/setup.ps1`
-4. Drop `HYPERFOCUS_ZONE_BUILD_v2.2.md` into Claude Code
-5. Say: *"Execute top to bottom"*
+```powershell
+git clone https://github.com/welshDog/BROski-Obsidian-Brain-for-HyperFocus-z0ne.git
+cd BROski-Obsidian-Brain-for-HyperFocus-z0ne
+.\scripts\setup.ps1
+```
+
+Then:
+1. Open `HYPERFOCUS_ZONE/` as vault in Obsidian
+2. Install plugins: `Dataview`, `Templater`, `Calendar`, `Obsidian Git`, `Tasks`, `Pomodoro Timer`
+3. Settings → Appearance → CSS Snippets → `focus-mode` ✅
+4. Set hotkeys: `Ctrl+Shift+F` focus toggle | `Ctrl+Shift+M` morning briefing
+5. Run GitHub sync: `$env:GITHUB_PAT="github_pat_xxx"` then `python scripts/github_to_obsidian.py`
 
 ## 🔗 Ecosystem Links
 
