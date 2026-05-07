@@ -16,25 +16,26 @@
 
 ## 🏗️ This Repo — What It Is
 
-**THE HYPER BRAIN v3.0** — Obsidian Second Brain for the HyperFocus Zone ecosystem.
+**THE HYPER BRAIN v3.0** — Obsidian Second Brain + FastAPI engine for the HyperFocus Zone.
 
-- Vault lives at: `HYPERFOCUS_ZONE/` (open THIS folder as Obsidian vault)
-- Vault is the repo root on local: `H:\BROski-Obsidian-Brain-for-HyperFocus-z0ne`
-- Auto-commits every 10 mins via Obsidian Git plugin
-- GitHub sync script: `scripts/github_to_obsidian.py`
-- Brain API container: `hyper_brain_core.py` → port 8100
+- Vault: `HYPERFOCUS_ZONE/` ← open THIS in Obsidian
+- Local path: `H:\BROski-Obsidian-Brain-for-HyperFocus-z0ne`
+- Brain API: `hyper_brain_core.py` → port 8100 (Container #30)
+- Auto-commits every 10 mins via Obsidian Git
 
 ---
 
-## 🌐 The Ecosystem (4 linked repos)
+## 🌐 Cross-Repo Links — THE ECOSYSTEM
 
-| Repo | What | Port/Path |
-|------|------|-----------|
-| **HyperCode-V2.4** | Main platform — Docker, FastAPI, 32 containers | `localhost:8000` |
-| **HyperAgent-SDK** | TypeScript SDK — agent spec, CLI | `localhost:4040` |
-| **Hyper-Vibe-Coding-Course** | Course frontend — Supabase + Stripe | `localhost:5174` |
-| **BROskiPets-LLM-dNFT** | AI pet NFTs — LLM + on-chain XP | `localhost:8098` |
-| **THIS REPO** | Second Brain — Obsidian vault + AI layer | `localhost:8100` |
+> Brain is the meta-layer. All 5 repos have CLAUDE.md. Read them for full context.
+
+| Repo | CLAUDE.md | What it does |
+|------|-----------|-------------|
+| **[HyperCode-V2.4](https://github.com/welshDog/HyperCode-V2.4/blob/main/CLAUDE.md)** | [CLAUDE.md](https://github.com/welshDog/HyperCode-V2.4/blob/main/CLAUDE.md) | Docker platform, 32 containers, FastAPI core |
+| **[HyperAgent-SDK](https://github.com/welshDog/HyperAgent-SDK/blob/main/CLAUDE.md)** | [CLAUDE.md](https://github.com/welshDog/HyperAgent-SDK/blob/main/CLAUDE.md) | TypeScript SDK, agent spec, CLI |
+| **[Hyper-Vibe-Coding-Course](https://github.com/welshDog/Hyper-Vibe-Coding-Course/blob/main/CLAUDE.md)** | [CLAUDE.md](https://github.com/welshDog/Hyper-Vibe-Coding-Course/blob/main/CLAUDE.md) | Course frontend, Supabase, Stripe |
+| **[BROskiPets-LLM-dNFT](https://github.com/welshDog/BROskiPets-LLM-dNFT/blob/main/CLAUDE.md)** | [CLAUDE.md](https://github.com/welshDog/BROskiPets-LLM-dNFT/blob/main/CLAUDE.md) | AI pet NFTs, LLM, on-chain XP |
+| **THIS REPO (Brain)** | You are here 📍 | Second Brain, vault, AI layer |
 
 ---
 
@@ -43,168 +44,163 @@
 ```
 HYPERFOCUS_ZONE/
 ├── 00-Inbox/              # Brain dump + GitHub issues + AI captures
-│   ├── GitHub/            # Auto-synced: issues + PRs (webhook real-time)
-│   ├── Discord/           # Community captures (future)
-│   └── AI-Capture/        # Voice → Whisper → atomic notes (future)
+│   ├── GitHub/            # Auto-synced: issues + PRs
+│   ├── Briefings/         # Morning briefings (morning_briefing_ai.py output)
+│   └── AI-Capture/        # Voice → Whisper → notes (future)
 ├── 01-Projects/           # Active builds — 4 repos pre-seeded
 ├── 02-Areas/              # Health, Admin, DevOps, Focus-Analytics
-├── 03-Resources/          # Economy table, snippets, Agent YAMLs, MCP configs
+├── 03-Resources/          # Economy table, snippets, Agent YAMLs
 ├── 04-Archive/            # Completed wins
-├── 05-Focus-Sessions/     # Session logs with YAML frontmatter (Level 16)
-├── 06-AI-Context/         # RAG chunks, prompt library (Level 20)
-├── 07-Streaks-Achievements/ # Dynamic XP, streak recovery, badges (Level 19)
+├── 05-Focus-Sessions/     # Session logs (focus_tracker.py output)
+├── 06-AI-Context/         # RAG chunks, prompt library
+├── 07-Streaks-Achievements/ # XP, streak recovery, badges
 ├── 99-Templates/          # Daily, Project, Task, Morning Briefing, Focus-Session
-└── Hub/                   # Dashboard + Focus Command Center + Brain Constellation
+└── Hub/                   # Dashboard + Focus Command Center
 ```
 
 **SACRED RULE:** Notes ALWAYS go in correct folder. NEVER dump in repo root.
 
 ---
 
-## 🎮 Level Tracker
+## 📦 Python Files — CANONICAL vs STUBS
+
+> ⚠️  CRITICAL: Two sets of .py files exist. ROOT = real. scripts/ = stubs.
+
+| Location | Status | Use for |
+|----------|--------|--------|
+| `/*.py` (repo root) | ✅ **CANONICAL v3.0** — full FastAPI, all modules wired | Docker build, running, editing |
+| `scripts/*.py` (9 stubs) | ❌ **OLD STUBS** — 100-150 line skeletons, no real imports | **IGNORE / DELETE** |
+| `scripts/github_to_obsidian.py` | ✅ **REAL** — GitHub sync script | GitHub → vault sync |
+| `scripts/setup.ps1` | ✅ **REAL** — bootstrap | First-time setup |
+| `scripts/setup_hyper_brain.ps1` | ✅ **REAL** — v3.0 bootstrap | Hyper Brain setup |
+
+**When editing Python: ALWAYS edit root `.py` files. Never touch `scripts/*.py` stubs.**
+
+---
+
+## 🎮 Level Tracker — HONEST STATE
 
 ```
-✅ Level 1–8   Vault scaffold + plugins + PARA structure
-✅ Level 9    GitHub bridge LIVE (4hr polling)
+✅ Level 1–8   Vault scaffold + plugins + PARA
+✅ Level 9    GitHub bridge (4hr polling) — scripts/github_to_obsidian.py
 ✅ Level 10   Vault immortal (Obsidian Git auto-commit)
 ✅ Level 11   BROski$ Coin Tracker (Dataview widget)
 ✅ Level 12   Hyperfocus CSS Modes (Focus/Calm/Hyper)
-⏳ Level 13   Morning Briefing AI (morning_briefing_ai.py + LLM)
-⏳ Level 14   GitHub Webhooks real-time (github_webhook_server.py)
-⏳ Level 15   HyperAgent AI Daily Briefing (mcp_bridge.py)
-⏳ Level 16   Focus Tracker + Analytics (focus_tracker.py)
-⏳ Level 17   HyperSplit Task Decomposition (hyper_split.py)
-⏳ Level 18   AI Distraction Filter (ai_distraction_filter.py)
-⏳ Level 19   DifficultyDial + Dynamic Gamification
-⏳ Level 20   THE HYPER BRAIN Constellation (full MCP mesh + RAG)
+🔧 Level 13   Morning Briefing AI — CODE DONE (morning_briefing_ai.py)
+                → NEEDS: docker up + test run
+🔧 Level 14   GitHub Webhooks real-time — CODE DONE (github_webhook_server.py)
+                → NEEDS: docker up + GitHub webhook registered
+🔧 Level 15   HyperAgent AI Briefing — CODE DONE (mcp_bridge.py)
+                → NEEDS: docker up + MCP port wired
+🔧 Level 16   Focus Tracker + Analytics — CODE DONE (focus_tracker.py)
+                → NEEDS: docker up + test /focus/start
+🔧 Level 17   HyperSplit Task Decomp — CODE DONE (hyper_split.py)
+                → NEEDS: docker up + test /hypersplit
+⏳ Level 18   AI Distraction Filter — CODE DONE (ai_distraction_filter.py)
+                → NEEDS: wiring to focus sessions
+⏳ Level 19   DifficultyDial + Dynamic XP
+⏳ Level 20   THE HYPER BRAIN Constellation (MCP mesh + RAG)
+```
+
+> 💡 Levels 13–17 are 80% done — all code exists. Just needs `docker up` + test.
+> One command unlocks 5 levels at once.
+
+---
+
+## ⚡ Light The Engine (Level 13–17 in one go)
+
+```powershell
+# 1. Set env vars (in .env or terminal)
+$env:OBSIDIAN_VAULT_PATH = "H:/BROski-Obsidian-Brain-for-HyperFocus-z0ne/HYPERFOCUS_ZONE"
+$env:GITHUB_WEBHOOK_SECRET = "your_secret_here"
+$env:GITHUB_PAT = "github_pat_xxx"
+
+# 2. Create Docker networks if standalone
+docker network create app-net 2>$null
+docker network create agents-net 2>$null
+
+# 3. FIRE IT UP
+docker compose -f docker-compose.hyper-brain.yml up -d --build
+
+# 4. Verify
+curl http://localhost:8100/health
+# → {"status":"hyper","level":20,"containers":30}
+
+# 5. Trigger first morning briefing
+curl -X POST http://localhost:8100/briefing/generate
+# → Briefing drops into HYPERFOCUS_ZONE/00-Inbox/Briefings/
 ```
 
 ---
 
 ## 🐈 Claude Hyper Skills — What You CAN Do Here
 
-### 🥇 Tier 1 — Do These Automatically
-
-1. **Note Writer + Filer**
-   - Create notes in CORRECT vault folder always
-   - Daily notes → `00-Inbox/` (never repo root)
-   - Project notes → `01-Projects/`
-   - Resources/snippets → `03-Resources/`
-   - NEVER create files in repo root unless it's a README/CLAUDE/config
-
-2. **Dataview Query Builder**
-   - Write Dataview + DataviewJS queries for Dashboard
-   - Knows BROski$ schema: `coins`, `xp`, `status`, `project` frontmatter keys
-   - Always `SORT file.mtime DESC` and include `LIMIT` for performance
-
-3. **Template Builder**
-   - All templates use Templater syntax: `<% tp.date.now("YYYY-MM-DD") %>`
-   - YAML frontmatter always includes: `created`, `tags`, `status`
-   - Task templates always include: `coins`, `xp` fields
-
-4. **Script Fixer + Enhancer**
-   - All Python in `scripts/` or root `.py` files
-   - Always use `os.environ.get()` with fallback for env vars
-   - Never hardcode paths — use `OBSIDIAN_VAULT_PATH` env var
-   - Docker: 4 spaces, absolute imports, mem_limit: 256m for hyper-brain
-
-5. **CLAUDE.md + WHATS_DONE Updater**
-   - After every significant change: update this file + WHATS_DONE section
-   - Add to level tracker when level unlocked
-   - Keep KEY FACTS section accurate
+### 🥇 Tier 1 — Auto (always do these)
+1. **Note Filer** — correct folder always; never repo root
+2. **Dataview Builder** — queries for Dashboard; always `LIMIT` + `SORT file.mtime DESC`
+3. **Template Writer** — Templater syntax; YAML frontmatter with `created`, `tags`, `status`
+4. **Script Fixer** — edit ROOT `.py` only; `os.environ.get()` for all env vars
+5. **Docs Updater** — after every change: update WHATS_DONE + level tracker
 
 ### 🥈 Tier 2 — On Request
-
-6. **Vault Cleaner**
-   - Detect + move misplaced files
-   - Delete confirmed duplicates
-   - Enforce PARA structure
-
-7. **GitHub Issues → Task Notes**
-   - Convert raw issue JSON → BROski Task template
-   - Auto-assign coins/XP based on issue labels
-   - File in correct `01-Projects/[repo]/` subfolder
-
-8. **Focus Analytics Reporter**
-   - Read `05-Focus-Sessions/` data
-   - Generate weekly markdown report
-   - Output to `02-Areas/Focus-Analytics/`
-
-9. **Morning Briefing Generator**
-   - Pull: GitHub open issues + HyperCode health + BROski$ balance + today's tasks
-   - Write to `00-Inbox/Morning-[date].md`
-   - Wire to `morning_briefing_ai.py` for LLM enhancement
+6. **Vault Cleaner** — detect/move misplaced files; enforce PARA
+7. **GitHub → Task Notes** — issue JSON → BROski task template → 01-Projects/
+8. **Morning Briefing** — POST /briefing/generate OR python morning_briefing_ai.py
+9. **Focus Analytics** — weekly report from 05-Focus-Sessions/ → 02-Areas/Focus-Analytics/
 
 ### 🥉 Tier 3 — Advanced
-
-10. **MCP Bridge Wiring (Level 15)**
-    - `mcp_bridge.py` connects vault as MCP source
-    - Every note = queryable context for HyperAgent
-    - Config in `03-Resources/MCP/`
-
-11. **Webhook Server (Level 14)**
-    - `github_webhook_server.py` → FastAPI on port 8100
-    - PR/issue events → instant vault note
-    - HMAC-SHA256 validation always
-
-12. **HyperSplit Wiring (Level 17)**
-    - `hyper_split.py` → break any task into micro-steps
-    - Output as `Task-HyperSplit.md` template
-    - Recursive: each micro-task gets coins/XP
+10. **MCP Bridge Wiring** — vault as MCP source; config in 03-Resources/MCP/
+11. **Webhook Server** — github_webhook_server.py → real-time vault notes
+12. **HyperSplit** — POST /hypersplit → recursive micro-task tree in vault
 
 ---
 
-## 🔑 Key Facts (Never re-look-up)
+## 🔑 Key Facts
 
 ```
-Vault open path:     HYPERFOCUS_ZONE/
-Local repo path:     H:\BROski-Obsidian-Brain-for-HyperFocus-z0ne
-Brain API:           http://localhost:8100
-GitHub sync script:  scripts/github_to_obsidian.py (needs GITHUB_PAT env var)
-Token format:        github_pat_xxx (fine-grained, not ghp_)
-Obsidian Git:        auto-commits every 10 mins, auto-push ON
-CSS snippets:        HYPERFOCUS_ZONE/.obsidian/snippets/focus-mode.css
-Focus mode classes:  body.focus-mode | body.calm-mode | body.hyper-mode
-BROski$ schema:      coins (int), xp (int), status (todo/done), project (str)
-Dataview plugin:     REQUIRED — all Dashboard queries depend on it
-Templater plugin:    REQUIRED — all templates use tp.* syntax
-HyperCode health:    http://localhost:8000/health
-BROskiPets health:   http://localhost:8098/health
-Docker context:      desktop-linux on Windows
-Python style:        4 spaces, absolute imports, type hints preferred
-Memory cap:          hyper-brain container = 256m MAX
-Security:            NEVER commit .env / secrets / tokens
-Frontmatter must:    created, tags, status (minimum on every note)
+Vault open path:    HYPERFOCUS_ZONE/
+Local repo:         H:\BROski-Obsidian-Brain-for-HyperFocus-z0ne
+Brain API:          http://localhost:8100
+Docker file:        docker-compose.hyper-brain.yml (root — canonical)
+GitHub sync:        python scripts/github_to_obsidian.py
+PAT format:         github_pat_xxx (fine-grained)
+CSS modes:          focus-mode | calm-mode | hyper-mode
+BROski$ schema:     coins (int), xp (int), status, project
+Docker mem cap:     hyper-brain = 256m
+Obsidian Git:       10 min auto-commit, auto-push ON
+MCP port:           8820 (not 8099 — corrected)
+Redis:              DB4 for brain (DB1=cache, DB2=rate-limits in V2.4)
+Canonical Python:   ROOT *.py files ONLY
+Stubs location:     scripts/*.py — IGNORE
+Networks needed:    app-net + agents-net (external, created by HyperCode stack)
 ```
 
 ---
 
 ## 🚫 What NEVER To Do
 
-- ❌ NEVER create files in repo root (except README/CLAUDE/configs)
-- ❌ NEVER hardcode paths or tokens in scripts
-- ❌ NEVER commit `.env` or any file containing `GITHUB_PAT`
-- ❌ NEVER suggest ghost Obsidian plugins (always verify they exist)
+- ❌ NEVER edit `scripts/*.py` stubs — root is canonical
+- ❌ NEVER create files in repo root (except README/CLAUDE/Dockerfile/compose/configs)
+- ❌ NEVER hardcode paths or tokens
+- ❌ NEVER commit `.env` or GITHUB_PAT
 - ❌ NEVER wall of text — always chunk + bullet
-- ❌ NEVER skip updating WHATS_DONE after shipping something
-- ❌ NEVER debate the Sacred Rules
+- ❌ NEVER skip updating WHATS_DONE after shipping
+- ❌ NEVER use `docker/` compose file — use root `docker-compose.hyper-brain.yml`
 
 ---
 
-## 🚀 Current Sprint — Level 13 Next
+## 🚀 Current Sprint — Light The Engine
 
-**Goal:** Wire `morning_briefing_ai.py` → LLM → daily vault note
+**Goal:** `docker compose up` → health green → Levels 13–17 unlocked
 
-**Steps:**
-1. Check `morning_briefing_ai.py` — confirm API endpoints it calls
-2. Ensure HyperCode `/health` + GitHub API + BROski$ endpoint wired
-3. Test: `python morning_briefing_ai.py` → creates `00-Inbox/Morning-YYYY-MM-DD.md`
-4. Docker: add to `hyper-brain` container startup
-5. Verify in Obsidian: briefing appears in Inbox ✅
-
-**LEVEL 13 UNLOCK = Morning Briefing drops into vault automatically every morning.**
-
----
+```
+✅ Dockerfile fixed   — COPY *.py ./ (root, not scripts/)
+✅ Compose fixed      — context: . | correct vault path | agents-net
+✅ CLAUDE.md updated  — cross-repo links + honest level tracker
+⏳ YOU: docker compose -f docker-compose.hyper-brain.yml up -d --build
+⏳ YOU: curl http://localhost:8100/health
+⏳ YOU: curl -X POST http://localhost:8100/briefing/generate
+```
 
 > *"The brain that changes itself is the brain that builds itself."*
 > **THE HYPER BRAIN v3.0 — BROski♾️ builds the future.**

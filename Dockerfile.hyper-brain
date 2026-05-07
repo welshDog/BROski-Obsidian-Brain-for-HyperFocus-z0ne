@@ -2,28 +2,36 @@
 # THE HYPER BRAIN v3.0 — Container #30 in the Hyperfocus Zone
 # FastAPI + all focus/AI/analytics engines
 # BROski♾️
+#
+# ⚠️  CANONICAL SOURCE: root *.py files (full v3.0 implementations)
+#      scripts/*.py are OLD STUBS — DO NOT USE for container build
 
 FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install system deps
+# System deps
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
-    cron \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Python deps
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy all scripts
-COPY scripts/ ./scripts/
+# ✅ Copy ROOT .py files — these are the REAL v3.0 implementations
+# (NOT scripts/ — those are stubs from v2.x scaffold)
+COPY *.py ./
+
+# Keep github_to_obsidian.py accessible from scripts/ path too
+COPY scripts/github_to_obsidian.py ./scripts/github_to_obsidian.py
 
 # Healthcheck
-HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
-    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8100/health')" || exit 1
+HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
+    CMD curl -f http://localhost:8100/health || exit 1
 
 EXPOSE 8100
 
-CMD ["python", "scripts/hyper_brain_core.py"]
+# ✅ Run the real orchestrator from root
+CMD ["python", "hyper_brain_core.py"]

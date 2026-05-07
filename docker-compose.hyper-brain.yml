@@ -1,44 +1,57 @@
 # docker-compose.hyper-brain.yml
 # THE HYPER BRAIN v3.0 — Container #30
-# Add to HyperCode-V2.4 stack OR run standalone
+# Run standalone OR with HyperCode-V2.4 stack
 # BROski♾️
-
-version: '3.8'
+#
+# Standalone:  docker compose -f docker-compose.hyper-brain.yml up -d
+# With stack:  add to HyperCode-V2.4 docker-compose.yml
+#
+# Required env vars (add to .env):
+#   OBSIDIAN_VAULT_PATH=H:/BROski-Obsidian-Brain-for-HyperFocus-z0ne/HYPERFOCUS_ZONE
+#   GITHUB_WEBHOOK_SECRET=<your_secret>
+#   GITHUB_PAT=<your_fine_grained_pat>
 
 services:
   hyper-brain:
     build:
-      context: ..
-      dockerfile: docker/Dockerfile.hyper-brain
+      context: .
+      dockerfile: Dockerfile.hyper-brain
     container_name: hyper-brain
     ports:
       - "8100:8100"
     environment:
       - OBSIDIAN_VAULT_PATH=/vault
       - REDIS_URL=redis://redis:6379/4
-      - MCP_PORT=8099
+      - MCP_PORT=8820
       - GITHUB_WEBHOOK_SECRET=${GITHUB_WEBHOOK_SECRET}
+      - GITHUB_PAT=${GITHUB_PAT}
     volumes:
-      - ${OBSIDIAN_VAULT_PATH:-C:/Users/Lyndz/Obsidian/HYPERFOCUS_ZONE}:/vault
-      - ./scripts:/app/scripts:ro
+      # ✅ Corrected vault path for Lyndz's machine
+      - ${OBSIDIAN_VAULT_PATH:-H:/BROski-Obsidian-Brain-for-HyperFocus-z0ne/HYPERFOCUS_ZONE}:/vault
     networks:
       - app-net
-      - agent-net
+      - agents-net
     restart: unless-stopped
     mem_limit: 256m
     cpus: 0.5
     healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8100/health')"]
+      test: ["CMD", "curl", "-f", "http://localhost:8100/health"]
       interval: 30s
       timeout: 10s
       retries: 3
+      start_period: 15s
     labels:
       - "com.hyperfocuszone.service=hyper-brain"
       - "com.hyperfocuszone.tier=brain"
       - "com.hyperfocuszone.version=3.0.0"
 
+# ⚠️  When running standalone (not with HyperCode stack),
+#      create networks first:
+#      docker network create app-net
+#      docker network create agents-net
+#      OR switch to bridge mode:
 networks:
   app-net:
     external: true
-  agent-net:
+  agents-net:
     external: true
