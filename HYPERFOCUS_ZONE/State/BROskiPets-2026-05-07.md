@@ -160,3 +160,33 @@ python broski_pet_metadata.py --name X --species cyber_fox --rarity uncommon --d
 - [[BROski-Tokenomics]] — BROski$ earn/spend rules
 - [[Hyper-Vibe-Coding-Course]] — course platform state
 - [[HyperCode-V2.4]] — 29-container Docker ecosystem
+
+- ---
+
+## 📝 Session Update — May 7 2026, 11:30 BST
+
+**Agent:** BROski AI (Comet/Perplexity)
+
+### ✅ Completed This Session
+- Created `HYPERFOCUS_ZONE/Agents/BROskiPets-AutoBuilder.md` — full 7-phase master agent plan with Sacred Rules, phase status tracker, and vault update protocol
+- Verified Pinata group `BROski_pets_dNFTs` (ID: 2aedcf70-d4bb-4e13-94c9-ef6098d49aca) exists ✅ — currently empty (evo1 images not yet uploaded)
+- Created `broski-pet-evolver` agent on Pinata OpenClaw (agents.pinata.cloud) — Identity + Workspace complete ✅
+- Pre-loaded 3 non-sensitive secrets to Pinata Secrets Vault:
+  - `BASE_SEPOLIA_RPC` = https://sepolia.base.org ✅
+  - `IPFS_GATEWAY` = https://aqua-few-dolphin-310.mypinata.cloud ✅
+  - `BROSKIPET_CHAIN_ID` = 84532 ✅
+
+### ⏳ Blocked — Needs Lyndz Action
+- **Pinata agent Step 3 (CONNECT):** AI Provider is REQUIRED before agent can deploy
+  - Go to: https://agents.pinata.cloud/agents (your broski-pet-evolver should be saved as draft)
+  - Click CONFIGURE under OpenAI → select API Key → paste your `OPENAI_API_KEY`
+  - Then search + add remaining secrets: `PINATA_JWT`, `BACKEND_SIGNER_PRIVATE_KEY`, `BROSKIPET_CONTRACT_ADDRESS`
+  - Click CONTINUE → Step 4 DEPLOY → enable Cron `0 3 * * *` + Webhook → DEPLOY
+
+### 🚨 NEXT ACTIONS IN ORDER (Lyndz)
+1. **Run locally:** `python pinata_upload_all.py` → get CIDs → paste back to agent to update Pets.tsx
+2. **Run locally:** `cast wallet new` → save BACKEND_SIGNER keys
+3. **Run locally:** `forge script DeployBROskiPet.s.sol` → save contract address
+4. **Add to Supabase:** 3 edge function secrets (key, contract, chainId)
+5. **Finish Pinata agent:** connect OpenAI API key → add PINATA_JWT + contract secrets → deploy
+6. **WalletConnect:** cloud.walletconnect.com → 1 min → add to frontend .env
