@@ -173,6 +173,36 @@ class FocusTracker:
             "message": "🔥 IN THE ZONE" if s.flow_score > 0.7 else "⚡ Focus steady"
         }
 
+    async def _write_start_note(self, session) -> None:
+        """Drop an in-progress marker into vault so the session is visible mid-flow.
+        Finalised note is written by write_session_note() on end_session()."""
+        sessions_dir = os.path.join(self.vault_path, "05-Focus-Sessions")
+        os.makedirs(sessions_dir, exist_ok=True)
+        date_str = session.started_at.strftime("%Y-%m-%d")
+        fpath = os.path.join(sessions_dir, f"InProgress_{session.id}_{date_str}.md")
+        note = (
+            f"---\n"
+            f"session_id: {session.id}\n"
+            f"status: in_progress\n"
+            f"intent: {session.intent}\n"
+            f"project: {session.project or ''}\n"
+            f"started_at: {session.started_at.isoformat()}\n"
+            f"estimated_minutes: {session.estimated_minutes}\n"
+            f"difficulty: {session.difficulty}\n"
+            f"---\n"
+            f"# ⚡ Focus Session In Progress\n\n"
+            f"**Intent:** {session.intent}\n"
+            f"**Started:** {session.started_at.strftime('%H:%M UTC')}\n"
+            f"**Estimated:** {session.estimated_minutes}m\n"
+            f"**Difficulty:** {session.difficulty}\n"
+        )
+        try:
+            with open(fpath, 'w', encoding='utf-8') as f:
+                f.write(note)
+        except Exception:
+            # Don't fail session start if vault is unwritable
+            pass
+
     async def write_session_note(self, result: Dict[str, Any], vault_path: str) -> str:
         """Write session log to 05-Focus-Sessions/"""
         sessions_dir = os.path.join(vault_path, "05-Focus-Sessions")
