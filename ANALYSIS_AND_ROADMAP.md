@@ -198,6 +198,133 @@ Invoke-RestMethod http://localhost:8100/health
 # → {"status":"hyper","containers":30,"level":20}
 ```
 
+
+## 🚧 LEVELS 18–20 — Detailed Implementation Specs
+
+> **Status as of May 10, 2026:** 17/20 complete. Below are the full technical specs for the 3 remaining levels, informed by NotebookLM AI analysis.
+
+---
+
+### Level 18 — AI Distraction Filter Wired to Sessions
+
+**Goal:** Connect `ai_distraction_filter.py` to live session monitoring via `session_snapshot.py`
+
+**Current State:**
+- `ai_distraction_filter.py` — module EXISTS in hyper-brain container
+- `session_snapshot.py` — captures vault state at session start/end
+- **Missing:** The bridge between them so filter can monitor ACTIVE sessions in real time
+
+**Implementation Tasks:**
+1. Add session context injection to `ai_distraction_filter.py` — pass active session goal
+2. Create polling loop in `session_snapshot.py` that calls filter at configurable intervals
+3. Define detection signals:
+   - Vault note inactivity > N minutes during session
+   - Notes opened outside of session topic tags
+   - Rapid note-switching (context scatter pattern)
+4. Define intervention responses:
+   - Tier 1 (mild drift): BROski nudge notification to vault Inbox
+   - Tier 2 (severe drift): Session pause prompt with re-focus question
+   - Tier 3 (full chaos): Auto-log current progress + suggest HyperSplit decomp
+5. Wire intervention triggers to `00-Inbox/` note creation
+6. Add `/distraction/status` endpoint to FastAPI engine (port 8100)
+
+**Files to modify:** `ai_distraction_filter.py`, `session_snapshot.py`, `hyper_brain_core.py`  
+**Test:** `curl http://localhost:8100/distraction/status`
+
+---
+
+### Level 19 — DifficultyDial + Dynamic XP
+
+**Goal:** Make the BROski$ economy dynamic — variable rewards based on session quality and task difficulty
+
+**Current State:**
+- BROski$ Coin Tracker (Level 11) awards fixed rewards
+- No difficulty scoring exists yet
+- HyperSplit (Level 17) has friction detection but no difficulty weighting
+
+**Implementation Tasks:**
+
+**DifficultyDial:**
+1. Create `difficulty_dial.py` module
+2. User-selectable intensity: `low` / `medium` / `hyper` / `chaos`
+3. Affects AI Distraction Filter sensitivity thresholds
+4. Stored in vault `03-Resources/BROski-Config.md` as user preference
+5. Add `/difficulty/get` and `/difficulty/set` FastAPI endpoints
+
+**Dynamic XP:**
+1. Modify BROski$ Coin Tracker to accept `difficulty_multiplier`
+2. Multipliers: `low=0.5x` / `medium=1.0x` / `hyper=1.5x` / `chaos=2.0x`
+3. Session quality scoring (based on Distraction Filter data from Level 18):
+   - Clean session (no distractions): +25% bonus
+   - Recovered from distraction: +10% bonus  
+   - Completed HyperSplit chunk: +5% per chunk
+4. Streak recovery mechanic: missed goal yesterday → today's XP has recovery bonus
+5. Wire dynamic XP to BROskiPets NFT update pipeline
+
+**Files to create:** `difficulty_dial.py`  
+**Files to modify:** `broski_coin_tracker.py`, `hyper_brain_core.py`
+
+---
+
+### Level 20 — THE HYPER BRAIN Constellation
+
+**Goal:** Build the unified visual + navigable map of the entire ecosystem. The capstone level.
+
+**Current State:**
+- `Brain-Constellation.md` — blueprint EXISTS at repo root
+- No live visualisation exists yet
+- The ecosystem has no single "overview" interface
+
+**Why This is CRITICAL (from NotebookLM analysis):**
+> "Level 20 synthesises everything — without it, the system lacks a unified cognitive map. It is the most impactful remaining build."
+
+**Implementation Tasks:**
+
+**Static Map (Phase 1):**
+1. Expand `Brain-Constellation.md` into a fully linked Obsidian map
+2. Every system component links to its source file / vault folder
+3. Visual hierarchy: Vault → Engine → Economy → NFTs → Courses
+4. Include live status indicators (pulled from `/health` endpoint)
+
+**Dynamic Map (Phase 2):**
+1. Create `constellation_builder.py` — generates a live JSON representation of ecosystem state
+2. Pull from Container #30 health endpoint + all module statuses
+3. Output: `Hub/Brain-Constellation-Live.md` in Obsidian vault (auto-updated)
+4. Include: level completion %, active sessions, BROski$ balance, streak status
+
+**Endpoint:**
+```bash
+curl http://localhost:8100/constellation/map
+# Returns: full ecosystem JSON with live status
+```
+
+**Obsidian Output:**
+```
+Hub/
+└── Brain-Constellation-Live.md   # Auto-generated ecosystem overview
+    ├── System Health: ALL GREEN ✅
+    ├── Level Progress: 17/20 (85%)
+    ├── BROski$ Balance: XXX
+    ├── Active Sessions Today: X
+    └── [links to every component]
+```
+
+**Files to create:** `constellation_builder.py`  
+**Files to modify:** `hyper_brain_core.py`, `Brain-Constellation.md`, `Hub/` vault folder
+
+---
+
+## 📊 Progress Snapshot — May 10, 2026
+
+| Component | Status |
+|---|---|
+| Levels 1–17 | ✅ Complete |
+| Level 18 AI Distraction Filter | 🚧 Module live, wiring incomplete |
+| Level 19 DifficultyDial + Dynamic XP | 🚧 Design stage |
+| Level 20 Brain-Constellation | 🚧 Blueprint exists, not live |
+| Overall system completion | **85% (17/20)** |
+
+*Updated by NotebookLM AI analysis — May 10, 2026*
 ---
 
 > *"The brain that changes itself is the brain that builds itself."*  
