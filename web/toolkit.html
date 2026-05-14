@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>HYPER TOOL KIT — BROski Command</title>
+    <link rel="stylesheet" href="/ui/assets/styles.css" />
+    <style>
+      /* ─── TOOLKIT PAGE EXTRAS ─── */
+      body { background: #0a0a12; color: #e2e8f0; font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; }
+
+      .topbar {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 0.75rem 1.5rem;
+        background: #0f0f1a;
+        border-bottom: 1px solid #1e1e3a;
+      }
+      .brand__title { font-size: 1.3rem; font-weight: 800; letter-spacing: 0.1em; color: #a78bfa; }
+      .brand__sub   { font-size: 0.72rem; color: #64748b; letter-spacing: 0.12em; }
+      .nav-tabs {
+        display: flex; gap: 0.5rem;
+      }
+      .nav-tab {
+        padding: 0.35rem 1rem;
+        border-radius: 6px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-decoration: none;
+        color: #94a3b8;
+        background: #1a1a2e;
+        border: 1px solid #1e1e3a;
+        transition: background 0.15s;
+      }
+      .nav-tab:hover, .nav-tab.active {
+        background: #a78bfa22;
+        color: #a78bfa;
+        border-color: #a78bfa55;
+      }
+
+      .page-hero {
+        text-align: center;
+        padding: 2.5rem 1rem 1.5rem;
+      }
+      .page-hero h1 {
+        font-size: 2.2rem;
+        font-weight: 900;
+        background: linear-gradient(135deg, #a78bfa, #38bdf8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin: 0 0 0.4rem;
+        letter-spacing: 0.05em;
+      }
+      .page-hero p {
+        color: #64748b;
+        font-size: 0.9rem;
+        margin: 0;
+      }
+
+      .status-bar {
+        display: flex; justify-content: center; gap: 1.5rem;
+        padding: 0.75rem 1.5rem;
+        background: #0f0f1a;
+        border-bottom: 1px solid #1e1e3a;
+        flex-wrap: wrap;
+      }
+      .status-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; color: #94a3b8; }
+      .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 6px #22c55e88; }
+      .status-dot.offline { background: #ef4444; box-shadow: 0 0 6px #ef444488; }
+
+      .toolkit-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.25rem;
+        padding: 1.5rem;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .tool-card {
+        background: #0f0f1a;
+        border: 1px solid #1e1e3a;
+        border-radius: 12px;
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+      .tool-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+        background: var(--accent, #a78bfa);
+      }
+      .tool-card:hover {
+        border-color: var(--accent, #a78bfa);
+        box-shadow: 0 0 20px var(--accent-glow, #a78bfa22);
+      }
+
+      .tool-card--focus   { --accent: #a78bfa; --accent-glow: #a78bfa22; }
+      .tool-card--data    { --accent: #38bdf8; --accent-glow: #38bdf822; }
+      .tool-card--action  { --accent: #34d399; --accent-glow: #34d39922; }
+      .tool-card--game    { --accent: #f59e0b; --accent-glow: #f59e0b22; }
+      .tool-card--system  { --accent: #f87171; --accent-glow: #f8717122; }
+      .tool-card--future  { --accent: #94a3b8; --accent-glow: #94a3b822; opacity: 0.7; }
+
+      .tool-card__header {
+        display: flex; align-items: center; gap: 0.65rem;
+      }
+      .tool-icon {
+        width: 40px; height: 40px;
+        border-radius: 10px;
+        background: var(--accent-glow, #a78bfa22);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.4rem;
+        flex-shrink: 0;
+      }
+      .tool-card__title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #e2e8f0;
+        letter-spacing: 0.03em;
+      }
+      .tool-card__badge {
+        margin-left: auto;
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        background: var(--accent-glow, #a78bfa22);
+        color: var(--accent, #a78bfa);
+        border: 1px solid var(--accent, #a78bfa)44;
+      }
+      .tool-card__desc {
+        font-size: 0.8rem;
+        color: #64748b;
+        line-height: 1.5;
+        flex: 1;
+      }
+      .tool-card__endpoint {
+        font-size: 0.72rem;
+        font-family: 'Courier New', monospace;
+        color: #475569;
+        background: #0a0a12;
+        padding: 0.3rem 0.6rem;
+        border-radius: 5px;
+        border: 1px solid #1e1e3a;
+        word-break: break-all;
+      }
+      .tool-card__actions {
+        display: flex; gap: 0.5rem; flex-wrap: wrap;
+      }
+      .tool-btn {
+        padding: 0.35rem 0.85rem;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        cursor: pointer;
+        border: 1px solid var(--accent, #a78bfa)44;
+        background: var(--accent-glow, #a78bfa22);
+        color: var(--accent, #a78bfa);
+        transition: background 0.15s;
+      }
+      .tool-btn:hover {
+        background: var(--accent, #a78bfa)33;
+      }
+      .tool-btn:disabled {
+        opacity: 0.4; cursor: not-allowed;
+      }
+
+      .output-toast {
+        position: fixed; bottom: 1.5rem; right: 1.5rem;
+        background: #1e1e3a;
+        border: 1px solid #a78bfa55;
+        border-radius: 10px;
+        padding: 0.85rem 1.25rem;
+        color: #e2e8f0;
+        font-size: 0.82rem;
+        max-width: 360px;
+        box-shadow: 0 4px 24px #00000066;
+        z-index: 100;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.25s, transform 0.25s;
+        pointer-events: none;
+      }
+      .output-toast.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .output-toast__label { font-weight: 700; color: #a78bfa; margin-bottom: 0.25rem; }
+
+      .section-heading {
+        grid-column: 1 / -1;
+        display: flex; align-items: center; gap: 0.75rem;
+        padding: 0.25rem 0;
+        border-bottom: 1px solid #1e1e3a;
+      }
+      .section-heading h2 {
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        color: #475569;
+        margin: 0;
+        text-transform: uppercase;
+      }
+      .section-heading::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: #1e1e3a;
+      }
+
+      .phase-tag {
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: #475569;
+        background: #1a1a2e;
+        border: 1px solid #1e1e3a;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand__title">HYPER BRAIN</div>
+        <div class="brand__sub">HYPER TOOL KIT v3.0</div>
+      </div>
+      <nav class="nav-tabs">
+        <a href="/ui" class="nav-tab">Command Center</a>
+        <a href="/ui/toolkit" class="nav-tab active">🛠 Tool Kit</a>
+      </nav>
+    </header>
+
+    <!-- LIVE STATUS BAR -->
+    <div class="status-bar" id="statusBar">
+      <div class="status-item"><div class="status-dot" id="dot-focus_tracker"></div> focus_tracker</div>
+      <div class="status-item"><div class="status-dot" id="dot-analytics"></div> analytics</div>
+      <div class="status-item"><div class="status-dot" id="dot-hyper_split"></div> hyper_split</div>
+      <div class="status-item"><div class="status-dot" id="dot-distraction_filter"></div> distraction_filter</div>
+      <div class="status-item"><div class="status-dot" id="dot-mcp_bridge"></div> mcp_bridge</div>
+      <div class="status-item"><div class="status-dot" id="dot-snapshot"></div> snapshot</div>
+      <div class="status-item"><div class="status-dot" id="dot-briefing_ai"></div> briefing_ai</div>
+    </div>
+
+    <!-- HERO -->
+    <div class="page-hero">
+      <h1>⚡ HYPER TOOL KIT</h1>
+      <p>Every tool in the BROski arsenal — live, testable, one-click ready.</p>
+    </div>
+
+    <!-- GRID -->
+    <div class="toolkit-grid">
+
+      <!-- ─── SECTION: FOCUS ─── -->
+      <div class="section-heading"><h2>🎯 Focus Engine</h2></div>
+
+      <div class="tool-card tool-card--focus">
+        <div class="tool-card__header">
+          <div class="tool-icon">🎯</div>
+          <div class="tool-card__title">Start Focus</div>
+          <span class="tool-card__badge">LIVE</span>
+        </div>
+        <div class="tool-card__desc">Begin a tracked focus session. Intent, duration, project, tags, and difficulty dial all wired in.</div>
+        <div class="tool-card__endpoint">POST /focus/start</div>
+        <div class="tool-card__actions">
+          <button class="tool-btn" onclick="quickFocus()">⚡ Quick 25min</button>
+          <button class="tool-btn" onclick="window.location='/ui'">> Full Form</button>
+        </div>
+      </div>
+
+      <div class="tool-card tool-card--focus">
+        <div class="tool-card__header">
+          <div class="tool-icon">🛑</div>
+          <div class="tool-card__title">End Focus</div>
+          <span class="tool-card__badge">LIVE</span>
+        </div>
+        <div class="tool-card__desc">Close an active session. Log actual minutes, mood (1–10), and reflection notes. Awards XP + coins.</div>
+        <div class="tool-card__endpoint">POST /focus/end</div>
+        <div class="tool-card__actions">
+          <button class="tool-btn" onclick="window.location='/ui'"> Go to Command Center</button>
+        </div>
+      </div>
+
+      <div class="tool-card tool-card--focus">
+        <div class="tool-card__header">
+          <div class="tool-icon">📊</div>
+          <div class="tool-card__title">Focus Status</div>
+          <span class="tool-card__badge">LIVE</span>
+        </div>
+        <div class="tool-card__desc">Check if a session is currently active, the current intent, elapsed time, and session ID.</div>
+        <div class="tool-card__endpoint">GET /focus/status</div>
+        <div class="tool-card__actions">
+          <button class="tool-btn" onclick="hitEndpoint('GET','/focus/status','Focus Status')">Check Now</button>
+        </div>
+      </div>
+
+      <!-- ─── SECTION: ACTIONS ─── -->
+      <div class="section-heading"><h2>⚡ Quick Actions</h2></div>
+
+      <div class="tool-card tool-card--action">
+        <div class="tool-card__header">
+          <div class="tool-icon">🧠</div>
+          <div class="tool-card__title">Generate Briefing</div>
+          <span class="tool-card__badge">LIVE</span>
+        </div>
+        <div class="tool-card__desc">AI-generated daily briefing. Pulls from focus history, vault state, and priority tasks. Saved to Obsidian vault.</div>
+        <div class="tool-card__endpoint">POST /briefing/generate</div>
+        <div class="tool-card__actions">
+          <button class="tool-btn" onclick="hitEndpoint('POST','/briefing/generate','Briefing')">🧠 Generate Now</button>
+        </div>
+      </div>
+
+      <div class="tool-card tool-card--action">
+        <div class="tool-card__header">
+          <div class="tool-icon">📸</div>
+          <div class="tool-card__title">Snapshot</div>
+          <span class="tool-card__badge">LIVE</span>
+        </div>
+        <div class="tool-card__desc">Captures the current system state — containers, services, focus status, gamification — to a timestamped vault note.</div>
+        <div class="tool-card__endpoint">POST /snapshot</div>
+        <div class="tool-card__actions">
+          <button class="tool-btn" onclick="hitEndpoint('POST','/snapshot','Snapshot')">📸 Snap Now</button>
+        </div>
+      </div>
+
+      <div class="tool-card tool-card--action">
+        <div class="tool-card__header">
+          <div class="tool-icon">🔀</div>
+          <div class="tool-card__title">HyperSplit</div>
+          <span class="tool-card__badge">LIVE</span>
+        </div>
+        <div class="tool-card__desc">Give it a big scary task. It recursively splits into micro-steps. Perfect for ADHD brain overload moments.</div>
+        <div class="tool-card__endpoint">POST /task/split</div>
+        <div class="tool-card__actions">
+          <button class="tool-btn" onclick="hyperSplitDemo()">🔀 Split a Task</button>
+        </div>
+      </div>
+
+      <!-- ─── SECTION: DATA ─── -->
+      <div class="section-heading"><h2>📡 Data & Health</h2></div>
+
+      <div class="tool-card tool-card--data">
+        <div class="tool-card__header">
+          <div class="tool-icon">💓</div>
+          <div class="tool-card__title">Health Check</div>
+          <span class="tool-card__badge">LIVE</span>
+        </div>
+        <div class="tool-card__desc">Full system heartbeat. Returns status, version, level, containers count, and service flags.</div>
+        <div class="tool-card__endpoint">GET /health</div>
+        <div class="tool-card__actions">
+          <button class="tool-btn" onclick="hitEndpoint('GET','/health','Health')">💓 Ping</button>
+        </div>
+      </div>
+
+      <div class="tool-card tool-card--data">
+        <div class="tool-card__header">
+          <div class="tool-icon">📈</div>
+          <div class="tool-card__title">Analytics</div>
+          <span class="tool-card__badge">LIVE</span>
+        </div>
+        <div class="tool-card__desc">Returns focus session history, daily totals, XP earned, and consistency metrics across the week.</div>
+        <div class="tool-card__endpoint">GET /analytics/summary</div>
+        <div class="tool-card__actions">
+          <button class="tool-btn" onclick="hitEndpoint('GET','/analytics/summary','Analytics')">📈 Load Stats</button>
+        </div>
+      </div>
+
+      <div class="tool-card tool-card--data">
+        <div class="tool-card__header">
+          <div class="tool-icon">🎮</div>
+          <div class="tool-card__title">Gamification Summary</div>
+          <span class="tool-card__badge">LIVE</span>
+        </div>
+        <div class="tool-card__desc">Current level, XP, BROski$ coins, streak, and all achievement states. Your full builder score.</div>
+        <div class="tool-card__endpoint">GET /gamification/summary</div>
+        <div class="tool-card__actions">
+          <button class="tool-btn" onclick="hitEndpoint('GET','/gamification/summary','Gamification')">🎮 Load Score</button>
+        </div>
+      </div>
+
+      <div class="tool-card tool-card--data">
+        <div class="tool-card__header">
+          <div class="tool-icon">📋</div>
+          <div class="tool-card__title">Events Stream</div>
+          <span class="tool-card__badge">LIVE</span>
+        </div>
+        <div class="tool-card__desc">Returns the latest system events log. Startup, actions, focus sessions, snapshots, errors — all timestamped.</div>
+        <div class="tool-card__endpoint">GET /events</div>
+        <div class="tool-card__actions">
+          <button class="tool-btn" onclick="hitEndpoint('GET','/events','Events')">📋 Load Events</button>
+        </div>
+      </div>
+
+      <!-- ─── SECTION: GAMIFICATION ─── -->
+      <div class="section-heading"><h2>🏆 Gamification</h2></div>
+
+      <div class="tool-card tool-card--game">
+        <div class="tool-card__header">
+          <div class="tool-icon">🏆</div>
+          <div class="tool-card__title">Achievements</div>
+          <span class="tool-card__badge">LIVE</span>
+        </div>
+        <div class="tool-card__desc">All achievement states: First Focus, streak milestones, badge tiers, Recovery Token. Locked vs unlocked.</div>
+        <div class="tool-card__endpoint">GET /gamification/achievements</div>
+        <div class="tool-card__actions">
+          <button class="tool-btn" onclick="hitEndpoint('GET','/gamification/achievements','Achievements')">🏆 Check Badges</button>
+        </div>
+      </div>
+
+      <div class="tool-card tool-card--game">
+        <div class="tool-card__header">
+          <div class="tool-icon">💰</div>
+          <div class="tool-card__title">Award BROski$</div>
+          <span class="tool-card__badge">LIVE</span>
+        </div>
+        <div class="tool-card__desc">Manually award BROski$ coins to a user or trigger from focus session completion. Feeds the token economy.</div>
+        <div class="tool-card__endpoint">POST /gamification/award</div>
+        <div class="tool-card__actions">
+          <button class="tool-btn" onclick="awardCoins()">💰 Award 10 Coins</button>
+        </div>
+      </div>
+
+      <!-- ─── SECTION: SYSTEM ─── -->
+      <div class="section-heading"><h2>🔧 System Tools</h2></div>
+
+      <div class="tool-card tool-card--system">
+        <div class="tool-card__header">
+          <div class="tool-icon">🔗</div>
+          <div class="tool-card__title">MCP Bridge</div>
+          <span class="tool-card__badge">LIVE</span>
+        </div>
+        <div class="tool-card__desc">GitHub MCP gateway connection. Pulls repo context, issues, PRs direct into focus sessions and briefings.</div>
+        <div class="tool-card__endpoint">GET /mcp/status</div>
+        <div class="tool-card__actions">
+          <button class="tool-btn" onclick="hitEndpoint('GET','/mcp/status','MCP Bridge')">🔗 Check Bridge</button>
+        </div>
+      </div>
+
+      <div class="tool-card tool-card--system">
+        <div class="tool-card__header">
+          <div class="tool-icon">🔍</div>
+          <div class="tool-card__title">Distraction Filter</div>
+          <span class="tool-card__badge">LIVE</span>
+        </div>
+        <div class="tool-card__desc">Detects and flags non-priority tasks. Keeps ADHD brain on the current mission during active focus sessions.</div>
+        <div class="tool-card__endpoint">GET /distraction/status</div>
+        <div class="tool-card__actions">
+          <button class="tool-btn" onclick="hitEndpoint('GET','/distraction/status','Distraction Filter')">🔍 Check Filter</button>
+        </div>
+      </div>
+
+      <div class="tool-card tool-card--system">
+        <div class="tool-card__header">
+          <div class="tool-icon">📄</div>
+          <div class="tool-card__title">API Docs</div>
+          <span class="tool-card__badge">LIVE</span>
+        </div>
+        <div class="tool-card__desc">Full FastAPI Swagger UI. Every endpoint, schema, and test button. The full engine under the hood.</div>
+        <div class="tool-card__endpoint">GET /docs</div>
+        <div class="tool-card__actions">
+          <a class="tool-btn" href="http://localhost:8100/docs" target="_blank">📄 Open Swagger</a>
+        </div>
+      </div>
+
+      <!-- ─── SECTION: COMING SOON ─── -->
+      <div class="section-heading"><h2>🚀 Coming Next</h2></div>
+
+      <div class="tool-card tool-card--future">
+        <div class="tool-card__header">
+          <div class="tool-icon">📺</div>
+          <div class="tool-card__title">Live SSE Feed</div>
+          <span class="tool-card__badge">PHASE 2</span>
+        </div>
+        <div class="tool-card__desc">Real-time event stream via Server-Sent Events. No polling. Events appear the instant they happen.</div>
+        <div class="tool-card__endpoint">GET /events/stream (SSE)</div>
+        <div class="tool-card__actions">
+          <button class="tool-btn" disabled>⏳ Coming Soon</button>
+        </div>
+      </div>
+
+      <div class="tool-card tool-card--future">
+        <div class="tool-card__header">
+          <div class="tool-icon">📅</div>
+          <div class="tool-card__title">Session History</div>
+          <span class="tool-card__badge">PHASE 2</span>
+        </div>
+        <div class="tool-card__desc">Timeline view of all past focus sessions. Filter by project, date, mood, and XP earned. Your full builder journey.</div>
+        <div class="tool-card__endpoint">GET /focus/history</div>
+        <div class="tool-card__actions">
+          <button class="tool-btn" disabled>⏳ Coming Soon</button>
+        </div>
+      </div>
+
+      <div class="tool-card tool-card--future">
+        <div class="tool-card__header">
+          <div class="tool-icon">📦</div>
+          <div class="tool-card__title">Snapshot Archive</div>
+          <span class="tool-card__badge">PHASE 2</span>
+        </div>
+        <div class="tool-card__desc">Browse all saved snapshots. View system state at any point in time. The time machine for your HYPER BRAIN.</div>
+        <div class="tool-card__endpoint">GET /snapshot/history</div>
+        <div class="tool-card__actions">
+          <button class="tool-btn" disabled>⏳ Coming Soon</button>
+        </div>
+      </div>
+
+      <div class="tool-card tool-card--future">
+        <div class="tool-card__header">
+          <div class="tool-icon">✅</div>
+          <div class="tool-card__title">Tomorrow Plan</div>
+          <span class="tool-card__badge">PHASE 3</span>
+        </div>
+        <div class="tool-card__desc">AI generates tomorrow's task queue based on today's sessions, XP earned, and pending GitHub issues.</div>
+        <div class="tool-card__endpoint">POST /plan/tomorrow</div>
+        <div class="tool-card__actions">
+          <button class="tool-btn" disabled>⏳ Coming Soon</button>
+        </div>
+      </div>
+
+      <div class="tool-card tool-card--future">
+        <div class="tool-card__header">
+          <div class="tool-icon">🐾</div>
+          <div class="tool-card__title">BROskiPets Bridge</div>
+          <span class="tool-card__badge">PHASE 3</span>
+        </div>
+        <div class="tool-card__desc">Feed XP directly to your BROskiPet from focus completions. Chat with your pet from the command center.</div>
+        <div class="tool-card__endpoint">POST /pets/xp-award</div>
+        <div class="tool-card__actions">
+          <button class="tool-btn" disabled>⏳ Coming Soon</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TOAST -->
+    <div class="output-toast" id="toast">
+      <div class="output-toast__label" id="toastLabel">Result</div>
+      <pre id="toastBody" style="margin:0;font-size:0.75rem;color:#94a3b8;white-space:pre-wrap;max-height:200px;overflow:auto"></pre>
+    </div>
+
+    <script>
+      const BASE = 'http://localhost:8100';
+
+      // ── Live status dots ──
+      async function refreshStatus() {
+        try {
+          const r = await fetch(BASE + '/health');
+          const d = await r.json();
+          const svcs = d.services || {};
+          Object.keys(svcs).forEach(k => {
+            const dot = document.getElementById('dot-' + k);
+            if (dot) dot.className = 'status-dot' + (svcs[k] ? '' : ' offline');
+          });
+        } catch {}
+      }
+      refreshStatus();
+      setInterval(refreshStatus, 10000);
+
+      // ── Toast helper ──
+      function showToast(label, data) {
+        document.getElementById('toastLabel').textContent = '✅ ' + label;
+        document.getElementById('toastBody').textContent = typeof data === 'object'
+          ? JSON.stringify(data, null, 2)
+          : String(data);
+        const t = document.getElementById('toast');
+        t.classList.add('show');
+        clearTimeout(t._timer);
+        t._timer = setTimeout(() => t.classList.remove('show'), 6000);
+      }
+
+      // ── Generic hit ──
+      async function hitEndpoint(method, path, label) {
+        try {
+          const r = await fetch(BASE + path, { method });
+          const d = await r.json();
+          showToast(label, d);
+        } catch(e) { showToast(label + ' ERROR', e.message); }
+      }
+
+      // ── Quick 25min focus ──
+      async function quickFocus() {
+        try {
+          const r = await fetch(BASE + '/focus/start', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({ task_title: 'Quick BROski session', duration_minutes: 25 })
+          });
+          showToast('Focus Started', await r.json());
+        } catch(e) { showToast('Focus ERROR', e.message); }
+      }
+
+      // ── HyperSplit demo ──
+      async function hyperSplitDemo() {
+        const task = prompt('What big scary task do you want to split?', 'Build the SSE event stream');
+        if (!task) return;
+        try {
+          const r = await fetch(BASE + '/task/split', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({ task_description: task, max_steps: 5 })
+          });
+          showToast('HyperSplit', await r.json());
+        } catch(e) { showToast('HyperSplit ERROR', e.message); }
+      }
+
+      // ── Award coins ──
+      async function awardCoins() {
+        try {
+          const r = await fetch(BASE + '/gamification/award', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({ amount: 10, reason: 'Manual toolkit award' })
+          });
+          showToast('BROski$ Awarded', await r.json());
+        } catch(e) { showToast('Award ERROR', e.message); }
+      }
+    </script>
+
+  </body>
+</html>
