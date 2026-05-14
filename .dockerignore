@@ -1,0 +1,12 @@
+HYPERFOCUS_ZONE/
+.obsidian/
+sessions/
+__pycache__/
+.pytest_cache/
+.venv/
+.git/
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
