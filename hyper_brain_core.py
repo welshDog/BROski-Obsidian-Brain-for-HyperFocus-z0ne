@@ -133,6 +133,10 @@ async def health():
 async def ui_index():
     return FileResponse(os.path.join(WEB_DIR, "index.html"))
 
+@app.get("/ui/toolkit")
+async def ui_toolkit():
+    return FileResponse(os.path.join(WEB_DIR, "toolkit.html"))
+
 @app.get("/events")
 async def events(limit: int = 10):
     if not events_feed:

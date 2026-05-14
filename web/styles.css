@@ -42,6 +42,20 @@ body {
 
 .topbar__right { display: flex; align-items: center; gap: 12px; }
 
+.nav-tabs { display: flex; gap: 8px; align-items: center; }
+.nav-tab {
+  padding: 6px 10px;
+  border: 1px solid rgba(231, 238, 247, 0.18);
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: var(--muted);
+  background: rgba(0, 0, 0, 0.16);
+}
+.nav-tab:hover { border-color: rgba(96, 165, 250, 0.55); color: var(--text); }
+.nav-tab--active { border-color: rgba(96, 165, 250, 0.55); color: var(--text); }
+
 .pill {
   padding: 6px 10px;
   border: 1px solid var(--border);
