@@ -1,0 +1,20 @@
+{
+  "name": "focus-tracker",
+  "version": "1.0.0",
+  "runtime": "python",
+  "entrypoint": "focus_tracker.py",
+  "description": "ADHD focus session tracker — logs, scores, streaks",
+  "mcp_compatible": false,
+  "tools": [
+    {
+      "name": "start_session",
+      "description": "Start a new hyperfocus session",
+      "input_schema": { "task": "string", "duration_mins": "integer" }
+    },
+    {
+      "name": "end_session",
+      "description": "End session and log score",
+      "input_schema": { "session_id": "string" }
+    }
+  ]
+}

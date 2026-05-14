@@ -1,0 +1,27 @@
+{
+  "cluster": "broski-brain",
+  "agents": [
+    {
+      "name": "hyper-brain-core",
+      "manifest_path": ".agents/hyper-brain-core/manifest.json",
+      "port": 3301,
+      "memory": "redis"
+    },
+    {
+      "name": "mcp-bridge",
+      "manifest_path": ".agents/mcp-bridge/manifest.json",
+      "port": 3302,
+      "memory": "redis"
+    },
+    {
+      "name": "focus-tracker",
+      "manifest_path": ".agents/focus-tracker/manifest.json",
+      "memory": "postgres"
+    },
+    {
+      "name": "morning-briefing",
+      "manifest_path": ".agents/morning-briefing/manifest.json",
+      "memory": "redis"
+    }
+  ]
+}

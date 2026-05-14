@@ -1,0 +1,20 @@
+{
+  "name": "hyper-brain-core",
+  "version": "1.0.0",
+  "runtime": "python",
+  "entrypoint": "hyper_brain_core.py",
+  "description": "Core brain logic for the BROski HyperFocus ecosystem",
+  "mcp_compatible": true,
+  "tools": [
+    {
+      "name": "query_brain",
+      "description": "Query the BROski brain for context, decisions, and knowledge",
+      "input_schema": { "query": "string" }
+    },
+    {
+      "name": "update_brain",
+      "description": "Update brain state with new knowledge or sprint wins",
+      "input_schema": { "key": "string", "value": "string" }
+    }
+  ]
+}

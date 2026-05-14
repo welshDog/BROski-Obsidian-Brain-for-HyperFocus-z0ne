@@ -1,0 +1,15 @@
+{
+  "name": "morning-briefing",
+  "version": "1.0.0",
+  "runtime": "python",
+  "entrypoint": "morning_briefing_ai.py",
+  "description": "Daily AI morning briefing — tasks, energy, BROski$ summary",
+  "mcp_compatible": false,
+  "tools": [
+    {
+      "name": "get_briefing",
+      "description": "Generate today's morning briefing",
+      "input_schema": { "discord_id": "string" }
+    }
+  ]
+}
