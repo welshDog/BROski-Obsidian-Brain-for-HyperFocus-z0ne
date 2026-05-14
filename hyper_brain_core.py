@@ -14,7 +14,8 @@ from datetime import datetime, timedelta
 from typing import Optional, Dict, Any, List
 
 from fastapi import FastAPI, BackgroundTasks, HTTPException, Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 import uvicorn
 
@@ -26,13 +27,18 @@ from ai_distraction_filter import DistractionFilter
 from mcp_bridge import MCPBridge
 from session_snapshot import SessionSnapshot
 from morning_briefing_ai import MorningBriefingAI
+from events_feed import EventsFeed
+from gamification_summary import compute_gamification_summary
 
 app = FastAPI(title="THE HYPER BRAIN", version="3.0.0")
 
 # ─── Config ───────────────────────────────────────────
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+WEB_DIR = os.path.join(BASE_DIR, "web")
 VAULT_PATH = os.environ.get("OBSIDIAN_VAULT_PATH", "/vault")
 REDIS_URL = os.environ.get("REDIS_URL", "redis://localhost:6379/4")
 MCP_PORT = int(os.environ.get("MCP_PORT", "8099"))
+APP_LEVEL = 20
 
 # ─── State ────────────────────────────────────────────
 focus_tracker: Optional[FocusTracker] = None
@@ -42,6 +48,7 @@ distraction_filter: Optional[DistractionFilter] = None
 mcp_bridge: Optional[MCPBridge] = None
 snapshot: Optional[SessionSnapshot] = None
 briefing_ai: Optional[MorningBriefingAI] = None
+events_feed: Optional[EventsFeed] = None
 
 # ─── Pydantic Models ──────────────────────────────────
 class FocusSessionStart(BaseModel):
@@ -74,10 +81,12 @@ class MorningBriefingRequest(BaseModel):
     include_ai_suggestions: bool = True
     include_focus_forecast: bool = True
 
+app.mount("/ui/assets", StaticFiles(directory=WEB_DIR), name="ui-assets")
+
 # ─── Lifespan ─────────────────────────────────────────
 @app.on_event("startup")
 async def startup():
-    global focus_tracker, analytics, hyper_split, distraction_filter, mcp_bridge, snapshot, briefing_ai
+    global focus_tracker, analytics, hyper_split, distraction_filter, mcp_bridge, snapshot, briefing_ai, events_feed
     focus_tracker = FocusTracker(vault_path=VAULT_PATH, redis_url=REDIS_URL)
     analytics = AnalyticsEngine(vault_path=VAULT_PATH)
     hyper_split = HyperSplitEngine(vault_path=VAULT_PATH)
@@ -85,6 +94,8 @@ async def startup():
     mcp_bridge = MCPBridge(mcp_port=MCP_PORT, vault_path=VAULT_PATH)
     snapshot = SessionSnapshot(vault_path=VAULT_PATH)
     briefing_ai = MorningBriefingAI(vault_path=VAULT_PATH, mcp_bridge=mcp_bridge)
+    events_feed = EventsFeed(maxlen=200)
+    events_feed.add("system", "hyper_brain_startup", {"version": "3.0.0"})
 
     await focus_tracker.start()
     await mcp_bridge.connect()
@@ -104,7 +115,7 @@ async def health():
     return {
         "status": "hyper",
         "version": "3.0.0",
-        "level": 20,
+        "level": APP_LEVEL,
         "containers": 30,
         "services": {
             "focus_tracker": focus_tracker is not None,
@@ -118,10 +129,26 @@ async def health():
         "timestamp": datetime.utcnow().isoformat()
     }
 
+@app.get("/ui")
+async def ui_index():
+    return FileResponse(os.path.join(WEB_DIR, "index.html"))
+
+@app.get("/events")
+async def events(limit: int = 10):
+    if not events_feed:
+        return {"events": []}
+    return {"events": events_feed.list(limit=limit)}
+
+@app.get("/gamification/summary")
+async def gamification_summary():
+    return await compute_gamification_summary(VAULT_PATH, level=APP_LEVEL)
+
 # ─── Focus Sessions ───────────────────────────────────
 @app.post("/focus/start")
 async def focus_start(req: FocusSessionStart):
     """Start a tracked focus session with adaptive difficulty."""
+    if not focus_tracker:
+        raise HTTPException(503, "focus_tracker not available")
     session = await focus_tracker.start_session(
         intent=req.intent,
         estimated_minutes=req.estimated_minutes,
@@ -129,19 +156,29 @@ async def focus_start(req: FocusSessionStart):
         tags=req.tags,
         difficulty_preference=req.difficulty_preference
     )
-    # Auto-enable distraction filter
-    await distraction_filter.enable_for_session(session["id"])
-    # Take snapshot of current vault state
-    await snapshot.capture(session["id"])
+    if distraction_filter:
+        await distraction_filter.enable_for_session(session["id"])
+    if snapshot:
+        await snapshot.capture(session["id"])
+    if events_feed:
+        events_feed.add("focus_start", f"Focus started: {req.intent}", {"session_id": session["id"]})
     return {"session": session, "mode": "hyperfocus_activated"}
 
 @app.post("/focus/end")
 async def focus_end(req: FocusSessionEnd):
     """End session, calculate XP, update streaks, generate analytics."""
+    if not focus_tracker:
+        raise HTTPException(503, "focus_tracker not available")
     result = await focus_tracker.end_session(req.session_id, req.actual_minutes, req.mood)
-    await distraction_filter.disable_for_session(req.session_id)
+    if isinstance(result, dict) and result.get("error"):
+        raise HTTPException(404, result["error"])
+
+    if distraction_filter:
+        await distraction_filter.disable_for_session(req.session_id)
 
     # Award BROski$ + XP
+    if not analytics:
+        raise HTTPException(503, "analytics not available")
     coins, xp = await analytics.award_for_session(result)
 
     # Update streaks
@@ -149,6 +186,13 @@ async def focus_end(req: FocusSessionEnd):
 
     # Generate session note in vault
     note_path = await focus_tracker.write_session_note(result, VAULT_PATH)
+
+    if events_feed:
+        events_feed.add(
+            "focus_end",
+            f"Focus ended: {result.get('intent', '')}",
+            {"session_id": req.session_id, "actual_minutes": req.actual_minutes, "mood": req.mood},
+        )
 
     return {
         "session_result": result,
@@ -165,8 +209,12 @@ async def focus_status():
 @app.post("/focus/snapshot")
 async def focus_snapshot(background_tasks: BackgroundTasks):
     """Emergency session snapshot — save brain state NOW."""
+    if not snapshot:
+        raise HTTPException(503, "snapshot not available")
     snap = await snapshot.capture("manual_" + datetime.now().strftime("%H%M%S"))
     background_tasks.add_task(snapshot.write_to_vault, snap)
+    if events_feed:
+        events_feed.add("snapshot", "Snapshot captured", {"snapshot_id": snap["id"]})
     return {"snapshot_id": snap["id"], "saved": True}
 
 # ─── HyperSplit ───────────────────────────────────────
@@ -217,12 +265,16 @@ async def focus_heatmap(days: int = 30):
 @app.post("/briefing/generate")
 async def generate_briefing(req: MorningBriefingRequest):
     """AI-powered morning briefing with predictive prioritization."""
+    if not briefing_ai:
+        raise HTTPException(503, "briefing_ai not available")
     briefing = await briefing_ai.generate(
         date=req.date,
         include_ai=req.include_ai_suggestions,
         include_forecast=req.include_focus_forecast
     )
     path = await briefing_ai.write_to_vault(briefing, VAULT_PATH)
+    if events_feed:
+        events_feed.add("briefing", "Briefing generated", {"vault_path": path})
     return {"briefing": briefing, "vault_path": path}
 
 # ─── MCP Bridge ───────────────────────────────────────
@@ -283,8 +335,12 @@ tags: [github, {event}, {repo}]
         with open(os.path.join(inbox_path, fname), "w", encoding="utf-8") as f:
             f.write(note)
 
+        if events_feed:
+            events_feed.add("webhook", f"GitHub {event}: {repo} #{number} {action}", {"file": fname})
         return {"received": True, "event": event, "file": fname}
 
+    if events_feed:
+        events_feed.add("webhook", f"GitHub {event}", {})
     return {"received": True, "event": event}
 
 # ─── Main ─────────────────────────────────────────────

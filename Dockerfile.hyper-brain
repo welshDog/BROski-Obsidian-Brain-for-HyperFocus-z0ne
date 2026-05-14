@@ -23,6 +23,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # ✅ Copy ROOT .py files — these are the REAL v3.0 implementations
 # (NOT scripts/ — those are stubs from v2.x scaffold)
 COPY *.py ./
+COPY web ./web
 
 # Keep github_to_obsidian.py accessible from scripts/ path too
 COPY scripts/github_to_obsidian.py ./scripts/github_to_obsidian.py

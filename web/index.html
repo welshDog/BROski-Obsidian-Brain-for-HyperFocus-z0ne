@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>HYPER BRAIN — Command Center</title>
+    <link rel="stylesheet" href="/ui/assets/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand__title">HYPER BRAIN</div>
+        <div class="brand__sub">Systems-first Command Center</div>
+      </div>
+      <div class="topbar__right">
+        <div id="connectionPill" class="pill pill--offline">OFFLINE</div>
+        <div class="hud">
+          <div class="hud__item"><span class="hud__label">LV</span> <span id="hudLevel">—</span></div>
+          <div class="hud__item"><span class="hud__label">XP</span> <span id="hudXp">—</span></div>
+          <div class="hud__item"><span class="hud__label">$</span> <span id="hudCoins">—</span></div>
+          <div class="hud__item"><span class="hud__label">STREAK</span> <span id="hudStreak">—</span></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="panel">
+        <div class="panel__title">Constellation</div>
+        <div id="tiles" class="tiles"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel__title">System JSON</div>
+        <div class="panel__tabs">
+          <button class="tab" data-json="health">health</button>
+          <button class="tab" data-json="focus">focus_status</button>
+          <button class="tab" data-json="game">gamification_summary</button>
+        </div>
+        <pre id="jsonPanel" class="json"></pre>
+      </section>
+
+      <section class="panel">
+        <div class="panel__title">Quick Actions</div>
+        <div class="actions">
+          <button id="btnBriefing" class="btn btn--primary">Generate Briefing</button>
+          <button id="btnSnapshot" class="btn btn--secondary">Snapshot Now</button>
+        </div>
+        <div class="panel__title panel__title--spaced">Output</div>
+        <pre id="outputPanel" class="json json--output"></pre>
+      </section>
+
+      <section class="panel">
+        <div class="panel__title">Focus Controls</div>
+        <div class="forms">
+          <form id="startForm" class="form">
+            <div class="form__row">
+              <label>Intent</label>
+              <input name="intent" required placeholder="What are we doing?" />
+            </div>
+            <div class="form__row">
+              <label>Estimated minutes</label>
+              <input name="estimated_minutes" type="number" value="25" min="5" max="180" />
+            </div>
+            <div class="form__row">
+              <label>Project</label>
+              <input name="project" placeholder="Optional" />
+            </div>
+            <div class="form__row">
+              <label>Tags</label>
+              <input name="tags" placeholder="comma,separated" />
+            </div>
+            <div class="form__row">
+              <label>Difficulty</label>
+              <select name="difficulty_preference">
+                <option value="auto">auto</option>
+                <option value="easy">easy</option>
+                <option value="medium">medium</option>
+                <option value="hard">hard</option>
+              </select>
+            </div>
+            <button class="btn btn--primary" type="submit">Start Focus</button>
+          </form>
+
+          <form id="endForm" class="form">
+            <div class="form__row">
+              <label>Session ID</label>
+              <input name="session_id" id="sessionIdInput" placeholder="auto-filled when started" />
+            </div>
+            <div class="form__row">
+              <label>Actual minutes</label>
+              <input name="actual_minutes" type="number" value="25" min="1" max="600" required />
+            </div>
+            <div class="form__row">
+              <label>Mood (1–10)</label>
+              <input name="mood" type="number" value="5" min="1" max="10" />
+            </div>
+            <div class="form__row">
+              <label>Notes</label>
+              <textarea name="notes" rows="3" placeholder="Quick reflection"></textarea>
+            </div>
+            <div class="actions">
+              <button class="btn btn--secondary" type="submit">End Focus</button>
+              <button id="btnClearSession" class="btn btn--ghost" type="button">Clear Active Session</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel__title">Achievements</div>
+        <div id="achievements" class="achievements"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel__title">Events</div>
+        <div id="events" class="events"></div>
+      </section>
+    </main>
+
+    <script src="/ui/assets/app.js"></script>
+  </body>
+</html>
