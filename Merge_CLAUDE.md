@@ -1,6 +1,6 @@
 # 🧠 HYPERFOCUS z0ne — Full AI Context (Merge_CLAUDE.md)
 > **For ANY AI assistant — Claude, Perplexity, GPT, Gemini — read this first. Every word.**
-> Last updated: **May 15, 2026 (13:24 BST)**
+> Last updated: **May 15, 2026 (15:59 BST)**
 > Status: 48 containers 🟢 | 224 tests ✅ | Prometheus 7/7 ✅ | Stripe LIVE 💳 | Discord Bot Tier 1 LIVE 🤖 | BROskiPets Web3 LIVE 🔥
 
 ---
@@ -91,7 +91,7 @@ Key ports:
 
 ---
 
-## 📊 Live System Status (May 15, 2026 — 13:24 BST)
+## 📊 Live System Status (May 15, 2026 — 15:59 BST)
 
 | Metric | Status |
 |---|---|
@@ -104,7 +104,11 @@ Key ports:
 | Stripe | LIVE 💳 (webhook secret updated May 5) |
 | Gamification | HUD, XP, Quests, Leaderboard LIVE ✅ |
 | BROskiPets Web3 Mint | LIVE on Base Sepolia 🔥 May 7 |
-| broski-bot Discord | OPTION A LIVE 🤖 May 15 |
+| broski-bot Discord | OPTION A LIVE + Core Gatekeeper wired 🤖 May 15 |
+| Core "One Door" endpoint | POST /api/v1/discord/actions LIVE ✅ May 15 |
+| Idempotency (DiscordIdempotencyKey) | LIVE ✅ May 15 |
+| Discord embed polish | Premium UX — medals, colours, mentions ✅ May 15 |
+| broski-bot Docker boot | discord.py + cogs.bot entrypoint LIVE ✅ May 15 |
 | Env Preflight Checker | LIVE ✅ May 15 |
 | BROski Brain | Levels 9–12 + Brain agents pushed ✅ May 15 |
 | HyperAgent Graduate Build | DESIGNED ✅ May 15 — implementation TODO |
@@ -134,6 +138,10 @@ Key ports:
 ✔ Socket-proxy split      — main=read-only, healer proxy=write (CONTAINERS+POST+PING)
 ✔ Security headers        — frontend/vercel.json (NOT repo root)
 ✔ Course dev              — npm run dev:frontend (NOT npm run dev)
+✔ broski-bot              — ALWAYS Option A (Core-only). NEVER add Supabase to bot.
+✔ Bot library             — discord.py==2.4.0. NEVER py-cord. NEVER supabase in bot.
+✔ Bot entrypoint          — python -u -m cogs.bot. NEVER python main.py
+✔ Core URL in Docker      — HYPERCODE_API_URL=http://hypercode-core:8000 (NOT localhost)
 ```
 
 ---
@@ -143,45 +151,88 @@ Key ports:
 **Location:** `agents/broski-bot/` — profile: `discord`
 ⚠️ `discord-bot/` = LEGACY (reprofiled to `discord-lite`) — do NOT use
 
+### Architecture: Option A — Core is the One Brain
+```
+Discord user
+     │
+ broski-bot (pure UI adapter)
+     │  POST /api/v1/discord/actions
+     │  Headers: Authorization: Bearer <BOT_API_KEY>
+     │           Idempotency-Key: <interaction_id>
+     │           X-Request-Hash: <sha256 of body>
+     ▼
+hypercode-core (ALL business logic lives here)
+     │
+  DB + Wallets + XP + Rules
+```
+
+### Supported Actions (POST /api/v1/discord/actions)
+| Action | Discord Command | Embed colour |
+|---|---|---|
+| `daily.claim` | `/daily` | Blue `#5865F2` |
+| `economy.balance` | `/balance` | Blue `#5865F2` |
+| `economy.give` | `/give @user amount` | Green `#57F287` / Red `#ED4245` |
+| `economy.leaderboard` | `/rich` | Gold `#F1C40F` |
+| `leaderboard.xp` | `/top` | Purple `#9B59B6` |
+| `member.join` | auto on join | Blue `#5865F2` |
+
+### Idempotency Behaviour
+- First call → `200` ✅
+- Same `Idempotency-Key` + same hash → `409` with cached JSON ♻️
+- Key reused with different hash → `409` with `idempotency_mismatch` error
+
 ### Run Commands
-```bash
-# Core only (no bot):
-docker compose up -d
+```powershell
+# Env check first (ALWAYS):
+python scripts/env_check.py --core --secrets --profile discord
 
-# Bot + core:
-docker compose --profile discord up -d
+# Pull + build + boot:
+git pull
+docker compose -f docker-compose.core.yml -f docker-compose.secrets.yml `
+  --profile discord up -d --build broski-bot
 
-# Bot only:
-docker compose --profile discord up -d broski-bot
+# Watch logs:
+docker logs broski-bot --tail 40
+# Healthy = "BROski Bot ALIVE" + slash commands synced
+```
 
-# Verify config:
-docker compose --profile discord config
+### Bot env vars (agents/broski-bot/.env)
+```
+DISCORD_TOKEN=...          # required
+HYPERCODE_API_URL=http://hypercode-core:8000  # injected by compose
+BOT_API_KEY=...            # must match Core BOT_API_KEY or API_KEY
+GUILD_ID=...               # your Discord server ID
+# No SUPABASE_URL, no SUPABASE_KEY — Option A = Core only
 ```
 
 ### Tier 1 LIVE (May 15)
 | Feature | Commands |
 |---|---|
-| 💰 BROski$ Economy | `/balance` `/earn` `/spend` `/give` |
+| 💰 BROski$ Economy | `/balance` `/daily` `/give` `/rich` `/top` |
 | 🧠 AI Chat → FastAPI | `/broski` `/ask` |
 | 🎯 Focus Tracker + XP | `/focus start` `/focus stop` `/focusstats` |
 | 📋 Daily Missions | `/missions` + auto-post 8am UTC (9am BST) |
 
 ### Tier 2 TODO
 - 🐾 BROski Pets integration — `/pet` shows stats, feed with coins
-- 🏆 XP Leaderboard — `/leaderboard` pulls from Supabase
+- 🏆 Full XP Leaderboard enhancements
 - 🌅 Morning Briefing — auto-DM/post from Morning Briefing agent
 - 🚨 System Health Alerts — bot posts when V2.4 containers go down
 
-### Persistence (bind mounts survive rebuilds)
+### Persistence (named volumes survive rebuilds)
 ```
-HC_DATA_ROOT/broski-bot/db
-HC_DATA_ROOT/broski-bot/logs
-HC_DATA_ROOT/broski-bot/backups
+broski-bot-db     → /opt/hypercode/data/broski-bot/db
+broski-bot-logs   → /opt/hypercode/data/broski-bot/logs
+broski-bot-backups→ /opt/hypercode/data/broski-bot/backups
 ```
 
-### FastAPI endpoints the bot calls
-- `POST /ai/chat` — BROski AI full chat
-- `POST /ai/quick` — Quick Q&A
+### Embed Polish (shipped May 15)
+- All numbers comma-formatted (`1,234` not `1234`)
+- 🥇🥈🥉 medals for top 3 in both leaderboards
+- `economy.give` shows sender's remaining balance + level after transfer
+- Self-give guard: 🤔 "Nice try! You can't give coins to yourself, BRO."
+- Specific missing-account message names exactly who needs to link
+- Red `#ED4245` for errors, Yellow `#FEE75C` for warnings, Green `#57F287` for success
 
 ---
 
@@ -205,9 +256,8 @@ bash scripts/env-check.sh --core --secrets --profile discord
 - Bash wrapper: `scripts/env-check.sh`
 - Tests: `backend/tests/unit/test_env_check_script.py` ✅ passing
 
-**Currently catches:**
-- broski-bot `.env` missing: `BOT_*_PATH`, `FASTAPI_BASE`, `GUILD_ID`, `MISSIONS_CHANNEL_ID`, `SUPABASE_URL`, `SUPABASE_KEY`
-- Root `.env` duplicate warnings: `BROSKIE_PETS_ENABLED`, `PETS_WEBHOOK_SECRET`
+**Known warnings (non-blocking):**
+- Root `.env` duplicate keys: `BROSKIE_PETS_ENABLED`, `PETS_WEBHOOK_SECRET` — won't block boot
 
 ---
 
@@ -218,15 +268,6 @@ bash scripts/env-check.sh --core --secrets --profile discord
 ```bash
 hyper-agent graduate build <cluster.json> --out <dir> [--strict] [--json]
 hyper-agent graduate trigger <discord_id> [--tokens 500] [--json]
-```
-
-**Build output:**
-```
-out/
-  docker-compose.agents.yml
-  README.md
-  Dockerfile.<agent-name>
-  agents/<agent-name>/manifest.json
 ```
 
 **Status: DESIGNED ✅ — implementation TODO in HyperAgent-SDK**
@@ -244,27 +285,22 @@ out/
 - `.agents/focus-tracker/manifest.json`
 - `.agents/morning-briefing/manifest.json`
 
-**Next:** Run `hyper-agent graduate build cluster.json --out brain-bundle/ --strict` once SDK is implemented
-
 ---
 
 ## 🎯 Active Next Steps — Phase 10U+
 
 | # | Task | Priority |
 |---|---|---|
-| 1 | **Fill `agents/broski-bot/.env`** — TOKEN, SUPABASE keys, GUILD_ID, MISSIONS_CHANNEL_ID | 🔴 NOW |
-| 2 | **Run `discord-bot/supabase_schema.sql`** in Supabase SQL editor | 🔴 NOW |
-| 3 | **Run env-check** — `python scripts/env_check.py --core --secrets --profile discord` | 🔴 NOW |
-| 4 | **Launch bot** — `docker compose --profile discord up -d` | 🔴 NOW |
-| 5 | **HyperAgent graduate build** — implement CLI from May 15 design doc | 🔴 This week |
-| 6 | **Discord Bot Tier 2** — Pets, XP Leaderboard, Morning Briefing, Health Alerts | 🟡 Next sprint |
-| 7 | E2E Stripe checkout test — card `4242 4242 4242 4242` | 🟡 This week |
-| 8 | BROskiPets Web3 E2E — test mint on Base Sepolia testnet | 🟡 This week |
-| 9 | First student invite — `/welcome` is green 🎓 | 🟡 This week |
-| 10 | SDK v0.4.0 — add Web3/dNFT types to `hyper-agent-spec.json` | 🟡 This week |
-| 11 | Fix GitHub Actions billing lock | 🟡 This week |
-| 12 | Upgrade GitPython → 3.1.47 (CVE-2026-42215 + CVE-2026-42284) | 🟡 This week |
-| 13 | Level 13 — Morning Briefing live (Discord Bot Tier 2) | 🟢 Background |
+| 1 | **Live test bot commands** — `/daily` `/give` `/rich` `/top` | 🔴 NOW |
+| 2 | **HyperAgent graduate build** — implement CLI from May 15 design doc | 🔴 This week |
+| 3 | **Discord Bot Tier 2** — Pets, Morning Briefing, Health Alerts | 🟡 Next sprint |
+| 4 | E2E Stripe checkout test — card `4242 4242 4242 4242` | 🟡 This week |
+| 5 | BROskiPets Web3 E2E — test mint on Base Sepolia testnet | 🟡 This week |
+| 6 | First student invite — `/welcome` is green 🎓 | 🟡 This week |
+| 7 | SDK v0.4.0 — add Web3/dNFT types to `hyper-agent-spec.json` | 🟡 This week |
+| 8 | Fix GitHub Actions billing lock | 🟡 This week |
+| 9 | Upgrade GitPython → 3.1.47 (CVE-2026-42215 + CVE-2026-42284) | 🟡 This week |
+| 10 | Level 13 — Morning Briefing live (Discord Bot Tier 2) | 🟢 Background |
 
 ---
 
@@ -272,8 +308,7 @@ out/
 
 | Issue | Fix | Priority |
 |---|---|---|
-| broski-bot `.env` not filled yet | Fill `agents/broski-bot/.env` with real values | 🔴 HIGH |
-| Supabase schema not yet run | Run `discord-bot/supabase_schema.sql` in Supabase SQL editor | 🔴 HIGH |
+| Bot not yet live-tested | Run `/daily` `/give` `/rich` `/top` in Discord | 🔴 HIGH |
 | HyperAgent graduate build not implemented | Build CLI from May 15 design doc | 🟡 MED |
 | Stale root `prometheus.yml` | Delete/archive — live = `monitoring/prometheus/prometheus.yml` | 🟡 MED |
 | GitHub Actions billing lock | Fix at github.com/settings/billing | 🟡 MED |
@@ -304,7 +339,9 @@ out/
 | HyperAgent Graduate Build | `graduate build` + `graduate trigger` CLI design | ✅ DESIGNED — May 15 |
 | Brain Agent Cluster | cluster.json + 4 agent manifests → Obsidian Brain repo | ✅ PUSHED — May 15 |
 | Discord Bot Tier 1 | Economy + AI chat + Focus Tracker + Daily Missions | ✅ LIVE — May 15 🤖 |
-| broski-bot Option A | Profile-gated `agents/broski-bot/` + bind mounts | ✅ DONE — May 15 🤖 |
+| broski-bot Option A | Core "One Door" endpoint + idempotency wired | ✅ DONE — May 15 🤖 |
+| Discord embed polish | Medals, colours, mentions, balance fields | ✅ DONE — May 15 ✨ |
+| Bot Docker unblock | discord.py, cogs.bot entrypoint, volume fix, Core URL | ✅ DONE — May 15 🐳 |
 | Env Preflight Checker | `scripts/env_check.py` + bash wrapper + tests | ✅ DONE — May 15 🛡️ |
 
 ---
@@ -324,7 +361,10 @@ out/
 - ✅ **HyperAgent Graduate Build DESIGNED — May 15** 📐
 - ✅ **Brain Agent Cluster PUSHED — May 15** 🧠
 - ✅ **BROski Discord Bot Tier 1 LIVE — May 15** 🤖🎉
-- ✅ **broski-bot Option A wired — May 15** 🐳
+- ✅ **Core Gatekeeper — "One Door" + idempotency — May 15** 🔐
+- ✅ **Premium Discord UX — medals, colours, mentions, balance — May 15** ✨
+- ✅ **Docker-Unblock Architect — discord.py, cogs.bot, volume fix — May 15** 🐳
+- ✅ **Launch Sequence Commander — BROski Bot boots + syncs slash commands — May 15** 🚀
 - ✅ **Env Preflight Checker LIVE — May 15** 🛡️
 
 ---
@@ -332,22 +372,24 @@ out/
 ## 📦 Key Files Quick Reference
 
 ```
-docker-compose.yml              — main stack
-docker-compose.secrets.yml      — secrets injection
-docker-compose.core.yml         — core + broski-bot (profile:discord)
-backend/app/main.py             — FastAPI core app
-agents/broski-bot/main.py       — ONE TRUE BOT ← use this
-agents/broski-bot/.env.example  — bot env template (all 8 keys)
-discord-bot/                    — LEGACY — discord-lite only, do not use
-discord-bot/supabase_schema.sql — DB tables for bot (run in Supabase!)
-scripts/env_check.py            — env preflight checker
-scripts/env-check.sh            — bash wrapper for env_check.py
-monitoring/prometheus/          — ACTIVE Prometheus config
-cluster.json                    — BROski Brain 4-agent cluster spec
-.agents/                        — 4 brain agent manifests
-CLAUDE.md                       — HyperCode V2.4 detailed context
-CLAUDE_CONTEXT.md               — Extended ecosystem context
-WHATS_DONE.md                   — DO NOT suggest anything listed here
+docker-compose.yml                           — main stack
+docker-compose.secrets.yml                   — secrets injection
+docker-compose.core.yml                      — core + broski-bot (profile:discord)
+backend/app/api/v1/endpoints/discord_actions.py — One Door endpoint + idempotency
+agents/broski-bot/cogs/bot.py                — ONE TRUE BOT entry point ← use this
+agents/broski-bot/requirements.txt           — discord.py==2.4.0 (NO py-cord, NO supabase)
+agents/broski-bot/Dockerfile                 — CMD python -u -m cogs.bot
+agents/broski-bot/.env                       — TOKEN + BOT_API_KEY + GUILD_ID (no Supabase)
+backend/tests/unit/test_discord_actions.py   — 8 contract tests ✅
+discord-bot/                                 — LEGACY — discord-lite only, do not use
+scripts/env_check.py                         — env preflight checker
+scripts/env-check.sh                         — bash wrapper for env_check.py
+monitoring/prometheus/                       — ACTIVE Prometheus config
+cluster.json                                 — BROski Brain 4-agent cluster spec
+.agents/                                     — 4 brain agent manifests
+CLAUDE.md                                    — HyperCode V2.4 detailed context
+CLAUDE_CONTEXT.md                            — Extended ecosystem context
+WHATS_DONE.md                                — DO NOT suggest anything listed here
 ```
 
 ---
@@ -358,6 +400,12 @@ WHATS_DONE.md                   — DO NOT suggest anything listed here
 # Env preflight (ALWAYS before docker compose up):
 python scripts/env_check.py --core --secrets --profile discord
 
+# Pull + boot bot:
+git pull
+docker compose -f docker-compose.core.yml -f docker-compose.secrets.yml `
+  --profile discord up -d --build broski-bot
+docker logs broski-bot --tail 40
+
 # Start full stack:
 docker compose -f docker-compose.yml -f docker-compose.secrets.yml -f docker-compose.brain.yml --profile discord up -d
 
@@ -366,6 +414,7 @@ docker compose -f docker-compose.yml -f docker-compose.secrets.yml up -d
 
 # Run tests:
 pytest backend/tests/ -q    # 224 passed, 6 skipped
+pytest backend/tests/unit/test_discord_actions.py -q  # 8 passed ✅
 
 # Health checks:
 curl http://localhost:8000/health
@@ -396,10 +445,13 @@ curl localhost:8000/api/v1/health | jq .circuit_breakers
 2. **Check WHATS_DONE.md** — NEVER suggest anything already listed there
 3. **5 repos** — all listed in ecosystem diagram above
 4. **ONE TRUE BOT** = `agents/broski-bot/` (profile:discord) — NOT `discord-bot/`
-5. **Env check first** — always before `docker compose up`
-6. **Immediate priorities** — Fill broski-bot `.env` → run Supabase schema → launch bot
-7. **Style:** Short sentences. BROski energy. Celebrate wins. Never walls of text.
-8. **Call them "Bro"** — that's how we roll 🤙
+5. **Bot = pure UI adapter** — ALL logic lives in Core (`POST /api/v1/discord/actions`)
+6. **Bot uses discord.py** — NEVER py-cord, NEVER supabase, entrypoint = `cogs.bot`
+7. **Core URL in Docker** = `http://hypercode-core:8000` — NEVER localhost inside container
+8. **Env check first** — always before `docker compose up`
+9. **Next priority** — live-test `/daily` `/give` `/rich` `/top` in Discord
+10. **Style:** Short sentences. BROski energy. Celebrate wins. Never walls of text.
+11. **Call them "Bro"** — that's how we roll 🤙
 
 ---
 
