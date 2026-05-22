@@ -1,4 +1,5 @@
 import json
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import pytest
@@ -19,9 +20,16 @@ async def test_compute_gamification_summary_rolls_up_frontmatter(tmp_path: Path)
         encoding="utf-8",
     )
 
-    (sessions / "Session_abc_2026-05-14.md").write_text(
-        """---
-created: 2026-05-14T10:00:00Z
+    # Dates are relative to now — `coins_total_7d` is a ROLLING 7-day window,
+    # so hard-coded dates silently age out of it and the rollup drops to 0.
+    # Both sessions sit safely in the past AND inside the 7-day window.
+    now = datetime.now(timezone.utc)
+    recent = now - timedelta(hours=2)
+    earlier = now - timedelta(days=1, hours=2)
+
+    (sessions / f"Session_abc_{recent:%Y-%m-%d}.md").write_text(
+        f"""---
+created: {recent:%Y-%m-%dT%H:%M:%SZ}
 coins_earned: 25
 xp_earned: 15
 ---
@@ -30,9 +38,9 @@ xp_earned: 15
         encoding="utf-8",
     )
 
-    (sessions / "Session_def_2026-05-13.md").write_text(
-        """---
-created: 2026-05-13T10:00:00Z
+    (sessions / f"Session_def_{earlier:%Y-%m-%d}.md").write_text(
+        f"""---
+created: {earlier:%Y-%m-%dT%H:%M:%SZ}
 coins_earned: 10
 xp_earned: 5
 ---
