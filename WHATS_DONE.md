@@ -17,9 +17,9 @@
 ✅ Level 15   HyperAgent MCP Bridge — LIVE 🌉  May 7 13:35
 ✅ Level 16   Focus Tracker + Analytics — LIVE 📊  May 7 13:35
 ✅ Level 17   HyperSplit Task Decomp — LIVE 🧩  May 7 13:35
-⏳ Level 18   AI Distraction Filter — code done, wiring to sessions
-⏳ Level 19   DifficultyDial + Dynamic XP
-⏳ Level 20   THE HYPER BRAIN Constellation — full MCP mesh + RAG
+✅ Level 18   AI Distraction Filter — LIVE 🛡️  May 22 — /distraction/status live monitoring surface
+✅ Level 19   DifficultyDial + Dynamic XP — LIVE 🎚️  May 22 — low/med/hyper/chaos dial, XP ×0.5–×2.0
+✅ Level 20   THE HYPER BRAIN Constellation — LIVE 🌌  May 22 — Phase 1 map + Phase 2 constellation_builder
 ```
 
 ---
@@ -94,13 +94,27 @@
 
 ---
 
+## 🏆 20/20 — THE HYPER BRAIN IS COMPLETE (May 22, 2026)
+
+All 20 levels built **and verified working** — engine boots, every endpoint
+returns real data, the constellation auto-writes, the difficulty dial persists
+and scales XP. Proven, not doc-claimed.
+
+### What landed May 22
+- **Startup crash fixed** — `hyper_brain_core.py` forces UTF-8 stdio; the
+  engine was dying on Windows (cp1252 can't encode emoji in `print()`)
+- **Level 18** — `GET /distraction/status` exposes the live drift recommendation
+- **Level 19** — `difficulty_dial.py` + `/difficulty/get|set`; the dial persists
+  to `03-Resources/difficulty-dial.json` and scales `/focus/end` rewards
+- **Level 20 Phase 2** — `constellation_builder.py` + `GET /constellation/map`
+  auto-writes `Hub/Brain-Constellation-Live.md`
+- **Dockerfile fixed** — was copying the neutered `scripts/` stubs + wrong
+  requirements; now ships the canonical root engine
+
 ## ⏳ NEXT UP
 
-1. **Level 18** — Wire `ai_distraction_filter.py` to focus sessions
-2. **Level 19** — DifficultyDial + dynamic XP + streak recovery
-3. **Level 20** — Full MCP mesh + RAG on vault
-4. **Cross-repo bridge** — Hyper-Vibe issues → `00-Inbox/GitHub/Hyper-Vibe/`
-5. **Morning briefing cron** — auto-fire at 07:00 daily
+1. **Cross-repo bridge** — Hyper-Vibe issues → `00-Inbox/GitHub/Hyper-Vibe/`
+2. **Morning briefing cron** — auto-fire at 07:00 daily
 
 ---
 

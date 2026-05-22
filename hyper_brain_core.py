@@ -19,6 +19,16 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 import uvicorn
 
+# Windows consoles default to cp1252, which cannot encode the emoji used in
+# module print()s — that crashes startup. Force UTF-8 stdio so the engine
+# boots on any OS (no-op on Linux/Docker, which is already UTF-8).
+import sys
+for _stream in (sys.stdout, sys.stderr):
+    try:
+        _stream.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
 # Internal modules (all async)
 from focus_tracker import FocusTracker
 from analytics_engine import AnalyticsEngine
@@ -29,6 +39,8 @@ from session_snapshot import SessionSnapshot
 from morning_briefing_ai import MorningBriefingAI
 from events_feed import EventsFeed
 from gamification_summary import compute_gamification_summary
+from difficulty_dial import DifficultyDial
+from constellation_builder import ConstellationBuilder
 
 app = FastAPI(title="THE HYPER BRAIN", version="3.0.0")
 
@@ -49,6 +61,8 @@ mcp_bridge: Optional[MCPBridge] = None
 snapshot: Optional[SessionSnapshot] = None
 briefing_ai: Optional[MorningBriefingAI] = None
 events_feed: Optional[EventsFeed] = None
+difficulty_dial: Optional[DifficultyDial] = None
+constellation: Optional[ConstellationBuilder] = None
 
 # ─── Pydantic Models ──────────────────────────────────
 class FocusSessionStart(BaseModel):
@@ -81,12 +95,15 @@ class MorningBriefingRequest(BaseModel):
     include_ai_suggestions: bool = True
     include_focus_forecast: bool = True
 
+class DifficultySet(BaseModel):
+    intensity: str  # low | medium | hyper | chaos
+
 app.mount("/ui/assets", StaticFiles(directory=WEB_DIR), name="ui-assets")
 
 # ─── Lifespan ─────────────────────────────────────────
 @app.on_event("startup")
 async def startup():
-    global focus_tracker, analytics, hyper_split, distraction_filter, mcp_bridge, snapshot, briefing_ai, events_feed
+    global focus_tracker, analytics, hyper_split, distraction_filter, mcp_bridge, snapshot, briefing_ai, events_feed, difficulty_dial, constellation
     focus_tracker = FocusTracker(vault_path=VAULT_PATH, redis_url=REDIS_URL)
     analytics = AnalyticsEngine(vault_path=VAULT_PATH)
     hyper_split = HyperSplitEngine(vault_path=VAULT_PATH)
@@ -95,6 +112,8 @@ async def startup():
     snapshot = SessionSnapshot(vault_path=VAULT_PATH)
     briefing_ai = MorningBriefingAI(vault_path=VAULT_PATH, mcp_bridge=mcp_bridge)
     events_feed = EventsFeed(maxlen=200)
+    difficulty_dial = DifficultyDial(vault_path=VAULT_PATH)
+    constellation = ConstellationBuilder(vault_path=VAULT_PATH)
     events_feed.add("system", "hyper_brain_startup", {"version": "3.0.0"})
 
     await focus_tracker.start()
@@ -125,6 +144,8 @@ async def health():
             "mcp_bridge": mcp_bridge is not None if mcp_bridge else False,
             "snapshot": snapshot is not None,
             "briefing_ai": briefing_ai is not None,
+            "difficulty_dial": difficulty_dial is not None,
+            "constellation": constellation is not None,
         },
         "timestamp": datetime.utcnow().isoformat()
     }
@@ -184,6 +205,17 @@ async def focus_end(req: FocusSessionEnd):
     if not analytics:
         raise HTTPException(503, "analytics not available")
     coins, xp = await analytics.award_for_session(result)
+
+    # Level 19 — DifficultyDial scales the reward by the user's focus intensity.
+    if difficulty_dial:
+        dial = await difficulty_dial.get()
+        multiplier = dial.get("xp_multiplier", 1.0)
+        coins = int(round(coins * multiplier))
+        xp = int(round(xp * multiplier))
+        if isinstance(result, dict):
+            result["coins_earned"] = coins
+            result["xp_earned"] = xp
+            result["difficulty_dial"] = dial["intensity"]
 
     # Update streaks
     streak_data = await analytics.update_streaks()
@@ -246,6 +278,53 @@ async def report_distraction(req: DistractionReport):
 async def distraction_patterns(days: int = 7):
     """Weekly distraction pattern report."""
     return await distraction_filter.get_patterns(days)
+
+@app.get("/distraction/status")
+async def distraction_status():
+    """Live drift status for the active session — Level 18 monitoring surface."""
+    if not distraction_filter:
+        raise HTTPException(503, "distraction_filter not available")
+    return {
+        "active_session": distraction_filter.active_session_id,
+        "monitoring": distraction_filter.active_session_id is not None,
+        "recommendation": await distraction_filter.get_recommendation(),
+    }
+
+# ─── DifficultyDial (Level 19) ────────────────────────
+@app.get("/difficulty/get")
+async def difficulty_get():
+    """Current focus-intensity dial setting + its effects."""
+    if not difficulty_dial:
+        raise HTTPException(503, "difficulty_dial not available")
+    return await difficulty_dial.get()
+
+@app.post("/difficulty/set")
+async def difficulty_set(req: DifficultySet):
+    """Set the focus-intensity dial: low | medium | hyper | chaos."""
+    if not difficulty_dial:
+        raise HTTPException(503, "difficulty_dial not available")
+    try:
+        result = await difficulty_dial.set(req.intensity)
+    except ValueError as e:
+        raise HTTPException(400, str(e))
+    if events_feed:
+        events_feed.add("difficulty", f"Dial set to {result['intensity']}", {})
+    return result
+
+# ─── Constellation (Level 20 Phase 2) ─────────────────
+@app.get("/constellation/map")
+async def constellation_map():
+    """Live ecosystem map — JSON + auto-written to Hub/Brain-Constellation-Live.md."""
+    if not constellation:
+        raise HTTPException(503, "constellation not available")
+    h = await health()
+    g = await compute_gamification_summary(VAULT_PATH, level=APP_LEVEL)
+    fs = await focus_tracker.get_current_status() if focus_tracker else {"active": False}
+    data = await constellation.build(h, g, fs)
+    vault_path = await constellation.write_to_vault(data)
+    if events_feed:
+        events_feed.add("constellation", "Live map regenerated", {"vault_path": vault_path})
+    return {"map": data, "vault_path": vault_path}
 
 # ─── Analytics ────────────────────────────────────────
 @app.get("/analytics/weekly")

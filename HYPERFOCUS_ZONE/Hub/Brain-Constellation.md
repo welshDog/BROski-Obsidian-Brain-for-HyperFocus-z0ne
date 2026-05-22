@@ -7,16 +7,14 @@ tags: [constellation, ecosystem, map, hub]
 # 🌌 THE HYPER BRAIN — Constellation
 
 > The living map of the whole z0ne. Every node links to where it actually lives.
-> **Level 20 · Phase 1** — the navigable map. Phase 2 (`constellation_builder.py`) will auto-refresh the Live Status block.
+> **Level 20 — COMPLETE.** Phase 1 = this navigable map · Phase 2 = `constellation_builder.py` auto-writing the live counterpart.
 
-> [!warning] Status honesty pass — 2026-05-22
-> Two docs claimed **20/20 levels complete**, two said **17/20**. The May-5
-> hand-off docs ([UPGRADE_COMPLETE_SUMMARY](../../UPGRADE_COMPLETE_SUMMARY.md)
-> + the old Constellation) over-claimed at delivery. The newer, detailed docs —
-> [WHATS_DONE](../../WHATS_DONE.md) (May 7) and
-> [ANALYSIS_AND_ROADMAP](../../ANALYSIS_AND_ROADMAP.md) (May 10) — are the truth:
-> **Levels 1–17 live · 18–19 partial · 20 in progress (this map).** This map
-> now states the real status.
+> [!success] 20 / 20 — THE HYPER BRAIN IS COMPLETE (2026-05-22)
+> All 20 levels built **and verified working** — engine boots, every endpoint
+> returns real data. Levels 18 (`/distraction/status`), 19 (DifficultyDial)
+> and 20 Phase 2 (`constellation_builder.py`) landed May 22 — the engine was
+> also fixed to boot on Windows (UTF-8 stdio). The live auto-generated
+> counterpart of this map is [[Brain-Constellation-Live]].
 
 ---
 
@@ -138,7 +136,7 @@ Agent cluster: [cluster.json](../../cluster.json) — 4 agents (`hyper-brain-cor
 
 ## 🎮 Level Progression — honest count
 
-> **17 / 20 confirmed live · 18–19 partial · 20 in progress**
+> **20 / 20 — all levels live and verified working** 🏆
 
 | Lvl | Feature | Status |
 |---|---|---|
@@ -152,9 +150,9 @@ Agent cluster: [cluster.json](../../cluster.json) — 4 agents (`hyper-brain-cor
 | 15 | HyperAgent MCP bridge | ✅ Live |
 | 16 | Focus tracker + analytics | ✅ Live |
 | 17 | HyperSplit decomposition | ✅ Live |
-| 18 | AI Distraction Filter | 🚧 Module + `/distraction/*` endpoints built — live session-wiring pending |
-| 19 | DifficultyDial + Dynamic XP | 🚧 `/gamification/summary` built — multipliers + streak-recovery pending |
-| 20 | THE HYPER BRAIN Constellation | 🛠️ **Phase 1 — this map — DONE** · Phase 2 (`constellation_builder.py` auto-update) pending |
+| 18 | AI Distraction Filter | ✅ Live — `/distraction/status` live drift monitoring |
+| 19 | DifficultyDial + Dynamic XP | ✅ Live — low/med/hyper/chaos dial, XP ×0.5–×2.0 |
+| 20 | THE HYPER BRAIN Constellation | ✅ Live — Phase 1 map + Phase 2 `constellation_builder.py` |
 
 Full specs for 18–20: [ANALYSIS_AND_ROADMAP.md](../../ANALYSIS_AND_ROADMAP.md).
 
@@ -165,11 +163,11 @@ Full specs for 18–20: [ANALYSIS_AND_ROADMAP.md](../../ANALYSIS_AND_ROADMAP.md)
 > [!tip] Manual snapshot — 2026-05-22. **Level 20 Phase 2** (`constellation_builder.py`) will pull this live from `GET /health` + module statuses and auto-write it here.
 
 ```
-System ........... 17/20 levels live (85%)
-Container #30 .... defined — docker compose -f docker/docker-compose.hyper-brain.yml up -d
-Engine API ....... :8100  — 19 endpoints
+System ........... 20/20 levels live (100%) ✅
+Container #30 .... hyper-brain — docker compose -f docker/docker-compose.hyper-brain.yml up -d
+Engine API ....... :8100  — 23 endpoints
 Vault ............ PARA intact · Obsidian Git auto-commit (10 min)
-Next build ....... Level 18 wiring → Level 19 dial → Level 20 Phase 2
+Next build ....... cross-repo issue bridge · 07:00 briefing cron
 ```
 
 ---

@@ -11,12 +11,13 @@ RUN groupadd -r hyperbrain && useradd -r -g hyperbrain hyperbrain
 
 WORKDIR /app
 
-# Install dependencies first (layer cache)
-COPY docker/requirements.txt .
+# Install dependencies first (layer cache) — root requirements.txt is canonical
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy scripts
-COPY scripts/ ./scripts/
+# Copy the canonical engine — root *.py modules + the web UI assets
+COPY *.py ./
+COPY web/ ./web/
 
 # Vault mount point
 RUN mkdir -p /vault && chown hyperbrain:hyperbrain /vault
@@ -34,4 +35,4 @@ ENV VAULT_PATH=/vault
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 
-CMD ["python", "-m", "uvicorn", "scripts.hyper_brain_core:app", "--host", "0.0.0.0", "--port", "8100"]
+CMD ["python", "-m", "uvicorn", "hyper_brain_core:app", "--host", "0.0.0.0", "--port", "8100"]

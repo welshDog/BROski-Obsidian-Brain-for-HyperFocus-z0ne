@@ -319,12 +319,13 @@ Hub/
 | Component | Status |
 |---|---|
 | Levels 1–17 | ✅ Complete |
-| Level 18 AI Distraction Filter | 🚧 Module live, wiring incomplete |
-| Level 19 DifficultyDial + Dynamic XP | 🚧 Design stage |
-| Level 20 Brain-Constellation | 🚧 Blueprint exists, not live |
-| Overall system completion | **85% (17/20)** |
+| Level 18 AI Distraction Filter | ✅ Live — `/distraction/status` monitoring surface |
+| Level 19 DifficultyDial + Dynamic XP | ✅ Live — `difficulty_dial.py` + XP multipliers |
+| Level 20 Brain-Constellation | ✅ Live — Phase 1 map + Phase 2 `constellation_builder.py` |
+| Overall system completion | **100% (20/20)** 🏆 |
 
-*Updated by NotebookLM AI analysis — May 10, 2026*
+*17/20 snapshot was May 10, 2026 (NotebookLM). Levels 18–20 completed and*
+*verified working — May 22, 2026.*
 ---
 
 > *"The brain that changes itself is the brain that builds itself."*  
