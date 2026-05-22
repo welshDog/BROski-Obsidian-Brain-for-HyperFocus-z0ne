@@ -15,3 +15,6 @@ git-error-*
 .env
 secrets/
 *.token
+
+# Auto-generated runtime artifacts
+HYPERFOCUS_ZONE/Hub/Brain-Constellation-Live.md
