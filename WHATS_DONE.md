@@ -1,6 +1,6 @@
 # ✅ WHATS_DONE.md — THE HYPER BRAIN v3.0
 > One file. Short bullets. No walls of text.
-> **Updated: May 7, 2026 — 13:35 BST**
+> **Updated: May 25, 2026 — 18:09 BST**
 
 ---
 
@@ -17,9 +17,10 @@
 ✅ Level 15   HyperAgent MCP Bridge — LIVE 🌉  May 7 13:35
 ✅ Level 16   Focus Tracker + Analytics — LIVE 📊  May 7 13:35
 ✅ Level 17   HyperSplit Task Decomp — LIVE 🧩  May 7 13:35
-✅ Level 18   AI Distraction Filter — LIVE 🛡️  May 22 — /distraction/status live monitoring surface
-✅ Level 19   DifficultyDial + Dynamic XP — LIVE 🎚️  May 22 — low/med/hyper/chaos dial, XP ×0.5–×2.0
-✅ Level 20   THE HYPER BRAIN Constellation — LIVE 🌌  May 22 — Phase 1 map + Phase 2 constellation_builder
+✅ Level 18   AI Distraction Filter — LIVE 🛡️  May 22 — /distraction/status live
+✅ Level 19   DifficultyDial + Dynamic XP — LIVE 🎚️  May 22 — XP ×0.5–×2.0
+✅ Level 20   THE HYPER BRAIN Constellation — LIVE 🌌  May 22 — Phase 1 + Phase 2
+✅ Level 21   TRAE SOLO Mastery Reference — LIVE 🧠  May 25 — HYPER-TRAE-SKILLS.md built
 ```
 
 ---
@@ -32,7 +33,7 @@
 {
   "status": "hyper",
   "version": "3.0.0",
-  "level": 20,
+  "level": 21,
   "containers": 30,
   "modules": [
     "focus_tracker",
@@ -42,12 +43,11 @@
     "analytics_engine",
     "github_webhook_server",
     "morning_briefing_ai",
-    "session_snapshot"
+    "session_snapshot",
+    "trae_skills_reference"
   ]
 }
 ```
-
-**5 levels unlocked in one `docker compose up`. 🎮**
 
 ---
 
@@ -92,29 +92,45 @@
 - `ANALYSIS_AND_ROADMAP.md` — v3.0 full roadmap ✅
 - Root cleaned — duplicates removed, stubs neutered ✅
 
+### Level 18 — AI Distraction Filter (May 22)
+- `GET /distraction/status` — live drift recommendation surface ✅
+
+### Level 19 — DifficultyDial + Dynamic XP (May 22)
+- `difficulty_dial.py` + `/difficulty/get|set` ✅
+- Dial persists to `03-Resources/difficulty-dial.json` ✅
+- Scales `/focus/end` XP rewards ×0.5–×2.0 ✅
+
+### Level 20 — Constellation Builder (May 22)
+- `constellation_builder.py` + `GET /constellation/map` ✅
+- Auto-writes `Hub/Brain-Constellation-Live.md` ✅
+- **Startup crash fixed** — `hyper_brain_core.py` forces UTF-8 stdio ✅
+- **Dockerfile fixed** — ships canonical root engine ✅
+
+### Level 21 — TRAE SOLO Mastery Reference (May 25) 🌟 NEW
+- `HYPERFOCUS_ZONE/HYPER-TRAE-SKILLS.md` — complete TRAE reference ✅
+- **13 TRAE SOLO docs** read and extracted ✅
+- Covers: IDE, SOLO, 14 Skills, Automation, GitHub Connector, Worktree, Sandbox, Skills, Rules, MCP, Spec/Plan, Commands, Add MCP Servers ✅
+- Hyper-Vibe custom skills + commands mapped out ✅
+- Hyper-Vibe TRAE setup checklist built ✅
+- **Raw URL (use as AI context):**
+  `https://raw.githubusercontent.com/welshDog/BROski-Obsidian-Brain-for-HyperFocus-z0ne/main/HYPERFOCUS_ZONE/HYPER-TRAE-SKILLS.md`
+- Built by WelshDog + Perplexity in one session ❤️‍🔥♾️
+
 ---
 
-## 🏆 20/20 — THE HYPER BRAIN IS COMPLETE (May 22, 2026)
+## 🏆 21/21 — LEVEL 21 UNLOCKED (May 25, 2026)
 
-All 20 levels built **and verified working** — engine boots, every endpoint
-returns real data, the constellation auto-writes, the difficulty dial persists
-and scales XP. Proven, not doc-claimed.
+TRAE mastery reference is live. The Brain now knows how to use the tool that builds the Brain.
+Full TRAE SOLO playbook is ready for any AI or human to pick up and run.
 
-### What landed May 22
-- **Startup crash fixed** — `hyper_brain_core.py` forces UTF-8 stdio; the
-  engine was dying on Windows (cp1252 can't encode emoji in `print()`)
-- **Level 18** — `GET /distraction/status` exposes the live drift recommendation
-- **Level 19** — `difficulty_dial.py` + `/difficulty/get|set`; the dial persists
-  to `03-Resources/difficulty-dial.json` and scales `/focus/end` rewards
-- **Level 20 Phase 2** — `constellation_builder.py` + `GET /constellation/map`
-  auto-writes `Hub/Brain-Constellation-Live.md`
-- **Dockerfile fixed** — was copying the neutered `scripts/` stubs + wrong
-  requirements; now ships the canonical root engine
+---
 
 ## ⏳ NEXT UP
 
 1. **Cross-repo bridge** — Hyper-Vibe issues → `00-Inbox/GitHub/Hyper-Vibe/`
 2. **Morning briefing cron** — auto-fire at 07:00 daily
+3. **TRAE custom skills** — build `hyper-vibe-pr-review`, `supabase-migration`, `module-rewrite`
+4. **TRAE custom commands** — `/hyper-pr-review`, `/commit-msg`, `/supabase-migration-safe`
 
 ---
 
@@ -134,4 +150,5 @@ Redis:              DB4 (brain) | DB1 (cache) | DB2 (rate-limits)
 Networks:           app-net + agents-net
 Memory cap:         256m
 Containers total:   30
+TRAE Skills ref:    HYPERFOCUS_ZONE/HYPER-TRAE-SKILLS.md
 ```
