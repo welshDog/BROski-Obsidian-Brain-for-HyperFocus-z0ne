@@ -15,6 +15,15 @@ tags: [hypersplit, project, task-tree]
 **Micro-tasks**: 30  
 **Max Depth**: 1
 
+## ✅ Current Reality (May 27, 2026)
+- Platform is live, Stripe IDs are live, webhook is deployed (v39), DB accepts all tiers.
+- The only remaining proof step is the **£1 smoke test** and DB row verification.
+
+## 🔴 Next 3 Micro-Tasks (Money Switch)
+- [ ] Buy £1 test tier (real Stripe checkout)
+- [ ] Supabase SQL: verify `enrollments` has a fresh row
+- [ ] Supabase SQL: verify `token_transactions` has a fresh row
+
 ---
 
 ## Micro-Task Tree
