@@ -1,32 +1,39 @@
 ---
-type: dashboard
+type: today-focus
 title: Today Focus
 status: active
-tags: [today, focus, now-next-later]
+date: 2026-05-27
+tags:
+  - focus
+  - daily
+  - now-next-later
 created: 2026-05-27
 updated: 2026-05-27
 ---
 
-# 🎯 Today Focus
+# 🎯 Today Focus — 2026-05-27
 
-## NOW (1 thing)
-- 
+> Max 3 items. Pick the ones that move the needle.
 
-## NEXT (2–3 things)
-- 
-- 
-- 
+## NOW (Doing right now)
+- [ ] 
 
-## LATER (safe parking)
-- 
-- 
+## NEXT (Up next today)
+- [ ] 
+- [ ] 
 
-## NOT TODAY (protect the day)
-- 
-- 
+## LATER (Only if NOW + NEXT are done)
+- [ ] 
 
-## Closeout (2 minutes)
-- [ ] What shipped today?
-- [ ] What is the first step for tomorrow?
-- [ ] Anything to archive into `04-Archive/`?
+## Not Today (Protect focus)
+- [ ] 
 
+## Quick Win to Start
+> One tiny thing to build momentum:
+- [ ] 
+
+## End of Day Check
+- What shipped:
+  - [ ] 
+- Carry to tomorrow:
+  - [ ] 
