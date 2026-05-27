@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  broski-sync:
+    build: .
+    image: broski-brain:latest
+    container_name: broski-obsidian-sync
+    environment:
+      GITHUB_PAT: ${GITHUB_PAT}
+      OBSIDIAN_VAULT_PATH: /vault
+      PYTHONUNBUFFERED: "1"
+    volumes:
+      - ./vault:/vault
+      - ./scripts:/app/scripts:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    restart: unless-stopped
+    # Optional: Uncomment to run on schedule (every 4 hours)
+    # command: sh -c "while true; do python3 scripts/github_to_obsidian_v2.py; sleep 14400; done"
