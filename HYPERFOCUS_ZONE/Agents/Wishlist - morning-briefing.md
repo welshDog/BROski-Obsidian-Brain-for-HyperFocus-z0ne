@@ -1,40 +1,45 @@
 ---
 type: agent-wishlist
+title: Wishlist - morning-briefing
 agent: morning-briefing
 status: active
-priority_focus: tier-2
+priority_focus: tier-1
+created: 2026-05-27
 updated: 2026-05-27
+tags:
+  - wishlist
+  - agent
+  - morning-briefing
 ---
 
 # Wishlist - morning-briefing
 
 ## Role (What I Do)
-- I generate the **daily briefing**.
-- I reduce overwhelm.
-- I point at the smallest next win.
+- I brief Lyndz at the start of every day.
+- I surface what matters — not everything.
+- I keep the day from going sideways.
 
 ## What I Want In The Brain (Top 3)
-- A single **Today** note that acts like a briefing landing page.
-- A stable **Daily Template** that includes energy and constraints.
-- A single **Blocked List** note that stays current.
+- A single **Today Note** template that is generated fresh each morning.
+- A **Priority Stack** note with max 3 items (never more).
+- A clear "done yesterday" summary to start with momentum.
 
 ## Inputs I Need (Signals/Data)
-- Today’s top tasks and deadlines.
-- Overnight GitHub changes (issues, PRs, comments).
-- Streak state and focus trends.
+- Yesterday's session snapshot.
+- Current sprint goals.
+- Calendar events (if any) for the day.
 
 ## Outputs I Produce (Notes/Events)
-- A daily briefing note into `00-Inbox/Briefings/`.
-- A 3-item priority list for the day.
-- A one win recommendation.
+- A fresh `Morning Brief — YYYY-MM-DD.md` note.
+- Top 3 priorities for the day.
+- One "quick win" to start with.
 
 ## Rules I Must Respect
-- No walls of text.
-- Always include 1 tiny next step.
-- Never overload the day.
+- Never overwhelm — max 3 focus items.
+- Always start with a win from yesterday.
+- Keep it under 60 seconds to read.
 
 ## Next Upgrades (Tier 1 → Tier 3)
-- **Tier 1:** Create a Today landing note and standard briefing format.
-- **Tier 2:** Add a blocked → unblocked workflow note.
-- **Tier 3:** Auto-detect best project focus based on momentum.
-
+- **Tier 1:** Create the Morning Brief template and run it daily.
+- **Tier 2:** Auto-pull yesterday's wins from `WHATS_DONE.md`.
+- **Tier 3:** Personalise based on energy state + streak data.

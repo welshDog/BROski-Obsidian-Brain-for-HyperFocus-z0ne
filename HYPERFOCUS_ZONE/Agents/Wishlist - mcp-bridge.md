@@ -1,9 +1,15 @@
 ---
 type: agent-wishlist
+title: Wishlist - mcp-bridge
 agent: mcp-bridge
 status: active
 priority_focus: tier-1
+created: 2026-05-27
 updated: 2026-05-27
+tags:
+  - wishlist
+  - agent
+  - mcp-bridge
 ---
 
 # Wishlist - mcp-bridge
@@ -16,7 +22,7 @@ updated: 2026-05-27
 ## What I Want In The Brain (Top 3)
 - A single **Tools Registry** note listing supported tools + what they touch.
 - A single **Secrets Policy** note (what never enters the vault).
-- A clear “allowed integrations” list (GitHub, Discord, Claude, Stripe).
+- A clear "allowed integrations" list (GitHub, Discord, Claude, Stripe).
 
 ## Inputs I Need (Signals/Data)
 - Tool schemas and tool capabilities per agent.
@@ -37,4 +43,3 @@ updated: 2026-05-27
 - **Tier 1:** Add a Tools Registry note and enforce naming conventions.
 - **Tier 2:** Add integration health notes (GitHub, Discord, LLM).
 - **Tier 3:** Add a tool budget policy (rate limit + cost guardrails).
-

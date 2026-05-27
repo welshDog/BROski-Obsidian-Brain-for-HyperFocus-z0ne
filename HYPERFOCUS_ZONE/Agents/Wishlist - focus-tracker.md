@@ -1,9 +1,15 @@
 ---
 type: agent-wishlist
+title: Wishlist - focus-tracker
 agent: focus-tracker
 status: active
 priority_focus: tier-1
+created: 2026-05-27
 updated: 2026-05-27
+tags:
+  - wishlist
+  - agent
+  - focus-tracker
 ---
 
 # Wishlist - focus-tracker
@@ -14,9 +20,9 @@ updated: 2026-05-27
 - I feed streaks and BROski$ rewards.
 
 ## What I Want In The Brain (Top 3)
-- A single “**Focus Metrics Dashboard**” note with a Dataview table.
-- A stable “**Session Template**” that is always used.
-- A clear definition of “context switch” and “distraction event”.
+- A single "**Focus Metrics Dashboard**" note with a Dataview table.
+- A stable "**Session Template**" that is always used.
+- A clear definition of "context switch" and "distraction event".
 
 ## Inputs I Need (Signals/Data)
 - Session start/end timestamps.
@@ -37,4 +43,3 @@ updated: 2026-05-27
 - **Tier 1:** Ship a Focus Metrics Dashboard note with 3 key metrics.
 - **Tier 2:** Add trendlines by week and by project.
 - **Tier 3:** Personalised best focus conditions recommendations.
-
