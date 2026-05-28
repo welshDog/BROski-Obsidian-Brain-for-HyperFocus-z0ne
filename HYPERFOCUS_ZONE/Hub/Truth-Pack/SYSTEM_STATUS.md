@@ -25,7 +25,7 @@
 | NemoClaw Agent | 🟢 L1-3.5 alive | 2026-05-22 | http://localhost:8099/health |
 | Dashboard (hypercode-dashboard) | 🟢 5 tabs live | 2026-05-21 | http://127.0.0.1:8088 |
 | Hyper-Agents-IDE | 🟢 Live on Render | 2026-05-26 | https://hyper-agents-ide.onrender.com/ |
-| Stripe webhook (vibe-hook) | 🟢 **ACTIVE v55** | 2026-05-28 | Proof: `token_transactions.source_id = evt_1TcAF52LoEeIEPVEXVvCaqT1` |
+| Stripe webhook (vibe-hook) | 🟢 **ACTIVE v55** | 2026-05-28 | Webhook: last successful `evt_1TcAF52LoEeIEPVEXVvCaqT1` — May 28 2026 — Phase 3 locked ✅ |
 | BROskiPets — Solidity contract | 🟡 22/22 tests pass | 2026-05-08 | NOT deployed — blocked on Base Sepolia wallet funding |
 | github-sync container | 🔴 Unhealthy | 2026-05-21 | Needs GITHUB_PAT in .env |
 | project-strategist container | 🔴 Exited | 2026-05-21 | Needs `pip install perplexity-api` |
