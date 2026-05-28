@@ -1,6 +1,6 @@
 # 🟢 SYSTEM_STATUS.md — Current Reality
 > **Rule: Only facts with proof links allowed here. No memory, no guesses.**
-> Updated: 2026-05-28 17:10 BST | Brain: Perplexity (Perplexity AI)
+> Updated: 2026-05-28 17:33 BST | Brain: Perplexity (Perplexity AI)
 
 ---
 
@@ -25,7 +25,7 @@
 | NemoClaw Agent | 🟢 L1-3.5 alive | 2026-05-22 | http://localhost:8099/health |
 | Dashboard (hypercode-dashboard) | 🟢 5 tabs live | 2026-05-21 | http://127.0.0.1:8088 |
 | Hyper-Agents-IDE | 🟢 Live on Render | 2026-05-26 | https://hyper-agents-ide.onrender.com/ |
-| Stripe webhook (vibe-hook) | 🟢 Active | 2026-05-16 | 3 deliveries, 0 failures, avg 615ms |
+| Stripe webhook (vibe-hook) | 🟢 **ACTIVE v46** | 2026-05-28 | PaymentIntent type crash fixed — deployed 17:33 BST |
 | BROskiPets — Solidity contract | 🟡 22/22 tests pass | 2026-05-08 | NOT deployed — blocked on Base Sepolia wallet funding |
 | github-sync container | 🔴 Unhealthy | 2026-05-21 | Needs GITHUB_PAT in .env |
 | project-strategist container | 🔴 Exited | 2026-05-21 | Needs `pip install perplexity-api` |
@@ -38,10 +38,10 @@
 |---|---|---|
 | HyperCode-V2.4 | GitPython pinned 3.1.50 (`2d11313`) + TRUTH.md + docs/TRUTH_PACK added | 🟢 |
 | HyperAgent-SDK | v0.4.0 code done, npm still on 0.1.7 + TRUTH.md + docs/TRUTH_PACK added | ⚠️ publish pending |
-| Hyper-Vibe-Coding-Course | 99/99 Playwright green, Sprint 4 in flight + TRUTH.md + docs/TRUTH_PACK added | 🟡 |
-| BROskiPets-LLM-dNFT | Truth Pack v2.1 added — TRUTH.md + docs/TRUTH_PACK. Deploy blocked on Base Sepolia | 🔴 |
+| Hyper-Vibe-Coding-Course | stripe-webhook v46 live — PaymentIntent crash patched, Sprint 4 verify pending | 🟡 |
+| BROskiPets-LLM-dNFT | Truth Pack v2.1 added. Deploy blocked on Base Sepolia | 🔴 |
 | BROski-Obsidian-Brain | Truth Pack v2 live — 5 files + front door README | 🟢 |
-| hyper-agents-ide | Truth Pack v2.1 added — TRUTH.md + docs/TRUTH_PACK. Live on Render | 🟢 |
+| hyper-agents-ide | Truth Pack v2.1 added. Live on Render | 🟢 |
 
 ---
 
@@ -64,7 +64,7 @@
 - Supabase tables confirmed: `users`, `mc_missions`, `mc_events`, `mint_nonces`, `token_transactions`
 - Security functions fixed → SECURITY INVOKER: `complete_module`, `complete_quest`, `get_or_create_referral_code`
 - Edge Functions live: 10 total — see INTEGRATIONS.md for full list
-- stripe-webhook: v32 confirmed — do NOT redeploy unless intentional (see INTEGRATIONS.md Stripe section)
+- **stripe-webhook: v46** — DO NOT redeploy casually. Bug fixed: `payment_intent.succeeded` now uses correct `Stripe.PaymentIntent` type, not `Checkout.Session`. See INTEGRATIONS.md.
 
 ---
 
@@ -79,3 +79,4 @@
 | Done ✅ | Truth Pack v1 — 5 files in Brain A (Obsidian) | ✅ 2026-05-28 |
 | Done ✅ | Truth Pack v2 — Brain A→B sync, Stripe trap documented, repo entry points | ✅ 2026-05-28 |
 | Done ✅ | Truth Pack v2.1 — BROskiPets + hyper-agents-ide entry points complete | ✅ 2026-05-28 |
+| Done ✅ | stripe-webhook v46 — PaymentIntent type crash fixed, idempotency tightened | ✅ 2026-05-28 |
