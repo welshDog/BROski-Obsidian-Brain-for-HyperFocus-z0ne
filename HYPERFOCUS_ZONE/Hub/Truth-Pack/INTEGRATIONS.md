@@ -1,6 +1,6 @@
 # 🔌 INTEGRATIONS.md — Services, Endpoints, Secret Locations
 > Where things connect. Where secrets live (never the secret values).
-> Updated: 2026-05-28 16:34 BST
+> Updated: 2026-05-28 17:53 BST
 
 ---
 
@@ -37,7 +37,7 @@
 
 | Function | JWT Required | Version | Notes |
 |---|---|---|---|
-| `stripe-webhook` | ❌ Public | v32 | ⚠️ Do NOT redeploy casually — see Stripe trap below |
+| `stripe-webhook` | ❌ Public | **v46** | ⚠️ Do NOT redeploy casually — see Stripe trap below |
 | `sync-tokens-to-v24` | ❌ Public | v23 | |
 | `shop-purchase` | ✅ Auth | v28 | |
 | `course-profile` | ✅ Auth | v26 | |
@@ -57,9 +57,9 @@
 | Mode | Test (webhook proven) + Live configured |
 | Webhook name | `vibe-hook` |
 | Webhook status | ✅ Active — 3 deliveries, 0 failures, avg 615ms |
-| Edge Function version | `stripe-webhook` v32 — audited + confirmed perfect 2026-05-16 |
-| Price IDs mapped | starter / builder / hyper_legend (5 total) |
-| Token grants | starter=200 BROski$ / builder=800 / hyper_legend=2500 |
+| Edge Function version | `stripe-webhook` **v46** — PaymentIntent crash fixed 2026-05-28 |
+| Price IDs mapped | starter / pro / builder / architect / hyper_legend (8 total) |
+| Token grants | starter=100 / pro=300 / builder=800 / architect=1500 / hyper_legend=2500 BROski$ |
 
 ### 🚨 THE STRIPE SIGNING SECRET TRAP (read this before touching webhooks)
 
@@ -79,6 +79,29 @@ There are TWO different webhook signing secrets and they are NOT interchangeable
 - Local testing → use the CLI `whsec_...` in `.env` only
 - Never swap them. Never commit either.
 - Dashboard secret was rotated and confirmed live: 2026-05-05
+
+### 🔍 Live-Verified Diagnostic (2026-05-28)
+
+**Symptoms that confirm the secret mismatch (not a code bug):**
+```json
+{
+  "error": "signature_verification_failed",
+  "has_signature": true,
+  "has_webhook_secret": true,
+  "has_stripe_secret_key": true
+}
+```
+> HTTP 400 with all three `has_*` flags = `true` → **secrets are present but don't match**. This is NOT a missing env var. This is a wrong-secret problem.
+
+**How to fix:**
+1. **Stripe Dashboard webhooks** → Go to Stripe Dashboard → Developers → Webhooks → your endpoint → copy `Signing secret` → paste into Supabase Edge Function env var `STRIPE_WEBHOOK_SECRET`.
+2. **Stripe CLI local testing** → Run `stripe listen --forward-to https://yhtmuibgdnxhbgboajhc.supabase.co/functions/v1/stripe-webhook` → copy the `whsec_...` the CLI prints → paste into your local `.env` as `STRIPE_WEBHOOK_SECRET` → restart the edge function.
+3. **Never mix them** — Dashboard secret ≠ CLI secret. One is for production, one is ephemeral per CLI session.
+
+**Once secrets match:** v46 webhook will correctly:
+- Process `checkout.session.completed` (with `listLineItems` fallback for price discovery)
+- Process `payment_intent.succeeded` with correct `Stripe.PaymentIntent` type (no crash)
+- Idempotency-check against `token_transactions.source_id` before any DB write
 
 ---
 
