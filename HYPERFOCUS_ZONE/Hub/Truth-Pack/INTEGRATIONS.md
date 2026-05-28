@@ -37,7 +37,7 @@
 
 | Function | JWT Required | Version | Notes |
 |---|---|---|---|
-| `stripe-webhook` | ❌ Public | v32 | signature verified |
+| `stripe-webhook` | ❌ Public | v45 | signature verified (Stripe Dashboard endpoint secret required) |
 | `sync-tokens-to-v24` | ❌ Public | v23 | |
 | `shop-purchase` | ✅ Auth | v28 | |
 | `course-profile` | ✅ Auth | v26 | |
@@ -55,7 +55,7 @@
 | Secret | Where it lives |
 |---|---|
 | `STRIPE_SECRET_KEY` | Supabase Edge Function env vars |
-| `STRIPE_WEBHOOK_SECRET` | Supabase Edge Function env vars (updated May 5) |
+| `STRIPE_WEBHOOK_SECRET` | Supabase Edge Function env vars (must match endpoint signing secret for the mode you’re testing) |
 | `DISCORD_BOT_TOKEN` | `.env` only — never committed. TODO: add to Vercel env vars |
 | `SUPABASE_SERVICE_ROLE_KEY` | `.env` + Vercel env vars |
 | `BACKEND_SIGNER_PRIVATE_KEY` | Pinata agent vault + Supabase Edge Function vault (NOT local .env — lost May 8) |
@@ -90,6 +90,10 @@
 | Webhook | `vibe-hook` — active, avg 615ms, 0 failures |
 | Price IDs | starter / builder / hyper_legend (5 total mapped) |
 | Token grants | starter=200 BROski$ / builder=800 / hyper_legend=2500 |
+
+### Stripe CLI vs Dashboard (important)
+- Stripe Dashboard webhooks sign requests with the endpoint’s Signing secret (`whsec_...`) for that mode (TEST vs LIVE).
+- Stripe CLI `listen --forward-to ...` signs with a different CLI-generated `whsec_...` (printed in the terminal). If you forward with CLI, Supabase must temporarily use the CLI `whsec_...` or it will 400 forever.
 
 ---
 
