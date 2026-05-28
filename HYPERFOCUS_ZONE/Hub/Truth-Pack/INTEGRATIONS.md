@@ -37,7 +37,7 @@
 
 | Function | JWT Required | Version | Notes |
 |---|---|---|---|
-| `stripe-webhook` | ❌ Public | **v46** | ⚠️ Do NOT redeploy casually — see Stripe trap below |
+| `stripe-webhook` | ❌ Public | **v55** | Webhook proven end-to-end (200 + DB side-effects). Signature verify uses Deno-safe `constructEventAsync`. |
 | `sync-tokens-to-v24` | ❌ Public | v23 | |
 | `shop-purchase` | ✅ Auth | v28 | |
 | `course-profile` | ✅ Auth | v26 | |
@@ -57,9 +57,16 @@
 | Mode | Test (webhook proven) + Live configured |
 | Webhook name | `vibe-hook` |
 | Webhook status | ✅ Active — 3 deliveries, 0 failures, avg 615ms |
-| Edge Function version | `stripe-webhook` **v46** — PaymentIntent crash fixed 2026-05-28 |
+| Edge Function version | `stripe-webhook` **v55** — 401 removed (verify_jwt=false), Deno signature verify fixed (constructEventAsync), fallback logging to `payments.status='unmatched'` |
 | Price IDs mapped | starter / pro / builder / architect / hyper_legend (8 total) |
 | Token grants | starter=100 / pro=300 / builder=800 / architect=1500 / hyper_legend=2500 BROski$ |
+
+### ✅ Proof: Last Successful Webhook (2026-05-28)
+
+- Delivery: `POST 200` (Stripe CLI forward-to) → Supabase `stripe-webhook`
+- DB side-effects:
+  - `users.subscription_tier = starter` and `subscription_status = active`
+  - `token_transactions.source_id = evt_1TcAF52LoEeIEPVEXVvCaqT1` (100 tokens granted)
 
 ### 🚨 THE STRIPE SIGNING SECRET TRAP (read this before touching webhooks)
 
