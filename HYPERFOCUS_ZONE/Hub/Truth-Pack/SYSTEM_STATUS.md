@@ -1,6 +1,6 @@
 # 🟢 SYSTEM_STATUS.md — Current Reality
 > **Rule: Only facts with proof links allowed here. No memory, no guesses.**
-> Updated: 2026-05-28 16:34 BST | Brain: Perplexity (Perplexity AI)
+> Updated: 2026-05-28 17:10 BST | Brain: Perplexity (Perplexity AI)
 
 ---
 
@@ -39,9 +39,9 @@
 | HyperCode-V2.4 | GitPython pinned 3.1.50 (`2d11313`) + TRUTH.md + docs/TRUTH_PACK added | 🟢 |
 | HyperAgent-SDK | v0.4.0 code done, npm still on 0.1.7 + TRUTH.md + docs/TRUTH_PACK added | ⚠️ publish pending |
 | Hyper-Vibe-Coding-Course | 99/99 Playwright green, Sprint 4 in flight + TRUTH.md + docs/TRUTH_PACK added | 🟡 |
-| BROskiPets-LLM-dNFT | Path A relay shipped, deploy blocked | 🔴 |
+| BROskiPets-LLM-dNFT | Truth Pack v2.1 added — TRUTH.md + docs/TRUTH_PACK. Deploy blocked on Base Sepolia | 🔴 |
 | BROski-Obsidian-Brain | Truth Pack v2 live — 5 files + front door README | 🟢 |
-| hyper-agents-ide | Live on Render free tier | 🟢 |
+| hyper-agents-ide | Truth Pack v2.1 added — TRUTH.md + docs/TRUTH_PACK. Live on Render | 🟢 |
 
 ---
 
@@ -53,8 +53,8 @@
 | HyperCode-V2.4 | ✅ Added | ✅ Added | 2026-05-28 |
 | Hyper-Vibe-Coding-Course | ✅ Added | ✅ Added | 2026-05-28 |
 | HyperAgent-SDK | ✅ Added | ✅ Added | 2026-05-28 |
-| BROskiPets-LLM-dNFT | ❌ Pending | ❌ Pending | — |
-| hyper-agents-ide | ❌ Pending | ❌ Pending | — |
+| BROskiPets-LLM-dNFT | ✅ Added | ✅ Added | 2026-05-28 |
+| hyper-agents-ide | ✅ Added | ✅ Added | 2026-05-28 |
 
 ---
 
@@ -78,3 +78,4 @@
 | Next | Add `DISCORD_BOT_TOKEN` to Vercel env vars | 🔜 |
 | Done ✅ | Truth Pack v1 — 5 files in Brain A (Obsidian) | ✅ 2026-05-28 |
 | Done ✅ | Truth Pack v2 — Brain A→B sync, Stripe trap documented, repo entry points | ✅ 2026-05-28 |
+| Done ✅ | Truth Pack v2.1 — BROskiPets + hyper-agents-ide entry points complete | ✅ 2026-05-28 |
