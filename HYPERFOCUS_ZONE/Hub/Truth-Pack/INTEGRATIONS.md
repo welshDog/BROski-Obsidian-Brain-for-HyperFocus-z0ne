@@ -68,6 +68,14 @@
   - `users.subscription_tier = starter` and `subscription_status = active`
   - `token_transactions.source_id = evt_1TcAF52LoEeIEPVEXVvCaqT1` (100 tokens granted)
 
+### ✅ Phase 3 Locked: Checkout Session Metadata (2026-05-28)
+
+To avoid `listLineItems` fallback calls, all checkout sessions must include metadata:
+- Token checkout: `metadata.price_id = <price_...>`
+- Course checkout: `metadata.price_id = course_inline` and `metadata.course_id = <course_id>`
+
+Proof: HyperCode-V2.4 adds these fields in `backend/app/services/stripe_service.py` (commit `f00c0fc`).
+
 ### 🚨 THE STRIPE SIGNING SECRET TRAP (read this before touching webhooks)
 
 > **Every brain must know this. It caused loops before. It stops here.**

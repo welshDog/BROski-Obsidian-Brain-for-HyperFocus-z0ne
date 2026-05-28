@@ -57,8 +57,8 @@ Anything in SYSTEM_STATUS must have ONE of:
 | HyperCode-V2.4 | ✅ | ✅ |
 | Hyper-Vibe-Coding-Course | ✅ | ✅ |
 | HyperAgent-SDK | ✅ | ✅ |
-| BROskiPets-LLM-dNFT | ❌ pending | ❌ pending |
-| hyper-agents-ide | ❌ pending | ❌ pending |
+| BROskiPets-LLM-dNFT | ✅ | ✅ |
+| hyper-agents-ide | ✅ | ✅ |
 
 ---
 

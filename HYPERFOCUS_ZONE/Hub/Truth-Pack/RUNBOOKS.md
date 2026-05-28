@@ -122,6 +122,20 @@ curl https://hyper-agents-ide.onrender.com/api/health  # Render IDE
 
 ---
 
+## 💳 Stripe Webhook Smoke Test (PROOF)
+1. Confirm Supabase Edge Function `stripe-webhook` is **verify_jwt=false**.
+2. Choose the sender and set the correct signing secret:
+   - Stripe Dashboard endpoint → Supabase `STRIPE_WEBHOOK_SECRET` = dashboard endpoint `whsec_...`
+   - Stripe CLI forward-to → use the CLI-printed `whsec_...` for that listen session
+3. Run Stripe CLI forwarder + trigger:
+```bash
+stripe listen --latest --forward-to https://yhtmuibgdnxhbgboajhc.supabase.co/functions/v1/stripe-webhook
+stripe trigger checkout.session.completed
+```
+4. Win condition: `<-- [200] POST ...` in the listen terminal + new DB rows (`token_transactions.source_id = evt_...`).
+
+---
+
 ## 🧠 Session Handover Protocol
 1. Read `HYPERFOCUS_ZONE/Hub/Truth-Pack/SYSTEM_STATUS.md` first
 2. Read repo-specific `NEXT_SESSION_HANDOVER_[date].md`
