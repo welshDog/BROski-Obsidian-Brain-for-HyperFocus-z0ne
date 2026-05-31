@@ -1,1 +1,20 @@
 [2026-05-31 23:46:07] [INFO] [health_check] OPS_000 Starting health_check
+[2026-05-31 23:46:14] [INFO] [health_check] OPS_000 ✅ Succeeded on attempt 1 (6.455s)
+[2026-05-31 23:46:14] [INFO] [github_sync] OPS_000 Starting github_sync
+[2026-05-31 23:46:22] [INFO] [github_sync] OPS_000 ✅ Succeeded on attempt 1 (8.165s)
+[2026-05-31 23:46:22] [INFO] [briefing_generation] OPS_000 Starting briefing_generation
+[2026-05-31 23:46:43] [WARNING] [briefing_generation] NOT_FOUND Attempt 1/3 failed: 404 Client Error: Not Found for url: http://localhost:8100/briefing
+[2026-05-31 23:46:43] [INFO] [briefing_generation] NOT_FOUND Retrying in 1.0s...
+[2026-05-31 23:47:05] [WARNING] [briefing_generation] NOT_FOUND Attempt 2/3 failed: 404 Client Error: Not Found for url: http://localhost:8100/briefing
+[2026-05-31 23:47:05] [INFO] [briefing_generation] NOT_FOUND Retrying in 2.0s...
+[2026-05-31 23:47:28] [WARNING] [briefing_generation] NOT_FOUND Attempt 3/3 failed: 404 Client Error: Not Found for url: http://localhost:8100/briefing
+[2026-05-31 23:47:28] [ERROR] [briefing_generation] NOT_FOUND ❌ All attempts failed (66.183s)
+[2026-05-31 23:47:28] [INFO] [vault_commit] OPS_000 Starting vault_commit
+[2026-05-31 23:47:28] [INFO] [vault_commit] OPS_000 ✅ Succeeded on attempt 1 (0.513s)
+[2026-05-31 23:47:28] [INFO] [discord_report] OPS_000 Starting discord_report
+[2026-05-31 23:47:29] [WARNING] [discord_report] UNKNOWN_ERROR Attempt 1/3 failed: Discord webhook URL invalid or deleted — DC_001
+[2026-05-31 23:47:29] [INFO] [discord_report] UNKNOWN_ERROR Retrying in 1.0s...
+[2026-05-31 23:47:31] [WARNING] [discord_report] UNKNOWN_ERROR Attempt 2/3 failed: Discord webhook URL invalid or deleted — DC_001
+[2026-05-31 23:47:31] [INFO] [discord_report] UNKNOWN_ERROR Retrying in 2.0s...
+[2026-05-31 23:47:34] [WARNING] [discord_report] UNKNOWN_ERROR Attempt 3/3 failed: Discord webhook URL invalid or deleted — DC_001
+[2026-05-31 23:47:34] [ERROR] [discord_report] UNKNOWN_ERROR ❌ All attempts failed (5.757s)
