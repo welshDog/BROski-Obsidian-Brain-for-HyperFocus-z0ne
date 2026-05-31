@@ -1,0 +1,75 @@
+{
+  "timestamp": "2026-05-31T22:51:31.745785+00:00",
+  "session_id": "ops_20260531_225055",
+  "ops_version": "2.0.0",
+  "steps": {
+    "health_check": {
+      "status": "SUCCESS",
+      "icon": "OK",
+      "duration_seconds": 5.769,
+      "error_code": null,
+      "error_message": null,
+      "details": {
+        "attempt": 1,
+        "duration_seconds": 5.769
+      }
+    },
+    "github_sync": {
+      "status": "PARTIAL",
+      "icon": "PARTIAL",
+      "duration_seconds": 7.787,
+      "error_code": null,
+      "error_message": null,
+      "details": {
+        "attempt": 1,
+        "duration_seconds": 7.787
+      }
+    },
+    "briefing_generation": {
+      "status": "FAILED",
+      "icon": "FAILED",
+      "duration_seconds": 21.085,
+      "error_code": "NOT_FOUND",
+      "error_message": "404 Client Error: Not Found for url: http://localhost:8100/briefing",
+      "details": {
+        "attempt": 1,
+        "duration_seconds": 21.085,
+        "error": "404 Client Error: Not Found for url: http://localhost:8100/briefing",
+        "traceback": "NoneType: None\n"
+      }
+    },
+    "vault_commit": {
+      "status": "SUCCESS",
+      "icon": "OK",
+      "duration_seconds": 0.543,
+      "error_code": null,
+      "error_message": null,
+      "details": {
+        "attempt": 1,
+        "duration_seconds": 0.543
+      }
+    },
+    "discord_report": {
+      "status": "FAILED",
+      "icon": "FAILED",
+      "duration_seconds": 0.72,
+      "error_code": "DC_001",
+      "error_message": "Discord webhook URL invalid or deleted \u2014 DC_001",
+      "details": {
+        "attempt": 1,
+        "duration_seconds": 0.72,
+        "error": "Discord webhook URL invalid or deleted \u2014 DC_001",
+        "traceback": "NoneType: None\n"
+      }
+    }
+  },
+  "summary": {
+    "overall_status": "FAILED",
+    "icon": "FAILED",
+    "all_ok": false,
+    "next_steps": [
+      "[NOT_FOUND] Fix briefing_generation: 404 Client Error: Not Found for url: http://localhost:8100/briefing",
+      "[DC_001] Fix discord_report: Discord webhook URL invalid or deleted \u2014 DC_001"
+    ]
+  }
+}
