@@ -1,0 +1,21 @@
+{
+  "synced_repos": [],
+  "errors": [
+    {
+      "repo": "welshDog/HyperCode-V2.4",
+      "error": "HTTP 401 from https://api.github.com/repos/welshDog/HyperCode-V2.4/issues?state=open&per_page=50: {\r\n  \"message\": \"Bad credentials\",\r\n  \"documentation_url\": \"https://docs.github.com/rest\",\r\n  \"status\": \"401\"\r\n}"
+    },
+    {
+      "repo": "welshDog/HyperAgent-SDK",
+      "error": "HTTP 401 from https://api.github.com/repos/welshDog/HyperAgent-SDK/issues?state=open&per_page=50: {\r\n  \"message\": \"Bad credentials\",\r\n  \"documentation_url\": \"https://docs.github.com/rest\",\r\n  \"status\": \"401\"\r\n}"
+    },
+    {
+      "repo": "welshDog/BROskiPets-LLM-dNFT",
+      "error": "HTTP 401 from https://api.github.com/repos/welshDog/BROskiPets-LLM-dNFT/issues?state=open&per_page=50: {\r\n  \"message\": \"Bad credentials\",\r\n  \"documentation_url\": \"https://docs.github.com/rest\",\r\n  \"status\": \"401\"\r\n}"
+    },
+    {
+      "repo": "welshDog/Hyper-Vibe-Coding-Course",
+      "error": "HTTP 401 from https://api.github.com/repos/welshDog/Hyper-Vibe-Coding-Course/issues?state=open&per_page=50: {\r\n  \"message\": \"Bad credentials\",\r\n  \"documentation_url\": \"https://docs.github.com/rest\",\r\n  \"status\": \"401\"\r\n}"
+    }
+  ]
+}

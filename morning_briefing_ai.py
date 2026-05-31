@@ -153,9 +153,9 @@ tags: [briefing, daily, ai-generated]
 ---
 
 ## 🔥 Streak Status
-**Current**: {briefing['streak']['current']} days 🔥  
-**Longest**: {briefing['streak']['longest']} days 🏆  
-**Recovery tokens**: {briefing['streak']['tokens']} 🎟️
+**Current**: {briefing['streak']['current_streak']} days 🔥  
+**Longest**: {briefing['streak']['longest_streak']} days 🏆  
+**Recovery tokens**: {briefing['streak']['recovery_tokens']} 🎟️
 
 {forecast_section}
 {ai_section}
@@ -300,7 +300,7 @@ tags: [briefing, daily, ai-generated]
         if os.path.exists(streak_file):
             with open(streak_file, "r", encoding="utf-8") as f:
                 return json.load(f)
-        return {"current": 0, "longest": 0, "tokens": 1}
+        return {"current_streak": 0, "longest_streak": 0, "recovery_tokens": 1}
 
     async def _generate_focus_forecast(self) -> Dict[str, Any]:
         """Predict optimal focus conditions for today."""

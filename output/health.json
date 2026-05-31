@@ -1,0 +1,22 @@
+{
+  "service": "hyper-brain",
+  "status": "healthy",
+  "details": {
+    "status": "hyper",
+    "version": "3.0.0",
+    "level": 20,
+    "containers": 30,
+    "services": {
+      "focus_tracker": true,
+      "analytics": true,
+      "hyper_split": true,
+      "distraction_filter": true,
+      "mcp_bridge": true,
+      "snapshot": true,
+      "briefing_ai": true,
+      "difficulty_dial": true,
+      "constellation": true
+    },
+    "timestamp": "2026-05-31T16:33:13.253826"
+  }
+}

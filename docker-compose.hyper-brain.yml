@@ -27,7 +27,7 @@ services:
       - GITHUB_PAT=${GITHUB_PAT}
     volumes:
       # ✅ Corrected vault path for Lyndz's machine
-      - ${OBSIDIAN_VAULT_PATH:-H:/BROski-Obsidian-Brain-for-HyperFocus-z0ne/HYPERFOCUS_ZONE}:/vault
+      - ${OBSIDIAN_VAULT_PATH:-H:/HYPERFOCUSZONE/HperCore/BROski-Obsidian-Brain-for-HyperFocus-z0ne/HYPERFOCUS_ZONE}:/vault
     networks:
       - app-net
       - agents-net
