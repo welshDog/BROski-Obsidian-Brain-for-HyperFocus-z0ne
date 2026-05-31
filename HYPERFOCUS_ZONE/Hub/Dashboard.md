@@ -1,6 +1,11 @@
 # 🧠 BROski♾️ Brain — Hyperfocus Zone Dashboard
 
 > One view. All projects. Always know your next move.
+> 🔗 [[Hub/War-Room.canvas|War Room]] · [[Hub/Today Focus]] · [[Hub/Focus-Command-Center]] · [[Hub/Brain-Constellation-Live]]
+
+---
+
+## 🎯 Today → [[Hub/Today Focus]]
 
 ---
 
@@ -27,6 +32,16 @@ dv.paragraph(`### 💰 ${coins} BROski$ | ⭐ ${xp} XP earned total`);
 
 ---
 
+## ⚠️ Blockers
+
+```dataview
+LIST
+FROM #type/blocker AND -#status/done
+SORT file.mtime DESC
+```
+
+---
+
 ## 🐛 GitHub Issues (Live)
 
 ```dataview
@@ -39,14 +54,40 @@ SORT file.ctime DESC
 
 ---
 
-## 📅 Today's Notes
+## 📅 Recent Notes
 
 ```dataview
 LIST
 FROM "00-Inbox"
-WHERE file.ctime >= date(today)
+WHERE file.ctime >= date(today) - dur(7 days)
+SORT file.ctime DESC
+LIMIT 10
+```
+
+---
+
+## 📊 Focus Sessions This Week
+
+```dataview
+TABLE duration AS "Duration", xp_earned AS "XP"
+FROM "05-Focus-Sessions"
+WHERE file.ctime >= date(today) - dur(7 days)
 SORT file.ctime DESC
 ```
+
+---
+
+## 🩺 Quick Links
+
+| Area | Link |
+|---|---|
+| 🩺 Health | [[02-Areas/Health/Health-Dashboard]] |
+| 📋 Admin | [[02-Areas/Admin/Admin-Radar]] |
+| 🐳 DevOps | [[02-Areas/DevOps/DevOps-Runbook]] |
+| 🏷️ Tags | [[03-Resources/Tag-Architecture]] |
+| 🔌 Plugins | [[03-Resources/Recommended-Plugins]] |
+| ⚡ Focus Commands | [[Hub/Focus-Command-Center]] |
+| 🌌 Constellation | [[Hub/Brain-Constellation-Live]] |
 
 ---
 
@@ -58,3 +99,7 @@ FROM "04-Archive"
 SORT file.mtime DESC
 LIMIT 5
 ```
+
+---
+
+> 🧠⚡ HYPER BRAIN v3.0 — [[Hub/War-Room.canvas|Open War Room]] for full visual command center

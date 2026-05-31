@@ -1,0 +1,134 @@
+{
+  "nodes": [
+    {
+      "id": "dashboard",
+      "type": "file",
+      "file": "Hub/Dashboard.md",
+      "x": -400,
+      "y": -300,
+      "width": 400,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "today-focus",
+      "type": "file",
+      "file": "Hub/Today Focus.md",
+      "x": 100,
+      "y": -300,
+      "width": 400,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "focus-command",
+      "type": "file",
+      "file": "Hub/Focus-Command-Center.md",
+      "x": -400,
+      "y": 200,
+      "width": 400,
+      "height": 350,
+      "color": "6"
+    },
+    {
+      "id": "constellation",
+      "type": "file",
+      "file": "Hub/Brain-Constellation-Live.md",
+      "x": 100,
+      "y": 200,
+      "width": 400,
+      "height": 350,
+      "color": "5"
+    },
+    {
+      "id": "health",
+      "type": "file",
+      "file": "02-Areas/Health/Health-Dashboard.md",
+      "x": 600,
+      "y": -300,
+      "width": 350,
+      "height": 300,
+      "color": "3"
+    },
+    {
+      "id": "devops",
+      "type": "file",
+      "file": "02-Areas/DevOps/DevOps-Runbook.md",
+      "x": 600,
+      "y": 100,
+      "width": 350,
+      "height": 300,
+      "color": "2"
+    },
+    {
+      "id": "title-card",
+      "type": "text",
+      "text": "# 🧠⚡ THE WAR ROOM\n\n**BROski Brain Command Center**\n\nEverything. One view. Always know your next move.\n\n---\n\n🟢 **Green** = Dashboard\n🟡 **Yellow** = Today's Focus\n🔵 **Blue** = Focus Commands\n🟣 **Purple** = Constellation\n🟠 **Orange** = Health\n🔴 **Red** = DevOps",
+      "x": -850,
+      "y": -300,
+      "width": 350,
+      "height": 450,
+      "color": "0"
+    },
+    {
+      "id": "quick-actions",
+      "type": "text",
+      "text": "## ⚡ Quick Actions\n\n**Start Focus Session:**\n```\ncurl -X POST http://localhost:8100/focus/start\n```\n\n**Morning Briefing:**\n```\ncurl -X POST http://localhost:8100/briefing/generate\n```\n\n**HyperSplit a task:**\n```\ncurl -X POST http://localhost:8100/hypersplit\n```\n\n**Health check:**\n```\ncurl http://localhost:8100/health\n```",
+      "x": -850,
+      "y": 200,
+      "width": 350,
+      "height": 400,
+      "color": "6"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-title-dash",
+      "fromNode": "title-card",
+      "fromSide": "right",
+      "toNode": "dashboard",
+      "toSide": "left",
+      "color": "1"
+    },
+    {
+      "id": "edge-dash-focus",
+      "fromNode": "dashboard",
+      "fromSide": "right",
+      "toNode": "today-focus",
+      "toSide": "left",
+      "color": "4"
+    },
+    {
+      "id": "edge-focus-health",
+      "fromNode": "today-focus",
+      "fromSide": "right",
+      "toNode": "health",
+      "toSide": "left",
+      "color": "3"
+    },
+    {
+      "id": "edge-dash-cmd",
+      "fromNode": "dashboard",
+      "fromSide": "bottom",
+      "toNode": "focus-command",
+      "toSide": "top",
+      "color": "6"
+    },
+    {
+      "id": "edge-focus-constellation",
+      "fromNode": "today-focus",
+      "fromSide": "bottom",
+      "toNode": "constellation",
+      "toSide": "top",
+      "color": "5"
+    },
+    {
+      "id": "edge-health-devops",
+      "fromNode": "health",
+      "fromSide": "bottom",
+      "toNode": "devops",
+      "toSide": "top",
+      "color": "2"
+    }
+  ]
+}
