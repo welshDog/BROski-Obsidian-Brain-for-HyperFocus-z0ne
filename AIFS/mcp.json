@@ -1,0 +1,102 @@
+{
+  "$schema": "https://schemas.modelcontextprotocol.io/schema/2025-03-26/server.json",
+  "name": "aifs",
+  "version": "0.4.0",
+  "description": "AIFS — AI File System MCP Server. Exposes folder contracts as MCP resources so any AI tool can discover and read AIFS permissions natively.",
+  "author": "welshDog",
+  "homepage": "https://github.com/welshDog/BROski-Obsidian-Brain-for-HyperFocus-z0ne",
+  "license": "MIT",
+  "server": {
+    "command": "python",
+    "args": ["AIFS/aifs_mcp_server.py", "--root", "."]
+  },
+  "transport": "stdio",
+  "resources": [
+    {
+      "uri": "aifs://contracts/list",
+      "name": "All AIFS Contracts",
+      "description": "List every folder in the project that has an AIFS contract",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "aifs://folder/{path}",
+      "name": "Folder Contract",
+      "description": "Fully resolved AIFS contract for a specific folder",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "aifs://context/{path}",
+      "name": "Folder Context",
+      "description": "Live sprint state — active task, in-flight files, approved files",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "aifs://ailock/{path}",
+      "name": "AILock Patterns",
+      "description": ".ailock hard-stop patterns for a folder",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "aifs://trust/{path}",
+      "name": "Trust Tiers",
+      "description": "Per-agent trust tiers from TRUST.md",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "aifs://changelog/{path}",
+      "name": "AI Changelog",
+      "description": "Audit log of all AI actions in a folder",
+      "mimeType": "text/markdown"
+    }
+  ],
+  "tools": [
+    {
+      "name": "check_action",
+      "description": "Ask AIFS if a specific action is permitted. Returns allow/block/approval with reason."
+    },
+    {
+      "name": "resolve_contract",
+      "description": "Get the fully resolved contract for a folder including inherited rules."
+    },
+    {
+      "name": "list_locked_paths",
+      "description": "List all .ailock-protected paths across the project."
+    },
+    {
+      "name": "get_context",
+      "description": "Get live sprint context — active task, in-flight files, approved files."
+    },
+    {
+      "name": "get_in_flight",
+      "description": "Get in-flight files that must not be touched right now."
+    }
+  ],
+  "prompts": [
+    {
+      "name": "folder_briefing",
+      "description": "Full AI briefing for a folder before starting work."
+    },
+    {
+      "name": "sprint_checklist",
+      "description": "Pre-edit safety checklist based on folder contract."
+    }
+  ],
+  "install": {
+    "pip": ["mcp", "watchdog", "requests"],
+    "note": "Python 3.12+ required. tomllib is built-in."
+  },
+  "claude_desktop": {
+    "mcpServers": {
+      "aifs": {
+        "command": "python",
+        "args": ["/path/to/AIFS/aifs_mcp_server.py", "--root", "/path/to/your/project"]
+      }
+    }
+  },
+  "cursor": {
+    "note": "Add mcp.json path to Cursor MCP settings. AIFS contracts will auto-populate as context."
+  },
+  "windsurf": {
+    "note": "Point Windsurf MCP config at this mcp.json. Cascade will read AIFS contracts before edits."
+  }
+}
