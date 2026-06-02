@@ -1,0 +1,16 @@
+# .ailock — Hard Stop File
+# One pattern per line. Matched files = AI must not touch.
+# Syntax: same as .gitignore
+
+# Migrations — never auto-edit
+migrations/*.sql
+
+# Secrets — never touch
+*.env
+secrets/**
+
+# Legacy — read only
+legacy/**
+
+# Specific files — never edit
+# NEVER_EDIT_THIS.md

@@ -1,0 +1,31 @@
+[contract]
+version = "0.3"
+read_only = false
+inherit = true
+
+[permissions]
+create = []         # e.g. [".md", ".ts"]
+edit = []           # e.g. [".md", ".ts", ".css"]
+delete = false
+rename = "false"    # "true" | "false" | "approval"
+move = "false"
+
+[output]
+default_format = "markdown"
+code_language = "typescript"
+
+[safety]
+require_approval_for = ["delete", "rename", "move"]
+max_file_size_kb = 500
+allowed_external_refs = false
+
+[subfolders]
+override_allowed = true
+relaxation_allowed = false
+
+# Optional: Discord approval gate
+# [approval]
+# channel = "discord"
+# webhook_env = "DISCORD_WEBHOOK_AIFS"
+# timeout_seconds = 30
+# timeout_action = "deny"

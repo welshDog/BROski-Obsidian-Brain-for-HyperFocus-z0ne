@@ -1,0 +1,74 @@
+name: AIFS Contract Validation
+
+on:
+  pull_request:
+    paths:
+      - '**/AGENTS.md'
+      - '**/folder.prompt.md'
+      - '**/manifest.toml'
+      - '**/*'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    name: Validate AIFS Contracts
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install AIFS validator deps
+        run: pip install watchdog requests
+
+      - name: Validate all contracts
+        run: python AIFS/aifs_validator.py check .
+
+      - name: Check changed files against contracts
+        run: |
+          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
+          echo "Changed files:"
+          echo "$CHANGED_FILES"
+
+          for file in $CHANGED_FILES; do
+            folder=$(dirname "$file")
+            ext=".${file##*.}"
+            action="edit"
+
+            if ! git show origin/${{ github.base_ref }}:$file > /dev/null 2>&1; then
+              action="create"
+            fi
+
+            echo "Checking: $file (action: $action, folder: $folder, ext: $ext)"
+
+            result=$(python AIFS/aifs_validator.py check . --action=$action --folder=$folder --ext=$ext 2>&1 || true)
+
+            if echo "$result" | grep -q "BLOCKED"; then
+              echo "::error file=$file::AIFS contract violation — $result"
+              exit 1
+            fi
+
+            if echo "$result" | grep -q "APPROVAL"; then
+              echo "::warning file=$file::Action requires approval — $result"
+            fi
+          done
+
+      - name: Comment PR with AIFS results
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const status = '${{ job.status }}';
+            const emoji = status === 'success' ? '✅' : '🚫';
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## ${emoji} AIFS Contract Validation\n\nStatus: **${status}**\n\nAll folder contracts have been checked. See workflow logs for details.\n\n_AIFS v0.3 — One contract. Real enforcement. Any tool. Full safety._`
+            });
