@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIFS Hub — AI File System Dashboard</title>
+  <style>
+    :root {
+      --bg: #0d0d0f;
+      --surface: #16161a;
+      --surface2: #1e1e24;
+      --border: #2a2a35;
+      --purple: #a78bfa;
+      --green: #34d399;
+      --red: #f87171;
+      --yellow: #fbbf24;
+      --blue: #60a5fa;
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --radius: 10px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 14px;
+      min-height: 100vh;
+    }
+
+    /* ─ Header ──────────────────────────────────────────────── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo h1 { font-size: 18px; font-weight: 700; color: var(--purple); }
+    .logo span { font-size: 12px; color: var(--muted); }
+    .status-bar { display: flex; gap: 16px; align-items: center; }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .last-refresh { font-size: 11px; color: var(--muted); }
+
+    /* ─ Layout ──────────────────────────────────────────────── */
+    .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+    .tabs { display: flex; gap: 4px; margin-bottom: 24px; border-bottom: 1px solid var(--border); }
+    .tab {
+      padding: 10px 18px;
+      border: none;
+      background: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 13px;
+      border-bottom: 2px solid transparent;
+      transition: all 0.15s;
+    }
+    .tab:hover { color: var(--text); }
+    .tab.active { color: var(--purple); border-bottom-color: var(--purple); font-weight: 600; }
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* ─ Stat Cards ───────────────────────────────────────────── */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .stat-icon { font-size: 22px; }
+    .stat-value { font-size: 32px; font-weight: 700; color: var(--purple); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+
+    /* ─ Cards Grid ────────────────────────────────────────────── */
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+    .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .card-title { font-weight: 600; font-size: 14px; }
+    .card-path { font-size: 11px; color: var(--purple); font-family: monospace; margin-bottom: 10px; }
+    .card-files { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+    .badge {
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      font-family: monospace;
+    }
+    .badge-purple { background: #3b2f6e; color: var(--purple); }
+    .badge-green { background: #163a2f; color: var(--green); }
+    .badge-red { background: #3a1616; color: var(--red); }
+    .badge-yellow { background: #3a2e10; color: var(--yellow); }
+    .badge-blue { background: #162535; color: var(--blue); }
+    .badge-muted { background: var(--surface2); color: var(--muted); }
+    .card-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+    .card-row:last-child { border-bottom: none; }
+    .card-row-label { color: var(--muted); }
+
+    /* ─ In-Flight List ──────────────────────────────────────────── */
+    .inflight-list { display: flex; flex-direction: column; gap: 10px; }
+    .inflight-item {
+      background: var(--surface);
+      border: 1px solid #3a2e10;
+      border-left: 3px solid var(--yellow);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+    }
+    .inflight-file { font-family: monospace; font-size: 13px; color: var(--yellow); margin-bottom: 4px; }
+    .inflight-meta { font-size: 11px; color: var(--muted); }
+
+    /* ─ Lock List ───────────────────────────────────────────────── */
+    .lock-list { display: flex; flex-direction: column; gap: 8px; }
+    .lock-item {
+      background: var(--surface);
+      border: 1px solid #3a1616;
+      border-left: 3px solid var(--red);
+      border-radius: var(--radius);
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .lock-pattern { font-family: monospace; font-size: 13px; color: var(--red); }
+    .lock-folder { font-size: 11px; color: var(--muted); }
+
+    /* ─ Trust Table ────────────────────────────────────────────── */
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      text-align: left;
+      padding: 10px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--border);
+    }
+    tbody td { padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 13px; }
+    tbody tr:hover td { background: var(--surface2); }
+    tbody tr:last-child td { border-bottom: none; }
+    .trust-full { color: var(--green); }
+    .trust-edit { color: var(--blue); }
+    .trust-read { color: var(--yellow); }
+    .trust-blocked { color: var(--red); }
+
+    /* ─ Audit Log ───────────────────────────────────────────────── */
+    .audit-list { display: flex; flex-direction: column; gap: 6px; }
+    .audit-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .audit-allow { border-left: 3px solid var(--green); }
+    .audit-block { border-left: 3px solid var(--red); }
+    .audit-approval { border-left: 3px solid var(--yellow); }
+
+    /* ─ Empty State ────────────────────────────────────────────── */
+    .empty {
+      text-align: center;
+      padding: 48px 24px;
+      color: var(--muted);
+    }
+    .empty-icon { font-size: 36px; margin-bottom: 12px; }
+    .section-title { font-size: 15px; font-weight: 700; margin-bottom: 16px; color: var(--text); }
+    .root-path { font-family: monospace; font-size: 12px; color: var(--purple); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <span style="font-size:22px">🧠</span>
+    <div>
+      <h1>AIFS Hub</h1>
+      <span>AI File System — v0.5</span>
+    </div>
+  </div>
+  <div class="status-bar">
+    <div class="status-dot"></div>
+    <span class="last-refresh" id="lastRefresh">Loading...</span>
+    <span class="root-path" id="rootPath">—</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('overview')">&#x1F4CA; Overview</button>
+    <button class="tab" onclick="switchTab('folders')">&#x1F4C1; Folders</button>
+    <button class="tab" onclick="switchTab('inflight')">&#x26A0;&#xFE0F; In-Flight <span id="inflightBadge"></span></button>
+    <button class="tab" onclick="switchTab('locks')">&#x1F6AB; Locks</button>
+    <button class="tab" onclick="switchTab('trust')">&#x1F464; Trust</button>
+    <button class="tab" onclick="switchTab('audit')">&#x1F4DD; Audit Log</button>
+  </div>
+
+  <!-- Overview Panel -->
+  <div class="panel active" id="panel-overview">
+    <div class="stats-grid" id="statsGrid"></div>
+    <p class="section-title">Quick Status</p>
+    <div id="quickStatus"></div>
+  </div>
+
+  <!-- Folders Panel -->
+  <div class="panel" id="panel-folders">
+    <p class="section-title">Folder Contracts</p>
+    <div class="cards-grid" id="foldersGrid"></div>
+  </div>
+
+  <!-- In-Flight Panel -->
+  <div class="panel" id="panel-inflight">
+    <p class="section-title">In-Flight Files — Do Not Touch</p>
+    <div class="inflight-list" id="inflightList"></div>
+  </div>
+
+  <!-- Locks Panel -->
+  <div class="panel" id="panel-locks">
+    <p class="section-title">.ailock Hard Stops</p>
+    <div class="lock-list" id="lockList"></div>
+  </div>
+
+  <!-- Trust Panel -->
+  <div class="panel" id="panel-trust">
+    <p class="section-title">Agent Trust Tiers</p>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden">
+      <table>
+        <thead><tr><th>Agent</th><th>Folder</th><th>Tier</th></tr></thead>
+        <tbody id="trustTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Audit Panel -->
+  <div class="panel" id="panel-audit">
+    <p class="section-title">AI Audit Log</p>
+    <div class="audit-list" id="auditList"></div>
+  </div>
+
+</div>
+
+<script>
+  let data = { summary: {}, contracts: [], inflight: [], locks: [], trust: [], audit: [] };
+
+  // ─ Tab switching
+  function switchTab(id) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelector(`#panel-${id}`).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // ─ Fetch all data
+  async function fetchAll() {
+    try {
+      const [summary, contracts, inflight, locks, trust, audit] = await Promise.all([
+        fetch('/api/summary').then(r => r.json()),
+        fetch('/api/contracts').then(r => r.json()),
+        fetch('/api/in-flight').then(r => r.json()),
+        fetch('/api/locks').then(r => r.json()),
+        fetch('/api/trust').then(r => r.json()),
+        fetch('/api/audit').then(r => r.json()),
+      ]);
+      data = { summary, contracts, inflight, locks, trust, audit };
+      render();
+      document.getElementById('lastRefresh').textContent = 'Live — ' + new Date().toLocaleTimeString();
+      document.getElementById('rootPath').textContent = summary.root || '';
+    } catch (e) {
+      document.getElementById('lastRefresh').textContent = 'API unreachable';
+    }
+  }
+
+  // ─ Render overview
+  function renderOverview() {
+    const s = data.summary;
+    const stats = [
+      { icon: '\uD83D\uDCC1', value: s.total_contracts ?? 0, label: 'Contracts' },
+      { icon: '\u26A0\uFE0F', value: s.total_in_flight ?? 0, label: 'In-Flight Files' },
+      { icon: '\uD83D\uDEAB', value: s.total_locks ?? 0, label: 'Hard Locks' },
+      { icon: '\uD83D\uDC64', value: s.total_agents ?? 0, label: 'Known Agents' },
+      { icon: '\uD83D\uDD12', value: s.read_only_folders ?? 0, label: 'Read-Only Folders' },
+      { icon: '\uD83D\uDCDD', value: s.recent_audit_entries ?? 0, label: 'Audit Entries' },
+    ];
+    document.getElementById('statsGrid').innerHTML = stats.map(s =>
+      `<div class="stat-card">
+        <div class="stat-icon">${s.icon}</div>
+        <div class="stat-value">${s.value}</div>
+        <div class="stat-label">${s.label}</div>
+      </div>`
+    ).join('');
+
+    // Quick status
+    const inflightCount = (data.inflight || []).length;
+    const locksCount = (data.locks || []).length;
+    let html = '<div class="cards-grid">';
+    html += `<div class="card"><div class="card-header"><span class="card-title">⚠️ In-Flight Right Now</span></div>`;
+    if (inflightCount === 0) {
+      html += '<div style="color:var(--green);font-size:13px">✅ No in-flight files. All clear.</div>';
+    } else {
+      html += data.inflight.slice(0, 5).map(i =>
+        `<div class="card-row"><span class="card-row-label">${i.folder}/</span><span style="font-family:monospace;color:var(--yellow)">${i.file}</span></div>`
+      ).join('');
+      if (inflightCount > 5) html += `<div style="color:var(--muted);font-size:11px;margin-top:8px">+${inflightCount - 5} more</div>`;
+    }
+    html += '</div>';
+
+    html += `<div class="card"><div class="card-header"><span class="card-title">�\uDEAB Hard Locks</span></div>`;
+    if (locksCount === 0) {
+      html += '<div style="color:var(--muted);font-size:13px">No .ailock files found.</div>';
+    } else {
+      html += data.locks.slice(0, 5).map(l =>
+        `<div class="card-row"><span class="card-row-label">${l.folder}/</span><span style="font-family:monospace;color:var(--red)">${l.pattern}</span></div>`
+      ).join('');
+      if (locksCount > 5) html += `<div style="color:var(--muted);font-size:11px;margin-top:8px">+${locksCount - 5} more</div>`;
+    }
+    html += '</div></div>';
+    document.getElementById('quickStatus').innerHTML = html;
+  }
+
+  // ─ Render folders
+  function renderFolders() {
+    const html = data.contracts.map(c => {
+      const readOnlyBadge = c.read_only
+        ? '<span class="badge badge-red">�\uDD12 read-only</span>'
+        : '<span class="badge badge-green">✅ editable</span>';
+      const inflightFiles = c.in_flight || [];
+      return `
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">�\uDCC1 ${c.folder || '.'}</span>
+            ${readOnlyBadge}
+          </div>
+          <div class="card-path">${c.folder || '.'}</div>
+          <div class="card-files">
+            ${(c.contract_files || []).map(f => `<span class="badge badge-purple">${f}</span>`).join('')}
+          </div>
+          <div class="card-row"><span class="card-row-label">Create</span><span>${(c.create_exts || []).join(', ') || 'any'}</span></div>
+          <div class="card-row"><span class="card-row-label">Edit</span><span>${(c.edit_exts || []).join(', ') || 'any'}</span></div>
+          <div class="card-row"><span class="card-row-label">Delete</span><span class="${c.delete_allowed ? 'trust-full' : 'trust-blocked'}">${c.delete_allowed ? 'allowed' : 'blocked'}</span></div>
+          <div class="card-row"><span class="card-row-label">Rename</span><span>${c.rename_policy}</span></div>
+          ${inflightFiles.length > 0
+            ? `<div class="card-row"><span class="card-row-label">⚠️ In-Flight</span><span style="color:var(--yellow)">${inflightFiles.length} file(s)</span></div>`
+            : ''
+          }
+          ${c.active_task
+            ? `<div style="margin-top:8px;font-size:11px;color:var(--muted);font-style:italic">�\uDFAF ${c.active_task}</div>`
+            : ''
+          }
+        </div>`;
+    }).join('');
+    document.getElementById('foldersGrid').innerHTML = html || empty('No contracts found', 'Add AGENTS.md or manifest.toml to a folder to create a contract.');
+  }
+
+  // ─ Render in-flight
+  function renderInFlight() {
+    if (!data.inflight.length) {
+      document.getElementById('inflightList').innerHTML = empty('✅ No in-flight files', 'All clear. No context.md files have active in-flight protections.');
+      return;
+    }
+    document.getElementById('inflightList').innerHTML = data.inflight.map(i =>
+      `<div class="inflight-item">
+        <div class="inflight-file">⚠️ ${i.file}</div>
+        <div class="inflight-meta">Folder: ${i.folder}/ • Task: ${i.active_task || 'not specified'}</div>
+      </div>`
+    ).join('');
+    document.getElementById('inflightBadge').textContent = data.inflight.length ? ` (${data.inflight.length})` : '';
+  }
+
+  // ─ Render locks
+  function renderLocks() {
+    if (!data.locks.length) {
+      document.getElementById('lockList').innerHTML = empty('No .ailock files', 'No hard locks defined. Consider adding .ailock to your migrations/ folder.');
+      return;
+    }
+    document.getElementById('lockList').innerHTML = data.locks.map(l =>
+      `<div class="lock-item">
+        <div>
+          <div class="lock-pattern">�\uDEAB ${l.pattern}</div>
+          <div class="lock-folder">${l.folder}/</div>
+        </div>
+        <span class="badge badge-red">HARD STOP</span>
+      </div>`
+    ).join('');
+  }
+
+  // ─ Render trust
+  function renderTrust() {
+    if (!data.trust.length) {
+      document.getElementById('trustTable').innerHTML = `<tr><td colspan="3" style="text-align:center;color:var(--muted);padding:24px">No TRUST.md files found.</td></tr>`;
+      return;
+    }
+    const tierClass = t => ({ FULL: 'trust-full', EDIT_ONLY: 'trust-edit', READ_ONLY: 'trust-read', BLOCKED: 'trust-blocked' })[t] || '';
+    document.getElementById('trustTable').innerHTML = data.trust.map(t =>
+      `<tr>
+        <td style="font-family:monospace">${t.agent}</td>
+        <td style="color:var(--muted)">${t.folder}</td>
+        <td class="${tierClass(t.tier)}">${t.tier}</td>
+      </tr>`
+    ).join('');
+  }
+
+  // ─ Render audit
+  function renderAudit() {
+    if (!data.audit.length) {
+      document.getElementById('auditList').innerHTML = empty('No audit entries', 'Start the AIFS watcher to log AI actions to CHANGELOG.ai.md.');
+      return;
+    }
+    document.getElementById('auditList').innerHTML = data.audit.reverse().map(a => {
+      const cls = a.entry.includes('ALLOW') ? 'audit-allow' : a.entry.includes('BLOCK') ? 'audit-block' : 'audit-approval';
+      return `<div class="audit-item ${cls}">[${a.folder}] ${a.entry}</div>`;
+    }).join('');
+  }
+
+  // ─ Empty state helper
+  function empty(title, sub) {
+    return `<div class="empty"><div class="empty-icon">�\uDCED</div><div style="font-weight:600;margin-bottom:6px">${title}</div><div style="font-size:12px">${sub}</div></div>`;
+  }
+
+  // ─ Render all
+  function render() {
+    renderOverview();
+    renderFolders();
+    renderInFlight();
+    renderLocks();
+    renderTrust();
+    renderAudit();
+  }
+
+  // ─ Auto-refresh every 10s
+  fetchAll();
+  setInterval(fetchAll, 10000);
+</script>
+</body>
+</html>
