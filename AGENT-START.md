@@ -1,7 +1,7 @@
 # 🚀 AGENT-START.md — HyperFocus Z0ne MASTER Boot File
 > **For ANY AI, agent, or human joining the full HyperFocus Z0ne ecosystem.**
 > Read this file FIRST. Every session. No exceptions.
-> Built by @welshDog — 2026-06-01 · v3.0 (MASTER — replaces all previous versions)
+> Built by @welshDog — 2026-06-01 · v3.1 (added Data-to-Brain Protocol)
 
 > 📌 **Live truth ALWAYS wins:** Read the newest `DASHBOARD_STATUS_YYYY-MM-DD.md` + newest `NEXT_SESSION_HANDOVER_*.md` BEFORE anything else.
 
@@ -90,6 +90,23 @@ Always check `vault-index.md` for the full map first.
 
 ---
 
+## 🧠 DATA-TO-BRAIN PROTOCOL
+
+> Any AI explainer output (NotebookLM, Claude, Perplexity, etc.) must follow this before it becomes live truth:
+
+```
+1. CAPTURE   — Save as Markdown note in HYPERFOCUS_ZONE/
+2. TAG        — Add #notebooklm-import #hfz-map + 1 skill tag
+3. LINK       — Link back to PORTAL.md → source repo → specific file
+4. SPLIT      — Extract 3 micro-tasks max (feed HyperSplit)
+5. VERIFY     — Confirm not a duplicate of live truth in source repos
+```
+
+📄 Full protocol: [HYPERFOCUS_ZONE/DATA_TO_BRAIN_PROTOCOL.md](./HYPERFOCUS_ZONE/DATA_TO_BRAIN_PROTOCOL.md)  
+📄 Latest NotebookLM extract: [HYPERFOCUS_ZONE/NOTEBOOKLM_INSIGHTS.md](./HYPERFOCUS_ZONE/NOTEBOOKLM_INSIGHTS.md)
+
+---
+
 ## 🎯 STEP 3 — START THE TASK (NO WAFFLE)
 
 - State the next task in **2 lines max**
@@ -116,6 +133,7 @@ Always check `vault-index.md` for the full map first.
 | Keep LLM costs low | Cap tokens, avoid polling AI Gateway |
 | Short sentences first, detail after | ADHD-friendly communication |
 | Celebrate every milestone | "Nice one BROski♾️!" is always correct |
+| AI explainer output ≠ live truth | Always verify against source repo (Data-to-Brain Protocol) |
 
 **Commit prefixes:** `feat:` / `fix:` / `docs:` / `chore:`
 
@@ -167,6 +185,7 @@ stripe trigger checkout.session.completed
 - [ ] `SESSION_SNAPSHOT_[DATE].md` updated
 - [ ] `WHATS_DONE.md` updated if new things were built
 - [ ] Ecosystem-level change? → update `ECOSYSTEM_HANDOVER.md` + `DASHBOARD_STATUS_[DATE].md`
+- [ ] AI insights captured? → follow Data-to-Brain Protocol → `HYPERFOCUS_ZONE/`
 - [ ] Tell Lyndz the ONE next task (one sentence)
 - [ ] 🎉 Celebrate the wins — "Nice one BROski♾️!"
 
