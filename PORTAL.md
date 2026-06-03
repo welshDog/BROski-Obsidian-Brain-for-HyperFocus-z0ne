@@ -44,6 +44,10 @@ Covers every repo, every key doc, P0 blockers, tools, stack and session rules.
 - [Focus-Command-Center.md](./Focus-Command-Center.md) — ADHD focus hub
 - [NOTEBOOKLM_INSIGHTS.md](./NOTEBOOKLM_INSIGHTS.md) — NotebookLM AI insights
 
+### 🧠 Knowledge & Protocols
+- [HYPERFOCUS_ZONE/DATA_TO_BRAIN_PROTOCOL.md](./HYPERFOCUS_ZONE/DATA_TO_BRAIN_PROTOCOL.md) — **Data-to-Brain Protocol** — how AI insights become live knowledge
+- [HYPERFOCUS_ZONE/NOTEBOOKLM_INSIGHTS.md](./HYPERFOCUS_ZONE/NOTEBOOKLM_INSIGHTS.md) — Hyper Top 20 + Master Boot Protocol extract
+
 ### 🛡️ AIFS — AI File System
 - [AIFS.md](./AIFS.md) — Full AIFS docs + quick start
 - [AIFS/](./AIFS/) — Contract specs v0.3 → v1.0
