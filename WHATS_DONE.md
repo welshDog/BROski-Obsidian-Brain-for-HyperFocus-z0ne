@@ -1,102 +1,63 @@
-# ✅ WHATS_DONE.md
-## The Single Source of Truth — What Has Been Built
+# WHATS_DONE.md -- BROski Obsidian Brain
 
-> **AI reading this:** Check here FIRST before building anything. If it's here, it exists. Don't rebuild it.
-
-Last updated: June 2, 2026
+> Single source of truth. Check this before building ANYTHING.
+> Last updated: 2026-06-03
 
 ---
 
-## 🧠 AIFS — AI File System Protocol (v1.0 COMPLETE)
+## Core Python Brain Tools (ALL EXIST -- do not rebuild)
 
-Built June 2, 2026 in one evening. Llanelli, Wales. welshDog x Perplexity.
+| File | Status | What it does |
+|---|---|---|
+| `hyper_brain_core.py` | DONE | Core brain engine, knowledge retrieval |
+| `focus_tracker.py` | DONE | Focus session tracking + state |
+| `analytics_engine.py` | DONE | Productivity analytics + heatmaps |
+| `morning_briefing_ai.py` | DONE | Daily AI briefing generator |
+| `mcp_bridge.py` | DONE | MCP bridge (runs on :8823) |
+| `session_snapshot.py` | DONE | Saves session state to vault |
+| `constellation_builder.py` | DONE | Knowledge graph from Obsidian notes |
+| `ai_distraction_filter.py` | DONE | AI-powered distraction detection |
+| `gamification_summary.py` | DONE | XP, levels, BROski tokens |
+| `events_feed.py` | DONE | Events stream |
+| `github_webhook_server.py` | DONE | GitHub webhook listener |
+| `difficulty_dial.py` | DONE | Task difficulty adjustment |
+| `hyper_split.py` | DONE | Vault note splitter |
+| `AIFS-LAUNCH.ps1` | DONE | AI File System launcher |
 
-| File | Status | What It Does |
-|------|--------|--------------|
-| `AIFS.md` | ✅ | Root entry point — quick start, full stack overview |
-| `AIFS/AIFS_Specification_v0.3.md` | ✅ | Core spec with watcher, TTL, TRUST, .ailock |
-| `AIFS/AIFS_Specification_v0.4.md` | ✅ | MCP resource integration spec |
-| `AIFS/AIFS_Specification_v0.5.md` | ✅ | Hub dashboard spec |
-| `AIFS/AIFS_Specification_v0.6.md` | ✅ | Cryptographic signing spec |
-| `AIFS/AIFS_Specification_v1.0.md` | ✅ | Complete v1.0 spec — the whole story |
-| `AIFS/aifs_watcher.py` | ✅ | Real-time enforcement daemon + Discord approval gate |
-| `AIFS/aifs_mcp_server.py` | ✅ | MCP server — 6 resources, 5 tools, 2 prompts |
-| `AIFS/aifs_sign.py` | ✅ | Ed25519 sign/verify CLI — keygen, sign, verify-all |
-| `AIFS/mcp.json` | ✅ | Drop-in MCP manifest for Claude Desktop, Cursor, Windsurf |
-| `AIFS/hub/aifs_hub_server.py` | ✅ | FastAPI hub server — 8 REST endpoints |
-| `AIFS/hub/index.html` | ✅ | Dark theme dashboard — zero build, vanilla JS |
-| `AIFS/registry/aifs_registry.py` | ✅ | Registry CLI — publish, search, install, verify, list |
-| `AIFS/registry/registry_server.py` | ✅ | Self-hostable FastAPI registry — auth, publish, search |
-| `AIFS/templates/` | ✅ | 6 contract templates — manifest.toml, AGENTS.md, etc |
-| `AIFS/.github/workflows/aifs-validate.yml` | ✅ | GitHub Actions CI — auto-validates PRs |
+## PSAI + aish Integration (ADDED 2026-06-03)
 
-### Run the full stack:
-```bash
-pip install mcp cryptography fastapi uvicorn watchdog requests
-python AIFS/aifs_watcher.py watch .          # enforcement
-python AIFS/hub/aifs_hub_server.py --root . # dashboard :7331
-python AIFS/registry/registry_server.py     # registry :7332
-# Add AIFS/mcp.json to Claude Desktop / Cursor MCP config
-```
+| File | Status | What it does |
+|---|---|---|
+| `PSAI-Register-Tools.ps1` | NEW | Registers all 10 brain tools as PSAI agent-callable functions |
+| `aish-mcp-config.json` | NEW | Wires aish to mcp_bridge.py + HyperCode gateway |
+| `BROski-Brain-Quick-Start.ps1` | NEW | One-script boot: deps + MCP bridge + PSAI tools |
 
----
+## Vault Structure
 
-## 🏀 BROski Brain Core Tools
+| Folder | Status | What it is |
+|---|---|---|
+| `HYPERFOCUS_ZONE/` | DONE | Main vault -- course reviews, project notes |
+| `HYPER-SILLs/` | DONE | Skills + learning notes |
+| `sessions/` | DONE | Session snapshots |
+| `Ops-Logs/` | DONE | Operational logs |
+| `.obsidian/` | DONE | Obsidian config |
+| `.agents/` | DONE | Agent configs |
+| `.claude/` | DONE | Claude context files |
 
-| File | Status | What It Does |
-|------|--------|--------------|
-| `hyper_brain_core.py` | ✅ | Core brain API — notes, tasks, focus |
-| `focus_tracker.py` | ✅ | ADHD-optimised focus session tracker |
-| `analytics_engine.py` | ✅ | Usage analytics + insights |
-| `morning_briefing_ai.py` | ✅ | AI morning briefing generator |
-| `ai_distraction_filter.py` | ✅ | Filter distractions, protect focus |
-| `constellation_builder.py` | ✅ | Knowledge graph builder |
-| `mcp_bridge.py` | ✅ | MCP bridge for external tools |
-| `session_snapshot.py` | ✅ | Session state snapshotter |
-| `github_webhook_server.py` | ✅ | GitHub webhook receiver |
+## Key Docs
 
----
+| File | What it is |
+|---|---|
+| `AGENT-START.md` | Agent onboarding + skill load |
+| `CLAUDE.md` | Sacred rules for AI partners |
+| `CLAUDE_CONTEXT.md` | Extended Claude context |
+| `ANALYSIS_AND_ROADMAP.md` | Full roadmap |
+| `UPGRADE_COMPLETE_SUMMARY.md` | Previous upgrade history |
+| `NEXT_SESSION_HANDOVER_2026-06-02.md` | Last handover |
 
-## 🎓 Hyper-Vibe-Coding-Course
+## DO NOT rebuild
 
-| What | Status |
-|------|--------|
-| All 10 modules rewritten (M0–M10) | ✅ |
-| Sprint 4 — Anon → Signup conversion | ⏳ Verify Claude's work |
-| CatchStragglers.jsx wired into Mission Control | 🔜 Todo |
-| mc_events migration | 🔜 Todo |
-| DISCORD_BOT_TOKEN in Vercel env vars | 🔜 Todo |
-
----
-
-## 📦 HyperAgent-SDK
-
-| What | Status |
-|------|--------|
-| npm package `@w3lshdog/hyper-agent@0.1.7` | ✅ Published |
-| manifest.json agent definitions | ✅ |
-| Swarm coordination | ✅ |
-
----
-
-## 🐺 HyperCode-V2.4
-
-| What | Status |
-|------|--------|
-| 32 Docker containers | ✅ |
-| FastAPI agent swarm | ✅ |
-| Prometheus + Grafana | ✅ |
-| Redis + PostgreSQL | ✅ |
-
----
-
-## 🔜 WHAT'S NEXT
-
-1. **Host AIFS Registry** — deploy to `aifs-registry.hyperfocuszone.com`
-2. **AIFS blog post** — *"How I built AI governance in one evening in Wales"*
-3. **Submit to awesome-mcp-servers** — AIFS deserves a spot
-4. **Hyper-Vibe-Coding-Course** — Sprint 4 verification + CatchStragglers
-
----
-
-*welshDog x Perplexity — Llanelli, Wales 🏴󠁧󠁢󠁷󠁬󠁳󠁧 — June 2026*
+- Any Python file listed above -- they exist and work
+- `.obsidian/` config -- already tuned
+- `cluster.json` -- knowledge graph config
+- `docker-compose.hyper-brain.yml` -- brain Docker setup

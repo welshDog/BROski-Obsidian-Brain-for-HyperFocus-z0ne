@@ -1,0 +1,53 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/AIShell/main/schemas/mcp-config.schema.json",
+  "mcpServers": {
+    "broski-brain-mcp": {
+      "description": "BROski Obsidian Brain MCP bridge -- focus tracking, analytics, morning briefing, knowledge graph",
+      "transport": "stdio",
+      "command": "python",
+      "args": ["mcp_bridge.py"],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "BRAIN_ROOT": "${workspaceFolder}",
+        "VAULT_PATH": "${workspaceFolder}/HYPERFOCUS_ZONE",
+        "MCP_PORT": "8823"
+      },
+      "timeout": 30,
+      "tags": ["brain", "focus", "obsidian", "analytics"]
+    },
+    "broski-brain-ps": {
+      "description": "BROski Brain PowerShell tools -- AI-callable wrappers for all Python brain scripts",
+      "transport": "stdio",
+      "command": "pwsh",
+      "args": [
+        "-NoProfile",
+        "-NonInteractive",
+        "-File",
+        "${workspaceFolder}/PSAI-Register-Tools.ps1"
+      ],
+      "env": {
+        "BRAIN_ROOT": "${workspaceFolder}"
+      },
+      "timeout": 20,
+      "tags": ["powershell", "brain", "focus", "gamification"]
+    },
+    "hypercode-gateway": {
+      "description": "HyperCode V2.4 MCP Gateway -- cross-link brain to the 32-container stack",
+      "transport": "http",
+      "url": "http://localhost:8823",
+      "timeout": 30,
+      "tags": ["hypercode", "agents", "monitoring"]
+    }
+  },
+  "defaults": {
+    "timeout": 30,
+    "retries": 2,
+    "logLevel": "info"
+  },
+  "aish": {
+    "autoConnect": true,
+    "preferredServer": "broski-brain-mcp",
+    "sessionPersistence": true,
+    "systemPromptAddition": "You are connected to the BROski Obsidian Brain for HyperFocus Zone. This is Lyndz's personal AI brain -- neurodivergent-first, ADHD-optimised. Always call run_morning_briefing at session start. Call save_session_snapshot at session end. Use query_brain_core for context before making suggestions. Never overload with info -- bullet points, short sentences, celebrate wins."
+  }
+}
