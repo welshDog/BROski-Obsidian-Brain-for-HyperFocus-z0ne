@@ -18,3 +18,9 @@ secrets/
 
 # Auto-generated runtime artifacts
 HYPERFOCUS_ZONE/Hub/Brain-Constellation-Live.md
+
+# Python cache — NEVER commit
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
