@@ -6,6 +6,20 @@ GitHub, Gmail, Slack, Claude Code, Cursor, your agents — **all read and write 
 
 ---
 
+## 🐳 TL;DR — Docker (Ubuntu 22.04 glibc issue? Use this)
+
+```bash
+export VAULT_PATH=$HOME/BROski-Obsidian-Brain-for-HyperFocus-z0ne
+docker compose -f docker-compose.openhuman.yml up -d
+open http://127.0.0.1:3210
+```
+
+**No glibc. No system changes. Just Docker.**
+
+→ **Full guide:** `DOCKER_OPENHUMAN_QUICKSTART.md`
+
+---
+
 ## 🧠 What This Gives You
 
 | Before | After |
@@ -17,7 +31,37 @@ GitHub, Gmail, Slack, Claude Code, Cursor, your agents — **all read and write 
 
 ---
 
-## ⚡ Quick Start (5 min)
+## ⚡ Quick Start Options
+
+### Option A — Docker (Recommended, No glibc needed) ⭐
+
+**Best for:**
+- Ubuntu 22.04 (glibc 2.35, OpenHuman needs 2.38+)
+- Anyone wanting zero system contamination
+- Already using Docker (you are!)
+
+```bash
+docker compose -f docker-compose.openhuman.yml up -d
+```
+
+→ See: `DOCKER_OPENHUMAN_QUICKSTART.md`
+
+### Option B — Binary Install (if not Docker)
+
+**Best for:**
+- macOS, Windows native, or Linux that supports the binary
+- Want to run OpenHuman outside Docker
+
+```bash
+bash install_openhuman_memory.sh
+# Then install binary (brew/apt/etc)
+```
+
+→ See rest of this document
+
+---
+
+## 📝 Binary Installation (Option B)
 
 ### 1. Run the installer
 
@@ -90,8 +134,8 @@ BROski-Obsidian-Brain-for-HyperFocus-z0ne/
 ```
 GitHub/Gmail/Slack
     ↓ (OpenHuman polls every 20 mins)
-~/.openhuman/memory/
-    ↓ (symlink)
+~/.openhuman/memory/ (OR Docker volume)
+    ↓ (symlink OR mounted path)
 vault/00-Inbox/OpenHuman-Feed/
     ↓ (Obsidian syncs)
 Your vault (live in Obsidian)
@@ -142,7 +186,7 @@ Your `mcp_bridge.py` now queries this unified store:
 
 ## 🛠️ Configuration
 
-### `.env` file location
+### .env file location
 
 **Linux/macOS:**
 ```
@@ -152,6 +196,11 @@ Your `mcp_bridge.py` now queries this unified store:
 **Windows:**
 ```
 %USERPROFILE%\.openhuman\.env
+```
+
+**Docker:**
+```
+Use .env.openhuman in repo root
 ```
 
 ### What's in the `.env`
@@ -196,7 +245,7 @@ OPENHUMAN_WORKSPACE=/path/to/vault
 
 ---
 
-## 🚀 Advanced: Symlink Troubleshooting
+## 🚀 Advanced: Symlink Troubleshooting (Binary Only)
 
 ### macOS/Linux: Symlink works out of the box
 ```bash
@@ -224,7 +273,7 @@ OpenHuman is planning a **SQLite-backed memory store** called `agentmemory` for 
 
 **Status:** Beta (tracked at https://github.com/tinyhumansai/openhuman/issues/2620)
 
-**When it ships, your installer will auto-upgrade to:**
+**When it ships, your setup will auto-upgrade to:**
 ```bash
 MEMORY_BACKEND=agentmemory
 MEMORY_AGENTMEMORY_DB=~/.openhuman/brain.db
@@ -232,7 +281,7 @@ MEMORY_AGENTMEMORY_DB=~/.openhuman/brain.db
 
 **Re-run the installer** and it will configure this automatically.
 
-Until then, **the symlink approach works perfectly today** — you get the same unified brain, just via `.md` files instead of a database.
+Until then, **the symlink/Docker approach works perfectly today** — you get the same unified brain, just via `.md` files instead of a database.
 
 ---
 
@@ -243,6 +292,7 @@ Until then, **the symlink approach works perfectly today** — you get the same 
 | OpenHuman writes to flat folder | Use Obsidian templates to organize | Native PARA support in v0.8 (Q3 2026) |
 | No real-time sync (20-min poll) | Check vault every 20 mins; webhook for urgent | RT webhooks planned |
 | No conflict resolution (write conflicts) | Keep `.openhuman/memory/` symlinked read-only for now | Merge strategy coming |
+| glibc 2.38+ required (binary) | Use Docker instead (included) | ✅ Solved via Docker |
 
 ---
 
@@ -296,7 +346,7 @@ result = await mcp_bridge.query_vault(
 
 ## 📝 Testing Your Setup
 
-### Test 1: Check if symlink works
+### Test 1: Check if symlink works (Binary only)
 
 ```bash
 # Should show vault path
@@ -329,7 +379,7 @@ python
 ## 🆘 Troubleshooting
 
 ### Q: Symlink not working on Windows
-**A:** Use WSL, or manually set the vault path in OpenHuman UI settings.
+**A:** Use Docker instead, or manually set vault path in OpenHuman UI.
 
 ### Q: OpenHuman not syncing after 20 mins
 **A:** Check OpenHuman logs:
@@ -339,7 +389,7 @@ openhuman --log-level=debug
 
 ### Q: No notes appearing in vault
 **A:** 
-1. Verify symlink: `ls -la ~/.openhuman/memory`
+1. Verify symlink: `ls -la ~/.openhuman/memory` (binary) or check Docker logs
 2. Check OpenHuman is running: `ps aux | grep openhuman`
 3. Manually trigger sync in OpenHuman UI if available
 4. Check `~/.openhuman/.env` is correct
@@ -355,6 +405,7 @@ OpenHuman-synced notes shouldn't be version-controlled (ephemeral).
 
 ## 🔗 Resources
 
+- **Docker Quick Start:** `DOCKER_OPENHUMAN_QUICKSTART.md` ⭐
 - **OpenHuman Docs:** https://docs.openhuman.io
 - **GitHub Issues:** https://github.com/tinyhumansai/openhuman/issues
 - **agentmemory Tracking:** https://github.com/tinyhumansai/openhuman/issues/2620
@@ -372,6 +423,7 @@ Your brain is now:
 - ✅ **Organized** — PARA structure keeps things tidy
 - ✅ **Timestamped** — Every note has metadata + created date
 - ✅ **Linkable** — Obsidian wiki-links work across sources
+- ✅ **Docker-native** — Zero system contamination, runs anywhere
 
 **Nothing gets lost. Everything flows in. Your brain knows everything.**
 

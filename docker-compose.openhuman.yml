@@ -1,0 +1,94 @@
+# docker-compose.openhuman.yml
+# 
+# OpenHuman Container — Unified memory sync for GitHub, Gmail, Slack
+# Integrates with BROski-Obsidian-Brain vault
+# 
+# Run alongside your HyperCode stack:
+#   docker compose -f docker-compose.openhuman.yml up -d
+#
+# Or standalone:
+#   docker compose -f docker-compose.openhuman.yml up -d
+#
+# Headless (no UI, just sync):
+#   docker compose -f docker-compose.openhuman.yml up -d openhuman-sync
+#
+# BROski♾️
+
+services:
+  openhuman:
+    image: ghcr.io/tinyhumansai/openhuman:latest
+    container_name: openhuman-ui
+    ports:
+      - "127.0.0.1:3210:3210"  # Web UI (localhost only for security)
+    environment:
+      # Vault path inside container
+      - OPENHUMAN_WORKSPACE=/vault
+      # Optional: API token for programmatic access
+      # - OPENHUMAN_API_KEY=${OPENHUMAN_API_KEY}
+      # Optional: Headless mode (no UI, just background sync)
+      # - OPENHUMAN_HEADLESS=true
+    volumes:
+      # BROski vault — auto-synced notes land here
+      - ${VAULT_PATH:-.}/HYPERFOCUS_ZONE/00-Inbox/OpenHuman-Feed:/vault/00-Inbox/OpenHuman-Feed
+      # OpenHuman config and cache
+      - openhuman-config:/root/.openhuman
+      # Entire vault (optional — for read-only access to context)
+      - ${VAULT_PATH:-.}:/vault
+    restart: unless-stopped
+    mem_limit: 512m
+    cpus: 1
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3210/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    labels:
+      - "com.hyperfocuszone.service=openhuman"
+      - "com.hyperfocuszone.tier=integration"
+      - "com.hyperfocuszone.version=0.57.13"
+    networks:
+      - app-net
+    environment:
+      # Set timezone (optional)
+      - TZ=Europe/London
+
+  openhuman-sync:
+    image: ghcr.io/tinyhumansai/openhuman:latest
+    container_name: openhuman-sync
+    # No ports exposed — headless sync only
+    command: ["openhuman", "--sync-only", "--headless"]
+    environment:
+      - OPENHUMAN_WORKSPACE=/vault
+      - OPENHUMAN_SYNC_INTERVAL=1200  # 20 mins (default)
+      # - OPENHUMAN_API_KEY=${OPENHUMAN_API_KEY}
+    volumes:
+      - ${VAULT_PATH:-.}/HYPERFOCUS_ZONE/00-Inbox/OpenHuman-Feed:/vault/00-Inbox/OpenHuman-Feed
+      - openhuman-config:/root/.openhuman
+      - ${VAULT_PATH:-.}:/vault
+    restart: unless-stopped
+    mem_limit: 256m
+    cpus: 0.5
+    healthcheck:
+      test: ["CMD", "test", "-f", "/root/.openhuman/sync.lock"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "com.hyperfocuszone.service=openhuman-sync"
+      - "com.hyperfocuszone.tier=integration"
+    networks:
+      - app-net
+    environment:
+      - TZ=Europe/London
+
+volumes:
+  openhuman-config:
+    driver: local
+
+networks:
+  # Use existing network if HyperCode stack is running
+  # Otherwise create locally
+  app-net:
+    driver: bridge
+    external: false
