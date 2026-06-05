@@ -1,117 +1,139 @@
-# OpenHuman via Docker — Quick Start
+# OpenHuman via Docker — Quick Start (Build from Source)
 
-**TL;DR:** You're already Docker-native. No glibc pain. Just one command.
+**TL;DR:** OpenHuman image isn't public yet. We build it locally (5-10 min first run).
 
 ```bash
-# 1. Set your vault path
+# 1. Clone source once
+git clone https://github.com/tinyhumansai/openhuman.git openhuman-build
+
+# 2. Set vault path
 export VAULT_PATH=$HOME/BROski-Obsidian-Brain-for-HyperFocus-z0ne
 
-# 2. Start OpenHuman (UI + sync)
+# 3. Start (builds image on first run)
 docker compose -f docker-compose.openhuman.yml up -d
 
-# 3. Open browser
+# 4. Open UI
 open http://127.0.0.1:3210
-
-# 4. Connect integrations (GitHub OAuth, etc)
-# 5. Wait 20 mins for first sync
 ```
 
----
-
-## Why Docker?
-
-| Issue | Binary | Docker |
-|-------|--------|--------|
-| glibc 2.38 required | ❌ Ubuntu 22.04 doesn't have it | ✅ Already included in image |
-| System contamination | ⚠️ Modifies your system | ✅ Isolated container |
-| Setup friction | 🔧 Symlinks, env files, PATH | ✅ One docker compose up |
-| Already in your stack? | ❌ New dependency | ✅ docker-ce-cli exists |
+**That's it.** No glibc. No system changes. Just Docker + source build.
 
 ---
 
-## Setup (5 min)
+## Why Build from Source?
 
-### Step 1: Copy the compose file to your vault repo
+| Method | Status | Friction |
+|--------|--------|----------|
+| Pre-built public image | ❌ Not available yet | — |
+| Docker build from source | ✅ Available now | 5-10 min first run, instant after |
+| Binary install | ❌ glibc 2.38+ required (Ubuntu 22.04 only has 2.35) | System blocker |
+
+Docker build is the **only friction-free path today**.
+
+---
+
+## Prerequisites
+
+- ✅ Docker installed (you have it)
+- ✅ Git installed (you have it)
+- ✅ ~3GB disk space (for build cache)
+- ✅ 10 mins for first build
+
+---
+
+## Step-by-Step Setup
+
+### Step 1: Clone OpenHuman source (one time)
 
 ```bash
 cd BROski-Obsidian-Brain-for-HyperFocus-z0ne
-# Files already in repo:
-# - docker-compose.openhuman.yml
-# - .env.openhuman (template)
+git clone https://github.com/tinyhumansai/openhuman.git openhuman-build
 ```
 
-### Step 2: Update .env.openhuman with your vault path
-
-```bash
-# Edit .env.openhuman and set:
-VAULT_PATH=/path/to/your/BROski-Obsidian-Brain-for-HyperFocus-z0ne
+Expected output:
+```
+Cloning into 'openhuman-build'...
+remote: Enumerating objects: 2000+, done.
+...
+Receiving objects: 100% (2000/2000), done.
 ```
 
-**On Windows (PowerShell):**
-```powershell
-$env:VAULT_PATH = "H:\HYPERFOCUSZONE\HperCore\BROski-Obsidian-Brain-for-HyperFocus-z0ne"
-```
+### Step 2: Set vault path
 
-**On Mac/Linux:**
+**macOS/Linux:**
 ```bash
 export VAULT_PATH=$HOME/BROski-Obsidian-Brain-for-HyperFocus-z0ne
 ```
 
-### Step 3: Start the container
-
-**Option A — With UI (recommended for first-time setup)**
-
-```bash
-docker compose -f docker-compose.openhuman.yml up -d openhuman-ui
+**Windows (PowerShell):**
+```powershell
+$env:VAULT_PATH = "C:\path\to\BROski-Obsidian-Brain-for-HyperFocus-z0ne"
 ```
 
-**Option B — Headless sync only (if you just want background syncing)**
+### Step 3: Update .env.openhuman (optional)
 
+If you want to customize beyond defaults:
 ```bash
-docker compose -f docker-compose.openhuman.yml up -d openhuman-sync
+# Edit .env.openhuman
+VAULT_PATH=/your/path
+OPENHUMAN_SYNC_INTERVAL=1200  # 20 mins
 ```
 
-**Option C — Both (UI + background sync)**
+### Step 4: Start containers (builds image on first run)
 
 ```bash
 docker compose -f docker-compose.openhuman.yml up -d
 ```
 
-### Step 4: Access the UI
+**First run output (5-10 min):**
+```
+Building openhuman:local
+Step 1/XX : FROM rust:latest
+...
+Successfully built openhuman:local
+Creating openhuman-ui ... done
+Creating openhuman-sync ... done
+```
+
+**Subsequent runs (instant):**
+```
+Container openhuman-ui is already running
+Container openhuman-sync is already running
+```
+
+### Step 5: Access the UI
 
 ```
 http://127.0.0.1:3210
 ```
 
-(Localhost only, for security)
+(Localhost only, secure)
 
-### Step 5: Connect your integrations
+### Step 6: Connect integrations
 
 In OpenHuman UI:
-- Settings → Integrations
+- **Settings** → **Integrations**
 - Click **GitHub** → one-click OAuth
-- (Optional) Connect Gmail, Slack, etc.
+- (Optional) Connect Slack, Gmail, etc.
 
-### Step 6: Wait for first sync
+### Step 7: Wait for first sync
 
-OpenHuman polls every 20 minutes by default. After the first sync:
+OpenHuman polls every 20 mins by default.
 
+After sync completes:
 ```bash
-# Check what synced
-ls BROski-Obsidian-Brain-for-HyperFocus-z0ne/HYPERFOCUS_ZONE/00-Inbox/OpenHuman-Feed/
-
-# You should see:
-# - github-issue-*.md
-# - github-pr-*.md
-# - slack-*.md (if connected)
-# - gmail-*.md (if connected)
+ls HYPERFOCUS_ZONE/00-Inbox/OpenHuman-Feed/
+# Should show:
+# github-issue-123.md
+# github-pr-45.md
+# (and slack-*.md, gmail-*.md if connected)
 ```
 
 ---
 
-## Managing the Container
+## Managing Containers
 
-### View logs
+### View logs (useful for debugging)
 
 ```bash
 # All services
@@ -130,13 +152,13 @@ docker compose -f docker-compose.openhuman.yml logs -f openhuman-sync
 docker compose -f docker-compose.openhuman.yml down
 ```
 
-### Restart (e.g., after changing config)
+### Restart
 
 ```bash
 docker compose -f docker-compose.openhuman.yml restart
 ```
 
-### Check container health
+### Check health
 
 ```bash
 docker ps | grep openhuman
@@ -144,8 +166,21 @@ docker ps | grep openhuman
 
 Should show:
 ```
-openhuman-ui     Up X minutes (healthy)
-openhuman-sync   Up X minutes (healthy)
+openhuman-ui     Up 5 minutes (healthy)
+openhuman-sync   Up 5 minutes (healthy)
+```
+
+### Rebuild from latest source
+
+```bash
+# Update source
+cd openhuman-build && git pull origin main && cd ..
+
+# Remove old image
+docker rmi openhuman:local
+
+# Rebuild and start
+docker compose -f docker-compose.openhuman.yml up -d --build
 ```
 
 ---
@@ -154,125 +189,139 @@ openhuman-sync   Up X minutes (healthy)
 
 ### openhuman-config
 
-Stores OpenHuman's persistent state:
-- Credentials (encrypted)
+Docker volume storing OpenHuman state:
+- Encrypted credentials
 - Integration settings
 - Sync metadata
 
-Lives in Docker volume (not your filesystem). Safe to delete and recreate.
+Safe to delete (starts fresh):
+```bash
+docker volume rm broskiobsidianbrain_openhuman-config
+docker compose -f docker-compose.openhuman.yml up -d
+```
 
 ### vault/00-Inbox/OpenHuman-Feed
 
-Auto-synced notes from GitHub, Slack, Gmail.
+**Real directory on your machine** — synced notes appear here immediately.
 
-**This is a real directory on your machine** — synced notes appear here instantly.
+Tracked by Obsidian. Queryable by `mcp_bridge.py`.
 
 ### vault (read-only)
 
-OpenHuman can read your entire vault for context. Notes it writes go to `00-Inbox/OpenHuman-Feed/` only.
+OpenHuman can read your entire vault for context (optional). Writes only go to `OpenHuman-Feed/`.
 
 ---
 
 ## Troubleshooting
 
-### Q: Container won't start — "image not found"
+### Q: Clone failed — "fatal: destination path 'openhuman-build' already exists"
 
-**A:** Pull the image first:
-```bash
-docker pull ghcr.io/tinyhumansai/openhuman:latest
-```
+**A:** You already cloned it. That's fine. Skip Step 1 and go to Step 2.
 
-Then try again:
+### Q: Build timeout (>15 min)
+
+**A:** Rust compilation is slow. Either:
+- Wait longer
+- Increase Docker resources: Settings → Resources → CPU/RAM
+- Check internet speed (large source download)
+
+### Q: "openhuman-build/Dockerfile not found"
+
+**A:** Clone failed. Try again:
 ```bash
+rm -rf openhuman-build
+git clone https://github.com/tinyhumansai/openhuman.git openhuman-build
 docker compose -f docker-compose.openhuman.yml up -d
 ```
 
-### Q: Health check failing
+### Q: Container won't start — "exit code 127"
 
-**A:** Container might still be starting (30s startup period). Wait 1 min and check:
+**A:** Build might have failed silently. Check:
 ```bash
-docker compose -f docker-compose.openhuman.yml ps
+docker compose -f docker-compose.openhuman.yml logs openhuman-ui
 ```
 
-If still failing after 2 mins:
+If build errors shown, try:
 ```bash
-docker compose -f docker-compose.openhuman.yml logs openhuman-ui | tail -50
+docker rmi openhuman:local
+docker compose -f docker-compose.openhuman.yml up -d --build
 ```
 
-### Q: No notes syncing after 20 mins
+### Q: UI is slow or won't load
+
+**A:** Might still be starting. Wait 30 seconds, then:
+```bash
+curl -v http://127.0.0.1:3210
+```
+
+If 404, container may have crashed:
+```bash
+docker logs openhuman-ui
+```
+
+### Q: No notes syncing after 30 mins
 
 **A:** Check:
-1. Is OpenHuman running? `docker ps | grep openhuman`
-2. Are integrations connected? (GitHub OAuth, etc.)
-3. Check logs: `docker compose -f docker-compose.openhuman.yml logs openhuman-sync | tail -20`
-4. Check sync folder: `ls HYPERFOCUS_ZONE/00-Inbox/OpenHuman-Feed/` (should have files)
+1. Integrations connected? (GitHub OAuth, etc.)
+2. Logs: `docker logs openhuman-sync | tail -20`
+3. Folder: `ls HYPERFOCUS_ZONE/00-Inbox/OpenHuman-Feed/`
+4. Permissions: folder writable by Docker user
 
-### Q: Can't access UI at 127.0.0.1:3210
+### Q: How much disk space does build take?
 
-**A:** 
-- Make sure container is running: `docker ps | grep openhuman-ui`
-- Try: `curl -v http://127.0.0.1:3210`
-- Check firewall isn't blocking port 3210
-
-### Q: How do I manually trigger a sync?
-
-**A:** 
+**A:** ~3GB for Docker build cache + image. Safe to prune:
 ```bash
-# Restart the sync service (will sync immediately)
-docker compose -f docker-compose.openhuman.yml restart openhuman-sync
+docker system prune -a
+# Frees up all unused images/containers
+# Will rebuild next time
 ```
-
-Or from the UI: Settings → Manual Sync (if available)
 
 ---
 
 ## Integration with HyperCode Stack
 
-If you're running `HyperCode-V2.4` docker stack:
+If running `HyperCode-V2.4` docker-compose:
 
 ```bash
 # Start HyperCode stack
 cd ../HyperCode-V2.4
 docker compose up -d
 
-# Start OpenHuman (uses same app-net network)
+# Start OpenHuman (shares docker network)
 cd ../BROski-Obsidian-Brain-for-HyperFocus-z0ne
 docker compose -f docker-compose.openhuman.yml up -d
 ```
 
-Both stacks can talk to each other via Docker network.
+Both stacks talk via Docker network.
 
-**Future:** Wire `mcp_bridge.py` into the same network so hyper-brain can query OpenHuman directly.
+**Future:** Wire hyper-brain to query OpenHuman directly for unified agent context.
+
+---
+
+## .gitignore
+
+The `openhuman-build/` folder is large (~200MB+). Don't commit it:
+
+```bash
+# .gitignore
+openhuman-build/
+```
+
+Already included in this repo. Safe.
 
 ---
 
 ## Next Steps
 
-1. ✅ Start container: `docker compose -f docker-compose.openhuman.yml up -d`
-2. ✅ Open UI: `http://127.0.0.1:3210`
-3. ✅ Connect GitHub/Slack/Gmail
-4. ✅ Wait 20 mins for sync
-5. ✅ Check vault: `HYPERFOCUS_ZONE/00-Inbox/OpenHuman-Feed/`
-6. ✅ Query via `mcp_bridge.py`: `await bridge.query_openhuman_feed(source="github")`
+1. ✅ Clone source: `git clone https://...`
+2. ✅ Start: `docker compose -f docker-compose.openhuman.yml up -d`
+3. ✅ Open UI: `http://127.0.0.1:3210`
+4. ✅ Connect GitHub/Slack/Gmail
+5. ✅ Wait 20 mins for first sync
+6. ✅ Check vault: `ls HYPERFOCUS_ZONE/00-Inbox/OpenHuman-Feed/`
+7. ✅ Query via `mcp_bridge.py`: `await bridge.query_openhuman_feed(source="github")`
 
 ---
 
-## Docker Cleanup (optional)
-
-If things get messy:
-
-```bash
-# Stop and remove OpenHuman containers
-docker compose -f docker-compose.openhuman.yml down
-
-# Remove the config volume (fresh start)
-docker volume rm broskiobsidianbrain_openhuman-config
-
-# Start fresh
-docker compose -f docker-compose.openhuman.yml up -d
-```
-
----
-
-> 🐶♾️ No glibc pain. Just Docker. One command. Your brain, unified.
+> 🐶♾️ Build once, sync forever. No glibc, no system pain. Just Docker doing what it does.
 

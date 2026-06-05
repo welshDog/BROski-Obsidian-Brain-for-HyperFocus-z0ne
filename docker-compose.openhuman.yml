@@ -3,6 +3,8 @@
 # OpenHuman Container — Unified memory sync for GitHub, Gmail, Slack
 # Integrates with BROski-Obsidian-Brain vault
 # 
+# Builds OpenHuman from source (image not public yet)
+# 
 # Run alongside your HyperCode stack:
 #   docker compose -f docker-compose.openhuman.yml up -d
 #
@@ -12,11 +14,16 @@
 # Headless (no UI, just sync):
 #   docker compose -f docker-compose.openhuman.yml up -d openhuman-sync
 #
+# First run will build the image (~5-10 min), then start the container
+#
 # BROski♾️
 
 services:
   openhuman:
-    image: ghcr.io/tinyhumansai/openhuman:latest
+    build:
+      context: ./openhuman-build
+      dockerfile: Dockerfile
+    image: openhuman:local
     container_name: openhuman-ui
     ports:
       - "127.0.0.1:3210:3210"  # Web UI (localhost only for security)
@@ -54,7 +61,10 @@ services:
       - TZ=Europe/London
 
   openhuman-sync:
-    image: ghcr.io/tinyhumansai/openhuman:latest
+    build:
+      context: ./openhuman-build
+      dockerfile: Dockerfile
+    image: openhuman:local
     container_name: openhuman-sync
     # No ports exposed — headless sync only
     command: ["openhuman", "--sync-only", "--headless"]
@@ -81,6 +91,8 @@ services:
       - app-net
     environment:
       - TZ=Europe/London
+    depends_on:
+      - openhuman
 
 volumes:
   openhuman-config:
