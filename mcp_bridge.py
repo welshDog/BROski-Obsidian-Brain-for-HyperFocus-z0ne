@@ -4,12 +4,16 @@ mcp_bridge.py
 MCP (Model Context Protocol) bridge for THE HYPER BRAIN.
 Connects local LLMs (LMStudio, Ollama) to the Obsidian vault.
 Enables RAG, agentic conversations, and vault manipulation.
+
+UPDATED: OpenHuman integration — query auto-synced notes from GitHub, Slack, Gmail.
+
 BROski♾️
 """
 
 import asyncio
 import json
 import os
+import re
 from typing import Dict, Any, Optional, List
 from datetime import datetime
 
@@ -141,7 +145,7 @@ Context from vault:
 
         # Extract wiki-links [[Note Name]]
         links = []
-        for match in __import__("re").finditer(r"\[\[(.*?)\]\]", content):
+        for match in re.finditer(r"\[\[(.*?)\]\]", content):
             links.append(match.group(1))
 
         return links
@@ -186,3 +190,130 @@ Context from vault:
 
         matches.sort(key=lambda x: -x[1])
         return [m[0] for m in matches[:10]]
+
+    # ─── OpenHuman Integration ──────────────────────────────────────────────
+    # Query auto-synced notes from GitHub, Slack, Gmail
+    
+    async def query_openhuman_feed(self, source: Optional[str] = None) -> List[Dict[str, Any]]:
+        """
+        Query OpenHuman-synced notes from the vault.
+        
+        OpenHuman writes auto-synced notes to:
+          HYPERFOCUS_ZONE/00-Inbox/OpenHuman-Feed/
+        
+        Filenames follow pattern: {source}-{type}-{id}.md
+        Examples:
+          - github-issue-123.md (GitHub issue #123)
+          - github-pr-45.md (GitHub pull request #45)
+          - slack-channel-msg.md
+          - gmail-thread-xyz.md
+        
+        Args:
+            source: Filter by source ('github', 'slack', 'gmail') or None for all
+        
+        Returns:
+            List of parsed note metadata dicts with keys:
+              - file: filename
+              - source: 'github', 'slack', 'gmail'
+              - title: note title
+              - created: ISO timestamp
+              - url: external link (if present)
+              - tags: list of tags from frontmatter
+              - status: 'open', 'closed', etc.
+        """
+        feed_dir = os.path.join(self.vault_path, "00-Inbox", "OpenHuman-Feed")
+        
+        if not os.path.exists(feed_dir):
+            return []
+        
+        notes = []
+        
+        try:
+            for fname in os.listdir(feed_dir):
+                if not fname.endswith(".md"):
+                    continue
+                
+                # Filter by source if requested
+                if source and not fname.startswith(source):
+                    continue
+                
+                fpath = os.path.join(feed_dir, fname)
+                
+                try:
+                    with open(fpath, "r", encoding="utf-8") as f:
+                        content = f.read()
+                    
+                    # Parse YAML frontmatter
+                    fm_match = re.match(r"^---\n(.*?)\n---\n(.*)$", content, re.DOTALL)
+                    
+                    if fm_match:
+                        fm_text = fm_match.group(1)
+                        body = fm_match.group(2)
+                    else:
+                        fm_text = ""
+                        body = content
+                    
+                    # Parse frontmatter
+                    meta = {"file": fname, "source": source or fname.split("-")[0]}
+                    
+                    for line in fm_text.split("\n"):
+                        if ":" in line:
+                            key, val = line.split(":", 1)
+                            key = key.strip().lower()
+                            val = val.strip()
+                            
+                            if key == "tags":
+                                # Parse tags: [tag1, tag2]
+                                meta[key] = [t.strip("[] ") for t in val.split(",")]
+                            else:
+                                meta[key] = val
+                    
+                    # Extract title from first heading or filename
+                    title_match = re.search(r"^#+ (.+)$", body, re.MULTILINE)
+                    if title_match:
+                        meta["title"] = title_match.group(1)
+                    else:
+                        meta["title"] = fname.replace(".md", "")
+                    
+                    notes.append(meta)
+                
+                except Exception as e:
+                    print(f"⚠️ Error parsing {fname}: {e}")
+                    continue
+        
+        except Exception as e:
+            print(f"⚠️ Error reading OpenHuman feed: {e}")
+        
+        return notes
+    
+    async def get_openhuman_summary(self) -> Dict[str, Any]:
+        """
+        Get summary of OpenHuman-synced content by source.
+        
+        Returns:
+            Dict with counts and status breakdown
+        """
+        all_notes = await self.query_openhuman_feed()
+        
+        summary = {"total": len(all_notes)}
+        
+        # Group by source
+        by_source = {}
+        for note in all_notes:
+            src = note.get("source", "unknown")
+            if src not in by_source:
+                by_source[src] = []
+            by_source[src].append(note)
+        
+        # Summarize each source
+        for src, notes in by_source.items():
+            summary[src] = {
+                "total": len(notes),
+                "status": {}
+            }
+            
+            for note in notes:
+                status = note.get("status", "unknown")
+                summary[src]["status"][status] = summary[src]["status"].get(status, 0) + 1
+        
+        return summary
