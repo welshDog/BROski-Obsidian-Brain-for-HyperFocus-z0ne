@@ -21,18 +21,13 @@ services:
     ports:
       - "127.0.0.1:3210:3210"  # Web UI (localhost only for security)
     environment:
-      # Vault path inside container
       - OPENHUMAN_WORKSPACE=/vault
-      # Optional: API token for programmatic access
+      - TZ=Europe/London
       # - OPENHUMAN_API_KEY=${OPENHUMAN_API_KEY}
-      # Optional: Headless mode (no UI, just background sync)
       # - OPENHUMAN_HEADLESS=true
     volumes:
-      # BROski vault — auto-synced notes land here
       - ${VAULT_PATH:-.}/HYPERFOCUS_ZONE/00-Inbox/OpenHuman-Feed:/vault/00-Inbox/OpenHuman-Feed
-      # OpenHuman config and cache
       - openhuman-config:/root/.openhuman
-      # Entire vault (optional — for read-only access to context)
       - ${VAULT_PATH:-.}:/vault
     restart: unless-stopped
     mem_limit: 512m
@@ -49,18 +44,15 @@ services:
       - "com.hyperfocuszone.version=0.57.13"
     networks:
       - app-net
-    environment:
-      # Set timezone (optional)
-      - TZ=Europe/London
 
   openhuman-sync:
     image: ghcr.io/tinyhumansai/openhuman:latest
     container_name: openhuman-sync
-    # No ports exposed — headless sync only
     command: ["openhuman", "--sync-only", "--headless"]
     environment:
       - OPENHUMAN_WORKSPACE=/vault
-      - OPENHUMAN_SYNC_INTERVAL=1200  # 20 mins (default)
+      - OPENHUMAN_SYNC_INTERVAL=1200
+      - TZ=Europe/London
       # - OPENHUMAN_API_KEY=${OPENHUMAN_API_KEY}
     volumes:
       - ${VAULT_PATH:-.}/HYPERFOCUS_ZONE/00-Inbox/OpenHuman-Feed:/vault/00-Inbox/OpenHuman-Feed
@@ -79,16 +71,12 @@ services:
       - "com.hyperfocuszone.tier=integration"
     networks:
       - app-net
-    environment:
-      - TZ=Europe/London
 
 volumes:
   openhuman-config:
     driver: local
 
 networks:
-  # Use existing network if HyperCode stack is running
-  # Otherwise create locally
   app-net:
     driver: bridge
     external: false
