@@ -1,5 +1,4 @@
 {
-  "$schema": "https://raw.githubusercontent.com/microsoft/AIShell/main/schemas/mcp-config.schema.json",
   "mcpServers": {
     "broski-brain-mcp": {
       "description": "BROski Obsidian Brain MCP bridge -- focus tracking, analytics, morning briefing, knowledge graph",
