@@ -70,4 +70,20 @@ docs/                           — analysis, roadmap, insights, upgrade notes
 
 ---
 
+## 🕸️ Graph Brain
+
+**Last ran:** 2026-06-09 · Tool: AST static analysis (brain-graph-analysis)
+**Output:** `06-AI-Context/GRAPHIFY_BRAIN_MAP.md` + `06-AI-Context/graph.json`
+
+**Top 5 nodes:** `hyper_brain_core` (centrality 10) › `analytics_engine` › `mcp_bridge` › `focus_tracker` › `morning_briefing_ai`
+
+**Top 3 suggestions:**
+1. Wire `agent-morning-briefing` → `agent-mcp-bridge` via HTTP (AI suggestions currently always null)
+2. Centralise streak-data reads — `morning_briefing_ai` and `analytics_engine` both parse the same JSON file
+3. AIFS watcher sidecar in compose — AIFS is built but completely disconnected from agents
+
+**Dead code identified:** `scripts/` (stale mirror), root `github_webhook_server.py` (orphaned)
+
+---
+
 > 🐶♾️ Part of the Hyperfocus z0ne — @welshDog
