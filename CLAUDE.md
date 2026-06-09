@@ -12,7 +12,7 @@
 - **Local path:** `H:\BROski-Obsidian-Brain-for-HyperFocus-z0ne`
 - **Obsidian vault** synced to GitHub via Obsidian Git plugin
 - **4-agent brain cluster** defined in `cluster.json` ✅
-- **Graduate build CLI:** IMPLEMENTED in HyperAgent-SDK ✅ — run `hyper-agent graduate build cluster.json --out brain-bundle/ --strict` to wire agents into V2.4
+- **Graduate build CLI:** IMPLEMENTED ✅ — strict build passes (4x green). Agents live in V2.4 on ports 3301/3302/3303 (`--profile brain-agents`)
 
 ---
 
@@ -49,15 +49,21 @@ docs/                           — analysis, roadmap, insights, upgrade notes
 
 ---
 
-## ⚡ Brain Agent Cluster — Next Steps
+## ⚡ Brain Agent Cluster — Status
 
-```bash
-# Step 1 — Run graduate build (SDK CLI is LIVE)
-hyper-agent graduate build cluster.json --out brain-bundle/ --strict
-
-# Step 2 — Add brain-bundle to V2.4 docker compose
-# Step 3 — Wire morning-briefing agent (Level 13) once bundle is confirmed
 ```
+✅ Step 1 — graduate build passes (4x green, 2026-06-09)
+✅ Step 2 — wired into HyperCode-V2.4 docker-compose.brain.yml
+⏳ Step 3 — Morning Briefing agent (Level 13) — NOT YET LIVE (see Sacred Rule 6)
+```
+
+**Live agents** (`docker compose --profile brain-agents up -d`):
+
+| Agent | Port | Health |
+|---|---|---|
+| `agent-hyper-brain-core` | 3301 | `GET /health` |
+| `agent-mcp-bridge` | 3302 | `GET /health` |
+| `agent-focus-tracker` | 3303 | `GET /health` |
 
 **Pending:** Morning Briefing agent (L13) — designed, not yet deployed.
 
