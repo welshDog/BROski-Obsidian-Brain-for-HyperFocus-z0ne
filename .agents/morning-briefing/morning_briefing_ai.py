@@ -393,18 +393,57 @@ Return as numbered list with brief reasoning.\n\n{context}"""
 # ── HTTP server (FastAPI) ─────────────────────────────────────────────────────
 
 if __name__ == "__main__":
+    import httpx
     import uvicorn
     from fastapi import FastAPI
     from pydantic import BaseModel
 
-    _app = FastAPI(title="Morning Briefing Agent", version="0.1.0")
+    _MCP_URL = os.environ.get("MCP_BRIDGE_URL", "http://agent-mcp-bridge:3302")
+
+    class RemoteMCPBridge:
+        """HTTP adapter to agent-mcp-bridge (:3302) — same interface as MCPBridge."""
+
+        def __init__(self, url: str):
+            self._url = url
+            self.connected = False
+
+        async def probe(self) -> None:
+            try:
+                async with httpx.AsyncClient(timeout=3.0) as c:
+                    r = await c.get(f"{self._url}/health")
+                    self.connected = r.status_code == 200
+            except Exception:
+                self.connected = False
+
+        async def query_vault(self, query: str, context_files=None) -> dict:
+            try:
+                async with httpx.AsyncClient(timeout=15.0) as c:
+                    r = await c.post(
+                        f"{self._url}/tools/call_mcp_tool",
+                        params={"query": query},
+                    )
+                    r.raise_for_status()
+                    return r.json()
+            except Exception as e:
+                self.connected = False
+                return {"answer": "", "sources": [], "mode": "error", "error": str(e)}
+
+    _mcp = RemoteMCPBridge(_MCP_URL)
     _briefing = MorningBriefingAI(
         vault_path=os.environ.get("OBSIDIAN_VAULT_PATH", "/vault"),
+        mcp_bridge=_mcp,
     )
+
+    _app = FastAPI(title="Morning Briefing Agent", version="0.2.0")
+
+    @_app.on_event("startup")
+    async def _startup():
+        await _mcp.probe()
+        print(f"MCP bridge {'connected ✅' if _mcp.connected else 'offline ⚠️'} → {_MCP_URL}")
 
     class GenerateRequest(BaseModel):
         date: str = None
-        include_ai: bool = False      # AI suggestions need Ollama — off by default
+        include_ai: bool = True       # AI suggestions via agent-mcp-bridge
         include_forecast: bool = True
 
     @_app.get("/health")
@@ -414,6 +453,7 @@ if __name__ == "__main__":
             "agent": "morning-briefing",
             "vault": _briefing.vault_path,
             "vault_exists": os.path.isdir(_briefing.vault_path),
+            "mcp_bridge": {"url": _MCP_URL, "connected": _mcp.connected},
         }
 
     @_app.post("/generate")
