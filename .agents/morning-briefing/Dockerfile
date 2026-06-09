@@ -2,4 +2,4 @@ FROM python:3.11-slim
 WORKDIR /app
 COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
-CMD ["python", "morning_briefing_ai.py"]
+CMD ["python", "-u", "morning_briefing_ai.py"]
