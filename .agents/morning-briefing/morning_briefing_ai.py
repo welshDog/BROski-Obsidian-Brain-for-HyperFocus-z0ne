@@ -388,3 +388,46 @@ Return as numbered list with brief reasoning.\n\n{context}"""
             top.append(f"⚡ {smallest['next_action'][:60]} (quick win)")
 
         return top[:3]
+
+
+# ── HTTP server (FastAPI) ─────────────────────────────────────────────────────
+
+if __name__ == "__main__":
+    import uvicorn
+    from fastapi import FastAPI
+    from pydantic import BaseModel
+
+    _app = FastAPI(title="Morning Briefing Agent", version="0.1.0")
+    _briefing = MorningBriefingAI(
+        vault_path=os.environ.get("OBSIDIAN_VAULT_PATH", "/vault"),
+    )
+
+    class GenerateRequest(BaseModel):
+        date: str = None
+        include_ai: bool = False      # AI suggestions need Ollama — off by default
+        include_forecast: bool = True
+
+    @_app.get("/health")
+    async def _health():
+        return {
+            "status": "ok",
+            "agent": "morning-briefing",
+            "vault": _briefing.vault_path,
+            "vault_exists": os.path.isdir(_briefing.vault_path),
+        }
+
+    @_app.post("/generate")
+    async def _generate(req: GenerateRequest = None):
+        req = req or GenerateRequest()
+        briefing = await _briefing.generate(
+            date=req.date,
+            include_ai=req.include_ai,
+            include_forecast=req.include_forecast,
+        )
+        return {"status": "ok", "briefing": briefing}
+
+    uvicorn.run(
+        _app,
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 3304)),
+    )

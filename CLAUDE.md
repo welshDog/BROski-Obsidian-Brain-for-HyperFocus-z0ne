@@ -12,7 +12,7 @@
 - **Local path:** `H:\BROski-Obsidian-Brain-for-HyperFocus-z0ne`
 - **Obsidian vault** synced to GitHub via Obsidian Git plugin
 - **4-agent brain cluster** defined in `cluster.json` ✅
-- **Graduate build CLI:** IMPLEMENTED ✅ — strict build passes (4x green). Agents live in V2.4 on ports 3301/3302/3303 (`--profile brain-agents`)
+- **Graduate build CLI:** IMPLEMENTED ✅ — strict build passes (4x green). Agents live in V2.4 on ports 3301/3302/3303/3304 (`--profile brain-agents`)
 
 ---
 
@@ -25,7 +25,7 @@
 | 3 | **PARA structure is sacred — Projects / Areas / Resources / Archive** | Dataview queries depend on exact folder names |
 | 4 | **`github_to_obsidian.py` is the sync bridge — run it, don't rewrite it** | Fragile regex patterns tuned to GitHub API output |
 | 5 | **Brain agents = `hyper-brain-core`, `mcp-bridge`, `focus-tracker`, `morning-briefing`** | These 4 only — don't add agents without Lyndz sign-off |
-| 6 | **Morning Briefing agent = Level 13 — designed, NOT yet live** | Don't deploy half-built — would post broken briefings to Discord |
+| 6 | **Morning Briefing agent = Level 13 — LIVE on :3304** | Profile `brain-agents` — `/brain-briefing` Discord command + daily 7am UTC auto-DM |
 | 7 | **NEVER commit `__pycache__/` or `output/`** | Already in `.gitignore` — delete tracked copies if they appear |
 
 ---
@@ -54,7 +54,7 @@ docs/                           — analysis, roadmap, insights, upgrade notes
 ```
 ✅ Step 1 — graduate build passes (4x green, 2026-06-09)
 ✅ Step 2 — wired into HyperCode-V2.4 docker-compose.brain.yml
-⏳ Step 3 — Morning Briefing agent (Level 13) — NOT YET LIVE (see Sacred Rule 6)
+✅ Step 3 — Morning Briefing agent (Level 13) — LIVE 2026-06-09
 ```
 
 **Live agents** (`docker compose --profile brain-agents up -d`):
@@ -64,8 +64,9 @@ docs/                           — analysis, roadmap, insights, upgrade notes
 | `agent-hyper-brain-core` | 3301 | `GET /health` |
 | `agent-mcp-bridge` | 3302 | `GET /health` |
 | `agent-focus-tracker` | 3303 | `GET /health` |
+| `agent-morning-briefing` | 3304 | `GET /health` |
 
-**Pending:** Morning Briefing agent (L13) — designed, not yet deployed.
+**Discord:** `/brain-briefing` command (admin) + daily auto-DM at `BRIEFING_HOUR_UTC` (default 07:00 UTC).
 
 ---
 
