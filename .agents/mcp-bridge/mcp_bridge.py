@@ -100,7 +100,7 @@ class MCPBridge:
             ],
             "options": {
                 "temperature": 0.7,
-                "num_predict": 800
+                "num_predict": 300
             }
         }
 
@@ -108,7 +108,7 @@ class MCPBridge:
             async with self.session.post(
                 f"{self.base_url}/api/chat",
                 json=payload,
-                timeout=aiohttp.ClientTimeout(total=60)
+                timeout=aiohttp.ClientTimeout(total=120)
             ) as resp:
                 if resp.status == 200:
                     data = await resp.json()
@@ -264,8 +264,11 @@ if __name__ == "__main__":
         return {"status": "ok", "agent": "mcp-bridge", **await _bridge.status()}
 
     @_app.post("/tools/call_mcp_tool")
-    async def _call_tool(query: str, args: dict = None):
-        return await _bridge.query_vault(query)
+    async def _call_tool(query: str, skip_context: bool = False, args: dict = None):
+        # skip_context=true bypasses vault RAG — use when the query already carries
+        # all needed context (e.g. AI prioritization) to keep the prompt small on CPU
+        ctx_files = [] if skip_context else None
+        return await _bridge.query_vault(query, context_files=ctx_files)
 
     @_app.get("/tools/list_mcp_tools")
     async def _list_tools():

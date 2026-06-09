@@ -353,7 +353,7 @@ Overdue: {', '.join(o['task'][:30] for o in overdue[:3])}
 Consider: urgency, momentum from yesterday, and ADHD-friendly task sizing.
 Return as numbered list with brief reasoning.\n\n{context}"""
 
-        result = await self.mcp.query_vault(query)
+        result = await self.mcp.query_vault(query, skip_context=True)
         answer = result.get("answer", "")
 
         # Parse numbered list
@@ -408,24 +408,36 @@ if __name__ == "__main__":
             self.connected = False
 
         async def probe(self) -> None:
-            try:
-                async with httpx.AsyncClient(timeout=3.0) as c:
-                    r = await c.get(f"{self._url}/health")
-                    self.connected = r.status_code == 200
-            except Exception:
-                self.connected = False
+            for attempt in range(6):
+                try:
+                    async with httpx.AsyncClient(timeout=3.0) as c:
+                        r = await c.get(f"{self._url}/health")
+                        if r.status_code == 200:
+                            self.connected = True
+                            return
+                except Exception:
+                    pass
+                await asyncio.sleep(2)
+            self.connected = False
 
-        async def query_vault(self, query: str, context_files=None) -> dict:
+        async def query_vault(self, query: str, context_files=None, skip_context: bool = False) -> dict:
+            params: dict = {"query": query}
+            if skip_context:
+                params["skip_context"] = "true"
             try:
-                async with httpx.AsyncClient(timeout=15.0) as c:
+                async with httpx.AsyncClient(timeout=90.0) as c:
                     r = await c.post(
                         f"{self._url}/tools/call_mcp_tool",
-                        params={"query": query},
+                        params=params,
                     )
                     r.raise_for_status()
                     return r.json()
-            except Exception as e:
+            except httpx.ConnectError as e:
+                # bridge is down — mark offline so we skip AI on the next call too
                 self.connected = False
+                return {"answer": "", "sources": [], "mode": "error", "error": str(e)}
+            except Exception as e:
+                # timeout or LLM error — bridge still up, don't flip connected
                 return {"answer": "", "sources": [], "mode": "error", "error": str(e)}
 
     _mcp = RemoteMCPBridge(_MCP_URL)
