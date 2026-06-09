@@ -52,14 +52,19 @@ class FocusSession:
 
 class VaultEventHandler(FileSystemEventHandler):
     """Watchdog handler for vault file changes."""
-    def __init__(self, tracker):
+    def __init__(self, tracker, loop: asyncio.AbstractEventLoop):
         self.tracker = tracker
+        self._loop = loop
 
     def on_modified(self, event):
         if event.is_directory:
             return
         if event.src_path.endswith(".md"):
-            asyncio.create_task(self.tracker.record_activity("file_edit", event.src_path))
+            # watchdog fires from an OS thread — schedule onto the event loop safely
+            self._loop.call_soon_threadsafe(
+                self._loop.create_task,
+                self.tracker.record_activity("file_edit", event.src_path),
+            )
 
 
 class FocusTracker:
@@ -74,7 +79,7 @@ class FocusTracker:
 
     async def start(self):
         """Start file system watcher."""
-        handler = VaultEventHandler(self)
+        handler = VaultEventHandler(self, asyncio.get_event_loop())
         self.observer = Observer()
         self.observer.schedule(handler, self.vault_path, recursive=True)
         self.observer.start()
