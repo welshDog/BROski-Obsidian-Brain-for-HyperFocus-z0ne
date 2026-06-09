@@ -242,3 +242,33 @@ class MCPBridge:
                 status_counts[s] = status_counts.get(s, 0) + 1
             summary[src] = {"total": len(notes), "status": status_counts}
         return summary
+
+
+if __name__ == "__main__":
+    import uvicorn
+    from fastapi import FastAPI
+
+    _app = FastAPI(title="MCP Bridge Agent", version="1.0.0")
+    _bridge = MCPBridge(vault_path=os.environ.get("OBSIDIAN_VAULT_PATH", "/vault"))
+
+    @_app.on_event("startup")
+    async def _startup():
+        await _bridge.connect()
+
+    @_app.on_event("shutdown")
+    async def _shutdown():
+        await _bridge.disconnect()
+
+    @_app.get("/health")
+    async def _health():
+        return {"status": "ok", "agent": "mcp-bridge", **await _bridge.status()}
+
+    @_app.post("/tools/call_mcp_tool")
+    async def _call_tool(query: str, args: dict = None):
+        return await _bridge.query_vault(query)
+
+    @_app.get("/tools/list_mcp_tools")
+    async def _list_tools():
+        return await _bridge.get_openhuman_summary()
+
+    uvicorn.run(_app, host="0.0.0.0", port=int(os.environ.get("PORT", 3302)))

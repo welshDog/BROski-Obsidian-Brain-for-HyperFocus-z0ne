@@ -335,3 +335,48 @@ xp_earned: {self._calculate_xp(result)}
                 # If idle too long, suggest break
                 if s.idle_seconds > 120:
                     s.current_pomodoro = max(10, s.current_pomodoro - 5)
+
+
+if __name__ == "__main__":
+    import uvicorn
+    from fastapi import FastAPI
+    from pydantic import BaseModel
+
+    _app = FastAPI(title="Focus Tracker Agent", version="1.0.0")
+    _vault = os.environ.get("OBSIDIAN_VAULT_PATH", "/vault")
+    _redis = os.environ.get("REDIS_URL", "redis://redis:6379/4")
+    _tracker = FocusTracker(vault_path=_vault, redis_url=_redis)
+
+    class _SessionStart(BaseModel):
+        task: str
+        energy_level: float = 5.0
+
+    class _SessionEnd(BaseModel):
+        session_id: str
+        outcome: str = ""
+
+    @_app.on_event("startup")
+    async def _startup():
+        await _tracker.start()
+
+    @_app.on_event("shutdown")
+    async def _shutdown():
+        await _tracker.stop()
+
+    @_app.get("/health")
+    async def _health():
+        return {"status": "ok", "agent": "focus-tracker"}
+
+    @_app.post("/tools/start_focus_session")
+    async def _start_session(body: _SessionStart):
+        return await _tracker.start_session(intent=body.task)
+
+    @_app.post("/tools/end_focus_session")
+    async def _end_session(body: _SessionEnd):
+        return await _tracker.end_session(body.session_id, actual_minutes=0)
+
+    @_app.get("/tools/get_focus_stats")
+    async def _focus_stats():
+        return await _tracker.get_current_status()
+
+    uvicorn.run(_app, host="0.0.0.0", port=int(os.environ.get("PORT", 3303)))
