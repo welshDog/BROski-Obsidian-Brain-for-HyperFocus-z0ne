@@ -1,0 +1,28 @@
+{
+  "name": "focus-tracker",
+  "version": "1.0.0",
+  "runtime": "python",
+  "entrypoint": "focus_tracker.py",
+  "description": "Tracks hyperfocus sessions, XP, and energy levels for BROski",
+  "mcp_compatible": true,
+  "cluster": "broski-brain",
+  "port": 3303,
+  "memory": "postgres",
+  "tools": [
+    {
+      "name": "start_focus_session",
+      "description": "Start a new hyperfocus session and begin tracking",
+      "input_schema": { "task": "string", "energy_level": "number" }
+    },
+    {
+      "name": "end_focus_session",
+      "description": "End current session and log XP earned",
+      "input_schema": { "session_id": "string", "outcome": "string" }
+    },
+    {
+      "name": "get_focus_stats",
+      "description": "Get focus stats, streaks, and heatmap data",
+      "input_schema": { "user_id": "string", "period": "string" }
+    }
+  ]
+}

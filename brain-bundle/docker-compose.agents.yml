@@ -1,0 +1,127 @@
+# 🧠 BROski Brain Cluster — Graduate Build Output
+# Generated: June 9, 2026
+# Wire into V2.4: docker compose -f docker-compose.yml -f docker-compose.agents.yml up -d
+
+version: "3.9"
+
+services:
+
+  hyper-brain-core:
+    build:
+      context: ../BROski-Obsidian-Brain-for-HyperFocus-z0ne
+      dockerfile: Dockerfile.hyper-brain
+    container_name: broski-brain-core
+    restart: unless-stopped
+    ports:
+      - "3301:3301"
+    environment:
+      - AGENT_NAME=hyper-brain-core
+      - AGENT_PORT=3301
+      - REDIS_URL=redis://redis:6379/1
+      - MEMORY_BACKEND=redis
+    env_file:
+      - .env
+    depends_on:
+      - redis
+    networks:
+      - hyper-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3301/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "cluster=broski-brain"
+      - "agent=hyper-brain-core"
+
+  mcp-bridge:
+    build:
+      context: ../BROski-Obsidian-Brain-for-HyperFocus-z0ne
+      dockerfile: Dockerfile.hyper-brain
+    container_name: broski-mcp-bridge
+    restart: unless-stopped
+    ports:
+      - "3302:3302"
+    environment:
+      - AGENT_NAME=mcp-bridge
+      - AGENT_PORT=3302
+      - REDIS_URL=redis://redis:6379/1
+      - MEMORY_BACKEND=redis
+      - ENTRYPOINT=mcp_bridge.py
+    env_file:
+      - .env
+    depends_on:
+      - redis
+    networks:
+      - hyper-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3302/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "cluster=broski-brain"
+      - "agent=mcp-bridge"
+
+  focus-tracker:
+    build:
+      context: ../BROski-Obsidian-Brain-for-HyperFocus-z0ne
+      dockerfile: Dockerfile.hyper-brain
+    container_name: broski-focus-tracker
+    restart: unless-stopped
+    ports:
+      - "3303:3303"
+    environment:
+      - AGENT_NAME=focus-tracker
+      - AGENT_PORT=3303
+      - DATABASE_URL=${DATABASE_URL}
+      - MEMORY_BACKEND=postgres
+      - ENTRYPOINT=focus_tracker.py
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    networks:
+      - hyper-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3303/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "cluster=broski-brain"
+      - "agent=focus-tracker"
+
+  # 🟡 MORNING-BRIEFING — LEVEL 13 — DO NOT START UNTIL L13 COMPLETE
+  # To enable: remove 'profiles' block below and restart stack
+  morning-briefing:
+    build:
+      context: ../BROski-Obsidian-Brain-for-HyperFocus-z0ne
+      dockerfile: Dockerfile.hyper-brain
+    container_name: broski-morning-briefing
+    restart: unless-stopped
+    profiles:
+      - level13  # Only starts when: docker compose --profile level13 up -d
+    ports:
+      - "3304:3304"
+    environment:
+      - AGENT_NAME=morning-briefing
+      - AGENT_PORT=3304
+      - REDIS_URL=redis://redis:6379/1
+      - MEMORY_BACKEND=redis
+      - DISCORD_WEBHOOK_URL=${DISCORD_WEBHOOK_URL}
+      - ENTRYPOINT=morning_briefing_ai.py
+    env_file:
+      - .env
+    depends_on:
+      - redis
+    networks:
+      - hyper-net
+    labels:
+      - "cluster=broski-brain"
+      - "agent=morning-briefing"
+      - "level=13"
+
+networks:
+  hyper-net:
+    external: true  # Shared with V2.4 main stack
