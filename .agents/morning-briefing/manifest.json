@@ -1,15 +1,21 @@
 {
   "name": "morning-briefing",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "runtime": "python",
   "entrypoint": "morning_briefing_ai.py",
-  "description": "Daily AI morning briefing — tasks, energy, BROski$ summary",
-  "mcp_compatible": false,
+  "port": 3304,
+  "description": "AI morning briefing — posts daily focus plan to Discord. LEVEL 13 — NOT YET LIVE.",
+  "mcp_compatible": true,
   "tools": [
     {
-      "name": "get_briefing",
-      "description": "Generate today's morning briefing",
-      "input_schema": { "discord_id": "string" }
+      "name": "generate_briefing",
+      "description": "Generate today's AI morning briefing from brain state + GitHub activity",
+      "input_schema": { "date": "string", "focus_areas": "array" }
+    },
+    {
+      "name": "post_briefing_to_discord",
+      "description": "Post generated briefing to Discord webhook",
+      "input_schema": { "briefing_id": "string", "channel": "string" }
     }
   ]
 }

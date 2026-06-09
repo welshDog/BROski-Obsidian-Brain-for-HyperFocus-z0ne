@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "runtime": "python",
   "entrypoint": "hyper_brain_core.py",
+  "port": 3301,
   "description": "Core brain logic for the BROski HyperFocus ecosystem",
   "mcp_compatible": true,
   "tools": [

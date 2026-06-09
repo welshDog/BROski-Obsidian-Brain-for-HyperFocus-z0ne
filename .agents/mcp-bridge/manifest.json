@@ -3,13 +3,19 @@
   "version": "1.0.0",
   "runtime": "python",
   "entrypoint": "mcp_bridge.py",
-  "description": "MCP protocol bridge — lets Claude/Cursor talk to the Brain cluster",
+  "port": 3302,
+  "description": "MCP bridge — connects BROski Brain to external MCP tool servers",
   "mcp_compatible": true,
   "tools": [
     {
-      "name": "bridge_call",
-      "description": "Route an MCP tool call through the hyper-brain network",
-      "input_schema": { "tool": "string", "args": "object" }
+      "name": "call_mcp_tool",
+      "description": "Call any registered MCP tool via the bridge",
+      "input_schema": { "tool_name": "string", "args": "object" }
+    },
+    {
+      "name": "list_mcp_tools",
+      "description": "List all available MCP tools registered to the bridge",
+      "input_schema": {}
     }
   ]
 }
