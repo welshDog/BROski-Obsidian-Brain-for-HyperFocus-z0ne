@@ -73,9 +73,10 @@ docs/                           — analysis, roadmap, insights, upgrade notes
 ## 🕸️ Graph Brain
 
 **Last ran:** 2026-06-09 · Tool: AST static analysis (brain-graph-analysis)
-**CANONICAL artifact:** `06-AI-Context/graph.json` (v1) — THE memory-hub source of truth for all agents.
+**CANONICAL artifact:** `HYPERFOCUS_ZONE/06-AI-Context/graph.json` (v1) — THE memory-hub source of truth for all agents.
+Inside containers: `/vault/06-AI-Context/graph.json` (all 4 brain agents mount the vault).
 Served live by `agent-mcp-bridge` (:3302) via `GET /graph` + `GET /graph/node/{id}`.
-Human report: `06-AI-Context/GRAPHIFY_BRAIN_MAP.md`. (Old `graphify-out/` duplicate removed 2026-06-10.)
+Human report: `HYPERFOCUS_ZONE/06-AI-Context/GRAPHIFY_BRAIN_MAP.md`. (Old `graphify-out/` duplicate removed 2026-06-10; folder moved into the vault per the PARA plan — slot 06 was reserved for exactly this.)
 
 **Top 5 nodes:** `hyper_brain_core` (centrality 10) › `analytics_engine` › `mcp_bridge` › `focus_tracker` › `morning_briefing_ai`
 

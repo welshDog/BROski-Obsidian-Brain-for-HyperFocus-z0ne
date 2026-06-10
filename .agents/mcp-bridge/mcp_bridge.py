@@ -246,7 +246,7 @@ class MCPBridge:
 
 if __name__ == "__main__":
     import uvicorn
-    from fastapi import FastAPI
+    from fastapi import FastAPI, HTTPException
 
     _app = FastAPI(title="MCP Bridge Agent", version="1.0.0")
     _bridge = MCPBridge(vault_path=os.environ.get("OBSIDIAN_VAULT_PATH", "/vault"))
@@ -273,5 +273,32 @@ if __name__ == "__main__":
     @_app.get("/tools/list_mcp_tools")
     async def _list_tools():
         return await _bridge.get_openhuman_summary()
+
+    def _load_graph() -> Dict[str, Any]:
+        # canonical memory-hub artifact — see CLAUDE.md "Graph Brain"
+        graph_path = os.environ.get(
+            "BRAIN_GRAPH_PATH",
+            os.path.join(_bridge.vault_path, "06-AI-Context", "graph.json"),
+        )
+        if not os.path.exists(graph_path):
+            raise HTTPException(status_code=404,
+                                detail=f"graph.json not found at {graph_path}")
+        with open(graph_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+
+    @_app.get("/graph")
+    async def _graph():
+        return _load_graph()
+
+    @_app.get("/graph/node/{node_id}")
+    async def _graph_node(node_id: str):
+        graph = _load_graph()
+        node = next((n for n in graph.get("nodes", []) if n.get("id") == node_id), None)
+        if node is None:
+            raise HTTPException(status_code=404,
+                                detail=f"node '{node_id}' not in graph")
+        edges = [e for e in graph.get("edges", [])
+                 if node_id in (e.get("from"), e.get("to"))]
+        return {"node": node, "edges": edges, "meta": graph.get("meta", {})}
 
     uvicorn.run(_app, host="0.0.0.0", port=int(os.environ.get("PORT", 3302)))
