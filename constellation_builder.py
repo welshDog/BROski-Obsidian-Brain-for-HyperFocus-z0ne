@@ -29,11 +29,13 @@ ENGINE_MODULES = [
 ]
 VAULT_FOLDERS = [
     "00-Inbox", "01-Projects", "02-Areas", "03-Resources", "04-Archive",
-    "05-Focus-Sessions", "07-Streaks-Achievements", "99-Templates", "Hub",
+    "05-Focus-Sessions", "06-AI-Context", "07-Streaks-Achievements",
+    "99-Templates", "Hub",
 ]
 ECOSYSTEM_REPOS = [
     "HyperCode-V2.4", "HyperAgent-SDK", "Hyper-Vibe-Coding-Course",
     "BROskiPets-LLM-dNFT", "BROski-Obsidian-Brain",
+    "WelshDog-Mission-Control",
 ]
 
 

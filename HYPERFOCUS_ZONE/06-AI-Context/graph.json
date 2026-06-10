@@ -1,72 +1,1181 @@
 {
   "meta": {
-    "version": 1,
+    "version": 2,
     "canonical_path": "HYPERFOCUS_ZONE/06-AI-Context/graph.json",
     "container_path": "/vault/06-AI-Context/graph.json",
     "generated": "2026-06-09",
     "updated": "2026-06-10",
     "tool": "brain-graph-analysis (AST + static import trace)",
     "root": "BROski-Obsidian-Brain-for-HyperFocus-z0ne",
-    "total_nodes": 23,
-    "total_edges": 31
+    "total_nodes": 103,
+    "total_edges": 82,
+    "layers": [
+      "code",
+      "notes"
+    ],
+    "notes_scanned": 69
   },
   "nodes": [
-    {"id": "hyper_brain_core",       "layer": "monolith",  "port": 8100,  "centrality": 10, "size": 432, "status": "live"},
-    {"id": "analytics_engine",        "layer": "engine",    "port": null,  "centrality": 2,  "size": 280, "status": "live"},
-    {"id": "mcp_bridge",              "layer": "engine",    "port": null,  "centrality": 2,  "size": 275, "status": "live"},
-    {"id": "focus_tracker",           "layer": "engine",    "port": null,  "centrality": 2,  "size": 383, "status": "live"},
-    {"id": "morning_briefing_ai",     "layer": "engine",    "port": null,  "centrality": 2,  "size": 434, "status": "live"},
-    {"id": "difficulty_dial",         "layer": "engine",    "port": null,  "centrality": 1,  "size": 80,  "status": "live"},
-    {"id": "constellation_builder",   "layer": "engine",    "port": null,  "centrality": 1,  "size": 149, "status": "live"},
-    {"id": "hyper_split",             "layer": "engine",    "port": null,  "centrality": 1,  "size": null, "status": "no-tests"},
-    {"id": "ai_distraction_filter",   "layer": "engine",    "port": null,  "centrality": 1,  "size": null, "status": "no-tests"},
-    {"id": "session_snapshot",        "layer": "engine",    "port": null,  "centrality": 1,  "size": null, "status": "no-tests"},
-    {"id": "gamification_summary",    "layer": "engine",    "port": null,  "centrality": 1,  "size": null, "status": "has-tests"},
-    {"id": "events_feed",             "layer": "engine",    "port": null,  "centrality": 1,  "size": 31,  "status": "has-tests"},
-    {"id": "github_webhook_server",   "layer": "root",      "port": null,  "centrality": 0,  "size": null, "status": "orphan"},
-    {"id": "agent_hyper_brain_core",  "layer": "agent",     "port": 3301,  "centrality": 10, "size": 432, "status": "live"},
-    {"id": "agent_mcp_bridge",        "layer": "agent",     "port": 3302,  "centrality": 1,  "size": 275, "status": "live"},
-    {"id": "agent_focus_tracker",     "layer": "agent",     "port": 3303,  "centrality": 1,  "size": 383, "status": "live"},
-    {"id": "agent_morning_briefing",  "layer": "agent",     "port": 3304,  "centrality": 0,  "size": 434, "status": "live"},
-    {"id": "aifs_watcher",            "layer": "aifs",      "port": null,  "centrality": 2,  "size": 530, "status": "standalone"},
-    {"id": "aifs_mcp_server",         "layer": "aifs",      "port": null,  "centrality": 1,  "size": 551, "status": "standalone"},
-    {"id": "aifs_hub_server",         "layer": "aifs",      "port": 7331,  "centrality": 1,  "size": null, "status": "standalone"},
-    {"id": "aifs_registry",           "layer": "aifs",      "port": null,  "centrality": 0,  "size": null, "status": "standalone"},
-    {"id": "aifs_sign",               "layer": "aifs",      "port": null,  "centrality": 0,  "size": null, "status": "standalone"},
-    {"id": "scripts_dir",             "layer": "dead",      "port": null,  "centrality": 0,  "size": null, "status": "orphan-mirror"}
+    {
+      "id": "hyper_brain_core",
+      "layer": "monolith",
+      "port": 8100,
+      "centrality": 10,
+      "size": 432,
+      "status": "live"
+    },
+    {
+      "id": "analytics_engine",
+      "layer": "engine",
+      "port": null,
+      "centrality": 2,
+      "size": 280,
+      "status": "live"
+    },
+    {
+      "id": "mcp_bridge",
+      "layer": "engine",
+      "port": null,
+      "centrality": 2,
+      "size": 275,
+      "status": "live"
+    },
+    {
+      "id": "focus_tracker",
+      "layer": "engine",
+      "port": null,
+      "centrality": 2,
+      "size": 383,
+      "status": "live"
+    },
+    {
+      "id": "morning_briefing_ai",
+      "layer": "engine",
+      "port": null,
+      "centrality": 2,
+      "size": 434,
+      "status": "live"
+    },
+    {
+      "id": "difficulty_dial",
+      "layer": "engine",
+      "port": null,
+      "centrality": 1,
+      "size": 80,
+      "status": "live"
+    },
+    {
+      "id": "constellation_builder",
+      "layer": "engine",
+      "port": null,
+      "centrality": 1,
+      "size": 149,
+      "status": "live"
+    },
+    {
+      "id": "hyper_split",
+      "layer": "engine",
+      "port": null,
+      "centrality": 1,
+      "size": null,
+      "status": "no-tests"
+    },
+    {
+      "id": "ai_distraction_filter",
+      "layer": "engine",
+      "port": null,
+      "centrality": 1,
+      "size": null,
+      "status": "no-tests"
+    },
+    {
+      "id": "session_snapshot",
+      "layer": "engine",
+      "port": null,
+      "centrality": 1,
+      "size": null,
+      "status": "no-tests"
+    },
+    {
+      "id": "gamification_summary",
+      "layer": "engine",
+      "port": null,
+      "centrality": 1,
+      "size": null,
+      "status": "has-tests"
+    },
+    {
+      "id": "events_feed",
+      "layer": "engine",
+      "port": null,
+      "centrality": 1,
+      "size": 31,
+      "status": "has-tests"
+    },
+    {
+      "id": "github_webhook_server",
+      "layer": "root",
+      "port": null,
+      "centrality": 0,
+      "size": null,
+      "status": "orphan"
+    },
+    {
+      "id": "agent_hyper_brain_core",
+      "layer": "agent",
+      "port": 3301,
+      "centrality": 10,
+      "size": 432,
+      "status": "live"
+    },
+    {
+      "id": "agent_mcp_bridge",
+      "layer": "agent",
+      "port": 3302,
+      "centrality": 1,
+      "size": 275,
+      "status": "live"
+    },
+    {
+      "id": "agent_focus_tracker",
+      "layer": "agent",
+      "port": 3303,
+      "centrality": 1,
+      "size": 383,
+      "status": "live"
+    },
+    {
+      "id": "agent_morning_briefing",
+      "layer": "agent",
+      "port": 3304,
+      "centrality": 0,
+      "size": 434,
+      "status": "live"
+    },
+    {
+      "id": "aifs_watcher",
+      "layer": "aifs",
+      "port": null,
+      "centrality": 2,
+      "size": 530,
+      "status": "standalone"
+    },
+    {
+      "id": "aifs_mcp_server",
+      "layer": "aifs",
+      "port": null,
+      "centrality": 1,
+      "size": 551,
+      "status": "standalone"
+    },
+    {
+      "id": "aifs_hub_server",
+      "layer": "aifs",
+      "port": 7331,
+      "centrality": 1,
+      "size": null,
+      "status": "standalone"
+    },
+    {
+      "id": "aifs_registry",
+      "layer": "aifs",
+      "port": null,
+      "centrality": 0,
+      "size": null,
+      "status": "standalone"
+    },
+    {
+      "id": "aifs_sign",
+      "layer": "aifs",
+      "port": null,
+      "centrality": 0,
+      "size": null,
+      "status": "standalone"
+    },
+    {
+      "id": "scripts_dir",
+      "layer": "dead",
+      "port": null,
+      "centrality": 0,
+      "size": null,
+      "status": "orphan-mirror"
+    },
+    {
+      "id": "note:2026-05-05",
+      "layer": "note",
+      "path": "00-Inbox/2026-05-05.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:2026-05-07-The-Day-The-Brain-Woke-Up",
+      "layer": "note",
+      "path": "04-Archive/2026-05-07-The-Day-The-Brain-Woke-Up.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:2026-05-08",
+      "layer": "note",
+      "path": "00-Inbox/2026-05-08.md",
+      "centrality": 2,
+      "status": "live"
+    },
+    {
+      "id": "note:2026-05-31",
+      "layer": "note",
+      "path": "00-Inbox/2026-05-31.md",
+      "centrality": 3,
+      "status": "live"
+    },
+    {
+      "id": "note:AIFS_ROAST_AUDIT_2026-06-03",
+      "layer": "note",
+      "path": "AIFS_ROAST_AUDIT_2026-06-03.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:AIONUI_VS_HYPERAGENT_SDK_2026-06-03",
+      "layer": "note",
+      "path": "AIONUI_VS_HYPERAGENT_SDK_2026-06-03.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:Admin-Radar",
+      "layer": "note",
+      "path": "02-Areas/Admin/Admin-Radar.md",
+      "centrality": 2,
+      "status": "live"
+    },
+    {
+      "id": "note:Agent Wishlists (Index)",
+      "layer": "note",
+      "path": "Agents/Agent Wishlists (Index).md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:BROski-Economy",
+      "layer": "note",
+      "path": "03-Resources/BROski-Economy.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:BROski-Task",
+      "layer": "note",
+      "path": "99-Templates/BROski-Task.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:BROskiPets",
+      "layer": "note",
+      "path": "01-Projects/BROskiPets.md",
+      "centrality": 7,
+      "status": "live"
+    },
+    {
+      "id": "note:BROskiPets-2026-05-07",
+      "layer": "note",
+      "path": "State/BROskiPets-2026-05-07.md",
+      "centrality": 2,
+      "status": "live"
+    },
+    {
+      "id": "note:BROskiPets-AutoBuilder",
+      "layer": "note",
+      "path": "Agents/BROskiPets-AutoBuilder.md",
+      "centrality": 1,
+      "status": "live"
+    },
+    {
+      "id": "note:Brain-Constellation",
+      "layer": "note",
+      "path": "Hub/Brain-Constellation.md",
+      "centrality": 2,
+      "status": "live"
+    },
+    {
+      "id": "note:Brain-Constellation-Live",
+      "layer": "note",
+      "path": "Hub/Brain-Constellation-Live.md",
+      "centrality": 3,
+      "status": "live"
+    },
+    {
+      "id": "note:Brain-Dump",
+      "layer": "note",
+      "path": "99-Templates/Brain-Dump.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:Briefing_2026-05-07",
+      "layer": "note",
+      "path": "00-Inbox/Briefings/Briefing_2026-05-07.md",
+      "centrality": 5,
+      "status": "live"
+    },
+    {
+      "id": "note:CHANGELOG.ai",
+      "layer": "note",
+      "path": "CHANGELOG.ai.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:DATA_TO_BRAIN_PROTOCOL",
+      "layer": "note",
+      "path": "DATA_TO_BRAIN_PROTOCOL.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:DECISIONS",
+      "layer": "note",
+      "path": "Hub/Truth-Pack/DECISIONS.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:Daily",
+      "layer": "note",
+      "path": "99-Templates/Daily.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:Dashboard",
+      "layer": "note",
+      "path": "Hub/Dashboard.md",
+      "centrality": 10,
+      "status": "live"
+    },
+    {
+      "id": "note:Decision Log",
+      "layer": "note",
+      "path": "Hub/Decision Log.md",
+      "centrality": 4,
+      "status": "live"
+    },
+    {
+      "id": "note:DevOps-Runbook",
+      "layer": "note",
+      "path": "02-Areas/DevOps/DevOps-Runbook.md",
+      "centrality": 2,
+      "status": "live"
+    },
+    {
+      "id": "note:FUTURE_STACK_DISCOVERY_2026-06-03",
+      "layer": "note",
+      "path": "FUTURE_STACK_DISCOVERY_2026-06-03.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:First BROski Task",
+      "layer": "note",
+      "path": "01-Projects/First BROski Task.md",
+      "centrality": 1,
+      "status": "live"
+    },
+    {
+      "id": "note:Focus Metrics Dashboard",
+      "layer": "note",
+      "path": "Hub/Focus Metrics Dashboard.md",
+      "centrality": 1,
+      "status": "live"
+    },
+    {
+      "id": "note:Focus-Command-Center",
+      "layer": "note",
+      "path": "Hub/Focus-Command-Center.md",
+      "centrality": 3,
+      "status": "live"
+    },
+    {
+      "id": "note:Focus-Session",
+      "layer": "note",
+      "path": "99-Templates/Focus-Session.md",
+      "centrality": 2,
+      "status": "live"
+    },
+    {
+      "id": "note:HYPER-TRAE-SKILLS",
+      "layer": "note",
+      "path": "HYPER-TRAE-SKILLS.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:HYPERAGENTLOOPSYNCv1",
+      "layer": "note",
+      "path": "03-Resources/Agent-YAMLs/HYPERAGENTLOOPSYNCv1.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-04T22-15-36Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-04T22-15-36Z.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-07T11-18-58Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-07T11-18-58Z.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-07T11-27-41Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-07T11-27-41Z.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-07T11-29-19Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-07T11-29-19Z.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-07T11-41-49Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-07T11-41-49Z.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-07T11-42-28Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-07T11-42-28Z.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-07T11-44-06Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-07T11-44-06Z.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:Health-Dashboard",
+      "layer": "note",
+      "path": "02-Areas/Health/Health-Dashboard.md",
+      "centrality": 5,
+      "status": "live"
+    },
+    {
+      "id": "note:Hyper-Vibe-Course",
+      "layer": "note",
+      "path": "01-Projects/Hyper-Vibe-Course.md",
+      "centrality": 6,
+      "status": "live"
+    },
+    {
+      "id": "note:HyperAgent-SDK",
+      "layer": "note",
+      "path": "01-Projects/HyperAgent-SDK.md",
+      "centrality": 3,
+      "status": "live"
+    },
+    {
+      "id": "note:HyperCode-V2.4",
+      "layer": "note",
+      "path": "01-Projects/HyperCode-V2.4.md",
+      "centrality": 8,
+      "status": "live"
+    },
+    {
+      "id": "note:HyperSplit-Session",
+      "layer": "note",
+      "path": "99-Templates/HyperSplit-Session.md",
+      "centrality": 1,
+      "status": "live"
+    },
+    {
+      "id": "note:HyperSplit_Get_first_paying_student_20260507",
+      "layer": "note",
+      "path": "01-Projects/HyperSplit-Tasks/HyperSplit_Get_first_paying_student_20260507.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:INTEGRATIONS",
+      "layer": "note",
+      "path": "Hub/Truth-Pack/INTEGRATIONS.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:InProgress_7f4f5389_2026-05-07",
+      "layer": "note",
+      "path": "05-Focus-Sessions/InProgress_7f4f5389_2026-05-07.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:KNOWN_ISSUES",
+      "layer": "note",
+      "path": "Hub/Truth-Pack/KNOWN_ISSUES.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:MASTER_AUDIT_2026-06-03",
+      "layer": "note",
+      "path": "MASTER_AUDIT_2026-06-03.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:Maps-of-Content",
+      "layer": "note",
+      "path": "Hub/Maps-of-Content.md",
+      "centrality": 5,
+      "status": "live"
+    },
+    {
+      "id": "note:Morning-Briefing",
+      "layer": "note",
+      "path": "99-Templates/Morning-Briefing.md",
+      "centrality": 1,
+      "status": "live"
+    },
+    {
+      "id": "note:NEXTSESSIONHANDOVER_2026-06-04",
+      "layer": "note",
+      "path": "00-Inbox/NEXTSESSIONHANDOVER_2026-06-04.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:NEXTSESSIONHANDOVER_2026-06-07",
+      "layer": "note",
+      "path": "00-Inbox/NEXTSESSIONHANDOVER_2026-06-07.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:NOTEBOOKLM_INSIGHTS",
+      "layer": "note",
+      "path": "NOTEBOOKLM_INSIGHTS.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:Project",
+      "layer": "note",
+      "path": "99-Templates/Project.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:README",
+      "layer": "note",
+      "path": "Hub/Truth-Pack/README.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:RUNBOOKS",
+      "layer": "note",
+      "path": "Hub/Truth-Pack/RUNBOOKS.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:Recommended-Plugins",
+      "layer": "note",
+      "path": "03-Resources/Recommended-Plugins.md",
+      "centrality": 1,
+      "status": "live"
+    },
+    {
+      "id": "note:SYSTEM_STATUS",
+      "layer": "note",
+      "path": "Hub/Truth-Pack/SYSTEM_STATUS.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:Session_7f4f5389_2026-05-07",
+      "layer": "note",
+      "path": "05-Focus-Sessions/Session_7f4f5389_2026-05-07.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:Subscriptions-and-Wishlist",
+      "layer": "note",
+      "path": "03-Resources/Subscriptions-and-Wishlist.md",
+      "centrality": 1,
+      "status": "live"
+    },
+    {
+      "id": "note:Tag-Architecture",
+      "layer": "note",
+      "path": "03-Resources/Tag-Architecture.md",
+      "centrality": 1,
+      "status": "live"
+    },
+    {
+      "id": "note:Today Focus",
+      "layer": "note",
+      "path": "Hub/Today Focus.md",
+      "centrality": 4,
+      "status": "live"
+    },
+    {
+      "id": "note:Tools Registry",
+      "layer": "note",
+      "path": "Hub/Tools Registry.md",
+      "centrality": 2,
+      "status": "live"
+    },
+    {
+      "id": "note:VIBE_COURSE_REVIEW_BRAIN",
+      "layer": "note",
+      "path": "VIBE_COURSE_REVIEW_BRAIN.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:Weekly",
+      "layer": "note",
+      "path": "99-Templates/Weekly.md",
+      "centrality": 2,
+      "status": "live"
+    },
+    {
+      "id": "note:Wishlist - focus-tracker",
+      "layer": "note",
+      "path": "Agents/Wishlist - focus-tracker.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:Wishlist - hyper-brain-core",
+      "layer": "note",
+      "path": "Agents/Wishlist - hyper-brain-core.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:Wishlist - mcp-bridge",
+      "layer": "note",
+      "path": "Agents/Wishlist - mcp-bridge.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:Wishlist - morning-briefing",
+      "layer": "note",
+      "path": "Agents/Wishlist - morning-briefing.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:01-Projects",
+      "layer": "note",
+      "path": null,
+      "centrality": 1,
+      "status": "phantom"
+    },
+    {
+      "id": "note:04-Archive",
+      "layer": "note",
+      "path": null,
+      "centrality": 1,
+      "status": "phantom"
+    },
+    {
+      "id": "note:07-Streaks-Achievements",
+      "layer": "note",
+      "path": null,
+      "centrality": 1,
+      "status": "phantom"
+    },
+    {
+      "id": "note:Analytics",
+      "layer": "note",
+      "path": null,
+      "centrality": 2,
+      "status": "phantom"
+    },
+    {
+      "id": "note:BROskiPets-LLM-dNFT",
+      "layer": "note",
+      "path": null,
+      "centrality": 1,
+      "status": "phantom"
+    },
+    {
+      "id": "note:CLAUDE.md",
+      "layer": "note",
+      "path": null,
+      "centrality": 1,
+      "status": "phantom"
+    },
+    {
+      "id": "note:NEXT_SESSION_HANDOVER_2026-05-27.md",
+      "layer": "note",
+      "path": null,
+      "centrality": 1,
+      "status": "phantom"
+    },
+    {
+      "id": "note:Snapshots",
+      "layer": "note",
+      "path": null,
+      "centrality": 1,
+      "status": "phantom"
+    },
+    {
+      "id": "note:WHATS_DONE.md",
+      "layer": "note",
+      "path": null,
+      "centrality": 1,
+      "status": "phantom"
+    },
+    {
+      "id": "note:cluster.json",
+      "layer": "note",
+      "path": null,
+      "centrality": 1,
+      "status": "phantom"
+    },
+    {
+      "id": "note:related note",
+      "layer": "note",
+      "path": null,
+      "centrality": 1,
+      "status": "phantom"
+    }
   ],
   "edges": [
-    {"from": "hyper_brain_core",      "to": "focus_tracker",          "type": "import"},
-    {"from": "hyper_brain_core",      "to": "analytics_engine",       "type": "import"},
-    {"from": "hyper_brain_core",      "to": "hyper_split",            "type": "import"},
-    {"from": "hyper_brain_core",      "to": "ai_distraction_filter",  "type": "import"},
-    {"from": "hyper_brain_core",      "to": "mcp_bridge",             "type": "import"},
-    {"from": "hyper_brain_core",      "to": "session_snapshot",       "type": "import"},
-    {"from": "hyper_brain_core",      "to": "morning_briefing_ai",    "type": "import"},
-    {"from": "hyper_brain_core",      "to": "events_feed",            "type": "import"},
-    {"from": "hyper_brain_core",      "to": "gamification_summary",   "type": "import"},
-    {"from": "hyper_brain_core",      "to": "difficulty_dial",        "type": "import"},
-    {"from": "hyper_brain_core",      "to": "constellation_builder",  "type": "import"},
-    {"from": "morning_briefing_ai",   "to": "mcp_bridge",             "type": "optional-call", "note": "only when mcp.connected"},
-    {"from": "morning_briefing_ai",   "to": "analytics_engine",       "type": "data-overlap", "note": "both read streak-data.json"},
-    {"from": "focus_tracker",         "to": "difficulty_dial",        "type": "data-overlap", "note": "both write/read difficulty state"},
-    {"from": "constellation_builder", "to": "gamification_summary",   "type": "call"},
-    {"from": "constellation_builder", "to": "focus_tracker",          "type": "call"},
-    {"from": "agent_hyper_brain_core","to": "hyper_brain_core",       "type": "same-file"},
-    {"from": "agent_mcp_bridge",      "to": "mcp_bridge",             "type": "same-file"},
-    {"from": "agent_focus_tracker",   "to": "focus_tracker",          "type": "same-file"},
-    {"from": "agent_morning_briefing","to": "morning_briefing_ai",    "type": "same-file"},
-    {"from": "agent_morning_briefing","to": "agent_mcp_bridge",       "type": "http-call", "note": "wired 2026-06-09 via RemoteMCPBridge (fix landed after this scan); :3304 /health shows connected:true"},
-    {"from": "aifs_mcp_server",       "to": "aifs_watcher",           "type": "import"},
-    {"from": "aifs_hub_server",       "to": "aifs_watcher",           "type": "import"},
-    {"from": "aifs_watcher",          "to": "agent_hyper_brain_core", "type": "DISCONNECTED"},
-    {"from": "aifs_watcher",          "to": "agent_mcp_bridge",       "type": "DISCONNECTED"},
-    {"from": "aifs_watcher",          "to": "agent_focus_tracker",    "type": "DISCONNECTED"},
-    {"from": "aifs_watcher",          "to": "agent_morning_briefing", "type": "DISCONNECTED"},
-    {"from": "scripts_dir",           "to": "hyper_brain_core",       "type": "stale-mirror"},
-    {"from": "scripts_dir",           "to": "focus_tracker",          "type": "stale-mirror"},
-    {"from": "scripts_dir",           "to": "morning_briefing_ai",    "type": "stale-mirror"},
-    {"from": "scripts_dir",           "to": "mcp_bridge",             "type": "stale-mirror"}
+    {
+      "from": "hyper_brain_core",
+      "to": "focus_tracker",
+      "type": "import"
+    },
+    {
+      "from": "hyper_brain_core",
+      "to": "analytics_engine",
+      "type": "import"
+    },
+    {
+      "from": "hyper_brain_core",
+      "to": "hyper_split",
+      "type": "import"
+    },
+    {
+      "from": "hyper_brain_core",
+      "to": "ai_distraction_filter",
+      "type": "import"
+    },
+    {
+      "from": "hyper_brain_core",
+      "to": "mcp_bridge",
+      "type": "import"
+    },
+    {
+      "from": "hyper_brain_core",
+      "to": "session_snapshot",
+      "type": "import"
+    },
+    {
+      "from": "hyper_brain_core",
+      "to": "morning_briefing_ai",
+      "type": "import"
+    },
+    {
+      "from": "hyper_brain_core",
+      "to": "events_feed",
+      "type": "import"
+    },
+    {
+      "from": "hyper_brain_core",
+      "to": "gamification_summary",
+      "type": "import"
+    },
+    {
+      "from": "hyper_brain_core",
+      "to": "difficulty_dial",
+      "type": "import"
+    },
+    {
+      "from": "hyper_brain_core",
+      "to": "constellation_builder",
+      "type": "import"
+    },
+    {
+      "from": "morning_briefing_ai",
+      "to": "mcp_bridge",
+      "type": "optional-call",
+      "note": "only when mcp.connected"
+    },
+    {
+      "from": "morning_briefing_ai",
+      "to": "analytics_engine",
+      "type": "data-overlap",
+      "note": "both read streak-data.json"
+    },
+    {
+      "from": "focus_tracker",
+      "to": "difficulty_dial",
+      "type": "data-overlap",
+      "note": "both write/read difficulty state"
+    },
+    {
+      "from": "constellation_builder",
+      "to": "gamification_summary",
+      "type": "call"
+    },
+    {
+      "from": "constellation_builder",
+      "to": "focus_tracker",
+      "type": "call"
+    },
+    {
+      "from": "agent_hyper_brain_core",
+      "to": "hyper_brain_core",
+      "type": "same-file"
+    },
+    {
+      "from": "agent_mcp_bridge",
+      "to": "mcp_bridge",
+      "type": "same-file"
+    },
+    {
+      "from": "agent_focus_tracker",
+      "to": "focus_tracker",
+      "type": "same-file"
+    },
+    {
+      "from": "agent_morning_briefing",
+      "to": "morning_briefing_ai",
+      "type": "same-file"
+    },
+    {
+      "from": "agent_morning_briefing",
+      "to": "agent_mcp_bridge",
+      "type": "http-call",
+      "note": "wired 2026-06-09 via RemoteMCPBridge (fix landed after this scan); :3304 /health shows connected:true"
+    },
+    {
+      "from": "aifs_mcp_server",
+      "to": "aifs_watcher",
+      "type": "import"
+    },
+    {
+      "from": "aifs_hub_server",
+      "to": "aifs_watcher",
+      "type": "import"
+    },
+    {
+      "from": "aifs_watcher",
+      "to": "agent_hyper_brain_core",
+      "type": "DISCONNECTED"
+    },
+    {
+      "from": "aifs_watcher",
+      "to": "agent_mcp_bridge",
+      "type": "DISCONNECTED"
+    },
+    {
+      "from": "aifs_watcher",
+      "to": "agent_focus_tracker",
+      "type": "DISCONNECTED"
+    },
+    {
+      "from": "aifs_watcher",
+      "to": "agent_morning_briefing",
+      "type": "DISCONNECTED"
+    },
+    {
+      "from": "scripts_dir",
+      "to": "hyper_brain_core",
+      "type": "stale-mirror"
+    },
+    {
+      "from": "scripts_dir",
+      "to": "focus_tracker",
+      "type": "stale-mirror"
+    },
+    {
+      "from": "scripts_dir",
+      "to": "morning_briefing_ai",
+      "type": "stale-mirror"
+    },
+    {
+      "from": "scripts_dir",
+      "to": "mcp_bridge",
+      "type": "stale-mirror"
+    },
+    {
+      "from": "note:2026-05-08",
+      "to": "note:Hyper-Vibe-Course",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:2026-05-08",
+      "to": "note:BROskiPets",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:2026-05-31",
+      "to": "note:Today Focus",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:2026-05-31",
+      "to": "note:Dashboard",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:2026-05-31",
+      "to": "note:Health-Dashboard",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Briefing_2026-05-07",
+      "to": "note:BROskiPets",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Briefing_2026-05-07",
+      "to": "note:First BROski Task",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Briefing_2026-05-07",
+      "to": "note:Hyper-Vibe-Course",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Briefing_2026-05-07",
+      "to": "note:HyperAgent-SDK",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Briefing_2026-05-07",
+      "to": "note:HyperCode-V2.4",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:BROskiPets",
+      "to": "note:Hyper-Vibe-Course",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:BROskiPets",
+      "to": "note:HyperCode-V2.4",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Hyper-Vibe-Course",
+      "to": "note:BROskiPets",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Hyper-Vibe-Course",
+      "to": "note:HyperCode-V2.4",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:HyperCode-V2.4",
+      "to": "note:HyperAgent-SDK",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:HyperCode-V2.4",
+      "to": "note:BROskiPets",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Admin-Radar",
+      "to": "note:Subscriptions-and-Wishlist",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:DevOps-Runbook",
+      "to": "note:HyperCode-V2.4",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Health-Dashboard",
+      "to": "note:Focus-Command-Center",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Health-Dashboard",
+      "to": "note:Today Focus",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Focus-Session",
+      "to": "note:Snapshots",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Focus-Session",
+      "to": "note:Analytics",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:HyperSplit-Session",
+      "to": "note:Analytics",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Morning-Briefing",
+      "to": "note:HyperCode-V2.4",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Weekly",
+      "to": "note:04-Archive",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Weekly",
+      "to": "note:01-Projects",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:BROskiPets-AutoBuilder",
+      "to": "note:BROskiPets-2026-05-07",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "note:Brain-Constellation",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "note:Brain-Constellation-Live",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Dashboard",
+      "to": "note:Today Focus",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Dashboard",
+      "to": "note:Focus-Command-Center",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Dashboard",
+      "to": "note:Brain-Constellation-Live",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Dashboard",
+      "to": "note:Health-Dashboard",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Dashboard",
+      "to": "note:Admin-Radar",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Dashboard",
+      "to": "note:DevOps-Runbook",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Dashboard",
+      "to": "note:Tag-Architecture",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Dashboard",
+      "to": "note:Recommended-Plugins",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Decision Log",
+      "to": "note:related note",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Decision Log",
+      "to": "note:CLAUDE.md",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Decision Log",
+      "to": "note:WHATS_DONE.md",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Decision Log",
+      "to": "note:NEXT_SESSION_HANDOVER_2026-05-27.md",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Focus Metrics Dashboard",
+      "to": "note:07-Streaks-Achievements",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Maps-of-Content",
+      "to": "note:HyperCode-V2.4",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Maps-of-Content",
+      "to": "note:HyperAgent-SDK",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Maps-of-Content",
+      "to": "note:Hyper-Vibe-Course",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Maps-of-Content",
+      "to": "note:BROskiPets",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Maps-of-Content",
+      "to": "note:Dashboard",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Today Focus",
+      "to": "note:Health-Dashboard",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Tools Registry",
+      "to": "note:cluster.json",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Tools Registry",
+      "to": "note:Focus-Command-Center",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:BROskiPets-2026-05-07",
+      "to": "note:BROskiPets-LLM-dNFT",
+      "type": "wikilink"
+    }
   ],
   "issues": [
     {
@@ -83,7 +1192,8 @@
     {
       "severity": "MEDIUM",
       "node": "constellation_builder",
-      "issue": "ECOSYSTEM_REPOS missing WelshDog-Mission-Control (6th repo)"
+      "issue": "ECOSYSTEM_REPOS missing WelshDog-Mission-Control (6th repo)",
+      "resolved": "2026-06-10 — repo added (+ 06-AI-Context in VAULT_FOLDERS); lands in containers on next monolith/brain-core rebuild"
     },
     {
       "severity": "MEDIUM",
