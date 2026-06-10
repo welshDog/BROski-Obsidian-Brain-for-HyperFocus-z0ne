@@ -180,32 +180,55 @@ class MCPBridge:
         self._graph_cache = (mtime, graph)
         return graph
 
-    def graph_neighbors(self, rel_paths: List[str], limit: int = 5) -> List[str]:
-        """1-hop wikilink expansion: vault rel paths -> linked note rel paths,
-        ranked by centrality. Phantom notes (no file yet) are skipped."""
+    def related_nodes(self, seed_ids: List[str], limit: int = 5,
+                      hops: int = 2, decay: float = 0.4) -> List[Dict[str, Any]]:
+        """Multi-hop expansion over wikilink + mentions edges with hop decay.
+        Score = hop_weight * (1 + centrality); best score wins on revisit paths."""
         graph = self.load_graph()
         if not graph:
             return []
-        notes = {n["id"]: n for n in graph.get("nodes", [])
-                 if n.get("layer") == "note"}
-        by_path = {n["path"]: nid for nid, n in notes.items() if n.get("path")}
+        nodes = {n["id"]: n for n in graph.get("nodes", [])}
         adjacency: Dict[str, set] = {}
         for e in graph.get("edges", []):
-            if e.get("type") != "wikilink":
+            if e.get("type") not in ("wikilink", "mentions"):
                 continue
             adjacency.setdefault(e["from"], set()).add(e["to"])
             adjacency.setdefault(e["to"], set()).add(e["from"])
-        seeds = {by_path[p] for p in
-                 (rp.replace(os.sep, "/") for rp in rel_paths) if p in by_path}
-        related: set = set()
-        for nid in seeds:
-            related |= adjacency.get(nid, set())
-        related -= seeds
-        ranked = sorted(
-            (notes[nid] for nid in related if nid in notes and notes[nid].get("path")),
-            key=lambda n: -(n.get("centrality") or 0),
-        )
-        return [n["path"] for n in ranked[:limit]]
+        seeds = {s for s in seed_ids if s in nodes}
+        visited = set(seeds)
+        frontier = set(seeds)
+        scored: Dict[str, float] = {}
+        weight = 1.0
+        for _ in range(hops):
+            nxt: set = set()
+            for nid in frontier:
+                for nb in adjacency.get(nid, ()):
+                    if nb in visited or nb not in nodes:
+                        continue
+                    score = weight * (1 + (nodes[nb].get("centrality") or 0))
+                    if score > scored.get(nb, 0.0):
+                        scored[nb] = score
+                    nxt.add(nb)
+            visited |= nxt
+            frontier = nxt
+            weight *= decay
+        ranked = sorted(scored.items(), key=lambda kv: -kv[1])
+        return [nodes[nid] for nid, _ in ranked[:limit]]
+
+    def graph_neighbors(self, rel_paths: List[str], limit: int = 5) -> List[str]:
+        """Vault rel paths -> related note rel paths (2-hop, decayed).
+        Phantom notes (no file yet) and code nodes are skipped for RAG."""
+        graph = self.load_graph()
+        if not graph:
+            return []
+        by_path = {n["path"]: n["id"] for n in graph.get("nodes", [])
+                   if n.get("layer") == "note" and n.get("path")}
+        seed_ids = [by_path[p] for p in
+                    (rp.replace(os.sep, "/") for rp in rel_paths) if p in by_path]
+        related = self.related_nodes(seed_ids, limit=limit * 3)
+        paths = [n["path"] for n in related
+                 if n.get("layer") == "note" and n.get("path")]
+        return paths[:limit]
 
     async def find_related_notes(self, note_path: str) -> List[str]:
         """Find wiki-linked notes from a vault note."""
@@ -369,17 +392,22 @@ if __name__ == "__main__":
 
     @_app.get("/graph/related/{node_id}")
     async def _graph_related(node_id: str, limit: int = 5):
-        # deterministic view of the same 1-hop expansion query_vault uses
+        # multi-hop expansion over wikilink + mentions edges. Works for ANY node:
+        # note ids find linked/documenting notes, code ids find the notes that
+        # mention them (and vice versa via related_code)
         graph = _load_graph()
         node = next((n for n in graph.get("nodes", []) if n.get("id") == node_id), None)
         if node is None:
             raise HTTPException(status_code=404,
                                 detail=f"node '{node_id}' not in graph")
-        if node.get("layer") != "note" or not node.get("path"):
-            raise HTTPException(status_code=400,
-                                detail="related expansion needs a note node with a path")
-        return {"node": node_id,
-                "related_paths": _bridge.graph_neighbors([node["path"]], limit=limit)}
+        related = _bridge.related_nodes([node_id], limit=max(limit * 3, 15))
+        return {
+            "node": node_id,
+            "related_paths": [n["path"] for n in related
+                              if n.get("layer") == "note" and n.get("path")][:limit],
+            "related_code": [n["id"] for n in related
+                             if n.get("layer") != "note"][:limit],
+        }
 
     @_app.get("/graph/node/{node_id}")
     async def _graph_node(node_id: str):

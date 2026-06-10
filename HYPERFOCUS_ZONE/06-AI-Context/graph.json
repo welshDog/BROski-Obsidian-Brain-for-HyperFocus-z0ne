@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version": 2,
+    "version": 3,
     "canonical_path": "HYPERFOCUS_ZONE/06-AI-Context/graph.json",
     "container_path": "/vault/06-AI-Context/graph.json",
     "generated": "2026-06-09",
@@ -8,10 +8,11 @@
     "tool": "brain-graph-analysis (AST + static import trace)",
     "root": "BROski-Obsidian-Brain-for-HyperFocus-z0ne",
     "total_nodes": 103,
-    "total_edges": 82,
+    "total_edges": 132,
     "layers": [
       "code",
-      "notes"
+      "notes",
+      "mentions"
     ],
     "notes_scanned": 69
   },
@@ -1175,6 +1176,256 @@
       "from": "note:BROskiPets-2026-05-07",
       "to": "note:BROskiPets-LLM-dNFT",
       "type": "wikilink"
+    },
+    {
+      "from": "note:2026-05-07-The-Day-The-Brain-Woke-Up",
+      "to": "hyper_brain_core",
+      "type": "mentions"
+    },
+    {
+      "from": "note:2026-05-07-The-Day-The-Brain-Woke-Up",
+      "to": "mcp_bridge",
+      "type": "mentions"
+    },
+    {
+      "from": "note:2026-05-07-The-Day-The-Brain-Woke-Up",
+      "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "note:2026-05-07-The-Day-The-Brain-Woke-Up",
+      "to": "hyper_split",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "hyper_brain_core",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "analytics_engine",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "mcp_bridge",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "morning_briefing_ai",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "constellation_builder",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "hyper_split",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "ai_distraction_filter",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "session_snapshot",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "gamification_summary",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "events_feed",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "github_webhook_server",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "hyper_brain_core",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "analytics_engine",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "mcp_bridge",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "morning_briefing_ai",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "difficulty_dial",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "constellation_builder",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "hyper_split",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "ai_distraction_filter",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "session_snapshot",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "gamification_summary",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "events_feed",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "github_webhook_server",
+      "type": "mentions"
+    },
+    {
+      "from": "note:DATA_TO_BRAIN_PROTOCOL",
+      "to": "morning_briefing_ai",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Decision Log",
+      "to": "hyper_brain_core",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Focus Metrics Dashboard",
+      "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Focus-Command-Center",
+      "to": "hyper_brain_core",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Focus-Command-Center",
+      "to": "analytics_engine",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Focus-Command-Center",
+      "to": "mcp_bridge",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Focus-Command-Center",
+      "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Focus-Command-Center",
+      "to": "morning_briefing_ai",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Focus-Command-Center",
+      "to": "hyper_split",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Focus-Command-Center",
+      "to": "ai_distraction_filter",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Focus-Command-Center",
+      "to": "session_snapshot",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Focus-Command-Center",
+      "to": "github_webhook_server",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HyperSplit-Session",
+      "to": "hyper_split",
+      "type": "mentions"
+    },
+    {
+      "from": "note:NOTEBOOKLM_INSIGHTS",
+      "to": "morning_briefing_ai",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Tools Registry",
+      "to": "hyper_brain_core",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Tools Registry",
+      "to": "mcp_bridge",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Tools Registry",
+      "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Tools Registry",
+      "to": "morning_briefing_ai",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Wishlist - focus-tracker",
+      "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Wishlist - hyper-brain-core",
+      "to": "hyper_brain_core",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Wishlist - mcp-bridge",
+      "to": "mcp_bridge",
+      "type": "mentions"
     }
   ],
   "issues": [

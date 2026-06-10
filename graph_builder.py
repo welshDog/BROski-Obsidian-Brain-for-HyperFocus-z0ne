@@ -40,9 +40,11 @@ WIKILINK_RE = re.compile(r"\[\[([^\]\|#]+)(?:#[^\]\|]*)?(?:\|[^\]]*)?\]\]")
 
 
 def scan_vault(vault_path):
-    """Walk vault .md files. Returns (notes: basename -> relpath, links: [(src, dst)])."""
+    """Walk vault .md files.
+    Returns (notes: basename -> relpath, links: [(src, dst)], contents: basename -> text)."""
     notes = {}
     links = []
+    contents = {}
     for root, dirs, files in os.walk(vault_path):
         dirs[:] = [d for d in dirs if d not in SKIP_DIRS]
         for fname in files:
@@ -57,12 +59,34 @@ def scan_vault(vault_path):
                     content = f.read()
             except OSError:
                 continue
+            contents[base] = content
             for m in WIKILINK_RE.finditer(content):
                 target = m.group(1).strip().split("/")[-1]
                 if not target or ATTACHMENT_RE.search(target):
                     continue
                 links.append((base, target))
-    return notes, links
+    return notes, links, contents
+
+
+def build_mentions(graph, notes, contents):
+    """Cross-layer edges (Phase 4): note text names a code module.
+    Matches both underscore and hyphen spellings (mcp_bridge / mcp-bridge)."""
+    code_ids = [n["id"] for n in graph.get("nodes", [])
+                if n.get("layer") != "note" and n["id"] != "scripts_dir"]
+    patterns = {}
+    for cid in code_ids:
+        variants = {cid, cid.replace("_", "-")}
+        patterns[cid] = re.compile(
+            r"(?<![\w-])(" + "|".join(re.escape(v) for v in variants) + r")(?![\w-])",
+            re.I,
+        )
+    edges = []
+    for base in sorted(notes):
+        content = contents.get(base, "")
+        for cid in code_ids:
+            if patterns[cid].search(content):
+                edges.append({"from": f"note:{base}", "to": cid, "type": "mentions"})
+    return edges
 
 
 def build_notes_layer(notes, links):
@@ -104,16 +128,17 @@ def build_notes_layer(notes, links):
     return nodes, edges
 
 
-def merge(graph, note_nodes, note_edges, notes_scanned):
-    """Replace the notes layer inside the existing graph, preserve everything else."""
+def merge(graph, note_nodes, note_edges, mention_edges, notes_scanned):
+    """Replace the generated layers inside the existing graph, preserve the rest."""
     kept_nodes = [n for n in graph.get("nodes", []) if n.get("layer") != "note"]
-    kept_edges = [e for e in graph.get("edges", []) if e.get("type") != "wikilink"]
+    kept_edges = [e for e in graph.get("edges", [])
+                  if e.get("type") not in ("wikilink", "mentions")]
     graph["nodes"] = kept_nodes + note_nodes
-    graph["edges"] = kept_edges + note_edges
+    graph["edges"] = kept_edges + note_edges + mention_edges
 
     meta = graph.setdefault("meta", {})
-    meta["version"] = 2
-    meta["layers"] = ["code", "notes"]
+    meta["version"] = 3
+    meta["layers"] = ["code", "notes", "mentions"]
     meta["updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     meta["notes_scanned"] = notes_scanned
     meta["total_nodes"] = len(graph["nodes"])
@@ -137,9 +162,10 @@ def main():
     with open(graph_path, "r", encoding="utf-8") as f:
         graph = json.load(f)
 
-    notes, links = scan_vault(args.vault)
+    notes, links, contents = scan_vault(args.vault)
     note_nodes, note_edges = build_notes_layer(notes, links)
-    graph = merge(graph, note_nodes, note_edges, len(notes))
+    mention_edges = build_mentions(graph, notes, contents)
+    graph = merge(graph, note_nodes, note_edges, mention_edges, len(notes))
 
     # atomic write so a half-written file is never served by /graph
     fd, tmp = tempfile.mkstemp(dir=os.path.dirname(graph_path), suffix=".tmp")
@@ -151,7 +177,7 @@ def main():
     print(f"graph.json v{graph['meta']['version']} — "
           f"{graph['meta']['total_nodes']} nodes / {graph['meta']['total_edges']} edges "
           f"({len(note_nodes)} note nodes, {len(note_edges)} wikilink edges, "
-          f"{len(notes)} notes scanned)")
+          f"{len(mention_edges)} mentions edges, {len(notes)} notes scanned)")
 
 
 if __name__ == "__main__":
