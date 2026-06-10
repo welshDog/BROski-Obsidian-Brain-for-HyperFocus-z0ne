@@ -77,8 +77,9 @@ docs/                           — analysis, roadmap, insights, upgrade notes
 Inside containers: `/vault/06-AI-Context/graph.json` (all 4 brain agents mount the vault).
 Served live by `agent-mcp-bridge` (:3302) via `GET /graph`, `GET /graph/node/{id}`, `GET /graph/related/{id}` (note ids look like `note:Dashboard`).
 **Graph-aware RAG (Phase 3+4):** `query_vault` seeds via stopword-filtered keyword search, expands **2-hop with 0.4 decay** through wikilink + mentions edges, cites real sources. Budget env knobs: `RAG_MAX_FILES`/`RAG_CHARS_PER_FILE`/`RAG_NUM_PREDICT`/`OLLAMA_TIMEOUT_S` — keep small, CPU Ollama.
-**Cross-layer (Phase 4):** notes that name a code module get `mentions` edges (v3, 50 of them) — `GET /graph/related/<code_id>` returns the notes that document that module.
-**Regenerate notes layer:** `python graph_builder.py` (stdlib-only; preserves the curated code layer + issues).
+**Cross-layer (Phase 4):** notes that name a code module get `mentions` edges — `GET /graph/related/<code_id>` returns the notes that document that module.
+**Skills layer (Phase 5, 2026-06-11):** HYPER-SILLs vault is graph layer 3 — **v4 = 199 nodes / 397 edges**. 88 registry skills + phantom refs as `skill:HS-###` nodes; GoS frontmatter → 247 `skill-link` edges; skill→code + note→skill `mentions`. `/graph/related/{id}` now also returns `related_skills` for ANY node. Skills source: `BRAIN_SKILLS_PATH` or sibling `../HYPER-SILLs-By-WelshDog` (unreachable = skill layer preserved, never wiped — container/Actions safe).
+**Regenerate notes + skills layers:** `python graph_builder.py` (stdlib-only; preserves the curated code layer + issues).
 **Auto-refresh:** `.github/workflows/graph-refresh.yml` reruns the builder on every push that touches vault `.md` files (loop-safe — bot commit only touches graph.json).
 Human report: `HYPERFOCUS_ZONE/06-AI-Context/GRAPHIFY_BRAIN_MAP.md`. (Old `graphify-out/` duplicate removed 2026-06-10; folder moved into the vault per the PARA plan — slot 06 was reserved for exactly this.)
 

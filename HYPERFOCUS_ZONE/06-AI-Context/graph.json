@@ -1,20 +1,22 @@
 {
   "meta": {
-    "version": 3,
+    "version": 4,
     "canonical_path": "HYPERFOCUS_ZONE/06-AI-Context/graph.json",
     "container_path": "/vault/06-AI-Context/graph.json",
     "generated": "2026-06-09",
     "updated": "2026-06-10",
     "tool": "brain-graph-analysis (AST + static import trace)",
     "root": "BROski-Obsidian-Brain-for-HyperFocus-z0ne",
-    "total_nodes": 103,
-    "total_edges": 132,
+    "total_nodes": 199,
+    "total_edges": 397,
     "layers": [
       "code",
       "notes",
-      "mentions"
+      "mentions",
+      "skills"
     ],
-    "notes_scanned": 69
+    "notes_scanned": 69,
+    "skills_indexed": 88
   },
   "nodes": [
     {
@@ -760,6 +762,1118 @@
       "path": null,
       "centrality": 1,
       "status": "phantom"
+    },
+    {
+      "id": "skill:DS-002",
+      "layer": "skill",
+      "title": "CLI LAUNCHER",
+      "emoji": "⚡",
+      "description": "CLI Args Launch Pattern",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/CLI_ARGS_LAUNCH_PATTERN_v1.md",
+      "centrality": 1,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:DS-009",
+      "layer": "skill",
+      "title": "PREFLIGHT",
+      "emoji": "🛫",
+      "description": "Preflight Checks System (Boot Validation)",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/PREFLIGHT_CHECKS_SYSTEM_v1.md",
+      "centrality": 2,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:DS-028",
+      "layer": "skill",
+      "title": "HEALTH WAITER",
+      "emoji": "⏳",
+      "description": "Progressive Health Wait (Smart Backoff)",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/PROGRESSIVE_HEALTH_WAIT_v1.md",
+      "centrality": 3,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-007",
+      "layer": "skill",
+      "title": "SWARM CROWN",
+      "emoji": "🐝",
+      "description": "Hyperfocus Agent Swarm Core",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/HYPERFOCUS_AGENT_SWARM_CORE_v1.md",
+      "centrality": 11,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-008",
+      "layer": "skill",
+      "title": "THE CONDUCTOR",
+      "emoji": "🎭",
+      "description": "BROski Orchestrator Pattern",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/BROSKI_ORCHESTRATOR_PATTERN_v1.md",
+      "centrality": 18,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-010",
+      "layer": "skill",
+      "title": "THE AESTHETE",
+      "emoji": "🎨",
+      "description": "Design Brain",
+      "category": "broski",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "broski/DESIGN_BRAIN_v1.md",
+      "centrality": 6,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-011",
+      "layer": "skill",
+      "title": "MIND BLOCKS",
+      "emoji": "🧩",
+      "description": "Hyper Brain Modules",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/HYPER_BRAIN_MODULES_v1.md",
+      "centrality": 18,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-012",
+      "layer": "skill",
+      "title": "THE ASCENT",
+      "emoji": "🪜",
+      "description": "Level Progression",
+      "category": "broski",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "broski/LEVEL_PROGRESSION_v1.md",
+      "centrality": 9,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-013",
+      "layer": "skill",
+      "title": "DAWN HERALD",
+      "emoji": "🌅",
+      "description": "Morning Briefing AI",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/MORNING_BRIEFING_AI_v1.md",
+      "centrality": 10,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-014",
+      "layer": "skill",
+      "title": "VAULT KEEPER",
+      "emoji": "🔮",
+      "description": "Obsidian Git Vault",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/OBSIDIAN_GIT_VAULT_v1.md",
+      "centrality": 0,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-015",
+      "layer": "skill",
+      "title": "THE FOUR DRAWERS",
+      "emoji": "🗂️",
+      "description": "Vault PARA Structure",
+      "category": "broski",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "broski/VAULT_PARA_STRUCTURE_v1.md",
+      "centrality": 7,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-016",
+      "layer": "skill",
+      "title": "BRAIN PRIMER",
+      "emoji": "📖",
+      "description": "Agents Brain README",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AGENTS_BRAIN_README_v1.md",
+      "centrality": 15,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-017",
+      "layer": "skill",
+      "title": "MIND CORE",
+      "emoji": "🧠",
+      "description": "Hyper Brain Core Manifest",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AGENT_MANIFEST_HYPER_BRAIN_CORE_v1.md",
+      "centrality": 10,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-018",
+      "layer": "skill",
+      "title": "BRIDGE KEEPER",
+      "emoji": "🌉",
+      "description": "MCP Bridge Manifest",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AGENT_MANIFEST_MCP_BRIDGE_v1.md",
+      "centrality": 6,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-019",
+      "layer": "skill",
+      "title": "THE ALL-SEEING",
+      "emoji": "👁️",
+      "description": "Observable Agent Operations Pattern",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/OBSERVABLE_AGENT_OPERATIONS_v1.md",
+      "centrality": 19,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-020",
+      "layer": "skill",
+      "title": "HERALD'S SCROLL",
+      "emoji": "🌄",
+      "description": "Morning Briefing Manifest",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AGENT_MANIFEST_MORNING_BRIEFING_v1.md",
+      "centrality": 8,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-021",
+      "layer": "skill",
+      "title": "VAULT SYNC",
+      "emoji": "🔄",
+      "description": "Obsidian Brain Sync Skill",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/OBSIDIAN_BRAIN_SYNC_SKILL_v1.md",
+      "centrality": 6,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-022",
+      "layer": "skill",
+      "title": "SDK SOVEREIGN",
+      "emoji": "📦",
+      "description": "HyperCode SDK Master",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/HYPERCODE_SDK_MASTER_v1.md",
+      "centrality": 2,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-023",
+      "layer": "skill",
+      "title": "REPO BRIDGE",
+      "emoji": "🔗",
+      "description": "Cross-Repo Sync",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/CROSS_REPO_SYNC_v1.md",
+      "centrality": 0,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-024",
+      "layer": "skill",
+      "title": "PUBLISH RITE",
+      "emoji": "🚀",
+      "description": "SDK Publish Workflow",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/SDK_PUBLISH_WORKFLOW_v1.md",
+      "centrality": 0,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-025",
+      "layer": "skill",
+      "title": "COIN MENDER",
+      "emoji": "🪙",
+      "description": "Token Sync Debug",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/TOKEN_SYNC_DEBUG_v1.md",
+      "centrality": 1,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-026",
+      "layer": "skill",
+      "title": "GRADUATION GATE",
+      "emoji": "🎓",
+      "description": "Phase 4 Graduation Flow",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/PHASE4_GRADUATION_FLOW_v1.md",
+      "centrality": 0,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-027",
+      "layer": "skill",
+      "title": "TEST HERALD",
+      "emoji": "📋",
+      "description": "Test Status Report",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/TEST_STATUS_REPORT_v1.md",
+      "centrality": 1,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-028",
+      "layer": "skill",
+      "title": "SDK PRIMER",
+      "emoji": "📖",
+      "description": "HyperAgent SDK Agents README",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/HYPERAGENT_SDK_AGENTS_README_v1.md",
+      "centrality": 4,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-029",
+      "layer": "skill",
+      "title": "PUBLISH FORGE",
+      "emoji": "📮",
+      "description": "HyperAgent SDK Publish Skill",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/HYPERAGENT_SDK_PUBLISH_SKILL_v1.md",
+      "centrality": 0,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-034",
+      "layer": "skill",
+      "title": "BEAT ARCHITECT",
+      "emoji": "🎯",
+      "description": "7-Beat Module Teaching Structure",
+      "category": "broski",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "broski/SEVEN_BEAT_MODULE_STRUCTURE_v1.md",
+      "centrality": 6,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-036",
+      "layer": "skill",
+      "title": "ANALOGY ARSENAL",
+      "emoji": "🧠",
+      "description": "ND-Friendly Analogy Library",
+      "category": "broski",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "broski/ANALOGY_ARSENAL_v1.md",
+      "centrality": 6,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-038",
+      "layer": "skill",
+      "title": "PHASE WARDEN",
+      "emoji": "🛡️",
+      "description": "Server Guardian Bot Phase Map",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/GUARDIAN_BOT_PHASE_MAP_v1.md",
+      "centrality": 7,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-040",
+      "layer": "skill",
+      "title": "GOALKEEPER",
+      "emoji": "🥅",
+      "description": "Self-Improving Goal-Tracking Agent",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/GOALKEEPER_SELF_IMPROVING_AGENT_v1.md",
+      "centrality": 7,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-041",
+      "layer": "skill",
+      "title": "METRICS FORGE",
+      "emoji": "⚡",
+      "description": "Prometheus + Grafana Agent Metrics Integration",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/METRICS_ENGINE_INTEGRATION_v1.md",
+      "centrality": 7,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-042",
+      "layer": "skill",
+      "title": "REGISTRY LORD",
+      "emoji": "📋",
+      "description": "Skill Registry Agent Pattern (Yellow Pages)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/SKILL_REGISTRY_AGENT_PATTERN_v1.md",
+      "centrality": 5,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-043",
+      "layer": "skill",
+      "title": "LOOP MASTER",
+      "emoji": "🔄",
+      "description": "Self-Improvement 5-Loop Pattern (Reference)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/SELF_IMPROVEMENT_5_LOOP_LOGIC_v1.md",
+      "centrality": 10,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-044",
+      "layer": "skill",
+      "title": "AB SPLITTER",
+      "emoji": "🧪",
+      "description": "A/B Testing Framework (Prompt Block)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AB_TESTING_FRAMEWORK_v1.md",
+      "centrality": 7,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-050",
+      "layer": "skill",
+      "title": "WATCHDOG PRIME",
+      "emoji": "🛡️",
+      "description": "Post-Launch Watchdog Monitoring Pattern",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/GUARDIAN_WATCHDOG_POST_LAUNCH_v1.md",
+      "centrality": 6,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-067",
+      "layer": "skill",
+      "title": "THE THRONE LADDER",
+      "emoji": "👑",
+      "description": "Agent Role Hierarchy Pattern",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AGENT_ROLE_HIERARCHY_PATTERN_v1.md",
+      "centrality": 11,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-069",
+      "layer": "skill",
+      "title": "MERCY MESSAGE",
+      "emoji": "💚",
+      "description": "ND-First Error Messages Template",
+      "category": "broski",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "broski/ND_FIRST_ERROR_MESSAGES_TEMPLATE_v1.md",
+      "centrality": 5,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-071",
+      "layer": "skill",
+      "title": "SOFT LANDING",
+      "emoji": "🪂",
+      "description": "Fail Gracefully + Fallback Chain",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/FAIL_GRACEFULLY_FALLBACK_CHAIN_v1.md",
+      "centrality": 5,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-072",
+      "layer": "skill",
+      "title": "THE MEMORY VAULT",
+      "emoji": "🗃️",
+      "description": "Context Store Architecture (Redis)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/CONTEXT_STORE_ARCHITECTURE_v1.md",
+      "centrality": 4,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-073",
+      "layer": "skill",
+      "title": "PULSE STREAM",
+      "emoji": "📡",
+      "description": "SSE Agent Event Schema",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/SSE_AGENT_EVENT_SCHEMA_v1.md",
+      "centrality": 6,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-074",
+      "layer": "skill",
+      "title": "THE API CODEX",
+      "emoji": "🚀",
+      "description": "API Standards (FastAPI Agent Pattern)",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/FASTAPI_AGENT_API_STANDARDS_v1.md",
+      "centrality": 1,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-075",
+      "layer": "skill",
+      "title": "THE CHOICE MATRIX",
+      "emoji": "🎯",
+      "description": "Agent Decision Framework Matrix",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AGENT_DECISION_FRAMEWORK_MATRIX_v1.md",
+      "centrality": 8,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-076",
+      "layer": "skill",
+      "title": "THE GATEKEEPER",
+      "emoji": "✅",
+      "description": "Pre-Commit Testing Checklist",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/PRE_COMMIT_TESTING_CHECKLIST_v1.md",
+      "centrality": 0,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-077",
+      "layer": "skill",
+      "title": "CONSENT GUARDIAN",
+      "emoji": "🛑",
+      "description": "User Agency Approval Gate Pattern",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/USER_AGENCY_APPROVAL_GATE_v1.md",
+      "centrality": 10,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-078",
+      "layer": "skill",
+      "title": "FLOW KEEPER",
+      "emoji": "🌊",
+      "description": "Context Retention / Anti-Interrupt Pattern",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/CONTEXT_RETENTION_ANTI_INTERRUPT_v1.md",
+      "centrality": 7,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-079",
+      "layer": "skill",
+      "title": "THE CREW CHARTER",
+      "emoji": "👥",
+      "description": "Specialist Agent Role Definitions",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/SPECIALIST_AGENT_ROLES_v1.md",
+      "centrality": 9,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-080",
+      "layer": "skill",
+      "title": "THE TOOL BELT",
+      "emoji": "🧰",
+      "description": "Universal Agent Tools API",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/UNIVERSAL_AGENT_TOOLS_API_v1.md",
+      "centrality": 6,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-081",
+      "layer": "skill",
+      "title": "PORTAL FORGE",
+      "emoji": "🔌",
+      "description": "MCP Server + Agent Registration Pattern",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/MCP_SERVER_AGENT_REGISTRATION_v1.md",
+      "centrality": 3,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-082",
+      "layer": "skill",
+      "title": "THE NAMING LAW",
+      "emoji": "🏷️",
+      "description": "Context Key Naming Convention + Value Schema",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/CONTEXT_KEY_NAMING_CONVENTION_v1.md",
+      "centrality": 0,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-083",
+      "layer": "skill",
+      "title": "THE THREE VOICES",
+      "emoji": "🗣️",
+      "description": "Agent Communication Patterns (Req-Res, Stream, Error)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AGENT_COMMUNICATION_PATTERNS_v1.md",
+      "centrality": 6,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-084",
+      "layer": "skill",
+      "title": "THE STYLE CODEX",
+      "emoji": "📐",
+      "description": "Code Style Standards (Python + TS/React)",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/CODE_STYLE_STANDARDS_v1.md",
+      "centrality": 0,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-085",
+      "layer": "skill",
+      "title": "THE FIVE WARDS",
+      "emoji": "🚧",
+      "description": "5 Mandatory Agent Guardrails",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/FIVE_MANDATORY_GUARDRAILS_v1.md",
+      "centrality": 4,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-086",
+      "layer": "skill",
+      "title": "THE FOUR TIERS",
+      "emoji": "🔺",
+      "description": "Test Pyramid (4 Levels)",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/TEST_PYRAMID_FOUR_LEVELS_v1.md",
+      "centrality": 0,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-087",
+      "layer": "skill",
+      "title": "THE BRANCHING PATH",
+      "emoji": "🌳",
+      "description": "Agent Decision Tree (Quick Ref Flowchart)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AGENT_DECISION_TREE_FLOWCHART_v1.md",
+      "centrality": 8,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-088",
+      "layer": "skill",
+      "title": "THE MIRROR OATH",
+      "emoji": "🪞",
+      "description": "Agent Final Self-Audit (8-Point Checklist)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AGENT_FINAL_SELF_AUDIT_v1.md",
+      "centrality": 8,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-089",
+      "layer": "skill",
+      "title": "THE GRAND ROSTER",
+      "emoji": "🗺️",
+      "description": "Hyper Agent Roster (22 Confirmed + 5 Expansion)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/HYPER_AGENT_ROSTER_v1.md",
+      "centrality": 4,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-090",
+      "layer": "skill",
+      "title": "SOUL SCROLL",
+      "emoji": "📜",
+      "description": "Universal Life Plan YAML v2.0 Template",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/UNIVERSAL_LIFE_PLAN_YAML_v1.md",
+      "centrality": 4,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-091",
+      "layer": "skill",
+      "title": "THE FOUNDING SIX",
+      "emoji": "🪪",
+      "description": "Top-Tier Agent Identity Cards *(v1.1 — +AutoEvo)*",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/TOP_TIER_AGENT_IDENTITY_CARDS_v1.md",
+      "centrality": 5,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-092",
+      "layer": "skill",
+      "title": "CONTRACT FORGE",
+      "emoji": "🧪",
+      "description": "Agent Contract Test Suite",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/AGENT_CONTRACT_TEST_SUITE_v1.md",
+      "centrality": 2,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-093",
+      "layer": "skill",
+      "title": "NIGHT TENDER",
+      "emoji": "🌙",
+      "description": "Nightly Continuous Learning Loop",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/NIGHTLY_LEARNING_LOOP_v1.md",
+      "centrality": 13,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-094",
+      "layer": "skill",
+      "title": "THE SIX-SPRINT MARCH",
+      "emoji": "🚀",
+      "description": "6-Sprint Production Roadmap (with KPI Gates)",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/SIX_SPRINT_PRODUCTION_ROADMAP_v1.md",
+      "centrality": 0,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-095",
+      "layer": "skill",
+      "title": "THE LEDGER LAW",
+      "emoji": "📒",
+      "description": "Governance Ledger Entry Schema",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/GOVERNANCE_LEDGER_ENTRY_SCHEMA_v1.md",
+      "centrality": 1,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-096",
+      "layer": "skill",
+      "title": "THE LONG MARCH",
+      "emoji": "🗓️",
+      "description": "4-Phase / 8-Sprint Production Roadmap (Alt Cadence)",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/FOUR_PHASE_EIGHT_SPRINT_ROADMAP_v1.md",
+      "centrality": 0,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-097",
+      "layer": "skill",
+      "title": "THE WEB OF NEEDS",
+      "emoji": "🕸️",
+      "description": "Hyper Agent Dependency Graph (8-Agent Worked Example)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/HYPER_AGENT_DEPENDENCY_GRAPH_v1.md",
+      "centrality": 5,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-098",
+      "layer": "skill",
+      "title": "THE SACRED SIX",
+      "emoji": "🏛️",
+      "description": "The 6 Laws of Agents",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/SIX_LAWS_OF_AGENTS_v1.md",
+      "centrality": 4,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-099",
+      "layer": "skill",
+      "title": "SIX-ORGAN HEART",
+      "emoji": "🧬",
+      "description": "Anatomy of an Agent",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/ANATOMY_OF_AN_AGENT_v1.md",
+      "centrality": 3,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-100",
+      "layer": "skill",
+      "title": "CRADLE-TO-GRAVE",
+      "emoji": "🔄",
+      "description": "Agent Lifecycle State Machine (BIRTH → DEATH)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AGENT_LIFECYCLE_STATE_MACHINE_v1.md",
+      "centrality": 5,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-101",
+      "layer": "skill",
+      "title": "DREAM GUARD",
+      "emoji": "😴",
+      "description": "Sleep Cycle + 5-Minute Anti-Thrash Hold",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/SLEEP_CYCLE_ANTI_THRASH_v1.md",
+      "centrality": 3,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-102",
+      "layer": "skill",
+      "title": "SLOPE ORACLE",
+      "emoji": "📈",
+      "description": "Predictive Trend via Linear Regression",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/PREDICTIVE_TREND_LINEAR_REGRESSION_v1.md",
+      "centrality": 1,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-103",
+      "layer": "skill",
+      "title": "HEALER'S CHORUS",
+      "emoji": "🤝",
+      "description": "Healer Circuit-Breaker Protocol",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/HEALER_CIRCUIT_BREAKER_PROTOCOL_v1.md",
+      "centrality": 5,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-104",
+      "layer": "skill",
+      "title": "THE THREE WALLS",
+      "emoji": "🛡️",
+      "description": "Tier Protection Rules (Hardcoded + Configurable + Self)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/TIER_PROTECTION_RULES_v1.md",
+      "centrality": 5,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-105",
+      "layer": "skill",
+      "title": "THE METRICS OATH",
+      "emoji": "📊",
+      "description": "Core Agent Metrics Contract (5 Mandatory)",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/CORE_AGENT_METRICS_CONTRACT_v1.md",
+      "centrality": 1,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-106",
+      "layer": "skill",
+      "title": "THE BIRTH RITE",
+      "emoji": "🌱",
+      "description": "New Agent Build Checklist (10-Point)",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/NEW_AGENT_BUILD_CHECKLIST_v1.md",
+      "centrality": 1,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-107",
+      "layer": "skill",
+      "title": "THE RANK & THE NAME",
+      "emoji": "🏆",
+      "description": "Agent Ranks + Self-Naming Protocol + The Creed",
+      "category": "broski",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "broski/AGENT_RANKS_NAMING_CREED_v1.md",
+      "centrality": 5,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-108",
+      "layer": "skill",
+      "title": "REALITY ANCHOR",
+      "emoji": "🔱",
+      "description": "Truth-vs-Claim Audit Pattern",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/TRUTH_VS_CLAIM_AUDIT_v1.md",
+      "centrality": 0,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-109",
+      "layer": "skill",
+      "title": "GREP HOUND",
+      "emoji": "🐕",
+      "description": "Cross-Reference Before You Write",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/CROSS_REFERENCE_BEFORE_WRITING_v1.md",
+      "centrality": 1,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-110",
+      "layer": "skill",
+      "title": "TRIM LORD",
+      "emoji": "⚔️",
+      "description": "Lean Raid Discipline (Anti-Inflation)",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/LEAN_RAID_DISCIPLINE_v1.md",
+      "centrality": 0,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-111",
+      "layer": "skill",
+      "title": "TRUTH FLAGGER",
+      "emoji": "🚩",
+      "description": "Surface Contradictions, Don't Pick Sides",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/SURFACE_CONTRADICTIONS_DONT_PICK_SIDES_v1.md",
+      "centrality": 1,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-112",
+      "layer": "skill",
+      "title": "WEB WEAVER",
+      "emoji": "🕸️",
+      "description": "Wikilink Knowledge Graph for Docs",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/WIKILINK_KNOWLEDGE_GRAPH_v1.md",
+      "centrality": 0,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-113",
+      "layer": "skill",
+      "title": "FETCH FORGE",
+      "emoji": "⚒️",
+      "description": "Parallel Git Workflow Survival Guide",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/PARALLEL_GIT_WORKFLOW_SURVIVAL_v1.md",
+      "centrality": 0,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-114",
+      "layer": "skill",
+      "title": "BRAIN OPS",
+      "emoji": "🛠️",
+      "description": "Hyper Brain Infrastructure Runbook",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/HYPER_BRAIN_OPS_v1.md",
+      "centrality": 3,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-120",
+      "layer": "skill",
+      "title": "AB FORGE",
+      "emoji": "🧪",
+      "description": "A/B Testing Framework (Python Code)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AB_TESTING_FRAMEWORK_AGENTS_v1.md",
+      "centrality": 5,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-121",
+      "layer": "skill",
+      "title": "LOOP FORGE",
+      "emoji": "🔄",
+      "description": "Self-Improvement 5-Loop (Python Implementation)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/SELF_IMPROVEMENT_5_LOOP_v1.md",
+      "centrality": 4,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-122",
+      "layer": "skill",
+      "title": "GUARDIAN WATCHDOG",
+      "emoji": "🔭",
+      "description": "Watchdog Monitor Code Pattern",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/GUARDIAN_WATCHDOG_MONITOR_v1.md",
+      "centrality": 5,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-123",
+      "layer": "skill",
+      "title": "GODFLOW",
+      "emoji": "⚡",
+      "description": "GOD Mode Hyperflow",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/GOD_MODE_HYPERFLOW_v1.md",
+      "centrality": 6,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-124",
+      "layer": "skill",
+      "title": "FOCUS HAWK",
+      "emoji": "🦅",
+      "description": "Focus Tracker Manifest",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AGENT_MANIFEST_FOCUS_TRACKER_v1.md",
+      "centrality": 9,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-125",
+      "layer": "skill",
+      "title": "THE GRAND CODEX",
+      "emoji": "🏆",
+      "description": "Hyperfocus Zone Master Context",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/HYPERFOCUS_ZONE_MASTER_CONTEXT_v1.md",
+      "centrality": 8,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-126",
+      "layer": "skill",
+      "title": "NODE SMITH",
+      "emoji": "🔗",
+      "description": "HyperGraph Node Skill",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/HYPERGRAPH_NODE_SKILL_v1.md",
+      "centrality": 4,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-127",
+      "layer": "skill",
+      "title": "SIGNAL HUNTER",
+      "emoji": "📊",
+      "description": "YT Analytics Debugger",
+      "category": "youtube",
+      "pack": "YouTube Growth Pack",
+      "path": "youtube/YT_DEBUGGER_v1.md",
+      "centrality": 2,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-001",
+      "layer": "skill",
+      "path": null,
+      "centrality": 16,
+      "status": "phantom"
+    },
+    {
+      "id": "skill:HS-002",
+      "layer": "skill",
+      "path": null,
+      "centrality": 20,
+      "status": "phantom"
+    },
+    {
+      "id": "skill:HS-003",
+      "layer": "skill",
+      "path": null,
+      "centrality": 16,
+      "status": "phantom"
+    },
+    {
+      "id": "skill:HS-004",
+      "layer": "skill",
+      "path": null,
+      "centrality": 7,
+      "status": "phantom"
+    },
+    {
+      "id": "skill:HS-005",
+      "layer": "skill",
+      "path": null,
+      "centrality": 6,
+      "status": "phantom"
+    },
+    {
+      "id": "skill:HS-006",
+      "layer": "skill",
+      "path": null,
+      "centrality": 4,
+      "status": "phantom"
+    },
+    {
+      "id": "skill:HS-009",
+      "layer": "skill",
+      "path": null,
+      "centrality": 8,
+      "status": "phantom"
+    },
+    {
+      "id": "skill:HS-045",
+      "layer": "skill",
+      "path": null,
+      "centrality": 1,
+      "status": "phantom"
     }
   ],
   "edges": [
@@ -1425,6 +2539,1578 @@
     {
       "from": "note:Wishlist - mcp-bridge",
       "to": "mcp_bridge",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:DS-002",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:DS-009",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:DS-009",
+      "to": "skill:HS-005",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:DS-028",
+      "to": "skill:HS-005",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:DS-028",
+      "to": "skill:HS-006",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:DS-028",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-007",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-007",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-007",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-007",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-007",
+      "to": "skill:HS-009",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-007",
+      "to": "skill:HS-016",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-008",
+      "to": "skill:HS-007",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-008",
+      "to": "skill:HS-009",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-008",
+      "to": "skill:HS-083",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-008",
+      "to": "skill:HS-067",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-008",
+      "to": "skill:HS-075",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-008",
+      "to": "skill:HS-087",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-010",
+      "to": "skill:HS-069",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-010",
+      "to": "skill:HS-015",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "skill:HS-016",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "skill:HS-017",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "skill:HS-013",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "skill:HS-124",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "skill:HS-018",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-012",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-012",
+      "to": "skill:HS-107",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-012",
+      "to": "skill:HS-034",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-013",
+      "to": "skill:HS-011",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-013",
+      "to": "skill:HS-016",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-013",
+      "to": "skill:HS-020",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-013",
+      "to": "skill:HS-124",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-013",
+      "to": "skill:HS-021",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-015",
+      "to": "skill:HS-021",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-015",
+      "to": "skill:HS-010",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-016",
+      "to": "skill:HS-125",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-016",
+      "to": "skill:HS-017",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-016",
+      "to": "skill:HS-018",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-016",
+      "to": "skill:HS-028",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-017",
+      "to": "skill:HS-016",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-017",
+      "to": "skill:HS-018",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-017",
+      "to": "skill:HS-011",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-017",
+      "to": "skill:HS-125",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-018",
+      "to": "skill:HS-017",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-018",
+      "to": "skill:HS-016",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-019",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-019",
+      "to": "skill:HS-005",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-019",
+      "to": "skill:HS-006",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-019",
+      "to": "skill:HS-012",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-019",
+      "to": "skill:HS-020",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-020",
+      "to": "skill:HS-013",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-020",
+      "to": "skill:HS-016",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-020",
+      "to": "skill:HS-124",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-020",
+      "to": "skill:HS-021",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-021",
+      "to": "skill:HS-016",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-021",
+      "to": "skill:HS-125",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-022",
+      "to": "skill:HS-007",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-022",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-025",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-027",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-028",
+      "to": "skill:HS-125",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-028",
+      "to": "skill:HS-016",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-034",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-034",
+      "to": "skill:HS-036",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-034",
+      "to": "skill:HS-012",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-036",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-036",
+      "to": "skill:HS-069",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-036",
+      "to": "skill:HS-034",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-038",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-038",
+      "to": "skill:HS-004",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-038",
+      "to": "skill:HS-077",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-038",
+      "to": "skill:HS-050",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-038",
+      "to": "skill:HS-122",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-040",
+      "to": "skill:HS-043",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-040",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-040",
+      "to": "skill:HS-093",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-040",
+      "to": "skill:HS-045",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-041",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-041",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-041",
+      "to": "skill:HS-050",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-041",
+      "to": "skill:HS-073",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-042",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-042",
+      "to": "skill:HS-067",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-042",
+      "to": "skill:HS-079",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-042",
+      "to": "skill:HS-125",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-043",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-043",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-043",
+      "to": "skill:HS-093",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-043",
+      "to": "skill:HS-040",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-043",
+      "to": "skill:HS-044",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-044",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-044",
+      "to": "skill:HS-043",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-044",
+      "to": "skill:HS-120",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-044",
+      "to": "skill:HS-093",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-050",
+      "to": "skill:HS-038",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-050",
+      "to": "skill:HS-041",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-050",
+      "to": "skill:HS-122",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-067",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-067",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-067",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-067",
+      "to": "skill:HS-079",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-069",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-069",
+      "to": "skill:HS-036",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-069",
+      "to": "skill:HS-010",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-071",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-071",
+      "to": "skill:HS-004",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-071",
+      "to": "skill:HS-005",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-071",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-071",
+      "to": "skill:HS-020",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-072",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-072",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-072",
+      "to": "skill:HS-078",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-072",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-073",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-073",
+      "to": "skill:HS-083",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-073",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-073",
+      "to": "skill:HS-041",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-074",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-075",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-075",
+      "to": "skill:HS-077",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-075",
+      "to": "skill:HS-087",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-075",
+      "to": "skill:HS-078",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-077",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-077",
+      "to": "skill:HS-078",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-077",
+      "to": "skill:HS-088",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-077",
+      "to": "skill:HS-004",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-078",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-078",
+      "to": "skill:HS-077",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-078",
+      "to": "skill:HS-075",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-079",
+      "to": "skill:HS-067",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-079",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-079",
+      "to": "skill:HS-080",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-079",
+      "to": "skill:HS-075",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-080",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-080",
+      "to": "skill:HS-067",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-080",
+      "to": "skill:HS-079",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-080",
+      "to": "skill:HS-077",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-081",
+      "to": "skill:HS-009",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-081",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-081",
+      "to": "skill:HS-007",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-083",
+      "to": "skill:HS-067",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-083",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-083",
+      "to": "skill:HS-073",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-083",
+      "to": "skill:HS-080",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-085",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-085",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-085",
+      "to": "skill:HS-011",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-085",
+      "to": "skill:HS-015",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-087",
+      "to": "skill:HS-075",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-087",
+      "to": "skill:HS-067",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-087",
+      "to": "skill:HS-077",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-087",
+      "to": "skill:HS-088",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-087",
+      "to": "skill:HS-079",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-088",
+      "to": "skill:HS-087",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-088",
+      "to": "skill:HS-004",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-088",
+      "to": "skill:HS-077",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-088",
+      "to": "skill:HS-078",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-088",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-089",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-089",
+      "to": "skill:HS-007",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-089",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-089",
+      "to": "skill:HS-010",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-090",
+      "to": "skill:HS-097",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-090",
+      "to": "skill:HS-093",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-090",
+      "to": "skill:HS-009",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-091",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-091",
+      "to": "skill:HS-009",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-091",
+      "to": "skill:HS-007",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-091",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-091",
+      "to": "skill:HS-104",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-092",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-092",
+      "to": "skill:HS-004",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-093",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-093",
+      "to": "skill:HS-043",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-093",
+      "to": "skill:HS-004",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-093",
+      "to": "skill:HS-040",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-093",
+      "to": "skill:HS-044",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-093",
+      "to": "skill:HS-088",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-095",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-097",
+      "to": "skill:HS-090",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-097",
+      "to": "skill:HS-009",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-097",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-097",
+      "to": "skill:HS-042",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-098",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-098",
+      "to": "skill:HS-004",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-098",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-098",
+      "to": "skill:HS-011",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-099",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-099",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-099",
+      "to": "skill:HS-010",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-100",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-100",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-100",
+      "to": "skill:HS-005",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-100",
+      "to": "skill:HS-006",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-100",
+      "to": "skill:HS-012",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-101",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-101",
+      "to": "skill:HS-005",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-101",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-102",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-103",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-103",
+      "to": "skill:HS-006",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-103",
+      "to": "skill:HS-012",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-103",
+      "to": "skill:HS-013",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-103",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-104",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-104",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-104",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-104",
+      "to": "skill:HS-009",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-105",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-106",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-107",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-107",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-107",
+      "to": "skill:HS-067",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-107",
+      "to": "skill:HS-079",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-109",
+      "to": "skill:HS-009",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-111",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-114",
+      "to": "skill:HS-016",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-114",
+      "to": "skill:HS-017",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-114",
+      "to": "skill:HS-021",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-120",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-120",
+      "to": "skill:HS-043",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-120",
+      "to": "skill:HS-044",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-120",
+      "to": "skill:HS-093",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-121",
+      "to": "skill:HS-043",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-121",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-121",
+      "to": "skill:HS-040",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-121",
+      "to": "skill:HS-093",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-122",
+      "to": "skill:HS-038",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-122",
+      "to": "skill:HS-041",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-122",
+      "to": "skill:HS-050",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-123",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-123",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-123",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-123",
+      "to": "skill:HS-126",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-123",
+      "to": "skill:HS-125",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-124",
+      "to": "skill:HS-016",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-124",
+      "to": "skill:HS-011",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-124",
+      "to": "skill:HS-017",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-124",
+      "to": "skill:HS-013",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-124",
+      "to": "skill:HS-093",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-125",
+      "to": "skill:HS-016",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-125",
+      "to": "skill:HS-028",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-126",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-126",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-126",
+      "to": "skill:HS-123",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-127",
+      "to": "skill:HS-034",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-127",
+      "to": "skill:HS-036",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "analytics_engine",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "mcp_bridge",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "morning_briefing_ai",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "hyper_split",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "ai_distraction_filter",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "session_snapshot",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "github_webhook_server",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-012",
+      "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-012",
+      "to": "ai_distraction_filter",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-013",
+      "to": "morning_briefing_ai",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-015",
+      "to": "analytics_engine",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-015",
+      "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-015",
+      "to": "morning_briefing_ai",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-017",
+      "to": "hyper_brain_core",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-018",
+      "to": "mcp_bridge",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-020",
+      "to": "morning_briefing_ai",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-124",
+      "to": "focus_tracker",
       "type": "mentions"
     }
   ],

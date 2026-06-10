@@ -182,7 +182,8 @@ class MCPBridge:
 
     def related_nodes(self, seed_ids: List[str], limit: int = 5,
                       hops: int = 2, decay: float = 0.4) -> List[Dict[str, Any]]:
-        """Multi-hop expansion over wikilink + mentions edges with hop decay.
+        """Multi-hop expansion over wikilink + mentions + skill-link edges
+        with hop decay.
         Score = hop_weight * (1 + centrality); best score wins on revisit paths."""
         graph = self.load_graph()
         if not graph:
@@ -190,7 +191,7 @@ class MCPBridge:
         nodes = {n["id"]: n for n in graph.get("nodes", [])}
         adjacency: Dict[str, set] = {}
         for e in graph.get("edges", []):
-            if e.get("type") not in ("wikilink", "mentions"):
+            if e.get("type") not in ("wikilink", "mentions", "skill-link"):
                 continue
             adjacency.setdefault(e["from"], set()).add(e["to"])
             adjacency.setdefault(e["to"], set()).add(e["from"])
@@ -392,9 +393,10 @@ if __name__ == "__main__":
 
     @_app.get("/graph/related/{node_id}")
     async def _graph_related(node_id: str, limit: int = 5):
-        # multi-hop expansion over wikilink + mentions edges. Works for ANY node:
-        # note ids find linked/documenting notes, code ids find the notes that
-        # mention them (and vice versa via related_code)
+        # multi-hop expansion over wikilink + mentions + skill-link edges.
+        # Works for ANY node: note ids find linked/documenting notes, code ids
+        # find the notes that mention them, skill ids (skill:HS-123) find the
+        # notes AND modules AND sibling skills they connect to
         graph = _load_graph()
         node = next((n for n in graph.get("nodes", []) if n.get("id") == node_id), None)
         if node is None:
@@ -406,7 +408,9 @@ if __name__ == "__main__":
             "related_paths": [n["path"] for n in related
                               if n.get("layer") == "note" and n.get("path")][:limit],
             "related_code": [n["id"] for n in related
-                             if n.get("layer") != "note"][:limit],
+                             if n.get("layer") not in ("note", "skill")][:limit],
+            "related_skills": [n["id"] for n in related
+                               if n.get("layer") == "skill"][:limit],
         }
 
     @_app.get("/graph/node/{node_id}")
