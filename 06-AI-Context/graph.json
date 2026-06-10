@@ -1,6 +1,9 @@
 {
   "meta": {
+    "version": 1,
+    "canonical_path": "06-AI-Context/graph.json",
     "generated": "2026-06-09",
+    "updated": "2026-06-10",
     "tool": "brain-graph-analysis (AST + static import trace)",
     "root": "BROski-Obsidian-Brain-for-HyperFocus-z0ne",
     "total_nodes": 23,
@@ -52,7 +55,7 @@
     {"from": "agent_mcp_bridge",      "to": "mcp_bridge",             "type": "same-file"},
     {"from": "agent_focus_tracker",   "to": "focus_tracker",          "type": "same-file"},
     {"from": "agent_morning_briefing","to": "morning_briefing_ai",    "type": "same-file"},
-    {"from": "agent_morning_briefing","to": "agent_mcp_bridge",       "type": "MISSING", "note": "briefing agent never calls mcp-bridge agent"},
+    {"from": "agent_morning_briefing","to": "agent_mcp_bridge",       "type": "http-call", "note": "wired 2026-06-09 via RemoteMCPBridge (fix landed after this scan); :3304 /health shows connected:true"},
     {"from": "aifs_mcp_server",       "to": "aifs_watcher",           "type": "import"},
     {"from": "aifs_hub_server",       "to": "aifs_watcher",           "type": "import"},
     {"from": "aifs_watcher",          "to": "agent_hyper_brain_core", "type": "DISCONNECTED"},
@@ -68,7 +71,8 @@
     {
       "severity": "HIGH",
       "node": "agent_morning_briefing",
-      "issue": "AI suggestions always null — MorningBriefingAI instantiated without mcp_bridge in agent mode"
+      "issue": "AI suggestions always null — MorningBriefingAI instantiated without mcp_bridge in agent mode",
+      "resolved": "2026-06-09 — RemoteMCPBridge HTTP adapter live; :3304 /health reports mcp_bridge.connected=true"
     },
     {
       "severity": "HIGH",

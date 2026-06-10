@@ -73,12 +73,14 @@ docs/                           — analysis, roadmap, insights, upgrade notes
 ## 🕸️ Graph Brain
 
 **Last ran:** 2026-06-09 · Tool: AST static analysis (brain-graph-analysis)
-**Output:** `06-AI-Context/GRAPHIFY_BRAIN_MAP.md` + `06-AI-Context/graph.json`
+**CANONICAL artifact:** `06-AI-Context/graph.json` (v1) — THE memory-hub source of truth for all agents.
+Served live by `agent-mcp-bridge` (:3302) via `GET /graph` + `GET /graph/node/{id}`.
+Human report: `06-AI-Context/GRAPHIFY_BRAIN_MAP.md`. (Old `graphify-out/` duplicate removed 2026-06-10.)
 
 **Top 5 nodes:** `hyper_brain_core` (centrality 10) › `analytics_engine` › `mcp_bridge` › `focus_tracker` › `morning_briefing_ai`
 
 **Top 3 suggestions:**
-1. Wire `agent-morning-briefing` → `agent-mcp-bridge` via HTTP (AI suggestions currently always null)
+1. ✅ DONE 2026-06-09 — `agent-morning-briefing` → `agent-mcp-bridge` wired via HTTP (RemoteMCPBridge; `:3304/health` shows `connected:true`)
 2. Centralise streak-data reads — `morning_briefing_ai` and `analytics_engine` both parse the same JSON file
 3. AIFS watcher sidecar in compose — AIFS is built but completely disconnected from agents
 
