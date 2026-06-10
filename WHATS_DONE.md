@@ -1,9 +1,22 @@
 # WHATS_DONE.md -- BROski Obsidian Brain
 
 > Single source of truth. Check this before building ANYTHING.
-> Last updated: 2026-06-03
+> Last updated: 2026-06-10
 
 ---
+
+## Graph Memory Hub (ADDED 2026-06-10 -- Phase 1 DONE, do not rebuild)
+
+| Thing | Status | What it is |
+|---|---|---|
+| `HYPERFOCUS_ZONE/06-AI-Context/graph.json` | DONE | CANONICAL v1 memory-hub artifact (23 nodes / 31 edges, AST scan 2026-06-09). In containers: `/vault/06-AI-Context/graph.json` |
+| `GET :3302/graph` | LIVE | agent-mcp-bridge serves the full artifact (proof: nodes=23, edges=31) |
+| `GET :3302/graph/node/{id}` | LIVE | One node + all touching edges (proof: hyper_brain_core -> 13 edges; unknown id -> 404) |
+| `BRAIN_GRAPH_PATH` env | DONE | Overrides default graph location in mcp_bridge agent |
+| `graphify-out/` | REMOVED | Was a byte-identical duplicate of the canonical copies |
+| briefing->mcp-bridge HTTP wiring | DONE 2026-06-09 | Graph report's HIGH issue #1 already resolved -- `:3304/health` shows `connected:true` |
+
+Phase 2 (NOT done): auto-regenerate graph.json on commit; add vault-notes layer to the graph.
 
 ## Core Python Brain Tools (ALL EXIST -- do not rebuild)
 
