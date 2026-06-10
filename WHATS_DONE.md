@@ -37,7 +37,18 @@
 | `.agents/mcp-bridge/Dockerfile` layer fix | DONE | requirements.txt copied BEFORE pip install -- code-only rebuilds no longer need PyPI |
 | ⚠️ Container is HOT-PATCHED | ACTION NEEDED | PyPI DNS was down from buildkit 2026-06-10; Phase 3 code deployed via `docker cp` + restart. **Image is stale — run `docker compose --profile brain-agents up -d --build agent-mcp-bridge` when network recovers**, else a recreate reverts the seeder/timeout fixes |
 
-Phase 4 ideas (NOT done): cross-layer edges (notes that mention code modules); multi-hop expansion with decay; embed-based seeding when a GPU exists.
+## Graph Memory Hub Phase 4 (ADDED 2026-06-10 -- DONE, do not rebuild)
+
+| Thing | Status | What it is |
+|---|---|---|
+| Mentions layer in `graph_builder.py` | DONE | Cross-layer note->code edges when note text names a module (underscore + hyphen spellings). graph.json v3 = 103 nodes / 132 edges (50 mentions edges) |
+| `related_nodes()` multi-hop expansion | LIVE | 2 hops, 0.4 decay, score = hop_weight * (1 + centrality), walks wikilink + mentions edges |
+| `/graph/related/{id}` for ANY node | LIVE | Code ids return the notes that document them (e.g. `hyper_brain_core` -> Decision Log, Dashboard, Focus-Command-Center, Brain-Constellation-Live); responses include `related_code` too |
+| RAG inherits it | LIVE | `query_vault` graph expansion now rides the same multi-hop walk |
+
+NOTE: still HOT-PATCHED (see Phase 3 row) -- the rebuild-when-PyPI-works action now picks up Phase 3 + 4 together. Docker engine crashed under build load 2026-06-10 (8GB box); full Docker Desktop restart fixed it.
+
+Phase 5 ideas (NOT done): embed-based seeding when a GPU exists; graph-aware skill discovery from HYPER-SILLs; serve graph view in Brain web/ UI.
 
 ## Core Python Brain Tools (ALL EXIST -- do not rebuild)
 

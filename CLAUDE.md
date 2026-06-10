@@ -76,7 +76,8 @@ docs/                           — analysis, roadmap, insights, upgrade notes
 **CANONICAL artifact:** `HYPERFOCUS_ZONE/06-AI-Context/graph.json` (v2, layers: code + notes) — THE memory-hub source of truth for all agents.
 Inside containers: `/vault/06-AI-Context/graph.json` (all 4 brain agents mount the vault).
 Served live by `agent-mcp-bridge` (:3302) via `GET /graph`, `GET /graph/node/{id}`, `GET /graph/related/{id}` (note ids look like `note:Dashboard`).
-**Graph-aware RAG (Phase 3):** `query_vault` seeds via stopword-filtered keyword search, expands 1-hop through wikilink edges, cites real sources. Budget env knobs: `RAG_MAX_FILES`/`RAG_CHARS_PER_FILE`/`RAG_NUM_PREDICT`/`OLLAMA_TIMEOUT_S` — keep small, CPU Ollama.
+**Graph-aware RAG (Phase 3+4):** `query_vault` seeds via stopword-filtered keyword search, expands **2-hop with 0.4 decay** through wikilink + mentions edges, cites real sources. Budget env knobs: `RAG_MAX_FILES`/`RAG_CHARS_PER_FILE`/`RAG_NUM_PREDICT`/`OLLAMA_TIMEOUT_S` — keep small, CPU Ollama.
+**Cross-layer (Phase 4):** notes that name a code module get `mentions` edges (v3, 50 of them) — `GET /graph/related/<code_id>` returns the notes that document that module.
 **Regenerate notes layer:** `python graph_builder.py` (stdlib-only; preserves the curated code layer + issues).
 **Auto-refresh:** `.github/workflows/graph-refresh.yml` reruns the builder on every push that touches vault `.md` files (loop-safe — bot commit only touches graph.json).
 Human report: `HYPERFOCUS_ZONE/06-AI-Context/GRAPHIFY_BRAIN_MAP.md`. (Old `graphify-out/` duplicate removed 2026-06-10; folder moved into the vault per the PARA plan — slot 06 was reserved for exactly this.)
