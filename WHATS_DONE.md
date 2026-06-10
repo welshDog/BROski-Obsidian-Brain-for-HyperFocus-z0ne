@@ -21,7 +21,8 @@
 | Thing | Status | What it is |
 |---|---|---|
 | `graph_builder.py` | DONE | Stdlib-only notes-layer rebuilder: scans vault wiki-links, merges into graph.json, PRESERVES curated code layer + issues. v2 = 103 nodes / 82 edges (80 notes, 51 wikilinks) |
-| `.github/workflows/graph-refresh.yml` | DONE | Auto-reruns builder on push touching `HYPERFOCUS_ZONE/**/*.md`; loop-safe ([skip ci] + paths filter); also `workflow_dispatch` |
+| `.github/workflows/graph-refresh.yml` | DONE but BLOCKED | Auto-reruns builder on vault .md push; loop-safe ([skip ci] + paths filter). **GitHub Actions account billing lock (2026-06-10) -- jobs won't start until billing fixed.** Covered meanwhile by host task below |
+| `HyperBrain-Graph-Refresh` scheduled task | LIVE 2026-06-10 | Windows host task, every 30 min: `C:\Python313\python.exe graph_builder.py`. Remove with `schtasks /delete /tn HyperBrain-Graph-Refresh /f` once Actions billing is unlocked |
 | Note node ids | CONVENTION | `note:<basename>` (e.g. `note:Dashboard`); `status: phantom` = wiki-link target with no file yet |
 | Live serving | NO REBUILD NEEDED | `/graph` reads the mounted file per request -- regeneration shows up in the API instantly |
 | `constellation_builder.py` repo list | FIXED 2026-06-10 | WelshDog-Mission-Control added (graph MEDIUM issue resolved) + 06-AI-Context in VAULT_FOLDERS; lands on next monolith/brain-core rebuild |
