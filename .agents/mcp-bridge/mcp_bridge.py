@@ -24,6 +24,13 @@ import aiohttp
 OLLAMA_BASE_URL = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434")
 OLLAMA_MODEL    = os.environ.get("OLLAMA_MODEL", "mistral")
 
+# RAG context budget — keep small: CPU Ollama on this box times out (>120s)
+# on fat prompts. 3 files x 600 chars proved workable; tune via env.
+RAG_MAX_FILES      = int(os.environ.get("RAG_MAX_FILES", "3"))
+RAG_CHARS_PER_FILE = int(os.environ.get("RAG_CHARS_PER_FILE", "600"))
+RAG_NUM_PREDICT    = int(os.environ.get("RAG_NUM_PREDICT", "200"))
+OLLAMA_TIMEOUT_S   = int(os.environ.get("OLLAMA_TIMEOUT_S", "180"))
+
 
 class MCPBridge:
     """Bridge between Hyper Brain and Ollama local LLM."""
@@ -36,6 +43,7 @@ class MCPBridge:
         self.model = model
         self.connected = False
         self.session: Optional[aiohttp.ClientSession] = None
+        self._graph_cache: Optional[tuple] = None  # (mtime, parsed graph)
 
     async def connect(self):
         """Establish connection to Ollama."""
@@ -79,7 +87,7 @@ class MCPBridge:
                 "mode": "offline"
             }
 
-        context = await self._build_context(query, context_files)
+        context, used_files = await self._build_context(query, context_files)
 
         # Ollama native /api/chat endpoint
         payload = {
@@ -100,7 +108,7 @@ class MCPBridge:
             ],
             "options": {
                 "temperature": 0.7,
-                "num_predict": 300
+                "num_predict": RAG_NUM_PREDICT
             }
         }
 
@@ -108,14 +116,14 @@ class MCPBridge:
             async with self.session.post(
                 f"{self.base_url}/api/chat",
                 json=payload,
-                timeout=aiohttp.ClientTimeout(total=120)
+                timeout=aiohttp.ClientTimeout(total=OLLAMA_TIMEOUT_S)
             ) as resp:
                 if resp.status == 200:
                     data = await resp.json()
                     answer = data["message"]["content"]
                     return {
                         "answer": answer,
-                        "sources": context_files or [],
+                        "sources": used_files,
                         "mode": "online",
                         "model": self.model,
                         "tokens_used": data.get("eval_count", 0)
@@ -147,6 +155,58 @@ class MCPBridge:
         result = await self.query_vault(query, context_files=[file_path])
         return result.get("answer", "Summary unavailable")
 
+    # ─── Graph-aware RAG (Memory Hub Phase 3) ────────────────────────────
+
+    def graph_path(self) -> str:
+        return os.environ.get(
+            "BRAIN_GRAPH_PATH",
+            os.path.join(self.vault_path, "06-AI-Context", "graph.json"),
+        )
+
+    def load_graph(self) -> Optional[Dict[str, Any]]:
+        """Load the canonical graph.json, cached by mtime (regen-friendly)."""
+        path = self.graph_path()
+        try:
+            mtime = os.path.getmtime(path)
+        except OSError:
+            return None
+        if self._graph_cache and self._graph_cache[0] == mtime:
+            return self._graph_cache[1]
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                graph = json.load(f)
+        except (OSError, json.JSONDecodeError):
+            return None
+        self._graph_cache = (mtime, graph)
+        return graph
+
+    def graph_neighbors(self, rel_paths: List[str], limit: int = 5) -> List[str]:
+        """1-hop wikilink expansion: vault rel paths -> linked note rel paths,
+        ranked by centrality. Phantom notes (no file yet) are skipped."""
+        graph = self.load_graph()
+        if not graph:
+            return []
+        notes = {n["id"]: n for n in graph.get("nodes", [])
+                 if n.get("layer") == "note"}
+        by_path = {n["path"]: nid for nid, n in notes.items() if n.get("path")}
+        adjacency: Dict[str, set] = {}
+        for e in graph.get("edges", []):
+            if e.get("type") != "wikilink":
+                continue
+            adjacency.setdefault(e["from"], set()).add(e["to"])
+            adjacency.setdefault(e["to"], set()).add(e["from"])
+        seeds = {by_path[p] for p in
+                 (rp.replace(os.sep, "/") for rp in rel_paths) if p in by_path}
+        related: set = set()
+        for nid in seeds:
+            related |= adjacency.get(nid, set())
+        related -= seeds
+        ranked = sorted(
+            (notes[nid] for nid in related if nid in notes and notes[nid].get("path")),
+            key=lambda n: -(n.get("centrality") or 0),
+        )
+        return [n["path"] for n in ranked[:limit]]
+
     async def find_related_notes(self, note_path: str) -> List[str]:
         """Find wiki-linked notes from a vault note."""
         full_path = os.path.join(self.vault_path, note_path)
@@ -156,22 +216,38 @@ class MCPBridge:
             content = f.read()
         return [m.group(1) for m in re.finditer(r"\[\[(.*?)\]\]", content)]
 
-    async def _build_context(self, query: str, context_files: List[str] = None) -> str:
-        """Build RAG context from vault."""
+    async def _build_context(self, query: str,
+                             context_files: List[str] = None) -> tuple:
+        """Build RAG context from vault: keyword seeds + 1-hop graph expansion.
+        Returns (context_str, used_files) so answers can cite real sources."""
         if not context_files:
-            context_files = await self._find_relevant_files(query)
+            seeds = (await self._find_relevant_files(query))[:max(1, RAG_MAX_FILES - 1)]
+            linked = [p for p in self.graph_neighbors(seeds, limit=2)
+                      if p not in seeds]
+            context_files = (seeds + linked)[:RAG_MAX_FILES]
         context_parts = []
-        for fpath in context_files[:5]:
+        used_files = []
+        for fpath in context_files[:RAG_MAX_FILES]:
             full = os.path.join(self.vault_path, fpath)
             if os.path.exists(full):
                 with open(full, "r", encoding="utf-8") as f:
-                    content = f.read()[:1000]
+                    content = f.read()[:RAG_CHARS_PER_FILE]
                 context_parts.append(f"--- {fpath} ---\n{content}\n")
-        return "\n".join(context_parts) if context_parts else "No relevant context found."
+                used_files.append(fpath)
+        context = "\n".join(context_parts) if context_parts else "No relevant context found."
+        return context, used_files
+
+    _STOPWORDS = {"what", "is", "the", "a", "an", "of", "for", "to", "in", "on",
+                  "and", "or", "how", "why", "when", "where", "who", "do", "does",
+                  "did", "are", "was", "were", "be", "this", "that", "with", "about"}
 
     async def _find_relevant_files(self, query: str) -> List[str]:
-        """Simple keyword-based file search across vault."""
-        keywords = query.lower().split()
+        """Keyword file search across vault — stopword-filtered, filename-boosted
+        so real terms (not 'what'/'the') pick the graph-expansion seeds."""
+        words = [w.strip("?!.,:;\"'()[]") for w in query.lower().split()]
+        keywords = [w for w in words if len(w) > 2 and w not in self._STOPWORDS]
+        if not keywords:
+            keywords = [w for w in words if w]
         matches = []
         for root, dirs, files in os.walk(self.vault_path):
             dirs[:] = [d for d in dirs if d not in [".obsidian", "node_modules", "openhuman-build"]]
@@ -183,7 +259,8 @@ class MCPBridge:
                 try:
                     with open(fpath, "r", encoding="utf-8") as f:
                         content = f.read().lower()
-                    score = sum(1 for k in keywords if k in content or k in rel.lower())
+                    score = sum(1 for k in keywords if k in content)
+                    score += sum(2 for k in keywords if k in rel.lower())
                     if score > 0:
                         matches.append((rel, score))
                 except:
@@ -289,6 +366,20 @@ if __name__ == "__main__":
     @_app.get("/graph")
     async def _graph():
         return _load_graph()
+
+    @_app.get("/graph/related/{node_id}")
+    async def _graph_related(node_id: str, limit: int = 5):
+        # deterministic view of the same 1-hop expansion query_vault uses
+        graph = _load_graph()
+        node = next((n for n in graph.get("nodes", []) if n.get("id") == node_id), None)
+        if node is None:
+            raise HTTPException(status_code=404,
+                                detail=f"node '{node_id}' not in graph")
+        if node.get("layer") != "note" or not node.get("path"):
+            raise HTTPException(status_code=400,
+                                detail="related expansion needs a note node with a path")
+        return {"node": node_id,
+                "related_paths": _bridge.graph_neighbors([node["path"]], limit=limit)}
 
     @_app.get("/graph/node/{node_id}")
     async def _graph_node(node_id: str):

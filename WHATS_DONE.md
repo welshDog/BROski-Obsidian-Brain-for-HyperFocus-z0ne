@@ -27,7 +27,17 @@
 | Live serving | NO REBUILD NEEDED | `/graph` reads the mounted file per request -- regeneration shows up in the API instantly |
 | `constellation_builder.py` repo list | FIXED 2026-06-10 | WelshDog-Mission-Control added (graph MEDIUM issue resolved) + 06-AI-Context in VAULT_FOLDERS; lands on next monolith/brain-core rebuild |
 
-Phase 3 ideas (NOT done): cross-layer edges (notes that mention code modules); graph-aware RAG in mcp-bridge.
+## Graph Memory Hub Phase 3 (ADDED 2026-06-10 -- DONE, do not rebuild)
+
+| Thing | Status | What it is |
+|---|---|---|
+| Graph-aware RAG in `query_vault` | LIVE | Keyword seeds (stopword-filtered + filename-boosted) -> 1-hop wikilink expansion via graph.json -> answers cite real linked notes. Proof: BROskiPets query cited BROskiPets.md + its 2 top graph neighbors, 81s |
+| `GET :3302/graph/related/{id}` | LIVE | Deterministic view of the same expansion (no LLM call) -- e.g. `note:BROskiPets` -> HyperCode-V2.4.md, Hyper-Vibe-Course.md, ... |
+| RAG budget env knobs | DONE | `RAG_MAX_FILES=3`, `RAG_CHARS_PER_FILE=600`, `RAG_NUM_PREDICT=200`, `OLLAMA_TIMEOUT_S=180` -- this box's CPU Ollama times out on fat prompts; tune via compose env |
+| `.agents/mcp-bridge/Dockerfile` layer fix | DONE | requirements.txt copied BEFORE pip install -- code-only rebuilds no longer need PyPI |
+| ⚠️ Container is HOT-PATCHED | ACTION NEEDED | PyPI DNS was down from buildkit 2026-06-10; Phase 3 code deployed via `docker cp` + restart. **Image is stale — run `docker compose --profile brain-agents up -d --build agent-mcp-bridge` when network recovers**, else a recreate reverts the seeder/timeout fixes |
+
+Phase 4 ideas (NOT done): cross-layer edges (notes that mention code modules); multi-hop expansion with decay; embed-based seeding when a GPU exists.
 
 ## Core Python Brain Tools (ALL EXIST -- do not rebuild)
 
