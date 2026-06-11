@@ -265,6 +265,73 @@ class MCPBridge:
                   "and", "or", "how", "why", "when", "where", "who", "do", "does",
                   "did", "are", "was", "were", "be", "this", "that", "with", "about"}
 
+    def route_skills(self, query: str, limit: int = 5) -> Dict[str, Any]:
+        """Graph-aware skill routing (Memory Hub Phase 6) — deterministic, no LLM.
+        Token-matches the query against EVERY node (skills by title/description/
+        category, notes/code by id/path), then expands the matches 2-hop through
+        the graph so a task about 'docker healthcheck' also surfaces skills
+        linked to the code/notes that matched — not just name hits."""
+        graph = self.load_graph()
+        if not graph:
+            return {"query": query, "seeds": [], "skills": [], "notes": [], "code": []}
+        words = [w.strip("?!.,:;\"'()[]`") for w in query.lower().split()]
+        keywords = [w for w in words if len(w) > 2 and w not in self._STOPWORDS]
+        if not keywords:
+            keywords = [w for w in words if w]
+
+        def node_text(n: Dict[str, Any]) -> str:
+            return " ".join(str(n.get(k) or "") for k in
+                            ("id", "title", "description", "path",
+                             "category", "pack")).lower()
+
+        scored: List[tuple] = []
+        for n in graph.get("nodes", []):
+            text = node_text(n)
+            tokens = {t for t in re.split(r"[^a-z0-9]+", text) if len(t) > 3}
+            name = str(n.get("title") or n.get("id") or "").lower()
+            score = 0
+            for k in keywords:
+                # both directions so compound query words still hit:
+                # 'healthcheck' matches token 'health', 'docker' matches text
+                if k in text or any(t in k for t in tokens):
+                    score += 2 if k in name else 1
+            if score:
+                scored.append((score, n))
+        scored.sort(key=lambda x: -x[0])
+        seeds = [n for _, n in scored[:6]]
+        seed_ids = [n["id"] for n in seeds]
+
+        expanded = self.related_nodes(seed_ids, limit=30)
+
+        skill_rank: Dict[str, float] = {}
+        skill_meta: Dict[str, Dict[str, Any]] = {}
+        for score, n in scored:
+            if n.get("layer") == "skill":
+                skill_rank[n["id"]] = skill_rank.get(n["id"], 0.0) + score + 2.0
+                skill_meta[n["id"]] = n
+        for i, n in enumerate(expanded):
+            if n.get("layer") == "skill":
+                skill_rank[n["id"]] = (skill_rank.get(n["id"], 0.0)
+                                       + max(0.5, 2.0 - i * 0.05))
+                skill_meta[n["id"]] = n
+
+        ranked = sorted(skill_rank.items(), key=lambda kv: -kv[1])[:limit]
+        skills = [{
+            "id": nid,
+            "title": skill_meta[nid].get("title"),
+            "emoji": skill_meta[nid].get("emoji"),
+            "description": skill_meta[nid].get("description"),
+            "category": skill_meta[nid].get("category"),
+            "path": skill_meta[nid].get("path"),
+            "score": round(score, 2),
+        } for nid, score in ranked]
+        notes = [n["path"] for n in expanded
+                 if n.get("layer") == "note" and n.get("path")][:limit]
+        code = [n["id"] for n in expanded
+                if n.get("layer") not in ("note", "skill")][:limit]
+        return {"query": query, "seeds": seed_ids, "skills": skills,
+                "notes": notes, "code": code}
+
     async def _find_relevant_files(self, query: str) -> List[str]:
         """Keyword file search across vault — stopword-filtered, filename-boosted
         so real terms (not 'what'/'the') pick the graph-expansion seeds."""
@@ -391,6 +458,11 @@ if __name__ == "__main__":
     @_app.get("/graph")
     async def _graph():
         return _load_graph()
+
+    @_app.get("/route")
+    async def _route(query: str, limit: int = 5):
+        # Phase 6: graph-aware skill routing for agents — deterministic, no LLM
+        return _bridge.route_skills(query, limit=max(1, min(limit, 20)))
 
     @_app.get("/constellation")
     async def _constellation():
