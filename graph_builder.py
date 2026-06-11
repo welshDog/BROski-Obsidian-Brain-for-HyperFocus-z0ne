@@ -129,8 +129,9 @@ def parse_skill_frontmatter(content):
 
 def scan_skills(skills_root):
     """Read skills-registry.json + skill files.
-    Returns (skills: id -> registry entry, contents: id -> file text) or None
-    if the skills repo isn't reachable (preserve-mode signal)."""
+    Returns (skills: id -> registry entry, contents: id -> file text,
+    aliases: GoS frontmatter id -> canonical registry id) or None if the
+    skills repo isn't reachable (preserve-mode signal)."""
     registry_path = os.path.join(skills_root, "skills-registry.json")
     if not os.path.isfile(registry_path):
         return None
@@ -138,33 +139,42 @@ def scan_skills(skills_root):
         registry = json.load(f)
     skills = {}
     contents = {}
+    aliases = {}
     for entry in registry.get("skills", []):
         sid = entry.get("id")
         if not sid:
             continue
         skills[sid] = entry
+        for alias in entry.get("aliases") or []:
+            aliases[alias] = sid
         fpath = os.path.join(skills_root, entry.get("file", "").replace("/", os.sep))
         try:
             with open(fpath, "r", encoding="utf-8") as f:
                 contents[sid] = f.read()
         except OSError:
             contents[sid] = ""
-    return skills, contents
+    return skills, contents, aliases
 
 
-def build_skills_layer(graph, skills, skill_contents, note_contents):
+def build_skills_layer(graph, skills, skill_contents, note_contents, aliases):
     """Phase 5: HYPER-SILLs as graph layer 3.
     Nodes from the registry; skill↔skill edges from GoS frontmatter;
     skill→code mentions from content scan; note→skill mentions where a
-    vault note names an HS-id. Unknown frontmatter HS-refs become phantom
-    skill nodes (visible drift, same convention as phantom notes)."""
+    vault note names an HS-id. Frontmatter ids are resolved through the
+    registry alias map (GoS renumbering drift); refs that still don't
+    resolve become phantom skill nodes (visible drift, same convention
+    as phantom notes)."""
     edges = []
     degree = {}
     phantoms = set()
     seen = set()
 
+    def resolve(sid):
+        return aliases.get(sid, sid)
+
     for sid in sorted(skills):
         for rel, target in parse_skill_frontmatter(skill_contents.get(sid, "")):
+            target = resolve(target)
             if target == sid:
                 continue
             key = (sid, target)
@@ -187,7 +197,7 @@ def build_skills_layer(graph, skills, skill_contents, note_contents):
                 degree[sid] = degree.get(sid, 0) + 1
 
     for base in sorted(note_contents):
-        for sid in set(SKILL_ID_RE.findall(note_contents[base])):
+        for sid in {resolve(s) for s in SKILL_ID_RE.findall(note_contents[base])}:
             if sid in skills:
                 edges.append({"from": f"note:{base}", "to": f"skill:{sid}",
                               "type": "mentions"})
@@ -326,9 +336,9 @@ def main():
         print(f"skills repo not reachable at {args.skills} — "
               "preserving existing skill layer")
     else:
-        skills, skill_contents = scanned
+        skills, skill_contents, aliases = scanned
         skill_nodes, skill_edges = build_skills_layer(
-            graph, skills, skill_contents, contents)
+            graph, skills, skill_contents, contents, aliases)
 
     graph = merge(graph, note_nodes, note_edges, mention_edges, len(notes),
                   skill_nodes, skill_edges)

@@ -7,7 +7,7 @@
     "updated": "2026-06-10",
     "tool": "brain-graph-analysis (AST + static import trace)",
     "root": "BROski-Obsidian-Brain-for-HyperFocus-z0ne",
-    "total_nodes": 199,
+    "total_nodes": 192,
     "total_edges": 397,
     "layers": [
       "code",
@@ -1204,7 +1204,7 @@
       "category": "agents",
       "pack": "Agent Builder Pack",
       "path": "agents/FAIL_GRACEFULLY_FALLBACK_CHAIN_v1.md",
-      "centrality": 5,
+      "centrality": 9,
       "status": "rescued"
     },
     {
@@ -1372,7 +1372,7 @@
       "category": "agents",
       "pack": "Agent Builder Pack",
       "path": "agents/FIVE_MANDATORY_GUARDRAILS_v1.md",
-      "centrality": 4,
+      "centrality": 11,
       "status": "rescued"
     },
     {
@@ -1420,7 +1420,7 @@
       "category": "agents",
       "pack": "Agent Builder Pack",
       "path": "agents/HYPER_AGENT_ROSTER_v1.md",
-      "centrality": 4,
+      "centrality": 12,
       "status": "rescued"
     },
     {
@@ -1528,7 +1528,7 @@
       "category": "agents",
       "pack": "Agent Builder Pack",
       "path": "agents/SIX_LAWS_OF_AGENTS_v1.md",
-      "centrality": 4,
+      "centrality": 24,
       "status": "rescued"
     },
     {
@@ -1540,7 +1540,7 @@
       "category": "agents",
       "pack": "Agent Builder Pack",
       "path": "agents/ANATOMY_OF_AN_AGENT_v1.md",
-      "centrality": 3,
+      "centrality": 19,
       "status": "rescued"
     },
     {
@@ -1552,7 +1552,7 @@
       "category": "agents",
       "pack": "Agent Builder Pack",
       "path": "agents/AGENT_LIFECYCLE_STATE_MACHINE_v1.md",
-      "centrality": 5,
+      "centrality": 21,
       "status": "rescued"
     },
     {
@@ -1588,7 +1588,7 @@
       "category": "agents",
       "pack": "Agent Builder Pack",
       "path": "agents/HEALER_CIRCUIT_BREAKER_PROTOCOL_v1.md",
-      "centrality": 5,
+      "centrality": 11,
       "status": "rescued"
     },
     {
@@ -1818,55 +1818,6 @@
       "path": "youtube/YT_DEBUGGER_v1.md",
       "centrality": 2,
       "status": "rescued"
-    },
-    {
-      "id": "skill:HS-001",
-      "layer": "skill",
-      "path": null,
-      "centrality": 16,
-      "status": "phantom"
-    },
-    {
-      "id": "skill:HS-002",
-      "layer": "skill",
-      "path": null,
-      "centrality": 20,
-      "status": "phantom"
-    },
-    {
-      "id": "skill:HS-003",
-      "layer": "skill",
-      "path": null,
-      "centrality": 16,
-      "status": "phantom"
-    },
-    {
-      "id": "skill:HS-004",
-      "layer": "skill",
-      "path": null,
-      "centrality": 7,
-      "status": "phantom"
-    },
-    {
-      "id": "skill:HS-005",
-      "layer": "skill",
-      "path": null,
-      "centrality": 6,
-      "status": "phantom"
-    },
-    {
-      "id": "skill:HS-006",
-      "layer": "skill",
-      "path": null,
-      "centrality": 4,
-      "status": "phantom"
-    },
-    {
-      "id": "skill:HS-009",
-      "layer": "skill",
-      "path": null,
-      "centrality": 8,
-      "status": "phantom"
     },
     {
       "id": "skill:HS-045",
@@ -2543,31 +2494,31 @@
     },
     {
       "from": "skill:DS-002",
-      "to": "skill:HS-003",
+      "to": "skill:HS-100",
       "type": "skill-link",
       "rel": "related"
     },
     {
       "from": "skill:DS-009",
-      "to": "skill:HS-003",
+      "to": "skill:HS-100",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:DS-009",
-      "to": "skill:HS-005",
+      "to": "skill:HS-103",
       "type": "skill-link",
       "rel": "related"
     },
     {
       "from": "skill:DS-028",
-      "to": "skill:HS-005",
+      "to": "skill:HS-103",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:DS-028",
-      "to": "skill:HS-006",
+      "to": "skill:HS-071",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -2579,19 +2530,19 @@
     },
     {
       "from": "skill:HS-007",
-      "to": "skill:HS-001",
+      "to": "skill:HS-099",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-007",
-      "to": "skill:HS-002",
+      "to": "skill:HS-098",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-007",
-      "to": "skill:HS-003",
+      "to": "skill:HS-100",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -2603,7 +2554,7 @@
     },
     {
       "from": "skill:HS-007",
-      "to": "skill:HS-009",
+      "to": "skill:HS-089",
       "type": "skill-link",
       "rel": "related"
     },
@@ -2621,7 +2572,7 @@
     },
     {
       "from": "skill:HS-008",
-      "to": "skill:HS-009",
+      "to": "skill:HS-089",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -2693,7 +2644,7 @@
     },
     {
       "from": "skill:HS-012",
-      "to": "skill:HS-002",
+      "to": "skill:HS-098",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -2813,19 +2764,19 @@
     },
     {
       "from": "skill:HS-019",
-      "to": "skill:HS-003",
+      "to": "skill:HS-100",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-019",
-      "to": "skill:HS-005",
+      "to": "skill:HS-103",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-019",
-      "to": "skill:HS-006",
+      "to": "skill:HS-071",
       "type": "skill-link",
       "rel": "related"
     },
@@ -2915,7 +2866,7 @@
     },
     {
       "from": "skill:HS-034",
-      "to": "skill:HS-002",
+      "to": "skill:HS-098",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -2933,7 +2884,7 @@
     },
     {
       "from": "skill:HS-036",
-      "to": "skill:HS-002",
+      "to": "skill:HS-098",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -2951,13 +2902,13 @@
     },
     {
       "from": "skill:HS-038",
-      "to": "skill:HS-002",
+      "to": "skill:HS-098",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-038",
-      "to": "skill:HS-004",
+      "to": "skill:HS-085",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -2987,7 +2938,7 @@
     },
     {
       "from": "skill:HS-040",
-      "to": "skill:HS-003",
+      "to": "skill:HS-100",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3005,7 +2956,7 @@
     },
     {
       "from": "skill:HS-041",
-      "to": "skill:HS-001",
+      "to": "skill:HS-099",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3053,13 +3004,13 @@
     },
     {
       "from": "skill:HS-043",
-      "to": "skill:HS-003",
+      "to": "skill:HS-100",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-043",
-      "to": "skill:HS-002",
+      "to": "skill:HS-098",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3083,7 +3034,7 @@
     },
     {
       "from": "skill:HS-044",
-      "to": "skill:HS-002",
+      "to": "skill:HS-098",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3125,13 +3076,13 @@
     },
     {
       "from": "skill:HS-067",
-      "to": "skill:HS-001",
+      "to": "skill:HS-099",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-067",
-      "to": "skill:HS-002",
+      "to": "skill:HS-098",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3149,7 +3100,7 @@
     },
     {
       "from": "skill:HS-069",
-      "to": "skill:HS-002",
+      "to": "skill:HS-098",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3167,19 +3118,19 @@
     },
     {
       "from": "skill:HS-071",
-      "to": "skill:HS-003",
+      "to": "skill:HS-100",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-071",
-      "to": "skill:HS-004",
+      "to": "skill:HS-085",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-071",
-      "to": "skill:HS-005",
+      "to": "skill:HS-103",
       "type": "skill-link",
       "rel": "related"
     },
@@ -3197,13 +3148,13 @@
     },
     {
       "from": "skill:HS-072",
-      "to": "skill:HS-001",
+      "to": "skill:HS-099",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-072",
-      "to": "skill:HS-003",
+      "to": "skill:HS-100",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3221,7 +3172,7 @@
     },
     {
       "from": "skill:HS-073",
-      "to": "skill:HS-001",
+      "to": "skill:HS-099",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3251,7 +3202,7 @@
     },
     {
       "from": "skill:HS-075",
-      "to": "skill:HS-002",
+      "to": "skill:HS-098",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3275,7 +3226,7 @@
     },
     {
       "from": "skill:HS-077",
-      "to": "skill:HS-002",
+      "to": "skill:HS-098",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3293,13 +3244,13 @@
     },
     {
       "from": "skill:HS-077",
-      "to": "skill:HS-004",
+      "to": "skill:HS-085",
       "type": "skill-link",
       "rel": "related"
     },
     {
       "from": "skill:HS-078",
-      "to": "skill:HS-002",
+      "to": "skill:HS-098",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3341,7 +3292,7 @@
     },
     {
       "from": "skill:HS-080",
-      "to": "skill:HS-001",
+      "to": "skill:HS-099",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3365,7 +3316,7 @@
     },
     {
       "from": "skill:HS-081",
-      "to": "skill:HS-009",
+      "to": "skill:HS-089",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3407,13 +3358,13 @@
     },
     {
       "from": "skill:HS-085",
-      "to": "skill:HS-002",
+      "to": "skill:HS-098",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-085",
-      "to": "skill:HS-003",
+      "to": "skill:HS-100",
       "type": "skill-link",
       "rel": "related"
     },
@@ -3467,7 +3418,7 @@
     },
     {
       "from": "skill:HS-088",
-      "to": "skill:HS-004",
+      "to": "skill:HS-085",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3491,7 +3442,7 @@
     },
     {
       "from": "skill:HS-089",
-      "to": "skill:HS-001",
+      "to": "skill:HS-099",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3527,19 +3478,19 @@
     },
     {
       "from": "skill:HS-090",
-      "to": "skill:HS-009",
+      "to": "skill:HS-089",
       "type": "skill-link",
       "rel": "related"
     },
     {
       "from": "skill:HS-091",
-      "to": "skill:HS-001",
+      "to": "skill:HS-099",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-091",
-      "to": "skill:HS-009",
+      "to": "skill:HS-089",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3563,19 +3514,19 @@
     },
     {
       "from": "skill:HS-092",
-      "to": "skill:HS-001",
+      "to": "skill:HS-099",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-092",
-      "to": "skill:HS-004",
+      "to": "skill:HS-085",
       "type": "skill-link",
       "rel": "related"
     },
     {
       "from": "skill:HS-093",
-      "to": "skill:HS-003",
+      "to": "skill:HS-100",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3587,7 +3538,7 @@
     },
     {
       "from": "skill:HS-093",
-      "to": "skill:HS-004",
+      "to": "skill:HS-085",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3623,7 +3574,7 @@
     },
     {
       "from": "skill:HS-097",
-      "to": "skill:HS-009",
+      "to": "skill:HS-089",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3641,19 +3592,19 @@
     },
     {
       "from": "skill:HS-098",
-      "to": "skill:HS-001",
+      "to": "skill:HS-099",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-098",
-      "to": "skill:HS-004",
+      "to": "skill:HS-085",
       "type": "skill-link",
       "rel": "related"
     },
     {
       "from": "skill:HS-098",
-      "to": "skill:HS-003",
+      "to": "skill:HS-100",
       "type": "skill-link",
       "rel": "related"
     },
@@ -3665,13 +3616,13 @@
     },
     {
       "from": "skill:HS-099",
-      "to": "skill:HS-002",
+      "to": "skill:HS-098",
       "type": "skill-link",
       "rel": "related"
     },
     {
       "from": "skill:HS-099",
-      "to": "skill:HS-003",
+      "to": "skill:HS-100",
       "type": "skill-link",
       "rel": "related"
     },
@@ -3683,25 +3634,25 @@
     },
     {
       "from": "skill:HS-100",
-      "to": "skill:HS-001",
+      "to": "skill:HS-099",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-100",
-      "to": "skill:HS-002",
+      "to": "skill:HS-098",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-100",
-      "to": "skill:HS-005",
+      "to": "skill:HS-103",
       "type": "skill-link",
       "rel": "related"
     },
     {
       "from": "skill:HS-100",
-      "to": "skill:HS-006",
+      "to": "skill:HS-071",
       "type": "skill-link",
       "rel": "related"
     },
@@ -3713,13 +3664,13 @@
     },
     {
       "from": "skill:HS-101",
-      "to": "skill:HS-003",
+      "to": "skill:HS-100",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-101",
-      "to": "skill:HS-005",
+      "to": "skill:HS-103",
       "type": "skill-link",
       "rel": "related"
     },
@@ -3737,13 +3688,13 @@
     },
     {
       "from": "skill:HS-103",
-      "to": "skill:HS-003",
+      "to": "skill:HS-100",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-103",
-      "to": "skill:HS-006",
+      "to": "skill:HS-071",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3767,25 +3718,25 @@
     },
     {
       "from": "skill:HS-104",
-      "to": "skill:HS-002",
+      "to": "skill:HS-098",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-104",
-      "to": "skill:HS-001",
+      "to": "skill:HS-099",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-104",
-      "to": "skill:HS-003",
+      "to": "skill:HS-100",
       "type": "skill-link",
       "rel": "related"
     },
     {
       "from": "skill:HS-104",
-      "to": "skill:HS-009",
+      "to": "skill:HS-089",
       "type": "skill-link",
       "rel": "related"
     },
@@ -3797,19 +3748,19 @@
     },
     {
       "from": "skill:HS-106",
-      "to": "skill:HS-001",
+      "to": "skill:HS-099",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-107",
-      "to": "skill:HS-002",
+      "to": "skill:HS-098",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-107",
-      "to": "skill:HS-001",
+      "to": "skill:HS-099",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3827,13 +3778,13 @@
     },
     {
       "from": "skill:HS-109",
-      "to": "skill:HS-009",
+      "to": "skill:HS-089",
       "type": "skill-link",
       "rel": "related"
     },
     {
       "from": "skill:HS-111",
-      "to": "skill:HS-002",
+      "to": "skill:HS-098",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3857,7 +3808,7 @@
     },
     {
       "from": "skill:HS-120",
-      "to": "skill:HS-002",
+      "to": "skill:HS-098",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3887,7 +3838,7 @@
     },
     {
       "from": "skill:HS-121",
-      "to": "skill:HS-003",
+      "to": "skill:HS-100",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3923,13 +3874,13 @@
     },
     {
       "from": "skill:HS-123",
-      "to": "skill:HS-002",
+      "to": "skill:HS-098",
       "type": "skill-link",
       "rel": "depends_on"
     },
     {
       "from": "skill:HS-123",
-      "to": "skill:HS-001",
+      "to": "skill:HS-099",
       "type": "skill-link",
       "rel": "depends_on"
     },
@@ -3995,7 +3946,7 @@
     },
     {
       "from": "skill:HS-126",
-      "to": "skill:HS-001",
+      "to": "skill:HS-099",
       "type": "skill-link",
       "rel": "depends_on"
     },
