@@ -4,11 +4,11 @@
     "canonical_path": "HYPERFOCUS_ZONE/06-AI-Context/graph.json",
     "container_path": "/vault/06-AI-Context/graph.json",
     "generated": "2026-06-09",
-    "updated": "2026-06-10",
+    "updated": "2026-06-11",
     "tool": "brain-graph-analysis (AST + static import trace)",
     "root": "BROski-Obsidian-Brain-for-HyperFocus-z0ne",
     "total_nodes": 192,
-    "total_edges": 397,
+    "total_edges": 401,
     "layers": [
       "code",
       "notes",
@@ -16,7 +16,7 @@
       "skills"
     ],
     "notes_scanned": 69,
-    "skills_indexed": 88
+    "skills_indexed": 89
   },
   "nodes": [
     {
@@ -820,7 +820,7 @@
       "category": "agents",
       "pack": "Agent Builder Pack",
       "path": "agents/BROSKI_ORCHESTRATOR_PATTERN_v1.md",
-      "centrality": 18,
+      "centrality": 19,
       "status": "rescued"
     },
     {
@@ -940,7 +940,7 @@
       "category": "agents",
       "pack": "Agent Builder Pack",
       "path": "agents/OBSERVABLE_AGENT_OPERATIONS_v1.md",
-      "centrality": 19,
+      "centrality": 20,
       "status": "rescued"
     },
     {
@@ -1120,7 +1120,7 @@
       "category": "agents",
       "pack": "Agent Builder Pack",
       "path": "agents/METRICS_ENGINE_INTEGRATION_v1.md",
-      "centrality": 7,
+      "centrality": 8,
       "status": "rescued"
     },
     {
@@ -1157,6 +1157,18 @@
       "pack": "Agent Builder Pack",
       "path": "agents/AB_TESTING_FRAMEWORK_v1.md",
       "centrality": 7,
+      "status": "rescued"
+    },
+    {
+      "id": "skill:HS-045",
+      "layer": "skill",
+      "title": "FRUGAL ENGINE",
+      "emoji": "💰",
+      "description": "Cost Optimisation Auto-Pattern",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/COST_OPTIMISATION_AUTO_PATTERN_v1.md",
+      "centrality": 5,
       "status": "rescued"
     },
     {
@@ -1468,7 +1480,7 @@
       "category": "agents",
       "pack": "Agent Builder Pack",
       "path": "agents/NIGHTLY_LEARNING_LOOP_v1.md",
-      "centrality": 13,
+      "centrality": 14,
       "status": "rescued"
     },
     {
@@ -1818,13 +1830,6 @@
       "path": "youtube/YT_DEBUGGER_v1.md",
       "centrality": 2,
       "status": "rescued"
-    },
-    {
-      "id": "skill:HS-045",
-      "layer": "skill",
-      "path": null,
-      "centrality": 1,
-      "status": "phantom"
     }
   ],
   "edges": [
@@ -3053,6 +3058,30 @@
     {
       "from": "skill:HS-044",
       "to": "skill:HS-093",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-045",
+      "to": "skill:HS-041",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-045",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-045",
+      "to": "skill:HS-093",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-045",
+      "to": "skill:HS-019",
       "type": "skill-link",
       "rel": "related"
     },
