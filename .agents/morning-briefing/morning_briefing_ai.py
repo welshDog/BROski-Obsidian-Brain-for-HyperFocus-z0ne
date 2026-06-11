@@ -107,13 +107,22 @@ class MorningBriefingAI:
         ai_section = ""
         if briefing["ai_suggestions"]:
             s = briefing["ai_suggestions"]
+            cited = "\n".join(
+                f"- 📎 [[{os.path.splitext(os.path.basename(p))[0]}]]"
+                for p in s.get("sources", [])[:5]
+            )
+            cited_section = f"\n**Grounded in**:\n{cited}\n" if cited else ""
+            skills = " · ".join(
+                sk.removeprefix("skill:") for sk in s.get("skills", [])[:5]
+            )
+            skills_section = f"\n**Linked skills**: 🦸 {skills}\n" if skills else ""
             ai_section = f"""
 ## 🤖 AI Prioritization
 {s['reasoning']}
 
 **Suggested order**:
 {chr(10).join(f"- {a}" for a in s['actions'])}
-"""
+{cited_section}{skills_section}"""
 
         note = f"""---
 created: {briefing['generated_at']}
@@ -353,8 +362,17 @@ Overdue: {', '.join(o['task'][:30] for o in overdue[:3])}
 Consider: urgency, momentum from yesterday, and ADHD-friendly task sizing.
 Return as numbered list with brief reasoning.\n\n{context}"""
 
-        result = await self.mcp.query_vault(query, skip_context=True)
+        # skip_context=False → graph-aware RAG (Phase 3-5): budget-capped vault
+        # context, so suggestions cite the real notes they were grounded in
+        result = await self.mcp.query_vault(query, skip_context=False)
         answer = result.get("answer", "")
+        sources = result.get("sources") or []
+
+        # Phase 5 skill layer: graph-linked skills for the cited notes
+        skills = []
+        related_fn = getattr(self.mcp, "related_skills", None)
+        if related_fn and sources:
+            skills = await related_fn(sources[:3])
 
         # Parse numbered list
         actions = []
@@ -364,7 +382,9 @@ Return as numbered list with brief reasoning.\n\n{context}"""
 
         return {
             "reasoning": answer[:500],
-            "actions": actions[:5]
+            "actions": actions[:5],
+            "sources": sources[:5],
+            "skills": skills[:5]
         }
 
     def _calculate_top_3(self, projects, overdue, ai_suggestions) -> List[str]:
@@ -425,7 +445,9 @@ if __name__ == "__main__":
             if skip_context:
                 params["skip_context"] = "true"
             try:
-                async with httpx.AsyncClient(timeout=90.0) as c:
+                # outlast the bridge's OLLAMA_TIMEOUT_S (180s) — cold model load
+                # on CPU Ollama pushed graph-RAG calls past the old 90s budget
+                async with httpx.AsyncClient(timeout=240.0) as c:
                     r = await c.post(
                         f"{self._url}/tools/call_mcp_tool",
                         params=params,
@@ -439,6 +461,23 @@ if __name__ == "__main__":
             except Exception as e:
                 # timeout or LLM error — bridge still up, don't flip connected
                 return {"answer": "", "sources": [], "mode": "error", "error": str(e)}
+
+        async def related_skills(self, note_paths: list) -> list:
+            """Graph skill layer (Phase 5): related_skills for cited vault notes."""
+            skills: list = []
+            try:
+                async with httpx.AsyncClient(timeout=10.0) as c:
+                    for p in note_paths:
+                        stem = os.path.splitext(os.path.basename(p))[0]
+                        r = await c.get(f"{self._url}/graph/related/note:{stem}")
+                        if r.status_code != 200:
+                            continue
+                        for s in r.json().get("related_skills", []):
+                            if s not in skills:
+                                skills.append(s)
+            except Exception:
+                pass  # skills are garnish — never block the briefing
+            return skills
 
     _mcp = RemoteMCPBridge(_MCP_URL)
     _briefing = MorningBriefingAI(
