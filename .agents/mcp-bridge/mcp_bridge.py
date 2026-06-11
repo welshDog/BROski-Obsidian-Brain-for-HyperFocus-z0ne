@@ -348,6 +348,7 @@ class MCPBridge:
 if __name__ == "__main__":
     import uvicorn
     from fastapi import FastAPI, HTTPException
+    from fastapi.responses import FileResponse
 
     _app = FastAPI(title="MCP Bridge Agent", version="1.0.0")
     _bridge = MCPBridge(vault_path=os.environ.get("OBSIDIAN_VAULT_PATH", "/vault"))
@@ -390,6 +391,17 @@ if __name__ == "__main__":
     @_app.get("/graph")
     async def _graph():
         return _load_graph()
+
+    @_app.get("/constellation")
+    async def _constellation():
+        # D3 force-graph of graph.json — served same-origin so the page can
+        # hit /graph and /graph/related without CORS
+        page = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                            "constellation.html")
+        if not os.path.exists(page):
+            raise HTTPException(status_code=404,
+                                detail="constellation.html missing from image")
+        return FileResponse(page, media_type="text/html")
 
     @_app.get("/graph/related/{node_id}")
     async def _graph_related(node_id: str, limit: int = 5):

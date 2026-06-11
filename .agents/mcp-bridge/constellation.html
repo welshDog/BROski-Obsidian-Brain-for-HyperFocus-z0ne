@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BROski Brain — Constellation</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='5' fill='%2322d3ee'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #050505;
+    --surface: rgba(17, 17, 17, 0.82);
+    --border: rgba(255, 255, 255, 0.06);
+    --border-hi: rgba(255, 255, 255, 0.15);
+    --text: #e8e8e8;
+    --muted: #888888;
+    --violet: #a78bfa;
+    --gold: #f59e0b;
+    --cyan: #22d3ee;
+    --dead: #555555;
+    --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(--text);
+    font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif; }
+  .mono { font-family: "JetBrains Mono", "Fira Code", ui-monospace, Consolas, monospace; }
+
+  svg { display: block; width: 100vw; height: 100vh; cursor: grab; opacity: 0;
+    transition: opacity 500ms var(--ease-spring); }
+  svg.ready { opacity: 1; }
+  svg:active { cursor: grabbing; }
+
+  /* ── header ───────────────────────────── */
+  header { position: fixed; top: 24px; left: 24px; z-index: 10; pointer-events: none; }
+  header h1 { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
+  header h1 .brand { font-family: "JetBrains Mono", ui-monospace, monospace;
+    color: var(--cyan); opacity: 0.9; }
+  header .stats { margin-top: 6px; font-size: 12px; color: var(--muted); }
+  header .stats b { color: rgba(34, 211, 238, 0.8); font-weight: 600;
+    font-family: ui-monospace, monospace; }
+  header .live { display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+    background: #10b981; margin-right: 6px; vertical-align: 1px;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); animation: pulse 2s cubic-bezier(0,0,0.2,1) infinite; }
+  @keyframes pulse { 70% { box-shadow: 0 0 0 7px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } }
+
+  /* ── controls ─────────────────────────── */
+  .controls { position: fixed; top: 24px; right: 24px; z-index: 10; display: flex;
+    flex-direction: column; align-items: flex-end; gap: 8px; }
+  .search { width: 220px; padding: 8px 12px; font-size: 13px; color: var(--text);
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    backdrop-filter: blur(12px); outline: none;
+    transition: border-color 150ms var(--ease-spring); }
+  .search::placeholder { color: var(--muted); }
+  .search:focus-visible { border-color: rgba(34, 211, 238, 0.5); }
+  .legend { display: flex; gap: 6px; }
+  .chip { display: flex; align-items: center; gap: 6px; padding: 5px 10px; font-size: 11px;
+    font-family: ui-monospace, monospace; color: var(--text); background: var(--surface);
+    border: 1px solid var(--border); border-radius: 6px; cursor: pointer; user-select: none;
+    backdrop-filter: blur(12px);
+    transition: transform 150ms cubic-bezier(0.34,1.56,0.64,1), opacity 150ms, border-color 150ms; }
+  .chip:hover { border-color: var(--border-hi); }
+  .chip:active { transform: scale(0.96); }
+  .chip.off { opacity: 0.35; }
+  .chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .chip .n { color: var(--muted); }
+
+  /* ── tooltip ──────────────────────────── */
+  .tip { position: fixed; z-index: 20; pointer-events: none; padding: 6px 10px;
+    font-size: 12px; font-family: ui-monospace, monospace; color: var(--text);
+    background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+    backdrop-filter: blur(12px); opacity: 0; transform: translateY(4px);
+    transition: opacity 150ms var(--ease-spring), transform 150ms var(--ease-spring);
+    max-width: 320px; }
+  .tip.show { opacity: 1; transform: translateY(0); }
+  .tip .layer { color: var(--muted); }
+
+  /* ── side panel ───────────────────────── */
+  .panel { position: fixed; top: 0; right: 0; bottom: 0; width: 340px; z-index: 15;
+    background: rgba(10, 10, 10, 0.88); backdrop-filter: blur(16px);
+    border-left: 1px solid var(--border); padding: 24px;
+    transform: translateX(30px); opacity: 0; pointer-events: none;
+    transition: transform 300ms var(--ease-spring), opacity 300ms var(--ease-spring);
+    overflow-y: auto; }
+  .panel.open { transform: translateX(0); opacity: 1; pointer-events: auto; }
+  .panel .close { position: absolute; top: 16px; right: 16px; width: 28px; height: 28px;
+    display: grid; place-items: center; color: var(--muted); background: transparent;
+    border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-size: 14px;
+    transition: transform 150ms cubic-bezier(0.34,1.56,0.64,1), color 150ms, border-color 150ms; }
+  .panel .close:hover { color: var(--text); border-color: var(--border-hi); }
+  .panel .close:active { transform: scale(0.92); }
+  .panel h2 { font-size: 16px; font-family: ui-monospace, monospace; font-weight: 600;
+    word-break: break-all; padding-right: 32px; line-height: 1.4; }
+  .panel .badge { display: inline-block; margin-top: 8px; padding: 3px 8px; font-size: 10px;
+    font-family: ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.08em;
+    border-radius: 4px; border: 1px solid; }
+  .panel .meta { margin-top: 16px; font-size: 12px; color: var(--muted); line-height: 1.8;
+    font-family: ui-monospace, monospace; }
+  .panel .meta b { color: var(--text); font-weight: 500; }
+  .panel h3 { margin-top: 24px; font-size: 11px; font-weight: 600; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.1em; }
+  .panel ul { margin-top: 8px; list-style: none; }
+  .panel li { padding: 7px 10px; margin-bottom: 4px; font-size: 12px;
+    font-family: ui-monospace, monospace; background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border); border-radius: 6px; cursor: pointer;
+    word-break: break-all; transition: transform 150ms var(--ease-spring), border-color 150ms; }
+  .panel li:hover { transform: translateY(-1px); border-color: var(--border-hi); }
+  .panel .empty { margin-top: 8px; font-size: 12px; color: var(--muted); font-style: italic; }
+
+  /* ── hint ─────────────────────────────── */
+  .hint { position: fixed; bottom: 20px; left: 24px; z-index: 10; font-size: 11px;
+    color: var(--muted); pointer-events: none; font-family: ui-monospace, monospace; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1><span class="brand">BROski Brain</span> <span>Constellation</span></h1>
+  <div class="stats"><span class="live"></span><span id="stats">connecting…</span></div>
+</header>
+
+<div class="controls">
+  <input class="search" id="search" type="search" placeholder="find a star…"
+         autocomplete="off" spellcheck="false">
+  <div class="legend" id="legend"></div>
+</div>
+
+<div class="tip" id="tip"></div>
+
+<aside class="panel" id="panel">
+  <button class="close" id="panelClose" aria-label="Close">✕</button>
+  <h2 id="panelTitle"></h2>
+  <span class="badge" id="panelBadge"></span>
+  <div class="meta" id="panelMeta"></div>
+  <h3>Related notes</h3><ul id="relNotes"></ul>
+  <h3>Related code</h3><ul id="relCode"></ul>
+  <h3>Related skills</h3><ul id="relSkills"></ul>
+</aside>
+
+<div class="hint">drag · scroll to zoom · click a star · esc to close</div>
+
+<svg id="sky"></svg>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script>
+(async function () {
+  const COLORS = { note: "#a78bfa", skill: "#f59e0b", code: "#22d3ee", dead: "#555555" };
+  const group = l => l === "note" ? "note" : l === "skill" ? "skill"
+                   : l === "dead" ? "dead" : "code";
+
+  const graph = await (await fetch("/graph")).json();
+  const ids = new Set(graph.nodes.map(n => n.id));
+  const nodes = graph.nodes.map(n => ({ ...n, g: group(n.layer) }));
+  const links = graph.edges
+    .filter(e => ids.has(e.from) && ids.has(e.to) && e.type !== "DISCONNECTED")
+    .map(e => ({ source: e.from, target: e.to, type: e.type }));
+
+  const counts = { note: 0, skill: 0, code: 0, dead: 0 };
+  nodes.forEach(n => counts[n.g]++);
+  document.getElementById("stats").innerHTML =
+    `<b>${nodes.length}</b> nodes · <b>${links.length}</b> edges · graph v${graph.meta?.version ?? "?"} · ${graph.meta?.updated ?? ""}`;
+
+  // adjacency for hover focus
+  const adj = new Map();
+  links.forEach(l => {
+    (adj.get(l.source) ?? adj.set(l.source, new Set()).get(l.source)).add(l.target);
+    (adj.get(l.target) ?? adj.set(l.target, new Set()).get(l.target)).add(l.source);
+  });
+
+  const svg = d3.select("#sky");
+  const W = innerWidth, H = innerHeight;
+  const root = svg.append("g");
+
+  svg.call(d3.zoom().scaleExtent([0.25, 5])
+    .on("zoom", ev => root.attr("transform", ev.transform)));
+
+  const radius = n => Math.max(4, Math.min(18, 4 + (n.centrality || 0) * 1.4));
+
+  const edgeColor = t =>
+    t === "skill-link" ? "rgba(245,158,11,0.10)" :
+    t === "mentions"   ? "rgba(34,211,238,0.10)" :
+    t === "wikilink"   ? "rgba(167,139,250,0.12)" : "rgba(255,255,255,0.07)";
+
+  const link = root.append("g").selectAll("line").data(links).join("line")
+    .attr("stroke", d => edgeColor(d.type)).attr("stroke-width", 1);
+
+  const node = root.append("g").selectAll("circle").data(nodes).join("circle")
+    .attr("r", radius)
+    .attr("fill", d => COLORS[d.g])
+    .attr("fill-opacity", 0.85)
+    .attr("stroke", "rgba(255,255,255,0.15)")
+    .attr("stroke-width", 0.5)
+    .style("cursor", "pointer");
+
+  const label = root.append("g").selectAll("text")
+    .data(nodes.filter(n => (n.centrality || 0) >= 4)).join("text")
+    .text(d => (d.label || d.id).replace(/^skill:/, ""))
+    .attr("font-size", 10).attr("font-family", "ui-monospace, monospace")
+    .attr("fill", "#888").attr("dy", d => -radius(d) - 5).attr("text-anchor", "middle")
+    .style("pointer-events", "none");
+
+  const sim = d3.forceSimulation(nodes)
+    .force("link", d3.forceLink(links).id(d => d.id)
+      .distance(d => d.type === "skill-link" ? 46 : 70).strength(0.25))
+    .force("charge", d3.forceManyBody().strength(-90))
+    .force("center", d3.forceCenter(W / 2, H / 2))
+    .force("x", d3.forceX(W / 2).strength(0.05))
+    .force("y", d3.forceY(H / 2).strength(0.07))
+    .force("collide", d3.forceCollide(d => radius(d) + 3))
+    .on("tick", () => {
+      link.attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+          .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+      node.attr("cx", d => d.x).attr("cy", d => d.y);
+      label.attr("x", d => d.x).attr("y", d => d.y);
+    });
+
+  node.call(d3.drag()
+    .on("start", (ev, d) => { if (!ev.active) sim.alphaTarget(0.2).restart(); d.fx = d.x; d.fy = d.y; })
+    .on("drag", (ev, d) => { d.fx = ev.x; d.fy = ev.y; })
+    .on("end", (ev, d) => { if (!ev.active) sim.alphaTarget(0); d.fx = null; d.fy = null; }));
+
+  // ── hover focus ────────────────────────
+  const tip = document.getElementById("tip");
+  let pinned = null;
+
+  function focus(d) {
+    const keep = new Set([d.id, ...(adj.get(d.id) ?? [])]);
+    node.transition().duration(150)
+      .attr("fill-opacity", n => keep.has(n.id) ? 1 : 0.12);
+    link.transition().duration(150)
+      .attr("stroke-opacity", l => (l.source.id === d.id || l.target.id === d.id) ? 1 : 0.15)
+      .attr("stroke", l => (l.source.id === d.id || l.target.id === d.id)
+        ? "rgba(255,255,255,0.35)" : edgeColor(l.type));
+    label.transition().duration(150).attr("opacity", n => keep.has(n.id) ? 1 : 0.15);
+  }
+  function unfocus() {
+    if (pinned) return;
+    node.transition().duration(150).attr("fill-opacity", 0.85);
+    link.transition().duration(150).attr("stroke-opacity", 1)
+      .attr("stroke", l => edgeColor(l.type));
+    label.transition().duration(150).attr("opacity", 1);
+  }
+
+  node.on("mouseover", (ev, d) => {
+      if (!pinned) focus(d);
+      tip.innerHTML = `${(d.label || d.id)} <span class="layer">· ${d.layer}</span>`;
+      tip.classList.add("show");
+    })
+    .on("mousemove", ev => {
+      tip.style.left = Math.min(ev.clientX + 14, innerWidth - 340) + "px";
+      tip.style.top = (ev.clientY + 14) + "px";
+    })
+    .on("mouseout", () => { tip.classList.remove("show"); unfocus(); })
+    .on("click", (ev, d) => { ev.stopPropagation(); pinned = d; focus(d); openPanel(d); });
+
+  svg.on("click", () => { pinned = null; unfocus(); closePanel(); });
+
+  // ── side panel ─────────────────────────
+  const panel = document.getElementById("panel");
+  const li = (ul, items, color) => {
+    ul.innerHTML = "";
+    if (!items?.length) {
+      ul.insertAdjacentHTML("afterend", "");
+      ul.innerHTML = `<li style="cursor:default;color:var(--muted);border-style:dashed">none in 2 hops</li>`;
+      return;
+    }
+    items.forEach(t => {
+      const el = document.createElement("li");
+      el.textContent = t.replace(/^skill:/, "");
+      el.style.borderLeft = `2px solid ${color}`;
+      el.onclick = () => {
+        const target = nodes.find(n => n.id === t || n.path === t);
+        if (target) { pinned = target; focus(target); openPanel(target); }
+      };
+      ul.appendChild(el);
+    });
+  };
+
+  async function openPanel(d) {
+    document.getElementById("panelTitle").textContent = d.label || d.id;
+    const badge = document.getElementById("panelBadge");
+    badge.textContent = d.layer;
+    badge.style.color = COLORS[d.g]; badge.style.borderColor = COLORS[d.g];
+    document.getElementById("panelMeta").innerHTML = [
+      d.path && `path <b>${d.path}</b>`,
+      d.port && `port <b>${d.port}</b>`,
+      d.status && `status <b>${d.status}</b>`,
+      `centrality <b>${d.centrality ?? 0}</b>`,
+      `links <b>${(adj.get(d.id) ?? new Set()).size}</b>`,
+    ].filter(Boolean).join("<br>");
+    panel.classList.add("open");
+    try {
+      const rel = await (await fetch(`/graph/related/${encodeURIComponent(d.id)}`)).json();
+      li(document.getElementById("relNotes"), rel.related_paths, COLORS.note);
+      li(document.getElementById("relCode"), rel.related_code, COLORS.code);
+      li(document.getElementById("relSkills"), rel.related_skills, COLORS.skill);
+    } catch {
+      ["relNotes", "relCode", "relSkills"].forEach(id =>
+        document.getElementById(id).innerHTML =
+          `<li style="cursor:default;color:var(--muted)">graph lookup failed</li>`);
+    }
+  }
+  function closePanel() { panel.classList.remove("open"); }
+  document.getElementById("panelClose").onclick = () => { pinned = null; unfocus(); closePanel(); };
+  addEventListener("keydown", e => {
+    if (e.key === "Escape") { pinned = null; unfocus(); closePanel(); }
+  });
+
+  // ── legend filters ─────────────────────
+  const legend = document.getElementById("legend");
+  const visible = { note: true, skill: true, code: true, dead: true };
+  [["note", "notes"], ["skill", "skills"], ["code", "code"], ["dead", "dead"]].forEach(([g, name]) => {
+    if (!counts[g]) return;
+    const chip = document.createElement("div");
+    chip.className = "chip";
+    chip.innerHTML = `<span class="dot" style="background:${COLORS[g]}"></span>${name} <span class="n">${counts[g]}</span>`;
+    chip.onclick = () => {
+      visible[g] = !visible[g];
+      chip.classList.toggle("off", !visible[g]);
+      node.attr("display", n => visible[n.g] ? null : "none");
+      label.attr("display", n => visible[n.g] ? null : "none");
+      link.attr("display", l => (visible[l.source.g] && visible[l.target.g]) ? null : "none");
+    };
+    legend.appendChild(chip);
+  });
+
+  // ── search ─────────────────────────────
+  document.getElementById("search").addEventListener("input", e => {
+    const q = e.target.value.trim().toLowerCase();
+    if (!q) { node.attr("fill-opacity", 0.85); label.attr("opacity", 1); return; }
+    node.attr("fill-opacity", n =>
+      (n.id.toLowerCase().includes(q) || (n.label || "").toLowerCase().includes(q) ||
+       (n.path || "").toLowerCase().includes(q)) ? 1 : 0.08);
+  });
+
+  // entrance — let the sim breathe for a moment, then reveal
+  setTimeout(() => svg.node().classList.add("ready"), 150);
+})();
+</script>
+</body>
+</html>
