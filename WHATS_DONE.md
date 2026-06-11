@@ -65,6 +65,14 @@ NOTE: hot-patch RESOLVED -- image rebuilt 2026-06-10 with Phase 3+4 baked in. (D
 | Agent bridge timeout 90s -> 240s | DONE | Cold tinyllama load blew the old 90s budget (bridge's own `OLLAMA_TIMEOUT_S` is 180s) |
 | Bot Brain Citations embed field | LIVE (V2.4 1dfc139) | 7am DM + `/brain-briefing` now show cited notes + skills; bot `/generate` timeout 15s -> 270s (15s guaranteed the fallback embed on the RAG path) |
 
+## Graph Memory Hub Phase 6 — skill routing (ADDED 2026-06-11 -- DONE, do not rebuild)
+
+| Thing | Status | What it is |
+|---|---|---|
+| `GET :3302/route?query=&limit=` | LIVE (Brain 1e35059) | Deterministic skill router (no LLM): bidirectional word-stem match across ALL node layers seeds a 2-hop expansion -> ranked HYPER-SILLs + supporting notes/code. Proof: "docker healthcheck" -> ⏳ HEALTH WAITER; "orchestrate a new agent" -> THE CREW CHARTER / THE CONDUCTOR / THE THRONE LADDER / THE SACRED SIX |
+| crew-orchestrator consumer | LIVE (V2.4 afd9129) | Every `/execute` injects a "[Routed skills]" block into agent prompts (`GRAPH_ROUTE_URL` env, 5s timeout, fail-open); routed ids stored in task details; `GET :8081/route/preview?q=` = auth-gated zero-LLM dry-run |
+| Build-context fix | DONE (V2.4 afd9129) | crew-orchestrator compose context was repo root: 3.85GB context transfer per build + would produce a BROKEN image (root has no main.py, wrong requirements.txt). Now `./agents/crew-orchestrator` |
+
 ## Brain Constellation page (ADDED 2026-06-11 -- DONE, do not rebuild)
 
 | Thing | Status | What it is |
