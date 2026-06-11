@@ -1,7 +1,7 @@
 # WHATS_DONE.md -- BROski Obsidian Brain
 
 > Single source of truth. Check this before building ANYTHING.
-> Last updated: 2026-06-10
+> Last updated: 2026-06-11
 
 ---
 
@@ -35,7 +35,7 @@
 | `GET :3302/graph/related/{id}` | LIVE | Deterministic view of the same expansion (no LLM call) -- e.g. `note:BROskiPets` -> HyperCode-V2.4.md, Hyper-Vibe-Course.md, ... |
 | RAG budget env knobs | DONE | `RAG_MAX_FILES=3`, `RAG_CHARS_PER_FILE=600`, `RAG_NUM_PREDICT=200`, `OLLAMA_TIMEOUT_S=180` -- this box's CPU Ollama times out on fat prompts; tune via compose env |
 | `.agents/mcp-bridge/Dockerfile` layer fix | DONE | requirements.txt copied BEFORE pip install -- code-only rebuilds no longer need PyPI |
-| ⚠️ Container is HOT-PATCHED | ACTION NEEDED | PyPI DNS was down from buildkit 2026-06-10; Phase 3 code deployed via `docker cp` + restart. **Image is stale — run `docker compose --profile brain-agents up -d --build agent-mcp-bridge` when network recovers**, else a recreate reverts the seeder/timeout fixes |
+| Container hot-patch | RESOLVED | Image rebuilt with Phase 3+4 baked in (2026-06-10), rebuilt again 2026-06-11 for the constellation page — no stale-image risk left |
 
 ## Graph Memory Hub Phase 4 (ADDED 2026-06-10 -- DONE, do not rebuild)
 
@@ -46,9 +46,33 @@
 | `/graph/related/{id}` for ANY node | LIVE | Code ids return the notes that document them (e.g. `hyper_brain_core` -> Decision Log, Dashboard, Focus-Command-Center, Brain-Constellation-Live); responses include `related_code` too |
 | RAG inherits it | LIVE | `query_vault` graph expansion now rides the same multi-hop walk |
 
-NOTE: still HOT-PATCHED (see Phase 3 row) -- the rebuild-when-PyPI-works action now picks up Phase 3 + 4 together. Docker engine crashed under build load 2026-06-10 (8GB box); full Docker Desktop restart fixed it.
+NOTE: hot-patch RESOLVED -- image rebuilt 2026-06-10 with Phase 3+4 baked in. (Docker engine crashed under build load 2026-06-10 (8GB box); full Docker Desktop restart fixed it.)
 
-Phase 5 ideas (NOT done): embed-based seeding when a GPU exists; graph-aware skill discovery from HYPER-SILLs; serve graph view in Brain web/ UI.
+## Graph Memory Hub Phase 5 (ADDED 2026-06-11 -- DONE, do not rebuild)
+
+| Thing | Status | What it is |
+|---|---|---|
+| HYPER-SILLs as graph layer 3 | LIVE (Brain 1fa192f) | `graph_builder.py` indexes the skills vault (`BRAIN_SKILLS_PATH` or sibling `../HYPER-SILLs-By-WelshDog`): 89 `skill:HS-###` nodes, GoS frontmatter -> `skill-link` edges, skill->code + note->skill `mentions`. graph.json v4 = 192 nodes / ~400 edges, ZERO phantom skills (alias resolution + FRUGAL ENGINE registered, SILLs 171ca84) |
+| `/graph/related/{id}` returns `related_skills` | LIVE | For ANY node -- proof: `hyper_brain_core` -> HS-017, HS-011, HS-016, HS-124, HS-125 |
+| Skills layer is container-safe | DONE | Unreachable skills path = layer preserved, never wiped |
+
+## Morning Briefing graph citations (ADDED 2026-06-11 -- DONE, do not rebuild)
+
+| Thing | Status | What it is |
+|---|---|---|
+| `skip_context=False` in `_get_ai_prioritization` | LIVE (Brain ef5060d) | AI prioritization runs through graph-aware RAG -- suggestions grounded in real vault notes. Proof: `/generate` cited 3 real notes in 92s |
+| `sources` + `skills` in `ai_suggestions` | LIVE | New `related_skills()` on RemoteMCPBridge pulls skill-layer neighbours of the cited notes; vault briefing note renders "Grounded in" wikilinks + linked skills |
+| Agent bridge timeout 90s -> 240s | DONE | Cold tinyllama load blew the old 90s budget (bridge's own `OLLAMA_TIMEOUT_S` is 180s) |
+| Bot Brain Citations embed field | LIVE (V2.4 1dfc139) | 7am DM + `/brain-briefing` now show cited notes + skills; bot `/generate` timeout 15s -> 270s (15s guaranteed the fallback embed on the RAG path) |
+
+## Brain Constellation page (ADDED 2026-06-11 -- DONE, do not rebuild)
+
+| Thing | Status | What it is |
+|---|---|---|
+| `GET :3302/constellation` | LIVE (Brain edba235) | D3 force-graph of graph.json served same-origin by agent-mcp-bridge (no CORS, no new container). 192 stars: notes violet / skills gold / code cyan, radius by centrality |
+| Interactions | LIVE | Hover = neighbourhood focus, click = side panel fed by `/graph/related/{id}` (related notes/code/skills, click-through), legend chips toggle layers, search, drag/zoom/pan, reduced-motion safe |
+| Proof | Playwright headless | 192 circles rendered, panel opens on hyper_brain_core with 5 related skills, zero console errors |
+| NOT the same as | -- | `constellation_builder.py` (markdown status note) and the `hyperfocus-constellation` GitHub Pages showcase are different things -- all three are wanted |
 
 ## Core Python Brain Tools (ALL EXIST -- do not rebuild)
 
