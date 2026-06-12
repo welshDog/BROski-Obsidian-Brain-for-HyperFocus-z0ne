@@ -199,3 +199,206 @@ body {
     --text-normal: #000000;
   }
 }
+
+
+/* ============================================================
+   🧠⚡ HYPERFOCUS BROski ZONE — Neurodivergent-First Theme
+   Built for ADHD + Dyslexia + Autistic brains
+   Every design choice has a reason. Zero clutter. Max signal.
+   ============================================================ */
+
+body.broski-zone {
+  /* ── Colours ── */
+  --background-primary:          #0d0d1a;   /* deep space — low eye strain */
+  --background-secondary:        #13132b;   /* subtle card separation */
+  --background-modifier-border:  #1e1e40;   /* soft boundary lines */
+
+  --text-normal:    #e8e8ff;               /* soft white — not harsh #fff */
+  --text-accent:    #7b61ff;               /* BROski purple — calm but vivid */
+  --text-muted:     #8888cc;               /* secondary info, not invisible */
+  --text-faint:     #44446a;               /* ghost text */
+
+  --interactive-accent:       #7b61ff;
+  --interactive-accent-hover: #9d88ff;
+
+  /* ── Typography — dyslexia + ADHD optimised ── */
+  font-family: 'OpenDyslexic', 'Atkinson Hyperlegible', 'Verdana', sans-serif;
+  font-size: 17px;          /* slightly bigger = less re-reading */
+  line-height: 1.85;        /* breathing room between lines */
+  letter-spacing: 0.03em;   /* prevents letter crowding */
+  word-spacing: 0.08em;     /* words don't blur together */
+}
+
+/* Readable column width — stops eyes getting lost on wide screens */
+body.broski-zone .markdown-preview-view,
+body.broski-zone .markdown-source-view {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 24px 20px;
+}
+
+/* Left-align only — no justified text (causes rivers for dyslexic readers) */
+body.broski-zone .markdown-preview-view p {
+  text-align: left;
+  hyphens: none;
+}
+
+/* ── Headings — clear visual hierarchy ── */
+body.broski-zone h1 {
+  color: #7b61ff;
+  font-size: 1.8em;
+  border-bottom: 2px solid #7b61ff33;
+  padding-bottom: 6px;
+  margin-bottom: 16px;
+}
+
+body.broski-zone h2 {
+  color: #00d4ff;   /* cyan pop — easy to scan */
+  font-size: 1.4em;
+  margin-top: 28px;
+}
+
+body.broski-zone h3 {
+  color: #ff9f43;   /* warm amber — 3rd level feels warm not alarming */
+  font-size: 1.15em;
+}
+
+/* ── Links — clear, not subtle ── */
+body.broski-zone a {
+  color: #00d4ff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+body.broski-zone a:hover {
+  color: #7b61ff;
+}
+
+/* ── Callout blocks — chunked info = ADHD friendly ── */
+body.broski-zone .callout {
+  border-radius: 10px;
+  border-left: 5px solid var(--text-accent);
+  background: #13132b;
+  padding: 14px 18px;
+  margin: 16px 0;
+}
+
+body.broski-zone .callout[data-callout="tip"] {
+  border-left-color: #00ff88;
+  background: #0a1a12;
+}
+
+body.broski-zone .callout[data-callout="warning"] {
+  border-left-color: #ffaa00;
+  background: #1a140a;
+}
+
+body.broski-zone .callout[data-callout="danger"] {
+  border-left-color: #ff4444;
+  background: #1a0a0a;
+}
+
+/* ── Code blocks — terminal feel ── */
+body.broski-zone code {
+  background: #1e1e40;
+  color: #00ff88;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.92em;
+}
+
+body.broski-zone pre code {
+  display: block;
+  padding: 16px;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+
+/* ── Checkboxes — dopamine hits on completion ── */
+body.broski-zone input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #7b61ff;
+  cursor: pointer;
+}
+
+body.broski-zone input[type="checkbox"]:checked + * {
+  text-decoration: line-through;
+  color: var(--text-muted);
+  opacity: 0.65;
+}
+
+/* ── Tags — pill style, easy to spot ── */
+body.broski-zone .tag {
+  background: #1e1e40;
+  color: #9d88ff;
+  border-radius: 20px;
+  padding: 2px 10px;
+  font-size: 0.82em;
+  font-weight: 600;
+  border: 1px solid #7b61ff44;
+}
+
+/* ── Selection highlight — vivid but not jarring ── */
+body.broski-zone ::selection {
+  background: #7b61ff44;
+  color: #ffffff;
+}
+
+/* ── Scrollbar — subtle, stays out the way ── */
+body.broski-zone ::-webkit-scrollbar {
+  width: 6px;
+}
+
+body.broski-zone ::-webkit-scrollbar-track {
+  background: #0d0d1a;
+}
+
+body.broski-zone ::-webkit-scrollbar-thumb {
+  background: #7b61ff44;
+  border-radius: 3px;
+}
+
+/* ── BROski XP Bar — zone-specific ── */
+body.broski-zone .xp-bar-fill {
+  background: linear-gradient(90deg, #7b61ff, #00d4ff);
+}
+
+/* ── Hyperfocus active state ── */
+body.broski-zone .focus-active {
+  border-left: 4px solid #7b61ff;
+  padding-left: 14px;
+  animation: broski-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes broski-pulse {
+  0%, 100% { border-left-color: #7b61ff; box-shadow: -4px 0 12px #7b61ff33; }
+  50%       { border-left-color: #00d4ff; box-shadow: -4px 0 20px #00d4ff55; }
+}
+
+/* ── Graph view — nodes pop in zone colours ── */
+body.broski-zone .graph-view.color-fill {
+  color: #7b61ff;
+}
+
+/* ── Sidebar — fade back, don't distract ── */
+body.broski-zone .workspace-ribbon,
+body.broski-zone .workspace-tab-header-container {
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+body.broski-zone .workspace-ribbon:hover,
+body.broski-zone .workspace-tab-header-container:hover {
+  opacity: 1;
+}
+
+/* ── Print friendly ── */
+@media print {
+  body.broski-zone {
+    --background-primary: #ffffff;
+    --text-normal: #1a1a1a;
+    --text-accent: #5040cc;
+  }
+}
