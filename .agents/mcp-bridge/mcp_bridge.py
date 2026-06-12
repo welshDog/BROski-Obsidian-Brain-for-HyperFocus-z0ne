@@ -30,6 +30,11 @@ RAG_MAX_FILES      = int(os.environ.get("RAG_MAX_FILES", "3"))
 RAG_CHARS_PER_FILE = int(os.environ.get("RAG_CHARS_PER_FILE", "600"))
 RAG_NUM_PREDICT    = int(os.environ.get("RAG_NUM_PREDICT", "200"))
 OLLAMA_TIMEOUT_S   = int(os.environ.get("OLLAMA_TIMEOUT_S", "180"))
+# Phase 7 — embedding seeds. nomic-embed-text is CPU-fine (~330ms warm on
+# this box); keep_alive keeps the 274MB model from squatting RAM for long.
+EMBED_MODEL        = os.environ.get("EMBED_MODEL", "nomic-embed-text")
+EMBED_KEEP_ALIVE   = os.environ.get("EMBED_KEEP_ALIVE", "5m")
+EMBED_MAX_CHARS    = int(os.environ.get("EMBED_MAX_CHARS", "4000"))
 
 
 class MCPBridge:
@@ -332,7 +337,120 @@ class MCPBridge:
         return {"query": query, "seeds": seed_ids, "skills": skills,
                 "notes": notes, "code": code}
 
+    # ─── Embedding seeds (Memory Hub Phase 7) ────────────────────────────
+
+    def _embed_cache_path(self) -> str:
+        return os.path.join(self.vault_path, "06-AI-Context", "embeddings.json")
+
+    async def _embed(self, text: str) -> Optional[List[float]]:
+        """Embed one text via Ollama. None on any failure (fail-open)."""
+        if not self.session:
+            return None
+        try:
+            async with self.session.post(
+                f"{self.base_url}/api/embed",
+                json={"model": EMBED_MODEL, "input": text[:EMBED_MAX_CHARS],
+                      "keep_alive": EMBED_KEEP_ALIVE},
+                timeout=aiohttp.ClientTimeout(total=60),
+            ) as resp:
+                if resp.status != 200:
+                    return None
+                data = await resp.json()
+                vecs = data.get("embeddings") or []
+                return vecs[0] if vecs else None
+        except Exception:
+            return None
+
+    def _vault_notes(self) -> List[str]:
+        notes = []
+        for root, dirs, files in os.walk(self.vault_path):
+            dirs[:] = [d for d in dirs if d not in [".obsidian", "node_modules", "openhuman-build"]]
+            for fname in files:
+                if fname.endswith(".md"):
+                    notes.append(os.path.relpath(os.path.join(root, fname), self.vault_path))
+        return notes
+
+    async def refresh_embeddings(self) -> Dict[str, Any]:
+        """(Re)embed vault notes whose content changed into embeddings.json.
+        Incremental: unchanged md5 = kept; deleted notes = dropped."""
+        import hashlib
+        path = self._embed_cache_path()
+        cache: Dict[str, Any] = {}
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                cache = json.load(f)
+        except (OSError, json.JSONDecodeError):
+            cache = {}
+
+        embedded = kept = failed = 0
+        fresh: Dict[str, Any] = {}
+        for rel in self._vault_notes():
+            full = os.path.join(self.vault_path, rel)
+            try:
+                with open(full, "r", encoding="utf-8") as f:
+                    content = f.read()
+            except OSError:
+                continue
+            digest = hashlib.md5(content[:EMBED_MAX_CHARS].encode()).hexdigest()
+            entry = cache.get(rel)
+            if entry and entry.get("md5") == digest:
+                fresh[rel] = entry
+                kept += 1
+                continue
+            vec = await self._embed(content)
+            if vec is None:
+                failed += 1
+                if entry:  # keep the stale vector rather than losing the note
+                    fresh[rel] = entry
+                continue
+            fresh[rel] = {"md5": digest, "vec": [round(v, 5) for v in vec]}
+            embedded += 1
+
+        try:
+            with open(path, "w", encoding="utf-8") as f:
+                json.dump(fresh, f, separators=(",", ":"))
+        except OSError as exc:
+            return {"status": "error", "reason": str(exc)}
+        stats = {"status": "ok", "notes": len(fresh), "embedded": embedded,
+                 "kept": kept, "failed": failed}
+        print(f"🧲 Embedding cache: {stats}")
+        return stats
+
+    async def embedding_seeds(self, query: str, k: int = 10) -> List[str]:
+        """Semantic seeds: cosine(query vec, cached note vecs) top-k.
+        Empty list on ANY failure — caller falls back to keyword seeds."""
+        try:
+            with open(self._embed_cache_path(), "r", encoding="utf-8") as f:
+                cache = json.load(f)
+        except (OSError, json.JSONDecodeError):
+            return []
+        if not cache:
+            return []
+        qvec = await self._embed(query)
+        if not qvec:
+            return []
+        import math
+        qnorm = math.sqrt(sum(v * v for v in qvec)) or 1.0
+        scored = []
+        for rel, entry in cache.items():
+            vec = entry.get("vec") or []
+            if len(vec) != len(qvec):
+                continue
+            dot = sum(a * b for a, b in zip(qvec, vec))
+            norm = math.sqrt(sum(v * v for v in vec)) or 1.0
+            scored.append((dot / (qnorm * norm), rel))
+        scored.sort(key=lambda x: -x[0])
+        return [rel for _score, rel in scored[:k]]
+
     async def _find_relevant_files(self, query: str) -> List[str]:
+        """RAG seed search: embedding seeds first (Phase 7, semantic), keyword
+        walk as the always-works fallback."""
+        seeds = await self.embedding_seeds(query)
+        if seeds:
+            return seeds
+        return await self._keyword_relevant_files(query)
+
+    async def _keyword_relevant_files(self, query: str) -> List[str]:
         """Keyword file search across vault — stopword-filtered, filename-boosted
         so real terms (not 'what'/'the') pick the graph-expansion seeds."""
         words = [w.strip("?!.,:;\"'()[]") for w in query.lower().split()]
@@ -423,6 +541,9 @@ if __name__ == "__main__":
     @_app.on_event("startup")
     async def _startup():
         await _bridge.connect()
+        # Phase 7: build/refresh the embedding cache in the background —
+        # cold model load (~23s) + ~80 notes never blocks /health
+        asyncio.get_event_loop().create_task(_bridge.refresh_embeddings())
 
     @_app.on_event("shutdown")
     async def _shutdown():
@@ -463,6 +584,23 @@ if __name__ == "__main__":
     async def _route(query: str, limit: int = 5):
         # Phase 6: graph-aware skill routing for agents — deterministic, no LLM
         return _bridge.route_skills(query, limit=max(1, min(limit, 20)))
+
+    @_app.get("/seeds")
+    async def _seeds(query: str):
+        # Phase 7 debug: compare semantic vs keyword seeding — no LLM call
+        embedding = await _bridge.embedding_seeds(query)
+        keyword = await _bridge._keyword_relevant_files(query)
+        return {
+            "query": query,
+            "used": "embedding" if embedding else "keyword",
+            "embedding": embedding,
+            "keyword": keyword,
+        }
+
+    @_app.post("/embeddings/refresh")
+    async def _embeddings_refresh():
+        # Phase 7: incremental re-embed of changed vault notes
+        return await _bridge.refresh_embeddings()
 
     @_app.get("/constellation")
     async def _constellation():
