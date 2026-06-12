@@ -7,7 +7,7 @@
     "updated": "2026-06-11",
     "tool": "brain-graph-analysis (AST + static import trace)",
     "root": "BROski-Obsidian-Brain-for-HyperFocus-z0ne",
-    "total_nodes": 192,
+    "total_nodes": 195,
     "total_edges": 401,
     "layers": [
       "code",
@@ -15,7 +15,7 @@
       "mentions",
       "skills"
     ],
-    "notes_scanned": 69,
+    "notes_scanned": 72,
     "skills_indexed": 89
   },
   "nodes": [
@@ -470,6 +470,20 @@
       "status": "live"
     },
     {
+      "id": "note:HYPERAGENT_LOOP_2026-06-11T16-25-00Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-11T16-25-00Z.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-11T16-25-49Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-11T16-25-49Z.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
       "id": "note:Health-Dashboard",
       "layer": "note",
       "path": "02-Areas/Health/Health-Dashboard.md",
@@ -564,6 +578,13 @@
       "id": "note:NEXTSESSIONHANDOVER_2026-06-07",
       "layer": "note",
       "path": "00-Inbox/NEXTSESSIONHANDOVER_2026-06-07.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:NEXTSESSIONHANDOVER_2026-06-11",
+      "layer": "note",
+      "path": "00-Inbox/NEXTSESSIONHANDOVER_2026-06-11.md",
       "centrality": 0,
       "status": "live"
     },
