@@ -1,160 +1,404 @@
-/* HYPER BRAIN v3.0 — Neurodivergent CSS Themes
-   Enhanced accessibility + sensory profiles for ADHD + Dyslexia
-   Enable in Obsidian: Settings → Appearance → CSS Snippets */
+/* ==============================
+   THE HYPER BRAIN v3.0 — Theme Modes
+   Enhanced neurodivergent-first CSS
+   ============================== */
 
-/* ============================================
-   THEME 1: HYPERFOCUS MODE 🔴
-   High contrast, minimal distraction
-   ============================================ */
-.theme-hyperfocus {
-  --background-primary: #0a0a0f;
-  --background-secondary: #12121a;
-  --text-normal: #e8e8ff;
+/* 🔥 FOCUS MODE — Dark terminal, high contrast */
+body.focus-mode {
+  --background-primary: #0a0a0a;
+  --background-secondary: #111111;
+  --background-modifier-border: #1a1a1a;
+  --text-normal: #00ff88;
+  --text-accent: #00ccff;
+  --text-muted: #44aa66;
+  --text-faint: #226633;
+  --interactive-accent: #00ff88;
+  --interactive-accent-hover: #00cc66;
+  font-family: 'IA Writer Duo', 'Courier New', monospace;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+body.focus-mode .workspace-tab-header-container,
+body.focus-mode .workspace-ribbon,
+body.focus-mode .status-bar {
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+body.focus-mode .workspace-tab-header-container:hover,
+body.focus-mode .workspace-ribbon:hover,
+body.focus-mode .status-bar:hover {
+  opacity: 1;
+}
+
+body.focus-mode .markdown-preview-view {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* 🌙 CALM MODE — Warm, soft, dyslexia-friendly */
+body.calm-mode {
+  --background-primary: #faf6f0;
+  --background-secondary: #f0ebe3;
+  --background-modifier-border: #e0d8cc;
+  --text-normal: #3d2b1f;
+  --text-accent: #8b4513;
+  --text-muted: #9a7d6b;
+  --text-faint: #b8a89a;
+  --interactive-accent: #8b4513;
+  --interactive-accent-hover: #6b3503;
+  font-family: 'OpenDyslexic', 'Verdana', 'Comic Sans MS', sans-serif;
+  line-height: 1.9;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  word-spacing: 0.05em;
+}
+
+body.calm-mode .markdown-preview-view p,
+body.calm-mode .markdown-source-view .cm-line {
+  text-align: left;
+  hyphens: none;
+}
+
+/* ⚡ HYPERFOCUS BLAST — Ultra focus, violet accent */
+body.hyper-mode {
+  --background-primary: #050510;
+  --background-secondary: #0a0a1a;
+  --background-modifier-border: #151530;
+  --text-normal: #e0e0ff;
+  --text-accent: #aa00ff;
   --text-muted: #8888aa;
-  --interactive-accent: #ff4444;
-  --text-accent: #ff6666;
-  --font-size-normal: 16px;
-  --line-height-normal: 1.8;
+  --text-faint: #444466;
+  --interactive-accent: #aa00ff;
+  --interactive-accent-hover: #8800cc;
+  font-family: 'IA Writer Duo', 'Fira Code', monospace;
+  line-height: 1.6;
+  font-size: 15px;
 }
 
-/* ============================================
-   THEME 2: CALM FOCUS 🟢
-   Low stimulation, soft greens for low-energy days
-   ============================================ */
-.theme-calm {
-  --background-primary: #0d1a0d;
-  --background-secondary: #142014;
-  --text-normal: #d4f0d4;
-  --text-muted: #6a9a6a;
-  --interactive-accent: #44aa44;
-  --text-accent: #66cc66;
-  --font-size-normal: 17px;
-  --line-height-normal: 2.0;
+body.hyper-mode .markdown-preview-view {
+  background: linear-gradient(180deg, #050510 0%, #0a0a1a 100%);
 }
 
-/* ============================================
-   THEME 3: DYSLEXIA FRIENDLY 📖
-   OpenDyslexic-style spacing + warm background
-   ============================================ */
-.theme-dyslexia {
-  --background-primary: #fdf6e3;
-  --background-secondary: #f5edd4;
-  --text-normal: #2c2416;
-  --text-muted: #7a6a52;
-  --interactive-accent: #c8720a;
-  --font-size-normal: 18px;
-  --line-height-normal: 2.2;
-  --font-text: "OpenDyslexic", "Comic Sans MS", sans-serif;
-  letter-spacing: 0.05em;
-  word-spacing: 0.15em;
+body.hyper-mode ::selection {
+  background: #aa00ff;
+  color: #ffffff;
 }
 
-/* ============================================
-   THEME 4: NIGHT OWL 🦉
-   Deep purple, for late night builds
-   ============================================ */
-.theme-night-owl {
-  --background-primary: #1a0a2e;
-  --background-secondary: #240d3d;
-  --text-normal: #e8d5ff;
-  --text-muted: #9966cc;
-  --interactive-accent: #aa44ff;
-  --text-accent: #cc66ff;
-  --font-size-normal: 16px;
-  --line-height-normal: 1.9;
+/* 🧠 THE HYPER BRAIN — Dashboard enhancements */
+.hyper-dashboard .dataview.table-view-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-/* ============================================
-   GLOBAL ENHANCEMENTS — All themes
-   ============================================ */
-
-/* Larger click targets for ADHD mis-clicks */
-.nav-file-title,
-.nav-folder-title {
-  padding: 6px 8px !important;
-  min-height: 32px;
+.hyper-dashboard .dataview.table-view-table th {
+  background: var(--background-secondary);
+  color: var(--text-accent);
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid var(--interactive-accent);
 }
 
-/* Softer scrollbars — less visual noise */
-::-webkit-scrollbar {
+.hyper-dashboard .dataview.table-view-table td {
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.hyper-dashboard .dataview.table-view-table tr:hover {
+  background: var(--background-secondary);
+}
+
+/* Focus session indicators */
+.focus-active {
+  border-left: 4px solid #00ff88;
+  padding-left: 12px;
+  animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+  0%, 100% { border-left-color: #00ff88; }
+  50% { border-left-color: #00cc66; }
+}
+
+.focus-paused {
+  border-left: 4px solid #ffaa00;
+  padding-left: 12px;
+}
+
+/* Task checkboxes — ADHD dopamine hits */
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--interactive-accent);
+}
+
+input[type="checkbox"]:checked + * {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* Streak flame animation */
+.streak-flame {
+  display: inline-block;
+  animation: flame-flicker 1.5s ease-in-out infinite;
+}
+
+@keyframes flame-flicker {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* Time-blindness alert banner */
+.time-alert {
+  background: linear-gradient(90deg, #ff4444, #ff8800);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-align: center;
+  animation: alert-pulse 1s infinite;
+}
+
+@keyframes alert-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* DifficultyDial badges */
+.difficulty-easy { color: #00ff88; font-weight: bold; }
+.difficulty-medium { color: #ffaa00; font-weight: bold; }
+.difficulty-hard { color: #ff4444; font-weight: bold; }
+
+/* XP bar styling */
+.xp-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--background-modifier-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.xp-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ff88, #00ccff);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+/* Smooth transitions for mode switching */
+body {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Print-friendly */
+@media print {
+  body.focus-mode, body.hyper-mode {
+    --background-primary: #ffffff;
+    --text-normal: #000000;
+  }
+}
+
+
+/* ============================================================
+   🧠⚡ HYPERFOCUS BROski ZONE — Neurodivergent-First Theme
+   Built for ADHD + Dyslexia + Autistic brains
+   Every design choice has a reason. Zero clutter. Max signal.
+   ============================================================ */
+
+body.broski-zone {
+  /* ── Colours ── */
+  --background-primary:          #0d0d1a;   /* deep space — low eye strain */
+  --background-secondary:        #13132b;   /* subtle card separation */
+  --background-modifier-border:  #1e1e40;   /* soft boundary lines */
+
+  --text-normal:    #e8e8ff;               /* soft white — not harsh #fff */
+  --text-accent:    #7b61ff;               /* BROski purple — calm but vivid */
+  --text-muted:     #8888cc;               /* secondary info, not invisible */
+  --text-faint:     #44446a;               /* ghost text */
+
+  --interactive-accent:       #7b61ff;
+  --interactive-accent-hover: #9d88ff;
+
+  /* ── Typography — dyslexia + ADHD optimised ── */
+  font-family: 'OpenDyslexic', 'Atkinson Hyperlegible', 'Verdana', sans-serif;
+  font-size: 17px;          /* slightly bigger = less re-reading */
+  line-height: 1.85;        /* breathing room between lines */
+  letter-spacing: 0.03em;   /* prevents letter crowding */
+  word-spacing: 0.08em;     /* words don't blur together */
+}
+
+/* Readable column width — stops eyes getting lost on wide screens */
+body.broski-zone .markdown-preview-view,
+body.broski-zone .markdown-source-view {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 24px 20px;
+}
+
+/* Left-align only — no justified text (causes rivers for dyslexic readers) */
+body.broski-zone .markdown-preview-view p {
+  text-align: left;
+  hyphens: none;
+}
+
+/* ── Headings — clear visual hierarchy ── */
+body.broski-zone h1 {
+  color: #7b61ff;
+  font-size: 1.8em;
+  border-bottom: 2px solid #7b61ff33;
+  padding-bottom: 6px;
+  margin-bottom: 16px;
+}
+
+body.broski-zone h2 {
+  color: #00d4ff;   /* cyan pop — easy to scan */
+  font-size: 1.4em;
+  margin-top: 28px;
+}
+
+body.broski-zone h3 {
+  color: #ff9f43;   /* warm amber — 3rd level feels warm not alarming */
+  font-size: 1.15em;
+}
+
+/* ── Links — clear, not subtle ── */
+body.broski-zone a {
+  color: #00d4ff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+body.broski-zone a:hover {
+  color: #7b61ff;
+}
+
+/* ── Callout blocks — chunked info = ADHD friendly ── */
+body.broski-zone .callout {
+  border-radius: 10px;
+  border-left: 5px solid var(--text-accent);
+  background: #13132b;
+  padding: 14px 18px;
+  margin: 16px 0;
+}
+
+body.broski-zone .callout[data-callout="tip"] {
+  border-left-color: #00ff88;
+  background: #0a1a12;
+}
+
+body.broski-zone .callout[data-callout="warning"] {
+  border-left-color: #ffaa00;
+  background: #1a140a;
+}
+
+body.broski-zone .callout[data-callout="danger"] {
+  border-left-color: #ff4444;
+  background: #1a0a0a;
+}
+
+/* ── Code blocks — terminal feel ── */
+body.broski-zone code {
+  background: #1e1e40;
+  color: #00ff88;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.92em;
+}
+
+body.broski-zone pre code {
+  display: block;
+  padding: 16px;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+
+/* ── Checkboxes — dopamine hits on completion ── */
+body.broski-zone input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #7b61ff;
+  cursor: pointer;
+}
+
+body.broski-zone input[type="checkbox"]:checked + * {
+  text-decoration: line-through;
+  color: var(--text-muted);
+  opacity: 0.65;
+}
+
+/* ── Tags — pill style, easy to spot ── */
+body.broski-zone .tag {
+  background: #1e1e40;
+  color: #9d88ff;
+  border-radius: 20px;
+  padding: 2px 10px;
+  font-size: 0.82em;
+  font-weight: 600;
+  border: 1px solid #7b61ff44;
+}
+
+/* ── Selection highlight — vivid but not jarring ── */
+body.broski-zone ::selection {
+  background: #7b61ff44;
+  color: #ffffff;
+}
+
+/* ── Scrollbar — subtle, stays out the way ── */
+body.broski-zone ::-webkit-scrollbar {
   width: 6px;
 }
-::-webkit-scrollbar-thumb {
+
+body.broski-zone ::-webkit-scrollbar-track {
+  background: #0d0d1a;
+}
+
+body.broski-zone ::-webkit-scrollbar-thumb {
+  background: #7b61ff44;
   border-radius: 3px;
-  background: var(--text-muted);
-  opacity: 0.5;
 }
 
-/* Focus indicator — clear but not jarring */
-.cm-focused .cm-cursor {
-  border-left: 3px solid var(--interactive-accent) !important;
-  animation: blink 1.2s step-end infinite;
+/* ── BROski XP Bar — zone-specific ── */
+body.broski-zone .xp-bar-fill {
+  background: linear-gradient(90deg, #7b61ff, #00d4ff);
 }
 
-/* Checkbox style — satisfying to tick 🎉 */
-input[type="checkbox"]:checked {
-  accent-color: var(--interactive-accent);
-  transform: scale(1.2);
+/* ── Hyperfocus active state ── */
+body.broski-zone .focus-active {
+  border-left: 4px solid #7b61ff;
+  padding-left: 14px;
+  animation: broski-pulse 2.5s ease-in-out infinite;
 }
 
-/* Heading hierarchy — clear visual anchors for ADHD navigation */
-.cm-header-1 { font-size: 1.8em !important; font-weight: 800 !important; }
-.cm-header-2 { font-size: 1.4em !important; font-weight: 700 !important; }
-.cm-header-3 { font-size: 1.2em !important; font-weight: 600 !important; }
-
-/* Tag pills — colourful, scannable */
-.tag {
-  border-radius: 12px !important;
-  padding: 2px 10px !important;
-  font-size: 0.85em !important;
-  font-weight: 600 !important;
+@keyframes broski-pulse {
+  0%, 100% { border-left-color: #7b61ff; box-shadow: -4px 0 12px #7b61ff33; }
+  50%       { border-left-color: #00d4ff; box-shadow: -4px 0 20px #00d4ff55; }
 }
 
-/* Callout blocks — enhanced for ADHD scanning */
-.callout {
-  border-radius: 8px !important;
-  border-left-width: 4px !important;
-  margin: 1.2em 0 !important;
+/* ── Graph view — nodes pop in zone colours ── */
+body.broski-zone .graph-view.color-fill {
+  color: #7b61ff;
 }
 
-/* Table improvements — alternating rows for dyslexia */
-table tr:nth-child(even) {
-  background: rgba(128, 128, 255, 0.05);
-}
-table th {
-  font-weight: 700 !important;
-  border-bottom: 2px solid var(--interactive-accent) !important;
+/* ── Sidebar — fade back, don't distract ── */
+body.broski-zone .workspace-ribbon,
+body.broski-zone .workspace-tab-header-container {
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
 }
 
-/* Code blocks — clearer monospace */
-.cm-inline-code,
-code {
-  font-size: 0.9em !important;
-  border-radius: 4px !important;
-  padding: 1px 5px !important;
+body.broski-zone .workspace-ribbon:hover,
+body.broski-zone .workspace-tab-header-container:hover {
+  opacity: 1;
 }
 
-/* HYPER BRAIN status bar indicator */
-.status-bar .status-bar-item[data-section="hyper-brain"] {
-  color: var(--interactive-accent);
-  font-weight: 700;
-}
-
-/* Animation: pulse for active focus session indicator */
-@keyframes hyperpulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
-.hyper-focus-active {
-  animation: hyperpulse 2s ease-in-out infinite;
-  color: #ff4444;
-  font-weight: 800;
-}
-
-/* Print / export — clean output */
+/* ── Print friendly ── */
 @media print {
-  .sidebar-left, .sidebar-right, .status-bar {
-    display: none !important;
+  body.broski-zone {
+    --background-primary: #ffffff;
+    --text-normal: #1a1a1a;
+    --text-accent: #5040cc;
   }
 }
