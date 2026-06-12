@@ -56,6 +56,16 @@ NOTE: hot-patch RESOLVED -- image rebuilt 2026-06-10 with Phase 3+4 baked in. (D
 | `/graph/related/{id}` returns `related_skills` | LIVE | For ANY node -- proof: `hyper_brain_core` -> HS-017, HS-011, HS-016, HS-124, HS-125 |
 | Skills layer is container-safe | DONE | Unreachable skills path = layer preserved, never wiped |
 
+## Graph Memory Hub Phase 7 — embedding seeds (ADDED 2026-06-12 -- DONE, do not rebuild)
+
+| Thing | Status | What it is |
+|---|---|---|
+| Semantic RAG seeding | LIVE (Brain 8f35f70) | `_find_relevant_files` = embedding seeds first (nomic-embed-text cosine top-k), keyword walk fallback. The "needs GPU" caveat was wrong — embeds are ~330ms warm on CPU |
+| `06-AI-Context/embeddings.json` | LIVE | Incremental md5-keyed cache (~480KB, 5dp vectors); built by a background startup task; `POST :3302/embeddings/refresh` = manual |
+| `GET :3302/seeds?query=` | LIVE | Semantic vs keyword side-by-side, zero LLM. Proof: "what should I focus on first thing tomorrow" → Today Focus + morning-briefing Wishlist + a real Briefing (keyword top-hit was the operating manual) |
+| Env knobs | DONE | `EMBED_MODEL` / `EMBED_KEEP_ALIVE=5m` (don't squat the 8GB box) / `EMBED_MAX_CHARS` |
+| ⚠️ Two Ollamas on this box | GOTCHA | host 127.0.0.1:11434 (Windows app) ≠ container `hypercode-ollama` (port NOT published) — pull models into the CONTAINER |
+
 ## Morning Briefing graph citations (ADDED 2026-06-11 -- DONE, do not rebuild)
 
 | Thing | Status | What it is |
