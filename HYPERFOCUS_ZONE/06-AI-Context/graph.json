@@ -4,7 +4,7 @@
     "canonical_path": "HYPERFOCUS_ZONE/06-AI-Context/graph.json",
     "container_path": "/vault/06-AI-Context/graph.json",
     "generated": "2026-06-09",
-    "updated": "2026-06-11",
+    "updated": "2026-06-12",
     "tool": "brain-graph-analysis (AST + static import trace)",
     "root": "BROski-Obsidian-Brain-for-HyperFocus-z0ne",
     "total_nodes": 195,
