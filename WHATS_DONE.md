@@ -1,7 +1,35 @@
 # WHATS_DONE.md -- BROski Obsidian Brain
 
 > Single source of truth. Check this before building ANYTHING.
-> Last updated: 2026-06-11
+> Last updated: 2026-06-14
+
+---
+
+## Brain Level 18 — AI Distraction Filter (ADDED 2026-06-14 -- DONE, do not rebuild)
+
+| Thing | Status | What it is |
+|---|---|---|
+| `ai_distraction_filter.py` | DONE | DistractionFilter class — scores distractions 0–1, ADHD time-of-day modifiers, cascade boost, 8 source types, pattern persistence to vault |
+| `session_snapshot._get_focus_context()` | WIRED 2026-06-14 | Was a stub. Now accepts `focus_tracker` + `distraction_filter` at init and returns live session state (elapsed, flow_score, idle_seconds) + distraction recommendation |
+| `SessionSnapshot(focus_tracker=, distraction_filter=)` | DONE | hyper_brain_core passes both refs at startup — every snapshot captures live state |
+| `POST :8100/distraction/report` | LIVE | Log a distraction mid-session; returns severity score + intervention recommendation |
+| `GET :8100/distraction/patterns` | LIVE | Weekly/N-day pattern report — source breakdown, hourly heatmap, worst hour, personalised recs |
+| `GET :8100/distraction/status` | LIVE | Live drift monitoring surface — active session id, monitoring flag, current recommendation |
+| Container rebuild | DONE 2026-06-14 | hyper-brain (:8100) + agent-hyper-brain-core (:3301) both rebuilt + healthy |
+
+## Brain Level 19 — DifficultyDial XP Multiplier (ADDED 2026-06-14 -- DONE, do not rebuild)
+
+| Thing | Status | What it is |
+|---|---|---|
+| `difficulty_dial.py` | DONE | DifficultyDial — low/medium/hyper/chaos, XP multipliers 0.5/1.0/1.5/2.0, persisted to `03-Resources/difficulty-dial.json` |
+| `GET :8100/difficulty/get` | LIVE | Current dial setting + label + multiplier |
+| `POST :8100/difficulty/set` | LIVE | Set intensity: low / medium / hyper / chaos |
+| XP multiplier applied in focus_end | WIRED 2026-06-14 | After `analytics.award_for_session()`, multiplier scales coins + XP. Result stored in `result["coins_earned"]`, `result["xp_earned"]`, `result["difficulty_dial"]` |
+| Vault note uses multiplied values | FIXED 2026-06-14 | `focus_tracker.write_session_note()` now reads `result.get("coins_earned")` / `result.get("xp_earned")` — vault note reflects actual multiplied reward |
+| Economy POST | WIRED 2026-06-14 | `HYPERCORE_API_URL/broski/award` called after each session end (fail-open — works without it). Add `HYPERCORE_API_URL=http://core:8000` to .env to wire to V2.4 |
+| `HYPERCORE_API_URL` env | DONE | Added to `docker-compose.hyper-brain.yml` as `${HYPERCORE_API_URL:-}` |
+| `focus_end` event payload | FIXED 2026-06-14 | Event now includes `coins_earned`, `xp_earned`, `dial` — visible in `GET /events` |
+| Proof | E2E smoke test 2026-06-14 | Dial=hyper → 1m session (medium, flow 0.38) → 102 coins / 68 XP (vs ~37/25 unmodified). Event confirmed in /events feed. |
 
 ---
 
