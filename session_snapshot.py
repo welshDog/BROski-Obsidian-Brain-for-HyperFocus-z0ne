@@ -19,9 +19,11 @@ import aiofiles
 class SessionSnapshot:
     """Captures vault state for instant context recovery."""
 
-    def __init__(self, vault_path: str):
+    def __init__(self, vault_path: str, focus_tracker=None, distraction_filter=None):
         self.vault_path = vault_path
         self.snapshots_dir = os.path.join(vault_path, "06-AI-Context", "snapshots")
+        self._focus_tracker = focus_tracker
+        self._distraction_filter = distraction_filter
 
     async def capture(self, session_id: str) -> Dict[str, Any]:
         """Capture current vault state + open files + active thoughts."""
@@ -224,8 +226,13 @@ tags: [snapshot, context-recovery, ai-context]
             return "Git not available"
 
     async def _get_focus_context(self) -> Dict[str, Any]:
-        """Get current focus session context if any."""
-        # In full implementation, query focus_tracker
+        """Get current focus session context from live focus_tracker + distraction_filter."""
+        if self._focus_tracker:
+            status = await self._focus_tracker.get_current_status()
+            ctx: Dict[str, Any] = {"active_session": status.get("active", False), **status}
+            if self._distraction_filter and self._distraction_filter.active_session_id:
+                ctx["distraction"] = await self._distraction_filter.get_recommendation()
+            return ctx
         return {"active_session": False, "message": "No active session at snapshot time"}
 
     def _generate_recovery_prompt(self, recent: List[Dict], active: List[Dict], 

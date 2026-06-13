@@ -231,8 +231,8 @@ mood: {result['mood']}
 flow_score: {result['flow_score']}
 file_events: {result['file_events']}
 status: {result['status']}
-coins_earned: {self._calculate_coins(result)}
-xp_earned: {self._calculate_xp(result)}
+coins_earned: {result['coins_earned'] if result.get('coins_earned') is not None else self._calculate_coins(result)}
+xp_earned: {result['xp_earned'] if result.get('xp_earned') is not None else self._calculate_xp(result)}
 ---
 # 🔥 Focus Session {result['id']} — {result['intent']}
 

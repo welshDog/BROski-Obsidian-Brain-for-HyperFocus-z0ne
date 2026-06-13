@@ -25,6 +25,7 @@ services:
       - MCP_PORT=8820
       - GITHUB_WEBHOOK_SECRET=${GITHUB_WEBHOOK_SECRET}
       - GITHUB_PAT=${GITHUB_PAT}
+      - HYPERCORE_API_URL=${HYPERCORE_API_URL:-}
     volumes:
       # ✅ Corrected vault path for Lyndz's machine
       - ${OBSIDIAN_VAULT_PATH:-H:/HYPERFOCUSZONE/HperCore/BROski-Obsidian-Brain-for-HyperFocus-z0ne/HYPERFOCUS_ZONE}:/vault

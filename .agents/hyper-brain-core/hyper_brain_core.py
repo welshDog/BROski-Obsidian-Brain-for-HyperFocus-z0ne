@@ -17,6 +17,7 @@ from fastapi import FastAPI, BackgroundTasks, HTTPException, Request
 from fastapi.responses import JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
+import aiohttp
 import uvicorn
 
 # Windows consoles default to cp1252, which cannot encode the emoji used in
@@ -50,6 +51,7 @@ WEB_DIR = os.path.join(BASE_DIR, "web")
 VAULT_PATH = os.environ.get("OBSIDIAN_VAULT_PATH", "/vault")
 REDIS_URL = os.environ.get("REDIS_URL", "redis://localhost:6379/4")
 MCP_PORT = int(os.environ.get("MCP_PORT", "8099"))
+HYPERCORE_API_URL = os.environ.get("HYPERCORE_API_URL", "")
 APP_LEVEL = 20
 
 # ─── State ────────────────────────────────────────────
@@ -109,7 +111,7 @@ async def startup():
     hyper_split = HyperSplitEngine(vault_path=VAULT_PATH)
     distraction_filter = DistractionFilter(vault_path=VAULT_PATH)
     mcp_bridge = MCPBridge(mcp_port=MCP_PORT, vault_path=VAULT_PATH)
-    snapshot = SessionSnapshot(vault_path=VAULT_PATH)
+    snapshot = SessionSnapshot(vault_path=VAULT_PATH, focus_tracker=focus_tracker, distraction_filter=distraction_filter)
     briefing_ai = MorningBriefingAI(vault_path=VAULT_PATH, mcp_bridge=mcp_bridge)
     events_feed = EventsFeed(maxlen=200)
     difficulty_dial = DifficultyDial(vault_path=VAULT_PATH)
@@ -223,11 +225,36 @@ async def focus_end(req: FocusSessionEnd):
     # Generate session note in vault
     note_path = await focus_tracker.write_session_note(result, VAULT_PATH)
 
+    # Post multiplied award to BROski economy (fail-open if not configured)
+    if HYPERCORE_API_URL and coins > 0:
+        try:
+            async with aiohttp.ClientSession() as http:
+                await http.post(
+                    f"{HYPERCORE_API_URL}/broski/award",
+                    json={
+                        "source": "brain_focus_session",
+                        "coins": coins,
+                        "xp": xp,
+                        "session_id": req.session_id,
+                        "dial": result.get("difficulty_dial", "medium"),
+                    },
+                    timeout=aiohttp.ClientTimeout(total=5),
+                )
+        except Exception:
+            pass  # local vault log still records the award
+
     if events_feed:
         events_feed.add(
             "focus_end",
             f"Focus ended: {result.get('intent', '')}",
-            {"session_id": req.session_id, "actual_minutes": req.actual_minutes, "mood": req.mood},
+            {
+                "session_id": req.session_id,
+                "actual_minutes": req.actual_minutes,
+                "mood": req.mood,
+                "coins_earned": coins,
+                "xp_earned": xp,
+                "dial": result.get("difficulty_dial", "medium"),
+            },
         )
 
     return {

@@ -1,5 +1,5 @@
 # 🗺️ LIVE MATRIX — Hyperfocus Zone Ecosystem
-> Last updated: 2026-06-13 | Source: Perplexity Hyper Audit Session
+> Last updated: 2026-06-14 | Brain Levels 18+19 wired
 > ⚠️ This is the SINGLE SOURCE OF TRUTH for what is actually live vs test vs experimental.
 
 ---
@@ -14,7 +14,7 @@
 | Mission Control Frontend | HyperCode-V2.4 | 🟢 LIVE | Dashboard loads, broski-bot connected |
 | Catch Stragglers Overlay | HyperCode-V2.4 | 🟢 LIVE (UI) | Overlay in Mission Control is live. DM router not fully smoke-tested |
 | BROski Discord Bot | HyperCode-V2.4 / agents/broski-bot | 🟢 LIVE | discord.py==2.4.0, entrypoint: python -u -m cogs.bot |
-| Hyper Brain — Modules 1–17 | BROski-Obsidian-Brain | 🟢 LIVE | Morning Briefing, Focus Tracker, HyperSplit, MCP Bridge, Session Snapshot, Analytics, GitHub Webhook all running |
+| Hyper Brain — Modules 1–20 | BROski-Obsidian-Brain | 🟢 LIVE | Morning Briefing, Focus Tracker, HyperSplit, MCP Bridge, Session Snapshot, Analytics, GitHub Webhook, AI Distraction Filter (L18), DifficultyDial XP (L19), Constellation (L20) all running |
 | HYPER-SILLs Skills Vault (72 skills) | HYPER-SILLs-By-WelshDog | 🟢 LIVE | Source of truth for all AI skill loading |
 | Obsidian PARA Vault | BROski-Obsidian-Brain | 🟢 LIVE | Vault + GitHub bridge working |
 | Prometheus + Grafana Observability | HyperCode-V2.4 | 🟢 LIVE (local) | Local URLs confirmed working. No cloud alerting yet |
@@ -27,9 +27,9 @@
 |---|---|---|---|
 | Catch Stragglers — DM Router | HyperCode-V2.4 | 🟡 IN PROGRESS | `DISCORDBOTTOKEN` needs wiring to Vercel env. mcevents migration pending |
 | Stripe LIVE Mode | Hyper-Vibe-Course | 🟡 PENDING | Only TEST mode verified. LIVE key swap needs explicit test run before enabling |
-| Hyper Brain Level 18 — AI Distraction Filter | BROski-Obsidian-Brain | 🟡 IN PROGRESS | `ai_distraction_filter.py` exists (8.5KB). Not wired to session_snapshot.py events yet |
-| Hyper Brain Level 19 — DifficultyDial + XP | BROski-Obsidian-Brain | 🟡 IN PROGRESS | `difficulty_dial.py` exists (2.6KB). XP multiplier not wired to BROski economy yet |
-| Hyper Brain Level 20 — Brain Constellation | BROski-Obsidian-Brain | 🟡 IN PROGRESS | `constellation_builder.py` + `graph_builder.py` exist. No live endpoint / UI yet |
+| Hyper Brain Level 18 — AI Distraction Filter | BROski-Obsidian-Brain | 🟢 LIVE | Wired to session_snapshot.py — snapshots now include live focus + distraction state (2026-06-14) |
+| Hyper Brain Level 19 — DifficultyDial + XP | BROski-Obsidian-Brain | 🟢 LIVE | XP multiplier applied on session end, POSTed to HYPERCORE_API_URL/broski/award (fail-open), vault note uses multiplied values (2026-06-14) |
+| Hyper Brain Level 20 — Brain Constellation | BROski-Obsidian-Brain | 🟢 LIVE | `GET :3302/constellation` D3 force-graph LIVE since 2026-06-11 (LIVE-MATRIX was stale) |
 | HyperAgent-SDK npm package | HyperAgent-SDK | 🟡 LIVE (alpha) | `@w3lshdog/hyper-agent` published. No versioned API contracts or load tests yet |
 | CI/CD Pipelines | All repos | 🟡 PARTIAL | Vercel handles Course. VS Code tasks exist. No GitHub Actions across all repos |
 | Supabase Schema Boundary (Course vs MC) | Hyper-Vibe-Course + HyperCode-V2.4 | 🟡 RISK | Single Supabase project. No automated schema diff checks yet |
