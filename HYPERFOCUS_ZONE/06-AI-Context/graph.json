@@ -4,10 +4,10 @@
     "canonical_path": "HYPERFOCUS_ZONE/06-AI-Context/graph.json",
     "container_path": "/vault/06-AI-Context/graph.json",
     "generated": "2026-06-09",
-    "updated": "2026-06-13",
+    "updated": "2026-06-14",
     "tool": "brain-graph-analysis (AST + static import trace)",
     "root": "BROski-Obsidian-Brain-for-HyperFocus-z0ne",
-    "total_nodes": 198,
+    "total_nodes": 200,
     "total_edges": 401,
     "layers": [
       "code",
@@ -15,7 +15,7 @@
       "mentions",
       "skills"
     ],
-    "notes_scanned": 75,
+    "notes_scanned": 77,
     "skills_indexed": 89
   },
   "nodes": [
@@ -547,6 +547,13 @@
       "status": "live"
     },
     {
+      "id": "note:InProgress_1ede55cf_2026-06-13",
+      "layer": "note",
+      "path": "05-Focus-Sessions/InProgress_1ede55cf_2026-06-13.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
       "id": "note:InProgress_7f4f5389_2026-05-07",
       "layer": "note",
       "path": "05-Focus-Sessions/InProgress_7f4f5389_2026-05-07.md",
@@ -648,6 +655,13 @@
       "id": "note:SYSTEM_STATUS",
       "layer": "note",
       "path": "Hub/Truth-Pack/SYSTEM_STATUS.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:Session_1ede55cf_2026-06-13",
+      "layer": "note",
+      "path": "05-Focus-Sessions/Session_1ede55cf_2026-06-13.md",
       "centrality": 0,
       "status": "live"
     },
