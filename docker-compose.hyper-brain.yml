@@ -46,6 +46,68 @@ services:
       - "com.hyperfocuszone.tier=brain"
       - "com.hyperfocuszone.version=3.0.0"
 
+  agent-mcp-bridge:
+    build:
+      context: .agents/mcp-bridge
+      dockerfile: Dockerfile
+    container_name: agent-mcp-bridge
+    ports:
+      - "3302:3302"
+    environment:
+      - OBSIDIAN_VAULT_PATH=/vault
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-mistral}
+      - EMBED_MODEL=${EMBED_MODEL:-nomic-embed-text}
+      - PORT=3302
+    volumes:
+      - ${OBSIDIAN_VAULT_PATH:-H:/HYPERFOCUSZONE/HperCore/BROski-Obsidian-Brain-for-HyperFocus-z0ne/HYPERFOCUS_ZONE}:/vault
+    networks:
+      - app-net
+      - agents-net
+    restart: unless-stopped
+    depends_on:
+      - hyper-brain
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3302/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    labels:
+      - "com.hyperfocuszone.service=agent-mcp-bridge"
+      - "com.hyperfocuszone.tier=brain"
+
+  agent-morning-briefing:
+    build:
+      context: .agents/morning-briefing
+      dockerfile: Dockerfile
+    container_name: agent-morning-briefing
+    ports:
+      - "3304:3304"
+    environment:
+      - OBSIDIAN_VAULT_PATH=/vault
+      - MCP_BRIDGE_URL=http://agent-mcp-bridge:3302
+      - PORT=3304
+    volumes:
+      - ${OBSIDIAN_VAULT_PATH:-H:/HYPERFOCUSZONE/HperCore/BROski-Obsidian-Brain-for-HyperFocus-z0ne/HYPERFOCUS_ZONE}:/vault
+    networks:
+      - app-net
+      - agents-net
+    restart: unless-stopped
+    depends_on:
+      - agent-mcp-bridge
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3304/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    labels:
+      - "com.hyperfocuszone.service=agent-morning-briefing"
+      - "com.hyperfocuszone.tier=brain"
+
 # ⚠️  When running standalone (not with HyperCode stack),
 #      create networks first:
 #      docker network create app-net
