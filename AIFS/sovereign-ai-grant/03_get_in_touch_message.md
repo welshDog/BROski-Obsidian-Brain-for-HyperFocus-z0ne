@@ -56,13 +56,13 @@ Thank you for your time.
 Lyndz Williams (WelshDog)  
 Llanelli, South Wales  
 GitHub: github.com/welshDog  
-[your email]
+Email: LyndzWills@Gmail.com
 
 ---
 
 ## Notes Before Sending
 
-- [ ] Add your actual email address above
+- [x] ~~Add your actual email address above~~ ✅ Done
 - [ ] Check the current AIRR / Sovereign AI portal URL before submitting
 - [ ] Consider attaching the executive summary PDF as supporting doc
 - [ ] If there's a word/character limit on the form, use the SHORT VERSION below
@@ -85,7 +85,7 @@ With sovereign compute I'd deliver three open UK AI assets within 12 months:
 Neurodiverse people are ~20% of the UK population. I'm building the AI infrastructure they deserve — from Wales. I'd welcome a conversation about AIRR access or the right pathway for an independent founder.
 
 Thank you,  
-Lyndz Williams | Llanelli, Wales | github.com/welshDog | [your email]
+Lyndz Williams | Llanelli, Wales | github.com/welshDog | LyndzWills@Gmail.com
 
 ---
 *File: AIFS/sovereign-ai-grant/03_get_in_touch_message.md*

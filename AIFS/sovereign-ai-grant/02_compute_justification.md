@@ -113,4 +113,4 @@ With it: within 12 months, the project delivers three novel UK AI assets — a f
 **Timeline: 12-month R&D programme**
 
 ---
-*Submitted by: Lyndz Williams (WelshDog), Llanelli, Wales | GitHub: github.com/welshDog | Date: 15 June 2026*
+*Submitted by: Lyndz Williams (WelshDog), Llanelli, Wales | Email: LyndzWills@Gmail.com | GitHub: github.com/welshDog | Date: 15 June 2026*

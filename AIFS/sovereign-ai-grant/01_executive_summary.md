@@ -51,4 +51,4 @@ Lyndz Williams. Solo founder. ADHD + Dyslexia + Autistic. Hyperfocus as superpow
 Return to UK: fine-tuned model, open dataset, benchmark suite, published technical report — all delivered from Wales.
 
 ---
-*GitHub: github.com/welshDog | Location: Llanelli, Wales | Date: 15 June 2026*
+*GitHub: github.com/welshDog | Email: LyndzWills@Gmail.com | Location: Llanelli, Wales | Date: 15 June 2026*
