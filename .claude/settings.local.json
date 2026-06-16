@@ -1,0 +1,73 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Bash(docker compose*)",
+            "command": "python3 \"H:/HYPERFOCUSZONE/HperCore/BROski-Obsidian-Brain-for-HyperFocus-z0ne/scripts/hfz_env_guard.py\"; exit 0",
+            "shell": "powershell",
+            "timeout": 15,
+            "statusMessage": "Checking Brain env vars..."
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$j = $input | ConvertFrom-Json; $f = $j.tool_input.file_path; if ($f -match 'docker-compose.*\\.yml') { python3 \"H:/HYPERFOCUSZONE/HperCore/BROski-Obsidian-Brain-for-HyperFocus-z0ne/scripts/hfz_compose_validator.py\" $f }",
+            "shell": "powershell",
+            "timeout": 30,
+            "statusMessage": "Validating Brain compose file..."
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"H:/HYPERFOCUSZONE/HperCore/BROski-Obsidian-Brain-for-HyperFocus-z0ne/scripts/hfz_session_start.py\"",
+            "shell": "powershell",
+            "timeout": 30,
+            "statusMessage": "HyperFocus Z0ne Brain session start..."
+          },
+          {
+            "type": "command",
+            "command": "python3 \"H:/HYPERFOCUSZONE/HperCore/BROski-Obsidian-Brain-for-HyperFocus-z0ne/scripts/hfz_broski_xp_reward.py\" --reason session_start",
+            "shell": "powershell",
+            "timeout": 30,
+            "statusMessage": "Awarding BROski$ XP..."
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"H:/HYPERFOCUSZONE/HperCore/BROski-Obsidian-Brain-for-HyperFocus-z0ne/scripts/hfz_session_end.py\"",
+            "shell": "powershell",
+            "timeout": 30,
+            "statusMessage": "HyperFocus Z0ne Brain session end..."
+          },
+          {
+            "type": "command",
+            "command": "python3 \"H:/HYPERFOCUSZONE/HperCore/BROski-Obsidian-Brain-for-HyperFocus-z0ne/scripts/hfz_broski_xp_reward.py\"",
+            "shell": "powershell",
+            "timeout": 30,
+            "statusMessage": "Awarding BROski$ XP..."
+          }
+        ]
+      }
+    ]
+  }
+}
