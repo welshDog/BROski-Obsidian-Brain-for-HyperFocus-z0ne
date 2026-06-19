@@ -10,9 +10,10 @@ module is the dynamic counterpart that refreshes from real engine state.
 BROski♾️
 """
 
+import json
 import os
 from datetime import datetime, timezone
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 import aiofiles
 
@@ -37,6 +38,22 @@ ECOSYSTEM_REPOS = [
     "BROskiPets-LLM-dNFT", "BROski-Obsidian-Brain",
     "WelshDog-Mission-Control",
 ]
+
+# Real ecosystem wiring (source repo → target repo, relationship).
+REPO_EDGES = [
+    ("Hyper-Vibe-Coding-Course", "HyperCode-V2.4", "manifest (hyper-agent-spec)"),
+    ("Hyper-Vibe-Coding-Course", "BROskiPets-LLM-dNFT", "/pets funnel"),
+    ("HyperCode-V2.4", "HyperAgent-SDK", "npm agent framework"),
+    ("HyperCode-V2.4", "BROski-Obsidian-Brain", "brain agents (compose)"),
+    ("HyperCode-V2.4", "WelshDog-Mission-Control", "course-ops dashboard"),
+    ("HyperCode-V2.4", "BROskiPets-LLM-dNFT", "pets bridge :8098"),
+]
+
+# Obsidian Canvas colour presets (1=red 2=orange 3=yellow 4=green 5=cyan 6=purple).
+# Orange (2) is banned by the HFZ brand rule — never use it.
+_CANVAS_COLOR = {
+    "zone": "6", "engine": "4", "module": "5", "repo": "5", "economy": "3", "vault": "6",
+}
 
 
 def _utcnow_iso() -> str:
@@ -91,6 +108,112 @@ class ConstellationBuilder:
             "vault": VAULT_FOLDERS,
             "ecosystem_repos": ECOSYSTEM_REPOS,
         }
+
+    def build_graph(self, map_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Convert a live snapshot into a node/edge graph for the constellation.
+
+        Nodes = the zone root + engine + engine modules + ecosystem repos +
+        a vault node + an economy node. Edges = real connections.
+        """
+        nodes: List[Dict[str, Any]] = []
+        edges: List[Dict[str, Any]] = []
+
+        sys_ = map_data.get("system", {})
+        econ = map_data.get("economy", {})
+        focus = map_data.get("focus", {})
+
+        def node(nid: str, label: str, ntype: str, **meta) -> None:
+            nodes.append({"id": nid, "label": label, "type": ntype, "meta": meta})
+
+        def edge(src: str, dst: str, rel: str) -> None:
+            edges.append({"source": src, "target": dst, "type": rel})
+
+        # Root
+        node("zone", "🌌 HyperFocus Zone", "zone",
+             level=sys_.get("level"), completion_pct=sys_.get("completion_pct"),
+             status=sys_.get("status"))
+
+        # Engine + modules
+        node("engine", "🧠 Hyper Brain :8100", "engine",
+             services_online=sys_.get("services_online"),
+             focus_active=bool(focus.get("active")), intent=focus.get("intent"))
+        edge("zone", "engine", "runs")
+        for m in map_data.get("engine", {}).get("modules", []):
+            node(f"module:{m}", m, "module")
+            edge("engine", f"module:{m}", "module")
+
+        # Economy
+        node("economy", "🪙 BROski$ Economy", "economy",
+             xp_7d=econ.get("xp_7d"), coins_7d=econ.get("broski_coins_7d"),
+             current_streak=econ.get("current_streak"))
+        edge("engine", "economy", "awards")
+
+        # Vault
+        node("vault", "🗂️ PARA Vault", "vault", folders=map_data.get("vault", []))
+        edge("engine", "vault", "reads/writes")
+
+        # Ecosystem repos + cross-repo wiring
+        repo_ids = set()
+        for r in map_data.get("ecosystem_repos", []):
+            rid = f"repo:{r}"
+            repo_ids.add(rid)
+            node(rid, r, "repo")
+            edge("zone", rid, "repo")
+        # Only wire a cross-repo edge when BOTH endpoints are present (no dangling edges).
+        for src, dst, rel in REPO_EDGES:
+            sid, did = f"repo:{src}", f"repo:{dst}"
+            if sid in repo_ids and did in repo_ids:
+                edges.append({"source": sid, "target": did, "type": rel})
+
+        return {
+            "generated_at": map_data.get("generated_at", _utcnow_iso()),
+            "nodes": nodes,
+            "edges": edges,
+            "counts": {"nodes": len(nodes), "edges": len(edges)},
+        }
+
+    async def write_canvas(self, graph: Dict[str, Any]) -> str:
+        """Auto-generate an Obsidian Canvas (`Hub/Brain-Constellation.canvas`) from the graph."""
+        hub = os.path.join(self.vault_path, "Hub")
+        os.makedirs(hub, exist_ok=True)
+        path = os.path.join(hub, "Brain-Constellation.canvas")
+
+        # Lay nodes out in columns by type so the canvas is readable.
+        columns = {"repo": -1100, "zone": -300, "economy": 250, "engine": 250, "vault": 250, "module": 800}
+        col_counts: Dict[str, int] = {}
+        W, H, GAP = 240, 60, 40
+
+        canvas_nodes: List[Dict[str, Any]] = []
+        for n in graph["nodes"]:
+            ntype = n["type"]
+            x = columns.get(ntype, 800)
+            idx = col_counts.get(ntype, 0)
+            col_counts[ntype] = idx + 1
+            y = idx * (H + GAP) - 200
+            # stagger economy/engine/vault which share a column band
+            if ntype in ("economy", "engine", "vault"):
+                y = {"economy": -260, "engine": 0, "vault": 260}[ntype]
+            canvas_nodes.append({
+                "id": n["id"],
+                "type": "text",
+                "text": f"**{n['label']}**",
+                "x": x, "y": y, "width": W, "height": H,
+                "color": _CANVAS_COLOR.get(ntype, "5"),
+            })
+
+        canvas_edges: List[Dict[str, Any]] = []
+        for i, e in enumerate(graph["edges"]):
+            canvas_edges.append({
+                "id": f"e{i}",
+                "fromNode": e["source"],
+                "toNode": e["target"],
+                "label": e.get("type", ""),
+            })
+
+        canvas = {"nodes": canvas_nodes, "edges": canvas_edges}
+        async with aiofiles.open(path, "w", encoding="utf-8") as f:
+            await f.write(json.dumps(canvas, indent=2))
+        return path
 
     async def write_to_vault(self, map_data: Dict[str, Any]) -> str:
         """Render the snapshot to `Hub/Brain-Constellation-Live.md`."""

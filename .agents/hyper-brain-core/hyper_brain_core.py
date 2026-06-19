@@ -407,20 +407,44 @@ async def difficulty_set(req: DifficultySet):
         events_feed.add("difficulty", f"Dial set to {result['intensity']}", {})
     return result
 
-# ─── Constellation (Level 20 Phase 2) ─────────────────
-@app.get("/constellation/map")
-async def constellation_map():
-    """Live ecosystem map — JSON + auto-written to Hub/Brain-Constellation-Live.md."""
-    if not constellation:
-        raise HTTPException(503, "constellation not available")
+# ─── Constellation (Level 20) ─────────────────────────
+async def _build_constellation() -> Dict[str, Any]:
+    """Assemble the live snapshot → graph (nodes/edges) → note + Obsidian canvas."""
     h = await health()
     g = await compute_gamification_summary(VAULT_PATH, level=APP_LEVEL)
     fs = await focus_tracker.get_current_status() if focus_tracker else {"active": False}
     data = await constellation.build(h, g, fs)
-    vault_path = await constellation.write_to_vault(data)
+    graph = constellation.build_graph(data)
+    note_path = await constellation.write_to_vault(data)
+    canvas_path = await constellation.write_canvas(graph)
     if events_feed:
-        events_feed.add("constellation", "Live map regenerated", {"vault_path": vault_path})
-    return {"map": data, "vault_path": vault_path}
+        events_feed.add(
+            "constellation", "Live map regenerated",
+            {"note": note_path, "canvas": canvas_path, **graph["counts"]},
+        )
+    return {"map": data, "graph": graph, "note_path": note_path, "canvas_path": canvas_path}
+
+@app.get("/constellation/map")
+async def constellation_map():
+    """Level 20 — live ecosystem map as graph JSON (nodes = repos/services/modules,
+    edges = connections) + auto-written Hub note + auto-generated Obsidian canvas."""
+    if not constellation:
+        raise HTTPException(503, "constellation not available")
+    return await _build_constellation()
+
+@app.post("/constellation/refresh")
+async def constellation_refresh():
+    """Rebuild the constellation map + canvas. Trigger target for the GitHub
+    webhook / graph-refresh Action (no new container — pings this engine on :8100)."""
+    if not constellation:
+        raise HTTPException(503, "constellation not available")
+    result = await _build_constellation()
+    return {
+        "refreshed": True,
+        "counts": result["graph"]["counts"],
+        "canvas_path": result["canvas_path"],
+        "note_path": result["note_path"],
+    }
 
 # ─── Analytics ────────────────────────────────────────
 @app.get("/analytics/weekly")
