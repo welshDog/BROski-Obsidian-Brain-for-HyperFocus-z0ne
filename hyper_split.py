@@ -109,6 +109,24 @@ class HyperSplitEngine:
 
         return tree
 
+    @staticmethod
+    def difficulty_score(tree: Dict[str, Any]) -> float:
+        """Score a decomposed task's chunk difficulty 0.0–1.0 (Level 17 → 19 bridge).
+
+        Combines micro-task count, tree depth, and estimated total minutes —
+        more/deeper/longer chunks = harder work = more XP downstream (consumed by
+        difficulty_dial.dynamic_multiplier).
+        """
+        count = int(tree.get("count", 0) or 0)
+        depth = int(tree.get("depth", 0) or 0)
+        minutes = int(tree.get("estimated_total_minutes", 0) or 0)
+        # Normalise each component to ~0–1 against sensible ceilings, then blend.
+        count_n = min(1.0, count / 24.0)      # 24+ micro-tasks = max
+        depth_n = min(1.0, depth / 3.0)       # 3 = max_depth
+        minutes_n = min(1.0, minutes / 180.0)  # 3h+ = max
+        score = 0.4 * count_n + 0.3 * depth_n + 0.3 * minutes_n
+        return round(max(0.0, min(1.0, score)), 3)
+
     async def write_to_vault(self, tree: Dict[str, Any], vault_path: str) -> str:
         """Write decomposed task tree as markdown with checkboxes."""
         tasks_dir = os.path.join(vault_path, "01-Projects", "HyperSplit-Tasks")

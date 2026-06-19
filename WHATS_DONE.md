@@ -8,6 +8,10 @@
 - Obsidian sync integration with HyperCode-V2.4 documented
 - .env files never committed to git
 - Sacred import rules enforced across all linked repos
+- **P2-3 Brain Levels 18 + 19 WIRED (2026-06-20)** — engine :8100.
+  - L18 AI Distraction Filter: `distraction_monitor.py` connects SessionSnapshot → DistractionFilter → BROski nudge (Discord webhook `DISCORD_WEBHOOK_AIFS`). 3 signals: note activity (rapid switching), idle >15min, topic drift. Wired into `hyper_brain_core.py`: background loop (`DISTRACTION_MONITOR_INTERVAL_S`, only while session live) + `POST /distraction/check`. `_active_intent` captured at `/focus/start` for drift.
+  - L19 DifficultyDial dynamic XP: `difficulty_dial.dynamic_multiplier` = intensity × session-quality × HyperSplit chunk-difficulty (`hyper_split.difficulty_score`, Level 17 bridge). `/focus/end` now applies the variable multiplier (replaces the flat one) before the economy POST. `/hypersplit` returns + stores `chunk_difficulty`.
+  - 13 unit tests (`tests/test_brain_levels_18_19.py`). No new containers.
 
 ## Sacred Rules (NEVER break)
 

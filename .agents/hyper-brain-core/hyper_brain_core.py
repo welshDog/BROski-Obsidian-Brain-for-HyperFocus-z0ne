@@ -40,7 +40,8 @@ from session_snapshot import SessionSnapshot
 from morning_briefing_ai import MorningBriefingAI
 from events_feed import EventsFeed
 from gamification_summary import compute_gamification_summary
-from difficulty_dial import DifficultyDial
+from difficulty_dial import DifficultyDial, dynamic_multiplier, session_quality_score
+from distraction_monitor import DistractionMonitor
 from constellation_builder import ConstellationBuilder
 
 app = FastAPI(title="THE HYPER BRAIN", version="3.0.0")
@@ -64,7 +65,12 @@ snapshot: Optional[SessionSnapshot] = None
 briefing_ai: Optional[MorningBriefingAI] = None
 events_feed: Optional[EventsFeed] = None
 difficulty_dial: Optional[DifficultyDial] = None
+distraction_monitor: Optional[DistractionMonitor] = None
 constellation: Optional[ConstellationBuilder] = None
+
+# Level 18/19 cross-wiring state.
+_active_intent: Optional[str] = None          # intent of the live focus session (drift detection)
+_recent_chunk_difficulty: float = 0.5         # last HyperSplit difficulty (Level 17 → 19)
 
 # ─── Pydantic Models ──────────────────────────────────
 class FocusSessionStart(BaseModel):
@@ -105,7 +111,7 @@ app.mount("/ui/assets", StaticFiles(directory=WEB_DIR), name="ui-assets")
 # ─── Lifespan ─────────────────────────────────────────
 @app.on_event("startup")
 async def startup():
-    global focus_tracker, analytics, hyper_split, distraction_filter, mcp_bridge, snapshot, briefing_ai, events_feed, difficulty_dial, constellation
+    global focus_tracker, analytics, hyper_split, distraction_filter, mcp_bridge, snapshot, briefing_ai, events_feed, difficulty_dial, distraction_monitor, constellation
     focus_tracker = FocusTracker(vault_path=VAULT_PATH, redis_url=REDIS_URL)
     analytics = AnalyticsEngine(vault_path=VAULT_PATH)
     hyper_split = HyperSplitEngine(vault_path=VAULT_PATH)
@@ -115,12 +121,40 @@ async def startup():
     briefing_ai = MorningBriefingAI(vault_path=VAULT_PATH, mcp_bridge=mcp_bridge)
     events_feed = EventsFeed(maxlen=200)
     difficulty_dial = DifficultyDial(vault_path=VAULT_PATH)
+    distraction_monitor = DistractionMonitor(
+        vault_path=VAULT_PATH,
+        distraction_filter=distraction_filter,
+        snapshot=snapshot,
+        difficulty_dial=difficulty_dial,
+    )
     constellation = ConstellationBuilder(vault_path=VAULT_PATH)
     events_feed.add("system", "hyper_brain_startup", {"version": "3.0.0"})
 
     await focus_tracker.start()
     await mcp_bridge.connect()
+    # Level 18 — background distraction monitor (only acts while a session is live).
+    asyncio.create_task(_distraction_monitor_loop())
     print("🧠 THE HYPER BRAIN v3.0 online — Level 20")
+
+
+async def _distraction_monitor_loop():
+    """Level 18 — periodically check the live session for the 3 distraction signals."""
+    interval = int(os.environ.get("DISTRACTION_MONITOR_INTERVAL_S", "300"))
+    while True:
+        try:
+            await asyncio.sleep(interval)
+            if distraction_monitor and distraction_filter and distraction_filter.active_session_id:
+                outcome = await distraction_monitor.check(_active_intent)
+                if events_feed and (outcome.get("fired") or outcome.get("nudged")):
+                    events_feed.add(
+                        "distraction",
+                        "Level 18 check: " + ("nudged" if outcome.get("nudged") else "signals fired"),
+                        {"fired": outcome.get("fired", []), "nudged": outcome.get("nudged", False)},
+                    )
+        except asyncio.CancelledError:
+            break
+        except Exception:
+            pass  # never let the monitor loop crash the engine
 
 @app.on_event("shutdown")
 async def shutdown():
@@ -183,6 +217,8 @@ async def focus_start(req: FocusSessionStart):
         tags=req.tags,
         difficulty_preference=req.difficulty_preference
     )
+    global _active_intent
+    _active_intent = req.intent  # Level 18 — used for topic-drift detection
     if distraction_filter:
         await distraction_filter.enable_for_session(session["id"])
     if snapshot:
@@ -200,7 +236,11 @@ async def focus_end(req: FocusSessionEnd):
     if isinstance(result, dict) and result.get("error"):
         raise HTTPException(404, result["error"])
 
+    # Capture distraction severity BEFORE disabling (disable clears the log).
+    distraction_avg = 0.0
     if distraction_filter:
+        _rec = await distraction_filter.get_recommendation()
+        distraction_avg = float(_rec.get("avg_score", 0.0) or 0.0)
         await distraction_filter.disable_for_session(req.session_id)
 
     # Award BROski$ + XP
@@ -208,16 +248,21 @@ async def focus_end(req: FocusSessionEnd):
         raise HTTPException(503, "analytics not available")
     coins, xp = await analytics.award_for_session(result)
 
-    # Level 19 — DifficultyDial scales the reward by the user's focus intensity.
+    # Level 19 — variable multiplier: intensity × session quality × HyperSplit chunk difficulty.
     if difficulty_dial:
         dial = await difficulty_dial.get()
-        multiplier = dial.get("xp_multiplier", 1.0)
+        estimated = int((result or {}).get("estimated_minutes", req.actual_minutes) or req.actual_minutes)
+        quality = session_quality_score(req.actual_minutes, estimated, distraction_avg, req.mood)
+        multiplier = dynamic_multiplier(dial["intensity"], quality, _recent_chunk_difficulty)
         coins = int(round(coins * multiplier))
         xp = int(round(xp * multiplier))
         if isinstance(result, dict):
             result["coins_earned"] = coins
             result["xp_earned"] = xp
             result["difficulty_dial"] = dial["intensity"]
+            result["quality_score"] = quality
+            result["chunk_difficulty"] = _recent_chunk_difficulty
+            result["xp_multiplier"] = multiplier
 
     # Update streaks
     streak_data = await analytics.update_streaks()
@@ -292,7 +337,16 @@ async def hypersplit(req: HyperSplitRequest):
     )
     # Write to vault as task tree
     vault_path = await hyper_split.write_to_vault(tree, VAULT_PATH)
-    return {"task_tree": tree, "vault_path": vault_path, "total_micro_tasks": tree["count"]}
+    # Level 17 → 19: remember this chunk's difficulty so the next focus session's
+    # XP reward reflects how hard the work was.
+    global _recent_chunk_difficulty
+    _recent_chunk_difficulty = HyperSplitEngine.difficulty_score(tree)
+    return {
+        "task_tree": tree,
+        "vault_path": vault_path,
+        "total_micro_tasks": tree["count"],
+        "chunk_difficulty": _recent_chunk_difficulty,
+    }
 
 # ─── Distraction Filter ───────────────────────────────
 @app.post("/distraction/report")
@@ -316,6 +370,21 @@ async def distraction_status():
         "monitoring": distraction_filter.active_session_id is not None,
         "recommendation": await distraction_filter.get_recommendation(),
     }
+
+@app.post("/distraction/check")
+async def distraction_check():
+    """Level 18 — run one monitoring pass NOW: evaluate the 3 vault signals
+    (note activity, idle >15min, topic drift), feed the filter, nudge on HIGH."""
+    if not distraction_monitor:
+        raise HTTPException(503, "distraction_monitor not available")
+    outcome = await distraction_monitor.check(_active_intent)
+    if events_feed and (outcome.get("fired") or outcome.get("nudged")):
+        events_feed.add(
+            "distraction",
+            "Level 18 manual check",
+            {"fired": outcome.get("fired", []), "nudged": outcome.get("nudged", False)},
+        )
+    return outcome
 
 # ─── DifficultyDial (Level 19) ────────────────────────
 @app.get("/difficulty/get")
