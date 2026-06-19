@@ -7,15 +7,15 @@
     "updated": "2026-06-19",
     "tool": "brain-graph-analysis (AST + static import trace)",
     "root": "BROski-Obsidian-Brain-for-HyperFocus-z0ne",
-    "total_nodes": 200,
-    "total_edges": 401,
+    "total_nodes": 205,
+    "total_edges": 416,
     "layers": [
       "code",
       "notes",
       "mentions",
       "skills"
     ],
-    "notes_scanned": 77,
+    "notes_scanned": 82,
     "skills_indexed": 89
   },
   "nodes": [
@@ -498,6 +498,34 @@
       "status": "live"
     },
     {
+      "id": "note:HYPERAGENT_LOOP_2026-06-19T09-08-13Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-19T09-08-13Z.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-19T09-15-52Z.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-19T09-16-24Z.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-19T12-59-59Z.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
       "id": "note:Health-Dashboard",
       "layer": "note",
       "path": "02-Areas/Health/Health-Dashboard.md",
@@ -613,6 +641,13 @@
       "id": "note:NEXTSESSIONHANDOVER_2026-06-12",
       "layer": "note",
       "path": "00-Inbox/NEXTSESSIONHANDOVER_2026-06-12.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:NEXTSESSIONHANDOVER_2026-06-19",
+      "layer": "note",
+      "path": "00-Inbox/NEXTSESSIONHANDOVER_2026-06-19.md",
       "centrality": 0,
       "status": "live"
     },
@@ -876,7 +911,7 @@
       "category": "agents",
       "pack": "Agent Builder Pack",
       "path": "agents/BROSKI_ORCHESTRATOR_PATTERN_v1.md",
-      "centrality": 19,
+      "centrality": 20,
       "status": "rescued"
     },
     {
@@ -960,7 +995,7 @@
       "category": "agents",
       "pack": "Agent Builder Pack",
       "path": "agents/AGENTS_BRAIN_README_v1.md",
-      "centrality": 15,
+      "centrality": 16,
       "status": "rescued"
     },
     {
@@ -1488,7 +1523,7 @@
       "category": "agents",
       "pack": "Agent Builder Pack",
       "path": "agents/HYPER_AGENT_ROSTER_v1.md",
-      "centrality": 12,
+      "centrality": 15,
       "status": "rescued"
     },
     {
@@ -1584,7 +1619,7 @@
       "category": "agents",
       "pack": "Agent Builder Pack",
       "path": "agents/HYPER_AGENT_DEPENDENCY_GRAPH_v1.md",
-      "centrality": 5,
+      "centrality": 6,
       "status": "rescued"
     },
     {
@@ -1596,7 +1631,7 @@
       "category": "agents",
       "pack": "Agent Builder Pack",
       "path": "agents/SIX_LAWS_OF_AGENTS_v1.md",
-      "centrality": 24,
+      "centrality": 26,
       "status": "rescued"
     },
     {
@@ -1608,7 +1643,7 @@
       "category": "agents",
       "pack": "Agent Builder Pack",
       "path": "agents/ANATOMY_OF_AN_AGENT_v1.md",
-      "centrality": 19,
+      "centrality": 21,
       "status": "rescued"
     },
     {
@@ -1620,7 +1655,7 @@
       "category": "agents",
       "pack": "Agent Builder Pack",
       "path": "agents/AGENT_LIFECYCLE_STATE_MACHINE_v1.md",
-      "centrality": 21,
+      "centrality": 23,
       "status": "rescued"
     },
     {
@@ -1692,7 +1727,7 @@
       "category": "dev",
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/NEW_AGENT_BUILD_CHECKLIST_v1.md",
-      "centrality": 1,
+      "centrality": 3,
       "status": "rescued"
     },
     {
@@ -1788,7 +1823,7 @@
       "category": "dev",
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/HYPER_BRAIN_OPS_v1.md",
-      "centrality": 3,
+      "centrality": 4,
       "status": "rescued"
     },
     {
@@ -4147,6 +4182,81 @@
     {
       "from": "skill:HS-124",
       "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "to": "skill:HS-098",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "to": "skill:HS-089",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "to": "skill:HS-099",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "to": "skill:HS-100",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "to": "skill:HS-106",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
+      "to": "skill:HS-098",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
+      "to": "skill:HS-089",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
+      "to": "skill:HS-099",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
+      "to": "skill:HS-100",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
+      "to": "skill:HS-106",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-008",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-016",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-114",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-097",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-089",
       "type": "mentions"
     }
   ],
