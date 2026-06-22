@@ -82,7 +82,7 @@ Show me diffs before committing anything.
 ### Cowork — Docs & Health Reports
 ```
 I'm going to paste my latest ecosystem health data.
-Generate a clean NEXTSESSIONHANDOVER-[DATE].md with:
+Generate a clean NEXT_SESSION_HANDOVER_[DATE].md with:
 - What's healthy (one line each)
 - What's broken + exact fix command
 - Top 3 next tasks in priority order
