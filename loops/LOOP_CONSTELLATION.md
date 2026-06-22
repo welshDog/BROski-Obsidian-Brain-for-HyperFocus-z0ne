@@ -1,5 +1,6 @@
 # LOOP_CONSTELLATION.md — Level 20 Build Spec
-> The HYPER BRAIN Constellation. The most important build left.
+> 🏁 BUILT & LIVE (2026-06-11) at `:3302/constellation`. This is now the REFERENCE
+> spec for how the Constellation was built — not an open task.
 
 ---
 
@@ -11,7 +12,7 @@ Every repo, every module, every connection — visible as one cognitive nervous 
 ```
 [BROski-Obsidian-Brain] ←── Central Spine (Container 30)
          ↕
-[HyperCode-V2.4] ←── 48 containers, agent swarm, FastAPI
+[HyperCode-V2.4] ←── ~30-40 containers, agent swarm, FastAPI
          ↕
 [HyperAgent-SDK] ←── npm agent orchestration layer
          ↕
