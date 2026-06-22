@@ -184,7 +184,7 @@ You are working on Hyper-Vibe-Coding-Course.
 Stack: Vite React (NOT Next.js App Router — never generate that).
        Vercel deploy, Supabase DB, Stripe payments, BROski tokens.
 Sprint 4 anon signup is LIVE (commit a12ecd0, May 19).
-Source of truth: rewrites/NEXTSESSIONHANDOVER-latest.md
+Source of truth: rewrites/NEXT_SESSION_HANDOVER_latest.md
 
 Sacred rules:
 - npm run dev:frontend (NEVER npm run dev)
@@ -281,7 +281,7 @@ For the HYPERFOCUS NOW task — what's the first command or file edit?"
 ### Wrap + Handover (10 min)
 ```
 COWORK — Open Desktop > Cowork
-"Generate NEXTSESSIONHANDOVER-[TODAY'S DATE].md
+"Generate NEXT_SESSION_HANDOVER_[TODAY'S DATE].md
 Based on what we did today:
 [PASTE SUMMARY OF CHANGES]
 Include: what's done, what's next, any blockers, first task for next session.
@@ -315,7 +315,7 @@ Output as a clean markdown table."
 ### Auto-handover at end of every session
 ```
 COWORK:
-"Write NEXTSESSIONHANDOVER-[DATE].md from this session summary:
+"Write NEXT_SESSION_HANDOVER_[DATE].md from this session summary:
 [PASTE WHAT YOU DID]
 Format: 
 ## ✅ Done
