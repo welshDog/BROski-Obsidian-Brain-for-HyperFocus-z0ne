@@ -4186,17 +4186,17 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "to": "skill:HS-106",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "to": "skill:HS-100",
       "type": "mentions"
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "to": "skill:HS-098",
-      "type": "mentions"
-    },
-    {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
-      "to": "skill:HS-106",
       "type": "mentions"
     },
     {
@@ -4211,17 +4211,17 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
+      "to": "skill:HS-106",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
       "to": "skill:HS-100",
       "type": "mentions"
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
       "to": "skill:HS-098",
-      "type": "mentions"
-    },
-    {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
-      "to": "skill:HS-106",
       "type": "mentions"
     },
     {
@@ -4241,7 +4241,7 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
-      "to": "skill:HS-097",
+      "to": "skill:HS-016",
       "type": "mentions"
     },
     {
@@ -4251,7 +4251,7 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
-      "to": "skill:HS-016",
+      "to": "skill:HS-097",
       "type": "mentions"
     },
     {
