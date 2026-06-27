@@ -1,5 +1,5 @@
 # 🗺️ LIVE MATRIX — Hyperfocus Zone Ecosystem
-> Last updated: 2026-06-14 | Brain Levels 1–20 live. Catch Stragglers E2E smoke tested.
+> Last updated: 2026-06-27 | Brain Levels 1–21 live. Dependency/security health pass shipped (aiohttp 3.9.3→3.14.1).
 > ⚠️ This is the SINGLE SOURCE OF TRUTH for what is actually live vs test vs experimental.
 
 ---
@@ -19,6 +19,8 @@
 | Hyper Brain Level 18 — AI Distraction Filter | BROski-Obsidian-Brain | 🟢 LIVE | Wired to session_snapshot.py — snapshots capture live focus + distraction state (2026-06-14) |
 | Hyper Brain Level 19 — DifficultyDial + XP | BROski-Obsidian-Brain | 🟢 LIVE | XP multiplier on session end, POSTed to HYPERCORE_API_URL/broski/award (fail-open), vault note uses multiplied values (2026-06-14) |
 | Hyper Brain Level 20 — Brain Constellation | BROski-Obsidian-Brain | 🟢 LIVE | `GET :3302/constellation` D3 force-graph LIVE since 2026-06-11 |
+| Hyper Brain Level 21 — Sensory Accessibility (B7) | BROski-Obsidian-Brain | 🟢 LIVE | `hyper-brain-themes.css` now honours OS `prefers-reduced-motion` + `sensory-low`/`sensory-calm` profiles + reusable `dyslexia-support` class. Closes bottleneck B7 (overload protection, transition aids). Synced to active Obsidian snippet (2026-06-27) |
+| Brain Dependency/Security Health Pass | BROski-Obsidian-Brain | 🟢 LIVE | All 5 requirements.txt bumped off early-2024 pins; **aiohttp 3.9.3→3.14.1** (CVE fixes), FastAPI 0.110→0.138.1, pydantic 2.6→2.13.4; Dockerfiles 3.11→3.12-slim; fixed latent undeclared `requests` dep. 5 brain containers rebuilt + health-verified, 21/21 unit tests green (2026-06-27) |
 | HYPER-SILLs Skills Vault (72 skills) | HYPER-SILLs-By-WelshDog | 🟢 LIVE | Source of truth for all AI skill loading |
 | Obsidian PARA Vault | BROski-Obsidian-Brain | 🟢 LIVE | Vault + GitHub bridge working |
 | Prometheus + Grafana Observability | HyperCode-V2.4 | 🟢 LIVE (local) | Local URLs confirmed working. No cloud alerting yet |

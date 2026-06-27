@@ -402,3 +402,108 @@ body.broski-zone .workspace-tab-header-container:hover {
     --text-accent: #5040cc;
   }
 }
+
+
+/* ============================================================
+   🧩 LEVEL 21 — SENSORY ACCESSIBILITY (Bottleneck B7)
+   Overload protection · sensory profiles · dyslexia opt-in
+   Built for autistic + ADHD + dyslexic brains. Motion is always
+   opt-OUT-able, never forced — and the OS "reduce motion" flag is
+   honoured automatically so no config is needed for those who set it.
+   ============================================================ */
+
+/* ── Reusable dyslexia treatment ──
+   Factored out of calm-mode / broski-zone so ANY theme can opt in
+   by adding `dyslexia-support` to the body class (independent of theme). */
+body.dyslexia-support,
+body.dyslexia-support .markdown-preview-view,
+body.dyslexia-support .markdown-source-view {
+  font-family: 'OpenDyslexic', 'Atkinson Hyperlegible', 'Verdana', sans-serif;
+  line-height: 1.9;
+  letter-spacing: 0.03em;
+  word-spacing: 0.08em;
+}
+
+body.dyslexia-support .markdown-preview-view p,
+body.dyslexia-support .markdown-source-view .cm-line {
+  text-align: left;   /* never justified — prevents dyslexic "rivers" */
+  hyphens: none;
+}
+
+/* ── SENSORY-LOW profile ──
+   Maximum calm: zero motion, no glows/shadows, softened accent intensity.
+   A flat, still, low-stimulation surface. */
+body.sensory-low *,
+body.sensory-low *::before,
+body.sensory-low *::after {
+  animation: none !important;
+  transition: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+body.sensory-low {
+  filter: saturate(0.75);   /* take the edge off vivid accents */
+}
+
+body.sensory-low .time-alert {
+  background: #8a5a00;       /* flat amber, not a flashing red→orange gradient */
+}
+
+/* ── SENSORY-CALM profile ──
+   Reduced motion + warmer, softer palette + slower, gentler transitions.
+   Stimulation dialled down without going fully flat. */
+body.sensory-calm {
+  --background-primary:   #1a1820;
+  --background-secondary: #221f29;
+  --background-modifier-border: #2c2836;
+  --text-normal:          #e6e0ea;
+  --text-accent:          #b9a7e0;
+  --text-muted:           #9a90ab;
+  --interactive-accent:   #b9a7e0;
+  filter: saturate(0.9);
+  /* slower cross-fade on theme/profile switch = gentler context change */
+  transition: background-color 1.2s ease, color 1.2s ease;
+}
+
+body.sensory-calm *,
+body.sensory-calm *::before,
+body.sensory-calm *::after {
+  animation-duration: 4s !important;       /* slow any residual motion right down */
+  animation-iteration-count: 1 !important; /* no infinite pulsing/flickering */
+}
+
+body.sensory-calm .time-alert {
+  animation: none !important;
+  background: #6b4a1a;
+}
+
+/* ── OVERLOAD PROTECTION — honour OS "reduce motion" ──
+   Neutralises every Brain animation + flashing transition automatically,
+   so users who set the system accessibility flag need zero extra config. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Belt-and-braces: explicitly stop the named Brain animations */
+  .focus-active,
+  .focus-paused,
+  .streak-flame,
+  .time-alert,
+  body.broski-zone .focus-active {
+    animation: none !important;
+    box-shadow: none !important;
+  }
+
+  /* The time-alert is a flashing red banner — make it steady + readable */
+  .time-alert {
+    background: #b35900 !important;
+    opacity: 1 !important;
+  }
+}

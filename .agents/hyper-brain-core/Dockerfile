@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM python:3.12-slim
 WORKDIR /app
 # Copy all root-level brain modules (analytics_engine, hyper_split, etc.)
 COPY *.py ./
