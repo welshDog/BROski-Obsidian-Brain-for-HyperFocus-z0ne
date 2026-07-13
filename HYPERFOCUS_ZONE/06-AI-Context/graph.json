@@ -4,18 +4,18 @@
     "canonical_path": "HYPERFOCUS_ZONE/06-AI-Context/graph.json",
     "container_path": "/vault/06-AI-Context/graph.json",
     "generated": "2026-06-09",
-    "updated": "2026-07-07",
+    "updated": "2026-07-13",
     "tool": "brain-graph-analysis (AST + static import trace)",
     "root": "BROski-Obsidian-Brain-for-HyperFocus-z0ne",
-    "total_nodes": 246,
-    "total_edges": 456,
+    "total_nodes": 248,
+    "total_edges": 476,
     "layers": [
       "code",
       "notes",
       "mentions",
       "skills"
     ],
-    "notes_scanned": 82,
+    "notes_scanned": 84,
     "skills_indexed": 123
   },
   "nodes": [
@@ -277,7 +277,7 @@
       "id": "note:BROskiPets",
       "layer": "note",
       "path": "01-Projects/BROskiPets.md",
-      "centrality": 7,
+      "centrality": 8,
       "status": "live"
     },
     {
@@ -319,6 +319,13 @@
       "id": "note:Briefing_2026-05-07",
       "layer": "note",
       "path": "00-Inbox/Briefings/Briefing_2026-05-07.md",
+      "centrality": 5,
+      "status": "live"
+    },
+    {
+      "id": "note:Briefing_2026-07-12",
+      "layer": "note",
+      "path": "00-Inbox/Briefings/Briefing_2026-07-12.md",
       "centrality": 5,
       "status": "live"
     },
@@ -382,7 +389,7 @@
       "id": "note:First BROski Task",
       "layer": "note",
       "path": "01-Projects/First BROski Task.md",
-      "centrality": 1,
+      "centrality": 2,
       "status": "live"
     },
     {
@@ -536,21 +543,21 @@
       "id": "note:Hyper-Vibe-Course",
       "layer": "note",
       "path": "01-Projects/Hyper-Vibe-Course.md",
-      "centrality": 6,
+      "centrality": 7,
       "status": "live"
     },
     {
       "id": "note:HyperAgent-SDK",
       "layer": "note",
       "path": "01-Projects/HyperAgent-SDK.md",
-      "centrality": 3,
+      "centrality": 4,
       "status": "live"
     },
     {
       "id": "note:HyperCode-V2.4",
       "layer": "note",
       "path": "01-Projects/HyperCode-V2.4.md",
-      "centrality": 8,
+      "centrality": 9,
       "status": "live"
     },
     {
@@ -585,6 +592,13 @@
       "id": "note:InProgress_7f4f5389_2026-05-07",
       "layer": "note",
       "path": "05-Focus-Sessions/InProgress_7f4f5389_2026-05-07.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:InProgress_be8c73c5_2026-07-12",
+      "layer": "note",
+      "path": "05-Focus-Sessions/InProgress_be8c73c5_2026-07-12.md",
       "centrality": 0,
       "status": "live"
     },
@@ -1487,7 +1501,7 @@
       "category": "dev",
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/CONTAINER_STACK_REFERENCE_v1.md",
-      "centrality": 6,
+      "centrality": 13,
       "status": "rescued"
     },
     {
@@ -1499,7 +1513,7 @@
       "category": "dev",
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/PORT_NETWORK_MAP_v1.md",
-      "centrality": 1,
+      "centrality": 7,
       "status": "rescued"
     },
     {
@@ -1511,7 +1525,7 @@
       "category": "dev",
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/DATABASE_SCHEMA_REFERENCE_v1.md",
-      "centrality": 0,
+      "centrality": 6,
       "status": "rescued"
     },
     {
@@ -1523,7 +1537,7 @@
       "category": "dev",
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/BACKEND_DEPS_STACK_v1.md",
-      "centrality": 0,
+      "centrality": 5,
       "status": "rescued"
     },
     {
@@ -1535,7 +1549,7 @@
       "category": "dev",
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/DEV_COMMANDS_CHEAT_SHEET_v1.md",
-      "centrality": 0,
+      "centrality": 5,
       "status": "rescued"
     },
     {
@@ -2303,7 +2317,7 @@
       "category": "dev",
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/GATEWAY_SOVEREIGN_v1.md",
-      "centrality": 6,
+      "centrality": 7,
       "status": "ACTIVE"
     },
     {
@@ -2323,7 +2337,7 @@
       "layer": "skill",
       "title": "DOCKER SOVEREIGN",
       "emoji": "🐳",
-      "description": null,
+      "description": "Docker 2026 Best Practices (Production Dockerfiles)",
       "category": "dev",
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/DOCKER_2026_BEST_PRACTICES_v1.md",
@@ -2587,6 +2601,31 @@
     },
     {
       "from": "note:Briefing_2026-05-07",
+      "to": "note:HyperCode-V2.4",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Briefing_2026-07-12",
+      "to": "note:BROskiPets",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Briefing_2026-07-12",
+      "to": "note:First BROski Task",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Briefing_2026-07-12",
+      "to": "note:Hyper-Vibe-Course",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Briefing_2026-07-12",
+      "to": "note:HyperAgent-SDK",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Briefing_2026-07-12",
       "to": "note:HyperCode-V2.4",
       "type": "wikilink"
     },
@@ -3648,6 +3687,96 @@
     {
       "from": "skill:HS-050",
       "to": "skill:HS-122",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-060",
+      "to": "skill:HS-061",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-060",
+      "to": "skill:HS-062",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-060",
+      "to": "skill:HS-135",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-061",
+      "to": "skill:HS-060",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-061",
+      "to": "skill:HS-062",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-061",
+      "to": "skill:HS-064",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-062",
+      "to": "skill:HS-060",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-062",
+      "to": "skill:HS-061",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-062",
+      "to": "skill:HS-063",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-063",
+      "to": "skill:HS-062",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-063",
+      "to": "skill:HS-064",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-063",
+      "to": "skill:HS-060",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-064",
+      "to": "skill:HS-060",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-064",
+      "to": "skill:HS-061",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-064",
+      "to": "skill:HS-063",
       "type": "skill-link",
       "rel": "related"
     },
@@ -4879,7 +5008,7 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
-      "to": "skill:HS-100",
+      "to": "skill:HS-089",
       "type": "mentions"
     },
     {
@@ -4889,22 +5018,22 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
-      "to": "skill:HS-106",
-      "type": "mentions"
-    },
-    {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "to": "skill:HS-098",
       "type": "mentions"
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
-      "to": "skill:HS-089",
+      "to": "skill:HS-100",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "to": "skill:HS-106",
       "type": "mentions"
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
-      "to": "skill:HS-100",
+      "to": "skill:HS-089",
       "type": "mentions"
     },
     {
@@ -4914,32 +5043,17 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
-      "to": "skill:HS-106",
-      "type": "mentions"
-    },
-    {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
       "to": "skill:HS-098",
       "type": "mentions"
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
-      "to": "skill:HS-089",
+      "to": "skill:HS-100",
       "type": "mentions"
     },
     {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
-      "to": "skill:HS-016",
-      "type": "mentions"
-    },
-    {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
-      "to": "skill:HS-097",
-      "type": "mentions"
-    },
-    {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
-      "to": "skill:HS-114",
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
+      "to": "skill:HS-106",
       "type": "mentions"
     },
     {
@@ -4950,6 +5064,21 @@
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
       "to": "skill:HS-008",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-016",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-114",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-097",
       "type": "mentions"
     }
   ],
