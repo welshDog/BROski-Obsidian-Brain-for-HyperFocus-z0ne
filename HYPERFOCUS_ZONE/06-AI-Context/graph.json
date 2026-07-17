@@ -4,7 +4,7 @@
     "canonical_path": "HYPERFOCUS_ZONE/06-AI-Context/graph.json",
     "container_path": "/vault/06-AI-Context/graph.json",
     "generated": "2026-06-09",
-    "updated": "2026-07-14",
+    "updated": "2026-07-17",
     "tool": "brain-graph-analysis (AST + static import trace)",
     "root": "BROski-Obsidian-Brain-for-HyperFocus-z0ne",
     "total_nodes": 250,
@@ -1516,7 +1516,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/CONTAINER_STACK_REFERENCE_v1.md",
       "centrality": 13,
-      "status": "rescued"
+      "status": "ACTIVE"
     },
     {
       "id": "skill:HS-061",
@@ -1528,7 +1528,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/PORT_NETWORK_MAP_v1.md",
       "centrality": 7,
-      "status": "rescued"
+      "status": "ACTIVE"
     },
     {
       "id": "skill:HS-062",
@@ -1540,7 +1540,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/DATABASE_SCHEMA_REFERENCE_v1.md",
       "centrality": 6,
-      "status": "rescued"
+      "status": "ACTIVE"
     },
     {
       "id": "skill:HS-063",
@@ -1552,7 +1552,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/BACKEND_DEPS_STACK_v1.md",
       "centrality": 5,
-      "status": "rescued"
+      "status": "ACTIVE"
     },
     {
       "id": "skill:HS-064",
@@ -1564,7 +1564,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/DEV_COMMANDS_CHEAT_SHEET_v1.md",
       "centrality": 5,
-      "status": "rescued"
+      "status": "ACTIVE"
     },
     {
       "id": "skill:HS-065",
@@ -5022,7 +5022,12 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
-      "to": "skill:HS-100",
+      "to": "skill:HS-106",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "to": "skill:HS-099",
       "type": "mentions"
     },
     {
@@ -5032,7 +5037,7 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
-      "to": "skill:HS-106",
+      "to": "skill:HS-100",
       "type": "mentions"
     },
     {
@@ -5041,13 +5046,13 @@
       "type": "mentions"
     },
     {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
-      "to": "skill:HS-099",
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
+      "to": "skill:HS-106",
       "type": "mentions"
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
-      "to": "skill:HS-100",
+      "to": "skill:HS-099",
       "type": "mentions"
     },
     {
@@ -5057,7 +5062,7 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
-      "to": "skill:HS-106",
+      "to": "skill:HS-100",
       "type": "mentions"
     },
     {
@@ -5066,23 +5071,13 @@
       "type": "mentions"
     },
     {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
-      "to": "skill:HS-099",
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-089",
       "type": "mentions"
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
       "to": "skill:HS-008",
-      "type": "mentions"
-    },
-    {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
-      "to": "skill:HS-114",
-      "type": "mentions"
-    },
-    {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
-      "to": "skill:HS-089",
       "type": "mentions"
     },
     {
@@ -5093,6 +5088,11 @@
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
       "to": "skill:HS-016",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-114",
       "type": "mentions"
     }
   ],
