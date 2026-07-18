@@ -1,0 +1,12 @@
+# HyperFocus Z0ne repo manifest - read by scripts/gen_repo_map.py
+# Edit this file, then re-run the generator. Never hand-edit the map.
+
+name: "BROski-Obsidian-Brain-for-HyperFocus-z0ne"
+emoji: "🧠"
+tagline: "Second Brain vault — Obsidian + GitHub bridge + Python tools + agent cluster"
+category: "infra"
+stack: "Obsidian + Python"
+first_doc: "CLAUDE.md"
+tier: "LIVE"
+url: ""
+notes: "agent cluster :3301-3304"
