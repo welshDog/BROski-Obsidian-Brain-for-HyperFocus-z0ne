@@ -112,6 +112,17 @@ app.mount("/ui/assets", StaticFiles(directory=WEB_DIR), name="ui-assets")
 @app.on_event("startup")
 async def startup():
     global focus_tracker, analytics, hyper_split, distraction_filter, mcp_bridge, snapshot, briefing_ai, events_feed, difficulty_dial, distraction_monitor, constellation
+    # Skill loadout boot-check — HYPER-SILLs canonical resolver (mounted). Fail-open.
+    try:
+        import sys as _sys
+        _sys.path.insert(0, os.environ.get("HYPER_SILLS_SCRIPTS", "/hyper-sills/scripts"))
+        from agent_boot import boot_check as _boot_check
+        _boot_check("agent-hyper-brain-core",
+                    root=os.environ.get("HYPER_SILLS_ROOT", "/hyper-sills"),
+                    strict=os.environ.get("LOADOUT_STRICT", "false").lower() in ("1", "true", "yes"))
+    except Exception as _e:
+        print(f"[loadout] boot-check skipped: {_e}")
+
     focus_tracker = FocusTracker(vault_path=VAULT_PATH, redis_url=REDIS_URL)
     analytics = AnalyticsEngine(vault_path=VAULT_PATH)
     hyper_split = HyperSplitEngine(vault_path=VAULT_PATH)
