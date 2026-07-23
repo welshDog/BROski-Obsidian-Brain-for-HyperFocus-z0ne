@@ -485,6 +485,17 @@ if __name__ == "__main__":
         mcp_bridge=_mcp,
     )
 
+    # Skill loadout boot-check — HYPER-SILLs canonical resolver (mounted). Fail-open.
+    try:
+        import sys as _sys
+        _sys.path.insert(0, os.environ.get("HYPER_SILLS_SCRIPTS", "/hyper-sills/scripts"))
+        from agent_boot import boot_check as _boot_check
+        _boot_check("agent-morning-briefing",
+                    root=os.environ.get("HYPER_SILLS_ROOT", "/hyper-sills"),
+                    strict=os.environ.get("LOADOUT_STRICT", "false").lower() in ("1", "true", "yes"))
+    except Exception as _e:
+        print(f"[loadout] boot-check skipped: {_e}")
+
     _app = FastAPI(title="Morning Briefing Agent", version="0.2.0")
 
     @_app.on_event("startup")
