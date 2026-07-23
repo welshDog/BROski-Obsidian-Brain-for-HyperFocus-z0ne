@@ -29,7 +29,6 @@ Set custom registry:
 import os
 import sys
 import json
-import hashlib
 import argparse
 import tomllib
 from pathlib import Path
@@ -354,7 +353,7 @@ def cmd_list(args):
     registry = getattr(args, 'registry', DEFAULT_REGISTRY)
     author = getattr(args, 'author', None)
     tag = getattr(args, 'tag', None)
-    head(f"\n📚 AIFS Registry")
+    head("\n📚 AIFS Registry")
 
     url = "/registry/list"
     params = []
@@ -423,7 +422,7 @@ def cmd_unpublish(args):
     resp = input(f"Remove {name} from registry? [y/N]: ").strip().lower()
     if resp != "y":
         return
-    result = api_post(f"/registry/unpublish", {"name": name}, registry)
+    result = api_post("/registry/unpublish", {"name": name}, registry)
     if result:
         ok(f"Unpublished: {name}")
         cp = cache_path(name)

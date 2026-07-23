@@ -16,13 +16,10 @@ Run: pytest test_github_to_obsidian_v2.py -v
 """
 
 import pytest
-import asyncio
 import os
-from datetime import datetime
-from typing import List, Optional
-from unittest.mock import Mock, patch, AsyncMock, MagicMock
+from typing import List
+from unittest.mock import AsyncMock
 import tempfile
-import shutil
 
 # Import from main module
 from scripts.github_to_obsidian_v2 import (
@@ -33,8 +30,6 @@ from scripts.github_to_obsidian_v2 import (
     SyncSummary,
     GithubIssue,
     format_markdown,
-    write_vault_file,
-    fetch_issues_with_retry,
 )
 
 

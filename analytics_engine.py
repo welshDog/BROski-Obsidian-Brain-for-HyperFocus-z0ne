@@ -6,7 +6,6 @@ Writes Dataview-compatible YAML reports to vault.
 BROski♾️
 """
 
-import asyncio
 import json
 import os
 import re

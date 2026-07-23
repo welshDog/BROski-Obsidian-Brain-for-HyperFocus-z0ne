@@ -6,7 +6,6 @@ Uses vault context + MCP + heuristics to build the perfect daily start.
 BROski♾️
 """
 
-import asyncio
 import json
 import os
 import re

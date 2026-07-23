@@ -395,7 +395,7 @@ def _do_health_check(logger: OpsLogger) -> dict:
 
     return {
         "docker_daemon": "✅ responding",
-        "hyper_brain_container": f"✅ running",
+        "hyper_brain_container": "✅ running",
         "briefing_api": f"✅ responding (200 OK, {api_ms}ms)",
         "api_response": resp,
     }

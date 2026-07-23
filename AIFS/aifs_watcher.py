@@ -28,7 +28,6 @@ Exit codes:
 import os
 import sys
 import time
-import json
 import fnmatch
 import tomllib
 import argparse
@@ -38,7 +37,7 @@ from datetime import datetime, date
 from dataclasses import dataclass, field
 from typing import Optional, List, Dict
 from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler, FileCreatedEvent, FileModifiedEvent, FileDeletedEvent, FileMovedEvent
+from watchdog.events import FileSystemEventHandler
 
 
 # ─── Colours for terminal output ───────────────────────────────────────────

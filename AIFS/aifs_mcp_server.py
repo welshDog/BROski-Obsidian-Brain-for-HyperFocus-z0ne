@@ -44,15 +44,11 @@ For Claude Desktop, add to claude_desktop_config.json:
     }
 """
 
-import os
 import sys
 import json
-import fnmatch
 import argparse
-import tomllib
 from pathlib import Path
-from datetime import datetime, date
-from typing import Optional, Any
+from typing import Optional
 
 try:
     from mcp.server import Server
@@ -527,9 +523,9 @@ async def main_async(root: str):
     resolver = ContractResolver(ROOT)
     enforcer = AIFSEnforcer()
 
-    print(f"AIFS MCP Server v0.4 starting...", file=sys.stderr)
+    print("AIFS MCP Server v0.4 starting...", file=sys.stderr)
     print(f"Root: {ROOT}", file=sys.stderr)
-    print(f"Transport: stdio", file=sys.stderr)
+    print("Transport: stdio", file=sys.stderr)
 
     async with stdio_server() as (read_stream, write_stream):
         await server.run(

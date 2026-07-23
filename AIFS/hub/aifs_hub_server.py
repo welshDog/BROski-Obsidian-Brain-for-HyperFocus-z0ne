@@ -20,12 +20,10 @@ Endpoints:
     GET /api/contract/{path} — Single folder contract
 """
 
-import os
 import sys
 import argparse
 from pathlib import Path
 from datetime import datetime
-from typing import Optional
 
 try:
     from fastapi import FastAPI
@@ -248,7 +246,7 @@ def main():
     global ROOT
     ROOT = Path(args.root).resolve()
 
-    print(f"\n🧠 AIFS Hub v0.5")
+    print("\n🧠 AIFS Hub v0.5")
     print(f"📁 Root: {ROOT}")
     print(f"🌐 Dashboard: http://{args.host}:{args.port}")
     print(f"🔌 API: http://{args.host}:{args.port}/api/summary\n")

@@ -38,7 +38,6 @@ Exit codes (verify-all):
     2 = No contracts found
 """
 
-import os
 import sys
 import json
 import hashlib
@@ -46,7 +45,6 @@ import argparse
 import tomllib
 from pathlib import Path
 from datetime import datetime, timezone
-from typing import Optional
 
 try:
     from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey, Ed25519PublicKey
@@ -283,7 +281,7 @@ def cmd_keygen(args):
 
     pub_hex = public_key.public_bytes(Encoding.Raw, PublicFormat.Raw).hex()
 
-    ok(f"Keypair generated!")
+    ok("Keypair generated!")
     info(f"Key ID:      {key_id}")
     info(f"Author:      {author}")
     info(f"Private key: {PRIVATE_KEY_PATH}  ← NEVER COMMIT")

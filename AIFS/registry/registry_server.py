@@ -18,7 +18,6 @@ Endpoints:
     GET  /health
 """
 
-import os
 import sys
 import json
 import uuid
@@ -279,7 +278,7 @@ def main():
     DATA_DIR = Path(args.data)
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
-    print(f"\n🌍 AIFS Registry Server v1.0")
+    print("\n🌍 AIFS Registry Server v1.0")
     print(f"📁 Data: {DATA_DIR.resolve()}")
     print(f"🌐 API:  http://{args.host}:{args.port}")
     print(f"📚 Docs: http://{args.host}:{args.port}/docs\n")
