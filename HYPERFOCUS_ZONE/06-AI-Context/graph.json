@@ -4,7 +4,7 @@
     "canonical_path": "HYPERFOCUS_ZONE/06-AI-Context/graph.json",
     "container_path": "/vault/06-AI-Context/graph.json",
     "generated": "2026-06-09",
-    "updated": "2026-07-22",
+    "updated": "2026-07-25",
     "tool": "brain-graph-analysis (AST + static import trace)",
     "root": "BROski-Obsidian-Brain-for-HyperFocus-z0ne",
     "total_nodes": 250,
@@ -892,7 +892,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/CLI_ARGS_LAUNCH_PATTERN_v1.md",
       "centrality": 1,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:DS-009",
@@ -904,7 +904,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/PREFLIGHT_CHECKS_SYSTEM_v1.md",
       "centrality": 2,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:DS-028",
@@ -916,7 +916,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/PROGRESSIVE_HEALTH_WAIT_v1.md",
       "centrality": 3,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-007",
@@ -928,7 +928,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/HYPERFOCUS_AGENT_SWARM_CORE_v1.md",
       "centrality": 11,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-008",
@@ -940,7 +940,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/BROSKI_ORCHESTRATOR_PATTERN_v1.md",
       "centrality": 22,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-010",
@@ -952,7 +952,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "broski/DESIGN_BRAIN_v1.md",
       "centrality": 6,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-011",
@@ -964,7 +964,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/HYPER_BRAIN_MODULES_v1.md",
       "centrality": 18,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-012",
@@ -976,7 +976,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "broski/LEVEL_PROGRESSION_v1.md",
       "centrality": 9,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-013",
@@ -988,7 +988,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/MORNING_BRIEFING_AI_v1.md",
       "centrality": 10,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-014",
@@ -1000,7 +1000,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/OBSIDIAN_GIT_VAULT_v1.md",
       "centrality": 0,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-015",
@@ -1012,7 +1012,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "broski/VAULT_PARA_STRUCTURE_v1.md",
       "centrality": 7,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-016",
@@ -1024,7 +1024,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/AGENTS_BRAIN_README_v1.md",
       "centrality": 16,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-017",
@@ -1036,7 +1036,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/AGENT_MANIFEST_HYPER_BRAIN_CORE_v1.md",
       "centrality": 10,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-018",
@@ -1048,7 +1048,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/AGENT_MANIFEST_MCP_BRIDGE_v1.md",
       "centrality": 6,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-019",
@@ -1060,7 +1060,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/OBSERVABLE_AGENT_OPERATIONS_v1.md",
       "centrality": 20,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-020",
@@ -1072,7 +1072,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/AGENT_MANIFEST_MORNING_BRIEFING_v1.md",
       "centrality": 8,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-021",
@@ -1084,7 +1084,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/OBSIDIAN_BRAIN_SYNC_SKILL_v1.md",
       "centrality": 6,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-022",
@@ -1096,7 +1096,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/HYPERCODE_SDK_MASTER_v1.md",
       "centrality": 2,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-023",
@@ -1108,7 +1108,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/CROSS_REPO_SYNC_v1.md",
       "centrality": 0,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-024",
@@ -1120,7 +1120,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/SDK_PUBLISH_WORKFLOW_v1.md",
       "centrality": 0,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-025",
@@ -1132,7 +1132,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/TOKEN_SYNC_DEBUG_v1.md",
       "centrality": 1,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-026",
@@ -1144,7 +1144,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/PHASE4_GRADUATION_FLOW_v1.md",
       "centrality": 0,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-027",
@@ -1156,7 +1156,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/TEST_STATUS_REPORT_v1.md",
       "centrality": 1,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-028",
@@ -1168,7 +1168,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/HYPERAGENT_SDK_AGENTS_README_v1.md",
       "centrality": 5,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-029",
@@ -1180,7 +1180,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/HYPERAGENT_SDK_PUBLISH_SKILL_v1.md",
       "centrality": 0,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-030",
@@ -1192,7 +1192,7 @@
       "pack": null,
       "path": "hypercode/HYPERFOCUS_MASTER_CONSTITUTION_v1.md",
       "centrality": 0,
-      "status": "rescued"
+      "status": "active"
     },
     {
       "id": "skill:HS-031",
@@ -1204,7 +1204,7 @@
       "pack": null,
       "path": "hypercode/V2_4_SACRED_RULES_v1.md",
       "centrality": 0,
-      "status": "rescued"
+      "status": "active"
     },
     {
       "id": "skill:HS-032",
@@ -1216,7 +1216,7 @@
       "pack": null,
       "path": "hypercode/COURSE_SACRED_RULES_v1.md",
       "centrality": 0,
-      "status": "rescued"
+      "status": "active"
     },
     {
       "id": "skill:HS-033",
@@ -1228,7 +1228,7 @@
       "pack": null,
       "path": "hypercode/BROSKI_SHOP_SACRED_RULES_v1.md",
       "centrality": 0,
-      "status": "rescued"
+      "status": "active"
     },
     {
       "id": "skill:HS-034",
@@ -1240,7 +1240,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "broski/SEVEN_BEAT_MODULE_STRUCTURE_v1.md",
       "centrality": 7,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-035",
@@ -1252,7 +1252,7 @@
       "pack": null,
       "path": "hypercode/AI_BEHAVIOUR_RULES_TOOL_MATRIX_v1.md",
       "centrality": 1,
-      "status": "rescued"
+      "status": "active"
     },
     {
       "id": "skill:HS-036",
@@ -1264,7 +1264,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "broski/ANALOGY_ARSENAL_v1.md",
       "centrality": 7,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-037",
@@ -1276,7 +1276,7 @@
       "pack": null,
       "path": "hypercode/ARCHITECTURE_QUICK_REF_v1.md",
       "centrality": 0,
-      "status": "rescued"
+      "status": "active"
     },
     {
       "id": "skill:HS-038",
@@ -1288,7 +1288,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/GUARDIAN_BOT_PHASE_MAP_v1.md",
       "centrality": 7,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-039",
@@ -1300,7 +1300,7 @@
       "pack": null,
       "path": "hypercode/SESSION_END_CHECKLIST_v1.md",
       "centrality": 0,
-      "status": "rescued"
+      "status": "active"
     },
     {
       "id": "skill:HS-040",
@@ -1312,7 +1312,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/GOALKEEPER_SELF_IMPROVING_AGENT_v1.md",
       "centrality": 7,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-041",
@@ -1324,7 +1324,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/METRICS_ENGINE_INTEGRATION_v1.md",
       "centrality": 8,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-042",
@@ -1336,7 +1336,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/SKILL_REGISTRY_AGENT_PATTERN_v1.md",
       "centrality": 5,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-043",
@@ -1348,7 +1348,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/SELF_IMPROVEMENT_5_LOOP_LOGIC_v1.md",
       "centrality": 10,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-044",
@@ -1360,7 +1360,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/AB_TESTING_FRAMEWORK_v1.md",
       "centrality": 7,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-045",
@@ -1372,7 +1372,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/COST_OPTIMISATION_AUTO_PATTERN_v1.md",
       "centrality": 5,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-046",
@@ -1384,7 +1384,7 @@
       "pack": null,
       "path": "hypercode/HYPERLAUNCH_UNIFIED_COMMANDER_v1.md",
       "centrality": 0,
-      "status": "rescued"
+      "status": "active"
     },
     {
       "id": "skill:HS-047",
@@ -1396,7 +1396,7 @@
       "pack": null,
       "path": "hypercode/FOUR_TIER_SERVICESPEC_LAUNCH_v1.md",
       "centrality": 0,
-      "status": "rescued"
+      "status": "active"
     },
     {
       "id": "skill:HS-050",
@@ -1408,7 +1408,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/GUARDIAN_WATCHDOG_POST_LAUNCH_v1.md",
       "centrality": 6,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-052",
@@ -1420,7 +1420,7 @@
       "pack": null,
       "path": "web3/BROSKI_PETS_INTEGRATION_PLAN_v1.md",
       "centrality": 0,
-      "status": "rescued"
+      "status": "active"
     },
     {
       "id": "skill:HS-053",
@@ -1432,7 +1432,7 @@
       "pack": null,
       "path": "web3/PET_RARITY_ROLL_FORMULA_v1.md",
       "centrality": 0,
-      "status": "rescued"
+      "status": "active"
     },
     {
       "id": "skill:HS-054",
@@ -1444,7 +1444,7 @@
       "pack": null,
       "path": "web3/DEV_ACTION_XP_TRIGGER_v1.md",
       "centrality": 0,
-      "status": "rescued"
+      "status": "active"
     },
     {
       "id": "skill:HS-055",
@@ -1456,7 +1456,7 @@
       "pack": null,
       "path": "web3/DNFT_ONCHAIN_PORTFOLIO_v1.md",
       "centrality": 0,
-      "status": "rescued"
+      "status": "active"
     },
     {
       "id": "skill:HS-056",
@@ -1468,7 +1468,7 @@
       "pack": null,
       "path": "web3/PET_SPECIES_POWER_MAPPING_v1.md",
       "centrality": 0,
-      "status": "rescued"
+      "status": "active"
     },
     {
       "id": "skill:HS-057",
@@ -1480,7 +1480,7 @@
       "pack": null,
       "path": "web3/BROSKI_PETS_PHASE_0_BUILD_v1.md",
       "centrality": 0,
-      "status": "rescued"
+      "status": "active"
     },
     {
       "id": "skill:HS-058",
@@ -1492,7 +1492,7 @@
       "pack": null,
       "path": "web3/BROSKI_PETS_PHASE_1_BUILD_v1.md",
       "centrality": 0,
-      "status": "rescued"
+      "status": "active"
     },
     {
       "id": "skill:HS-059",
@@ -1504,7 +1504,7 @@
       "pack": null,
       "path": "hypercode/ECOSYSTEM_INVENTORY_v1.md",
       "centrality": 0,
-      "status": "rescued"
+      "status": "active"
     },
     {
       "id": "skill:HS-060",
@@ -1516,7 +1516,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/CONTAINER_STACK_REFERENCE_v1.md",
       "centrality": 13,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-061",
@@ -1528,7 +1528,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/PORT_NETWORK_MAP_v1.md",
       "centrality": 7,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-062",
@@ -1540,7 +1540,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/DATABASE_SCHEMA_REFERENCE_v1.md",
       "centrality": 6,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-063",
@@ -1552,7 +1552,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/BACKEND_DEPS_STACK_v1.md",
       "centrality": 5,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-064",
@@ -1564,7 +1564,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/DEV_COMMANDS_CHEAT_SHEET_v1.md",
       "centrality": 5,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-065",
@@ -1576,7 +1576,7 @@
       "pack": null,
       "path": "hypercode/EXTERNAL_INTEGRATIONS_MAP_v1.md",
       "centrality": 0,
-      "status": "rescued"
+      "status": "active"
     },
     {
       "id": "skill:HS-066",
@@ -1588,7 +1588,7 @@
       "pack": null,
       "path": "hypercode/MILESTONE_TRACKER_TEMPLATE_v1.md",
       "centrality": 0,
-      "status": "rescued"
+      "status": "active"
     },
     {
       "id": "skill:HS-067",
@@ -1600,7 +1600,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/AGENT_ROLE_HIERARCHY_PATTERN_v1.md",
       "centrality": 13,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-069",
@@ -1612,7 +1612,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "broski/ND_FIRST_ERROR_MESSAGES_TEMPLATE_v1.md",
       "centrality": 5,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-071",
@@ -1624,7 +1624,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/FAIL_GRACEFULLY_FALLBACK_CHAIN_v1.md",
       "centrality": 5,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-072",
@@ -1636,7 +1636,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/CONTEXT_STORE_ARCHITECTURE_v1.md",
       "centrality": 4,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-073",
@@ -1648,7 +1648,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/SSE_AGENT_EVENT_SCHEMA_v1.md",
       "centrality": 7,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-074",
@@ -1660,7 +1660,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/FASTAPI_AGENT_API_STANDARDS_v1.md",
       "centrality": 1,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-075",
@@ -1672,7 +1672,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/AGENT_DECISION_FRAMEWORK_MATRIX_v1.md",
       "centrality": 8,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-076",
@@ -1684,7 +1684,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/PRE_COMMIT_TESTING_CHECKLIST_v1.md",
       "centrality": 0,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-077",
@@ -1696,7 +1696,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/USER_AGENCY_APPROVAL_GATE_v1.md",
       "centrality": 11,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-078",
@@ -1708,7 +1708,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/CONTEXT_RETENTION_ANTI_INTERRUPT_v1.md",
       "centrality": 7,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-079",
@@ -1720,7 +1720,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/SPECIALIST_AGENT_ROLES_v1.md",
       "centrality": 10,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-080",
@@ -1732,7 +1732,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/UNIVERSAL_AGENT_TOOLS_API_v1.md",
       "centrality": 7,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-081",
@@ -1744,7 +1744,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/MCP_SERVER_AGENT_REGISTRATION_v1.md",
       "centrality": 3,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-082",
@@ -1756,7 +1756,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/CONTEXT_KEY_NAMING_CONVENTION_v1.md",
       "centrality": 0,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-083",
@@ -1768,7 +1768,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/AGENT_COMMUNICATION_PATTERNS_v1.md",
       "centrality": 6,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-084",
@@ -1780,7 +1780,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/CODE_STYLE_STANDARDS_v1.md",
       "centrality": 0,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-085",
@@ -1792,7 +1792,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/FIVE_MANDATORY_GUARDRAILS_v1.md",
       "centrality": 4,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-086",
@@ -1804,7 +1804,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/TEST_PYRAMID_FOUR_LEVELS_v1.md",
       "centrality": 0,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-087",
@@ -1816,7 +1816,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/AGENT_DECISION_TREE_FLOWCHART_v1.md",
       "centrality": 8,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-088",
@@ -1828,7 +1828,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/AGENT_FINAL_SELF_AUDIT_v1.md",
       "centrality": 8,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-089",
@@ -1840,7 +1840,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/HYPER_AGENT_ROSTER_v1.md",
       "centrality": 7,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-090",
@@ -1852,7 +1852,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/UNIVERSAL_LIFE_PLAN_YAML_v1.md",
       "centrality": 4,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-091",
@@ -1864,7 +1864,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/TOP_TIER_AGENT_IDENTITY_CARDS_v1.md",
       "centrality": 5,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-092",
@@ -1876,7 +1876,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/AGENT_CONTRACT_TEST_SUITE_v1.md",
       "centrality": 2,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-093",
@@ -1888,7 +1888,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/NIGHTLY_LEARNING_LOOP_v1.md",
       "centrality": 14,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-094",
@@ -1900,7 +1900,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/SIX_SPRINT_PRODUCTION_ROADMAP_v1.md",
       "centrality": 0,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-095",
@@ -1912,7 +1912,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/GOVERNANCE_LEDGER_ENTRY_SCHEMA_v1.md",
       "centrality": 1,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-096",
@@ -1924,7 +1924,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/FOUR_PHASE_EIGHT_SPRINT_ROADMAP_v1.md",
       "centrality": 0,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-097",
@@ -1936,7 +1936,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/HYPER_AGENT_DEPENDENCY_GRAPH_v1.md",
       "centrality": 6,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-098",
@@ -1948,7 +1948,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/SIX_LAWS_OF_AGENTS_v1.md",
       "centrality": 6,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-099",
@@ -1960,7 +1960,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/ANATOMY_OF_AN_AGENT_v1.md",
       "centrality": 5,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-100",
@@ -1972,7 +1972,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/AGENT_LIFECYCLE_STATE_MACHINE_v1.md",
       "centrality": 7,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-101",
@@ -1984,7 +1984,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/SLEEP_CYCLE_ANTI_THRASH_v1.md",
       "centrality": 3,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-102",
@@ -1996,7 +1996,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/PREDICTIVE_TREND_LINEAR_REGRESSION_v1.md",
       "centrality": 1,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-103",
@@ -2008,7 +2008,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/HEALER_CIRCUIT_BREAKER_PROTOCOL_v1.md",
       "centrality": 5,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-104",
@@ -2020,7 +2020,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/TIER_PROTECTION_RULES_v1.md",
       "centrality": 5,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-105",
@@ -2032,7 +2032,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/CORE_AGENT_METRICS_CONTRACT_v1.md",
       "centrality": 1,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-106",
@@ -2044,7 +2044,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/NEW_AGENT_BUILD_CHECKLIST_v1.md",
       "centrality": 3,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-107",
@@ -2056,7 +2056,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "broski/AGENT_RANKS_NAMING_CREED_v1.md",
       "centrality": 5,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-108",
@@ -2068,7 +2068,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/TRUTH_VS_CLAIM_AUDIT_v1.md",
       "centrality": 0,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-109",
@@ -2080,7 +2080,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/CROSS_REFERENCE_BEFORE_WRITING_v1.md",
       "centrality": 1,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-110",
@@ -2092,7 +2092,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/LEAN_RAID_DISCIPLINE_v1.md",
       "centrality": 0,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-111",
@@ -2104,7 +2104,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/SURFACE_CONTRADICTIONS_DONT_PICK_SIDES_v1.md",
       "centrality": 1,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-112",
@@ -2116,7 +2116,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/WIKILINK_KNOWLEDGE_GRAPH_v1.md",
       "centrality": 0,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-113",
@@ -2128,7 +2128,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/PARALLEL_GIT_WORKFLOW_SURVIVAL_v1.md",
       "centrality": 0,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-114",
@@ -2140,7 +2140,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/HYPER_BRAIN_OPS_v1.md",
       "centrality": 5,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-120",
@@ -2152,7 +2152,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/AB_TESTING_FRAMEWORK_AGENTS_v1.md",
       "centrality": 5,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-121",
@@ -2164,7 +2164,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/SELF_IMPROVEMENT_5_LOOP_v1.md",
       "centrality": 4,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-122",
@@ -2176,7 +2176,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/GUARDIAN_WATCHDOG_MONITOR_v1.md",
       "centrality": 5,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-123",
@@ -2188,7 +2188,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/GOD_MODE_HYPERFLOW_v1.md",
       "centrality": 6,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-124",
@@ -2200,7 +2200,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/AGENT_MANIFEST_FOCUS_TRACKER_v1.md",
       "centrality": 9,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-125",
@@ -2212,7 +2212,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/HYPERFOCUS_ZONE_MASTER_CONTEXT_v1.md",
       "centrality": 8,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-126",
@@ -2224,7 +2224,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/HYPERGRAPH_NODE_SKILL_v1.md",
       "centrality": 4,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-127",
@@ -2236,7 +2236,7 @@
       "pack": "YouTube Growth Pack",
       "path": "youtube/YT_DEBUGGER_v1.md",
       "centrality": 5,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-128",
@@ -2248,7 +2248,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/PLUGIN_FORGE_v1.md",
       "centrality": 4,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-129",
@@ -2260,7 +2260,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/SKILLS_OVER_MCP_v1.md",
       "centrality": 5,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-130",
@@ -2272,7 +2272,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/OCI_SKILL_SHIP_v1.md",
       "centrality": 3,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-131",
@@ -2284,7 +2284,7 @@
       "pack": "Agent Builder Pack",
       "path": "agents/NESTED_SWARM_v1.md",
       "centrality": 5,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-132",
@@ -2296,7 +2296,7 @@
       "pack": "YouTube Growth Pack",
       "path": "youtube/THUMBNAIL_DUELIST_v1.md",
       "centrality": 5,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-133",
@@ -2308,7 +2308,7 @@
       "pack": "YouTube Growth Pack",
       "path": "youtube/SHORTS_ALCHEMIST_v1.md",
       "centrality": 3,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-134",
@@ -2320,7 +2320,7 @@
       "pack": "YouTube Growth Pack",
       "path": "youtube/SIGNAL_TO_SCRIPT_LOOP_v1.md",
       "centrality": 3,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-135",
@@ -2332,7 +2332,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/GATEWAY_SOVEREIGN_v1.md",
       "centrality": 7,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-136",
@@ -2344,7 +2344,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/AGENT_SCRIBE_v1.md",
       "centrality": 10,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-137",
@@ -2356,7 +2356,7 @@
       "pack": "ND-Friendly Coding Pack",
       "path": "dev/DOCKER_2026_BEST_PRACTICES_v1.md",
       "centrality": 5,
-      "status": "ACTIVE"
+      "status": "active"
     },
     {
       "id": "skill:HS-001",
@@ -5022,12 +5022,17 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "to": "skill:HS-106",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "to": "skill:HS-089",
       "type": "mentions"
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
-      "to": "skill:HS-100",
+      "to": "skill:HS-098",
       "type": "mentions"
     },
     {
@@ -5037,12 +5042,12 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
-      "to": "skill:HS-106",
+      "to": "skill:HS-100",
       "type": "mentions"
     },
     {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
-      "to": "skill:HS-098",
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
+      "to": "skill:HS-106",
       "type": "mentions"
     },
     {
@@ -5052,7 +5057,7 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
-      "to": "skill:HS-100",
+      "to": "skill:HS-098",
       "type": "mentions"
     },
     {
@@ -5062,12 +5067,22 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
-      "to": "skill:HS-106",
+      "to": "skill:HS-100",
       "type": "mentions"
     },
     {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
-      "to": "skill:HS-098",
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-097",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-089",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-008",
       "type": "mentions"
     },
     {
@@ -5078,21 +5093,6 @@
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
       "to": "skill:HS-114",
-      "type": "mentions"
-    },
-    {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
-      "to": "skill:HS-089",
-      "type": "mentions"
-    },
-    {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
-      "to": "skill:HS-097",
-      "type": "mentions"
-    },
-    {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
-      "to": "skill:HS-008",
       "type": "mentions"
     }
   ],
