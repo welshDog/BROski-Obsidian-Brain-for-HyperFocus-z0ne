@@ -9,13 +9,18 @@ import json
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from aifs_watcher import ContractResolver, AIFSEnforcer, AuditLogger  # noqa: E402
-
 REPO_ROOT = Path(__file__).resolve().parent.parent  # AIFS/ -> repo root
 
 
 def _decide(tool_name: str, file_path_str: str) -> dict:
+    # Imported here (not at module level) so that an import failure --
+    # missing watchdog/requests/tomllib on whatever interpreter ends up
+    # running this script, or any future change to aifs_watcher.py's own
+    # imports -- is caught by main()'s try/except and fails open, instead
+    # of crashing before any exception handler exists.
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from aifs_watcher import ContractResolver, AIFSEnforcer, AuditLogger  # noqa: E402
+
     file_path = Path(file_path_str).resolve()
 
     try:

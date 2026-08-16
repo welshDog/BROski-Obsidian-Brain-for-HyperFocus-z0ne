@@ -94,3 +94,34 @@ def test_changelog_gets_a_line_for_each_decision():
     assert changelog.exists()
     content = changelog.read_text(encoding="utf-8")
     assert "BLOCK" in content
+
+
+def test_aifs_watcher_import_failure_fails_open():
+    """Regression test for a Critical review finding: `from aifs_watcher import
+    ...` must never be reachable outside main()'s try/except. Forces a real
+    ImportError by temporarily hiding aifs_watcher.py (the module the hook
+    depends on) so `import aifs_watcher` fails inside the subprocess, then
+    asserts the hook still emits clean fail-open JSON instead of crashing
+    with an uncaught traceback / non-zero exit / empty stdout.
+    """
+    watcher = REPO_ROOT / "AIFS" / "aifs_watcher.py"
+    hidden = REPO_ROOT / "AIFS" / "aifs_watcher.py.hidden_for_test"
+    assert watcher.exists(), "aifs_watcher.py must exist before this test can hide it"
+    watcher.rename(hidden)
+    try:
+        target = str(REPO_ROOT / "AIFS" / "_hook_test" / "import_failure_probe.md")
+        payload = json.dumps({"tool_name": "Write", "tool_input": {"file_path": target}})
+        result = subprocess.run(
+            [sys.executable, str(HOOK_SCRIPT)],
+            input=payload,
+            capture_output=True,
+            text=True,
+            timeout=15,
+        )
+    finally:
+        hidden.rename(watcher)
+
+    assert result.returncode == 0
+    resp = json.loads(result.stdout)
+    assert resp["hookSpecificOutput"]["permissionDecision"] == "allow"
+    assert "error" in resp["systemMessage"].lower()
