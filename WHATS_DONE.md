@@ -1,6 +1,42 @@
 # ✅ WHATS_DONE — BROski-Obsidian-Brain
 
-> Last synced: 2026-06-27 by BROski AI ⚡
+> Last synced: 2026-08-16 by Claude Sonnet 5 ⚡
+
+## 2026-07-18 to 2026-08-15 — reconciled from git log (doc was 7 weeks stale)
+
+This file and the repo's `NEXT_SESSION_HANDOVER` hadn't been updated since
+06-27 despite real commits continuing through 08-15 — caught while
+starting a session in this repo on 2026-08-16. Reconstructed from `git
+log`, not re-derived from scratch:
+
+- **Skill loadout boot-check wired into 2 of the 4 brain agents
+  (2026-07-23, `a7378b1` + `f2ab5b6`)** — `focus-tracker`, `mcp-bridge`,
+  and `morning-briefing` (via `__main__` startup) and `hyper-brain-core`
+  (via its existing `@app.on_event("startup")` handler, first thing
+  before engine init) now run HYPER-SILLs' own canonical
+  `scripts/agent_boot.py` (mounted at `/hyper-sills`) — no copy of the
+  logic in this repo. Fail-open: missing mount or module → skipped, never
+  blocks agent startup. Part of the ecosystem-wide Skill OS rollout
+  (declare→validate→boot-check→inject, live on 9 agents per the wider
+  ecosystem — this repo's 4 brain agents are among them).
+- **`.hyperfocus.yml` ecosystem manifest added (2026-07-18, `7ae6f51`)**
+  — registers this repo in the auto-generated root `AGENT-START.md` repo
+  map (`gen_repo_map.py`) instead of being hand-maintained.
+- **Hygiene pass (2026-07-23)** — `ruff` auto-clean removed 61 dead
+  imports/empty f-strings (`4e7ca98`); 17 tracked `__pycache__/*.pyc`
+  files untracked per this repo's own Sacred Rule #7 (`fc75270`).
+- **Everything else since 06-27** is routine automated graph/skill-mention
+  refresh commits (the `.github/workflows/graph-refresh.yml` action
+  documented in `CLAUDE.md`, firing on every vault `.md` push) — not
+  substantive feature work, not itemized here.
+
+⚠️ **Still open, unaddressed by anything above** — both from `CLAUDE.md`'s
+"Top 3 suggestions" (graph analysis, last ran 2026-06-09, never re-run
+since): centralising duplicate streak-data reads (`morning_briefing_ai`
+and `analytics_engine` both parse the same JSON file), and the AIFS
+watcher sidecar (built but disconnected from agents). Also still listed
+as dead code, never removed: `scripts/` (stale mirror), root
+`github_webhook_server.py` (orphaned).
 
 ## Done & Locked — Do NOT re-suggest
 
