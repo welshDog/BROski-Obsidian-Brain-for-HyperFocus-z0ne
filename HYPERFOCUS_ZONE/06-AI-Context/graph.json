@@ -4,18 +4,18 @@
     "canonical_path": "HYPERFOCUS_ZONE/06-AI-Context/graph.json",
     "container_path": "/vault/06-AI-Context/graph.json",
     "generated": "2026-06-09",
-    "updated": "2026-08-15",
+    "updated": "2026-08-16",
     "tool": "brain-graph-analysis (AST + static import trace)",
     "root": "BROski-Obsidian-Brain-for-HyperFocus-z0ne",
-    "total_nodes": 250,
-    "total_edges": 476,
+    "total_nodes": 251,
+    "total_edges": 479,
     "layers": [
       "code",
       "notes",
       "mentions",
       "skills"
     ],
-    "notes_scanned": 86,
+    "notes_scanned": 87,
     "skills_indexed": 123
   },
   "nodes": [
@@ -676,6 +676,13 @@
       "id": "note:NEXT_SESSION_HANDOVER_2026-07-12",
       "layer": "note",
       "path": "00-Inbox/NEXT_SESSION_HANDOVER_2026-07-12.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:NEXT_SESSION_HANDOVER_2026-08-16",
+      "layer": "note",
+      "path": "00-Inbox/NEXT_SESSION_HANDOVER_2026-08-16.md",
       "centrality": 0,
       "status": "live"
     },
@@ -3059,6 +3066,21 @@
       "type": "mentions"
     },
     {
+      "from": "note:NEXT_SESSION_HANDOVER_2026-08-16",
+      "to": "analytics_engine",
+      "type": "mentions"
+    },
+    {
+      "from": "note:NEXT_SESSION_HANDOVER_2026-08-16",
+      "to": "morning_briefing_ai",
+      "type": "mentions"
+    },
+    {
+      "from": "note:NEXT_SESSION_HANDOVER_2026-08-16",
+      "to": "github_webhook_server",
+      "type": "mentions"
+    },
+    {
       "from": "note:NOTEBOOKLM_INSIGHTS",
       "to": "morning_briefing_ai",
       "type": "mentions"
@@ -5022,17 +5044,7 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
-      "to": "skill:HS-099",
-      "type": "mentions"
-    },
-    {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "to": "skill:HS-100",
-      "type": "mentions"
-    },
-    {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
-      "to": "skill:HS-106",
       "type": "mentions"
     },
     {
@@ -5042,11 +5054,16 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "to": "skill:HS-106",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "to": "skill:HS-098",
       "type": "mentions"
     },
     {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "to": "skill:HS-099",
       "type": "mentions"
     },
@@ -5057,12 +5074,12 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
-      "to": "skill:HS-106",
+      "to": "skill:HS-089",
       "type": "mentions"
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
-      "to": "skill:HS-089",
+      "to": "skill:HS-106",
       "type": "mentions"
     },
     {
@@ -5071,8 +5088,8 @@
       "type": "mentions"
     },
     {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
-      "to": "skill:HS-016",
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
+      "to": "skill:HS-099",
       "type": "mentions"
     },
     {
@@ -5082,7 +5099,7 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
-      "to": "skill:HS-008",
+      "to": "skill:HS-016",
       "type": "mentions"
     },
     {
@@ -5093,6 +5110,11 @@
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
       "to": "skill:HS-097",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-008",
       "type": "mentions"
     }
   ],
