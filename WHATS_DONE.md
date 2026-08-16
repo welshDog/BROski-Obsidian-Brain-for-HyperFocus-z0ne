@@ -2,6 +2,32 @@
 
 > Last synced: 2026-08-16 by Claude Sonnet 5 ⚡
 
+## 2026-08-16 — AIFS Claude Code enforcement hook (real prevention, not just logging)
+
+`AIFS/aifs_claude_hook.py` (new) makes AIFS folder contracts genuinely
+preventive for Claude Code `Write`/`Edit` calls in this repo — a real
+`PreToolUse` hook returning `allow`/`deny`/`ask`, not just an
+after-the-fact `CHANGELOG.ai.md` entry the way `aifs_watcher.py`'s
+filesystem-event watcher works. Reuses `ContractResolver`/`AIFSEnforcer`/
+`AuditLogger` from `aifs_watcher.py` directly — zero changes to that
+file. Project-scoped (this repo's own `.claude/settings.local.json`
+only, not global). Fail-open on any hook error. Pilot contracts at
+`AIFS/_hook_test/{ext-restricted,ailock-guarded,trust-tier}/` exercise
+each enforcement mechanism independently. 10 tests
+(`tests/test_aifs_claude_hook.py`), all via real subprocess invocation
+of the hook script (its stdin-JSON-in/stdout-JSON-out contract), not
+mocked. Spec: `docs/superpowers/specs/2026-08-16-aifs-claude-hook-design.md`.
+
+⚠️ **Not yet live-verified.** Hooks load at Claude Code session start —
+this won't take effect until the next session opens in this repo. First
+task next session: attempt a real `Write` to
+`AIFS/_hook_test/ext-restricted/probe.py` and confirm the permission
+denial actually appears, per the spec's Testing Plan step 7.
+
+**Known limitation (by design, not a gap):** Bash can bypass this
+entirely (`echo > file`, `rm`, etc. aren't `Write`/`Edit` tool calls).
+This narrows the surface, it doesn't close it completely.
+
 ## 2026-07-18 to 2026-08-15 — reconciled from git log (doc was 7 weeks stale)
 
 This file and the repo's `NEXT_SESSION_HANDOVER` hadn't been updated since

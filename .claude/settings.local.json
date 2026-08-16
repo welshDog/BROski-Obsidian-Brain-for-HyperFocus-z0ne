@@ -13,6 +13,18 @@
             "statusMessage": "Checking Brain env vars..."
           }
         ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "& \"C:/Python313/python.exe\" \"H:/HYPERFOCUSZONE/HperCore/BROski-Obsidian-Brain-for-HyperFocus-z0ne/AIFS/aifs_claude_hook.py\"",
+            "shell": "powershell",
+            "timeout": 15,
+            "statusMessage": "Checking AIFS folder contract..."
+          }
+        ]
       }
     ],
     "PostToolUse": [
