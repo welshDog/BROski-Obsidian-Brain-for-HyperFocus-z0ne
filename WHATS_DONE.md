@@ -13,7 +13,7 @@ filesystem-event watcher works. Reuses `ContractResolver`/`AIFSEnforcer`/
 file. Project-scoped (this repo's own `.claude/settings.local.json`
 only, not global). Fail-open on any hook error. Pilot contracts at
 `AIFS/_hook_test/{ext-restricted,ailock-guarded,trust-tier}/` exercise
-each enforcement mechanism independently. 10 tests
+each enforcement mechanism independently. 11 tests
 (`tests/test_aifs_claude_hook.py`), all via real subprocess invocation
 of the hook script (its stdin-JSON-in/stdout-JSON-out contract), not
 mocked. Spec: `docs/superpowers/specs/2026-08-16-aifs-claude-hook-design.md`.
@@ -22,7 +22,15 @@ mocked. Spec: `docs/superpowers/specs/2026-08-16-aifs-claude-hook-design.md`.
 this won't take effect until the next session opens in this repo. First
 task next session: attempt a real `Write` to
 `AIFS/_hook_test/ext-restricted/probe.py` and confirm the permission
-denial actually appears, per the spec's Testing Plan step 7.
+denial actually appears, per the spec's Testing Plan step 7. This must be
+done from the **main checkout**
+(`H:/HYPERFOCUSZONE/HperCore/BROski-Obsidian-Brain-for-HyperFocus-z0ne/`),
+not from this worktree — `.claude/settings.local.json`'s hook registration
+is a hardcoded absolute path pointing at the main checkout, which won't
+exist there until this branch merges. Also note: that same hook
+registration hardcodes the interpreter as `C:/Python313/python.exe`; if
+Python is ever reinstalled or upgraded on this machine, that path may
+need updating for the hook to keep resolving.
 
 **Known limitation (by design, not a gap):** Bash can bypass this
 entirely (`echo > file`, `rm`, etc. aren't `Write`/`Edit` tool calls).

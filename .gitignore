@@ -29,3 +29,7 @@ __pycache__/
 output/
 logs/
 *.log
+
+# AIFS test-fixture audit trails — real output of running the test suite,
+# not fixtures to be committed; would dirty the working tree on every run
+AIFS/_hook_test/**/CHANGELOG.ai.md

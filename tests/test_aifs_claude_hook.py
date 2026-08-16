@@ -25,33 +25,41 @@ def test_no_contract_folder_allows_create():
     target = str(REPO_ROOT / "AIFS" / "_hook_test" / "no_contract_probe.md")
     resp = _run_hook("Write", target)
     assert resp["hookSpecificOutput"]["permissionDecision"] == "allow"
+    assert resp["hookSpecificOutput"]["hookEventName"] == "PreToolUse"
 
 
 def test_ext_restricted_folder_blocks_non_md_create():
     target = str(REPO_ROOT / "AIFS" / "_hook_test" / "ext-restricted" / "probe.py")
     resp = _run_hook("Write", target)
     assert resp["hookSpecificOutput"]["permissionDecision"] == "deny"
+    assert resp["hookSpecificOutput"]["hookEventName"] == "PreToolUse"
     assert "create" in resp["systemMessage"].lower()
+    assert "create" in resp["hookSpecificOutput"]["permissionDecisionReason"].lower()
 
 
 def test_ext_restricted_folder_allows_md_create():
     target = str(REPO_ROOT / "AIFS" / "_hook_test" / "ext-restricted" / "probe.md")
     resp = _run_hook("Write", target)
     assert resp["hookSpecificOutput"]["permissionDecision"] == "allow"
+    assert resp["hookSpecificOutput"]["hookEventName"] == "PreToolUse"
 
 
 def test_ailock_pattern_blocks_regardless_of_extension():
     target = str(REPO_ROOT / "AIFS" / "_hook_test" / "ailock-guarded" / "secret.md")
     resp = _run_hook("Write", target)
     assert resp["hookSpecificOutput"]["permissionDecision"] == "deny"
+    assert resp["hookSpecificOutput"]["hookEventName"] == "PreToolUse"
     assert "ailock" in resp["systemMessage"].lower()
+    assert "ailock" in resp["hookSpecificOutput"]["permissionDecisionReason"].lower()
 
 
 def test_trust_tier_edit_only_blocks_create():
     target = str(REPO_ROOT / "AIFS" / "_hook_test" / "trust-tier" / "new_file.md")
     resp = _run_hook("Write", target)
     assert resp["hookSpecificOutput"]["permissionDecision"] == "deny"
+    assert resp["hookSpecificOutput"]["hookEventName"] == "PreToolUse"
     assert "edit_only" in resp["systemMessage"].lower()
+    assert "edit_only" in resp["hookSpecificOutput"]["permissionDecisionReason"].lower()
 
 
 def test_trust_tier_edit_only_allows_edit_of_existing_file():
@@ -60,17 +68,20 @@ def test_trust_tier_edit_only_allows_edit_of_existing_file():
     existing.write_text("pilot fixture\n", encoding="utf-8")
     resp = _run_hook("Edit", str(existing))
     assert resp["hookSpecificOutput"]["permissionDecision"] == "allow"
+    assert resp["hookSpecificOutput"]["hookEventName"] == "PreToolUse"
 
 
 def test_path_outside_repo_root_allows():
     resp = _run_hook("Write", "C:/Windows/Temp/outside_repo_probe.md")
     assert resp["hookSpecificOutput"]["permissionDecision"] == "allow"
+    assert resp["hookSpecificOutput"]["hookEventName"] == "PreToolUse"
 
 
 def test_non_write_edit_tool_allows_without_checking_contract():
     target = str(REPO_ROOT / "AIFS" / "_hook_test" / "ext-restricted" / "probe.py")
     resp = _run_hook("Read", target)
     assert resp["hookSpecificOutput"]["permissionDecision"] == "allow"
+    assert resp["hookSpecificOutput"]["hookEventName"] == "PreToolUse"
 
 
 def test_malformed_stdin_fails_open():
@@ -83,6 +94,7 @@ def test_malformed_stdin_fails_open():
     )
     resp = json.loads(result.stdout)
     assert resp["hookSpecificOutput"]["permissionDecision"] == "allow"
+    assert resp["hookSpecificOutput"]["hookEventName"] == "PreToolUse"
     assert "error" in resp["systemMessage"].lower()
 
 
@@ -124,4 +136,5 @@ def test_aifs_watcher_import_failure_fails_open():
     assert result.returncode == 0
     resp = json.loads(result.stdout)
     assert resp["hookSpecificOutput"]["permissionDecision"] == "allow"
+    assert resp["hookSpecificOutput"]["hookEventName"] == "PreToolUse"
     assert "error" in resp["systemMessage"].lower()
