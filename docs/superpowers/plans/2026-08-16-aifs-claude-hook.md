@@ -282,6 +282,20 @@ git commit -m "feat: add AIFS PreToolUse enforcement hook for Claude Code + pilo
 
 - [ ] **Step 1: Register the PreToolUse hook**
 
+⚠️ **CORRECTED 2026-08-16, pre-flight to Task 2** — the plan originally
+specified bare `python3`, matching this repo's other existing hooks. That
+is **wrong for this specific hook**: in this environment `python3`
+resolves to a Windows Store alias running Python 3.9.13, which has
+neither `tomllib` (stdlib from 3.11+) nor `watchdog`/`requests` —
+confirmed empirically during Task 1's review (`python3 -c "import
+tomllib"` → `ModuleNotFoundError`). The real, dependency-complete
+interpreter in this environment is `python` → `C:\Python313\python.exe`.
+Using the absolute path to that interpreter instead of the bare `python3`
+alias. (Caveat: this hardcodes a version-specific path that could go
+stale if Python is reinstalled/upgraded on this machine later — verify
+with `python -c "import watchdog"` before trusting it again if this
+command ever needs revisiting.)
+
 In `.claude/settings.local.json`, add a new entry to the existing `"PreToolUse": [...]` array
 (alongside the existing `Bash`-matcher entry — do not remove or modify that one):
 
@@ -291,7 +305,7 @@ In `.claude/settings.local.json`, add a new entry to the existing `"PreToolUse":
   "hooks": [
     {
       "type": "command",
-      "command": "python3 \"H:/HYPERFOCUSZONE/HperCore/BROski-Obsidian-Brain-for-HyperFocus-z0ne/AIFS/aifs_claude_hook.py\"",
+      "command": "& \"C:/Python313/python.exe\" \"H:/HYPERFOCUSZONE/HperCore/BROski-Obsidian-Brain-for-HyperFocus-z0ne/AIFS/aifs_claude_hook.py\"",
       "shell": "powershell",
       "timeout": 15,
       "statusMessage": "Checking AIFS folder contract..."

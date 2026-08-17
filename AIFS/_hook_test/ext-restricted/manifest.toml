@@ -1,0 +1,8 @@
+[contract]
+read_only = false
+inherit = true
+
+[permissions]
+create = [".md"]
+edit = [".md"]
+delete = false
