@@ -15,7 +15,7 @@ Agents must strictly adhere to these rules to prevent death-spirals or architect
 | # | Rule | Status |
 |---|---|---|
 | 1 | **Handover Precedence** — Always read `rewrites/NEXT_SESSION_HANDOVER_[latest].md` first. It is the absolute authority and always wins over conflicting docs. | ✅ Strongly Supported |
-| 2 | **Migration Lock** — Never use `supabase db push`. Use only `apply_migration` to avoid schema desync. | ✅ Strongly Supported |
+| 2 | **Migration Lock** — Never use `supabase apply_migration`. Use only `apply_migration` to avoid schema desync. | ✅ Strongly Supported |
 | 3 | **Secrets Isolation** — `DISCORD_BOT_TOKEN` and all secrets must live in `.env` or Vercel env vars only. Never commit to code. | ✅ Strongly Supported |
 | 4 | **Financial Guardrails** — Respect per-user 24h budget guard (default $1.00/day). Prevent surprise API bills. | ✅ Strongly Supported |
 | 5 | **Stack Sovereignty** — Never generate Next.js or App Router code for the Course repo. Strictly Vite + React. | ✅ Strongly Supported |

@@ -26,7 +26,7 @@
 - **Why:** RainbowKit + wagmi context must NOT leak into global app root — breaks non-Web3 pages.
 - **Rule:** Web3 providers stay inside the Pets page tree.
 
-### ✅ `supabase db push` banned — use `apply_migration` only
+### ✅ `supabase apply_migration` banned — use `apply_migration` only
 - **Date:** Pre-May 2026
 - **Why:** DB push desynced migrations once and caused a full audit. `apply_migration` is safe and tracked.
 

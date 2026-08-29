@@ -9,7 +9,7 @@
   - `New-BrainNote.ps1` in `scripts/` — interactive helper for following the 5-step protocol (CAPTURE→TAG→LINK→SPLIT→VERIFY) with prompts for source, title, content, tagging, linking, micro-task extraction, and verification.
   - `Verify-BrainNote.ps1` in `scripts/` — scanner that validates all notes in the HyperFocus Zone vault have the required frontmatter tags: `#notebooklm-import`, `#hfz-map`, and a skill tag.
 - **Rule enforcement via git hooks**:
-  - Created pre-commit hook that blocks committing `.env` files and any staged changes containing the string `supabase db push` (reminding to use `apply_migration` instead).
+  - Created pre-commit hook that blocks committing `.env` files and any staged changes containing the string `supabase apply_migration` (reminding to use `apply_migration` instead).
   - Installed this hook in 9 repos across the ecosystem: HyperCode-V2.4, hyper-agents-ide, Hyper-Vibe-Coding-Course, HyperAgent-SDK, showcase-web, BROskiPets-LLM-dNFT, HYPER-SILLs-By-WelshDog, WelshDog-Mission-Control, welshdog-designs-web3-shop (already present in BROski-Obsidian-Brain-for-HyperFocus-z0ne).
 - **Updated dashboard files** to resolve session start verification warnings:
   - Created `DASHBOARD_STATUS_2026-08-29.md` in workspace root with current status and live-truth declaration.

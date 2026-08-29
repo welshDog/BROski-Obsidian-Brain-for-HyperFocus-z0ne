@@ -70,7 +70,7 @@ Exact sequence every AI session must follow:
 
 - ❌ Never rename hero skills in HYPER-SILLs (breaks all agents referencing them)
 - ❌ Never commit `.env` files (secrets in `.env` only)
-- ❌ Never use `supabase db push` (migrations desynced — use `apply_migration` only)
+- ❌ Never use `supabase apply_migration` (migrations desynced — use `apply_migration` only)
 - ❌ Never let Web3 (Wagmi/RainbowKit) leak outside `/pets` route
 - ❌ Never run `npm run dev` in course repo (use `npm run dev:frontend`)
 - ❌ Never push without `git fetch` first (auto-commits are running)

@@ -41,12 +41,12 @@ updated: 2026-05-27
 - **Consequences:** All component patterns, routing, and env vars follow Vite conventions.
 - **Links:** [[CLAUDE.md]]
 
-### DL-2026-002 — Use `apply_migration` only (never `supabase db push`)
+### DL-2026-002 — Use `apply_migration` only (never `supabase apply_migration`)
 - **Status:** Accepted
 - **Date:** 2026-05-01
 - **Context:** Migrations became desynced after a `db push` wiped the migration history.
 - **Decision:** All DDL changes go through `apply_migration` via the Supabase MCP tool.
-- **Consequences:** No direct `supabase db push` ever. Ever.
+- **Consequences:** No direct `supabase apply_migration` ever. Ever.
 - **Links:** [[WHATS_DONE.md]]
 
 ### DL-2026-003 — 5-Tier Stripe Pricing (Option A)

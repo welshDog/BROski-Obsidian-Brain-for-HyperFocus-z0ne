@@ -46,7 +46,7 @@ brain/                          — Python brain tools (core, focus, briefing, a
 scripts/github_to_obsidian.py   — GitHub → Obsidian sync bridge
 scripts/New-BrainNote.ps1       — Interactive Data-to-Brain Protocol helper
 scripts/Verify-BrainNote.ps1    — Data-to-Brain Protocol compliance verifier
-scripts/Install-GitHooks.ps1    — Installs pre-commit hooks to block .env commits and supabase db push
+scripts/Install-GitHooks.ps1    — Installs pre-commit hooks to block .env commits and supabase apply_migration
 Projects/                       — PARA: active projects
 Areas/                          — PARA: ongoing responsibilities
 Resources/                      — PARA: reference material

@@ -127,7 +127,7 @@ Always check `vault-index.md` for the full map first.
 | Check `WHATS_DONE.md` before suggesting anything | Never rebuild what's already built |
 | One repo at a time | No cross-repo commits in same commit |
 | `npm run dev:frontend` NOT `npm run dev` | `npm run dev` breaks — bites every new AI |
-| Never `supabase db push` | Use `apply_migration` only — migrations desynced |
+| Never `supabase apply_migration` | Use `apply_migration` only — migrations desynced |
 | Web3/Wagmi stays in `/pets` ONLY | Must NOT leak into global app root |
 | `docker-ce-cli` not `docker.io` | Agent connectivity depends on it |
 | Keep LLM costs low | Cap tokens, avoid polling AI Gateway |

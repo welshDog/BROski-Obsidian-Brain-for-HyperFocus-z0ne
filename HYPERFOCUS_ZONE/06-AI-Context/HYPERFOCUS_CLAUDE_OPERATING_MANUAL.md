@@ -188,7 +188,7 @@ Source of truth: rewrites/NEXT_SESSION_HANDOVER_latest.md
 
 Sacred rules:
 - npm run dev:frontend (NEVER npm run dev)
-- Never supabase db push (use apply-migration only)
+- Never supabase apply_migration (use apply-migration only)
 - WagmiRainbowKit stays in BROskiPets only, never global app root
 - set-state-in-effect = hard lint fail, avoid entirely
 

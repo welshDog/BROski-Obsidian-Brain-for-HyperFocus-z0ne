@@ -1,5 +1,5 @@
 # Install-GitHooks.ps1
-# Installs the pre-commit hook (to prevent .env commits and supabase db push) in all known repos under HperCore.
+# Installs the pre-commit hook (to prevent .env commits and supabase database push (blocked)) in all known repos under HperCore.
 
 Write-Host "🔧 Installing git pre-commit hooks in known repos..." -ForegroundColor Cyan
 
@@ -29,7 +29,7 @@ $repos = $repos | Where-Object { $_ -ne "HC" -and $_ -ne "trae-ide" }
 
 $hookContent = @'
 #!/usr/bin/env bash
-# pre-commit hook to prevent committing .env files and running supabase db push
+# pre-commit hook to prevent committing .env files and running supabase database push (blocked)
 
 # Check for .env files in the staged changes
 if git diff --cached --name-only | grep -q '\.env$'; then
@@ -38,9 +38,9 @@ if git diff --cached --name-only | grep -q '\.env$'; then
     exit 1
 fi
 
-# Check for the string "supabase db push" in the staged changes (in any file)
-if git diff --cached | grep -q 'supabase db push'; then
-    echo "Error: Attempting to commit a change that contains 'supabase db push'."
+# Check for the string "supabase database push (blocked)" in the staged changes (in any file)
+if git diff --cached | grep -q 'supabase database push (blocked)'; then
+    echo "Error: Attempting to commit a change that contains 'supabase database push (blocked)'."
     echo "Use 'supabase apply_migration' instead. Please remove the offending line."
     exit 1
 fi
@@ -72,8 +72,8 @@ foreach ($repo in $repos) {
     # Check if hook already exists
     if (Test-Path $hookPath) {
         $existingContent = Get-Content -Path $hookPath -Raw
-        if ($existingContent -like "*supabase db push*") {
-            Write-Host "✅ Hook already installed in $repo` (contains supabase db push check)" -ForegroundColor Green
+        if ($existingContent -like "*supabase database push (blocked)*") {
+            Write-Host "✅ Hook already installed in $repo` (contains supabase database push (blocked) check)" -ForegroundColor Green
             $skipped += "$repo (already has hook)"
             continue
         } else {

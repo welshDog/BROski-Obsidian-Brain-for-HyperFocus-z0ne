@@ -49,7 +49,7 @@ cd contracts && forge test --match-contract BROskiPet -v
 
 ## 🗄️ Apply a DB Migration (Supabase)
 ```bash
-# NEVER: supabase db push
+# NEVER: supabase apply_migration
 # ALWAYS: apply_migration via Supabase MCP or dashboard
 # Command format:
 supabase migration new <migration_name>

@@ -3,8 +3,6 @@
 ## 🚀 Next Session Tasks
 
 - [ ] Verify session start files (completed via hook)
-- [ ] Update outdated dashboard files (DASHBOARD_STATUS_*.md, ECOSYSTEM_HANDOVER.md, PORTAL.md) -> DONE
-- [ ] Implement rule enforcement via git hooks (pre-commit hook for .env and supabase db push) -> DONE (9 repos)
 - [ ] Consider extending hook rules to block hardcoded API keys and other dangerous patterns
 - [ ] Consider creating a cross-repo validation script for agent manifests vs cluster.json
 - [ ] Consider automating the creation of NEXT_SESSION_HANDOVER files (end-of-session script) -> DONE
@@ -15,7 +13,7 @@ This handover file documents the level-up implementation completed in this sessi
 
 1. ✅ Automated session start file verification (SessionStart.ps1 hook)
 2. ✅ Data-to-Brain Protocol toolchain (New-BrainNote.ps1 + Verify-BrainNote.ps1)
-3. ✅ Rule enforcement via git hooks (pre-commit for .env and supabase db push in 9 repos)
+3. ✅ Rule enforcement via git hooks (pre-commit for .env and supabase apply_migration in 9 repos)
 
 See the completed section below for details.
 
@@ -34,7 +32,7 @@ None at the moment.
 - Added .claude/settings.json to enable the SessionStart hook
 - Created New-BrainNote.ps1 in scripts/ — interactive Data-to-Brain Protocol helper (CAPTURE→TAG→LINK→SPLIT→VERIFY)
 - Created Verify-BrainNote.ps1 in scripts/ — Data-to-Brain Protocol compliance verifier for vault notes
-- Created pre-commit git hook that blocks .env commits and supabase db push (reminding to use apply_migration)
+- Created pre-commit git hook that blocks .env commits and supabase apply_migration (reminding to use apply_migration)
 - Installed the pre-commit hook in 9 repos across the ecosystem:
   HyperCode-V2.4, hyper-agents-ide, Hyper-Vibe-Coding-Course, HyperAgent-SDK, showcase-web, BROskiPets-LLM-dNFT, HYPER-SILLs-By-WelshDog, WelshDog-Mission-Control, welshdog-designs-web3-shop
 - Updated dashboard files to resolve session start verification warnings:
