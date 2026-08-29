@@ -19,7 +19,7 @@ Write-Host "Workspace root (HperCore): $workspaceRoot" -ForegroundColor DarkGray
 
 # Define required files and their descriptions with correct paths
 $requiredFiles = @(
-    # Workspace root files (first three) - located in $workspaceRoot
+    # Workspace root files (first three) - located in $workspaceRoot (HperCore)
     @{ path = Join-Path $workspaceRoot "DASHBOARD_STATUS_*.md"; description = "LIVE blockers + proof status"; pattern = "DASHBOARD_STATUS_*" },
     @{ path = Join-Path $workspaceRoot "ECOSYSTEM_HANDOVER.md"; description = "cross-repo contracts + P0s"; pattern = "ECOSYSTEM_HANDOVER.md" },
     @{ path = Join-Path $workspaceRoot "PORTAL.md"; description = "tabs hub + jump points"; pattern = "PORTAL.md" },
@@ -89,5 +89,5 @@ if (-not $allGood) {
         Write-Host ""
     }
     Write-Host "🎉 All required files verified! Session ready to begin." -ForegroundColor Green
-    Write-Host "💡 Next up is verifying session start files — starting now" -ForegroundColor Cyan
+    Write-Host "💡 Next up is verifying session start files - starting now" -ForegroundColor Cyan
 }
