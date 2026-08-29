@@ -4,6 +4,8 @@
 > That file has: who Lyndz is, comms rules, all sacred rules, ecosystem map, AI behaviour.
 > This file has: Obsidian Brain-specific rules only.
 
+> **Last updated:** 2026-08-29 — Session start verification, Data-to-Brain tools, and git hooks implemented (see NEXT_SESSION_HANDOVER_2026-08-29.md).
+
 ---
 
 ## 📍 What This Repo Is
@@ -15,6 +17,7 @@
 - **Graduate build CLI:** IMPLEMENTED ✅ — strict build passes (4x green). Agents live in V2.4 on ports 3301/3302/3303/3304 (`--profile brain-agents`)
 
 ---
+
 
 ## 🔴 Sacred Rules — Obsidian Brain
 
@@ -30,6 +33,7 @@
 
 ---
 
+
 ## 🗂️ Key Files
 
 ```
@@ -40,6 +44,9 @@ cluster.json                    — 4-agent brain cluster spec
 .agents/morning-briefing/       — morning briefing manifest
 brain/                          — Python brain tools (core, focus, briefing, analytics)
 scripts/github_to_obsidian.py   — GitHub → Obsidian sync bridge
+scripts/New-BrainNote.ps1       — Interactive Data-to-Brain Protocol helper
+scripts/Verify-BrainNote.ps1    — Data-to-Brain Protocol compliance verifier
+scripts/Install-GitHooks.ps1    — Installs pre-commit hooks to block .env commits and supabase db push
 Projects/                       — PARA: active projects
 Areas/                          — PARA: ongoing responsibilities
 Resources/                      — PARA: reference material
@@ -47,7 +54,6 @@ Archive/                        — PARA: completed/inactive
 docs/                           — analysis, roadmap, insights, upgrade notes
 ```
 
----
 
 ## ⚡ Brain Agent Cluster — Status
 
@@ -69,6 +75,7 @@ docs/                           — analysis, roadmap, insights, upgrade notes
 **Discord:** `/brain-briefing` command (admin) + daily auto-DM at `BRIEFING_HOUR_UTC` (default 07:00 UTC).
 
 ---
+
 
 ## 🕸️ Graph Brain
 
@@ -96,5 +103,6 @@ Human report: `HYPERFOCUS_ZONE/06-AI-Context/GRAPHIFY_BRAIN_MAP.md`. (Old `graph
 **Dead code identified:** `scripts/` (stale mirror), root `github_webhook_server.py` (orphaned)
 
 ---
+
 
 > 🐶♾️ Part of the Hyperfocus z0ne — @welshDog

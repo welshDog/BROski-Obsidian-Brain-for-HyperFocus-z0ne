@@ -1,6 +1,26 @@
 # ✅ WHATS_DONE — BROski-Obsidian-Brain
 
-> Last synced: 2026-08-16 by Claude Sonnet 5 ⚡
+> Last synced: 2026-08-29 by Claude Opus 5 (level-up implementation) ⚡
+
+## 2026-08-29 — Ecosystem-wide level-up implementation
+
+- **Session start verification**: Created `SessionStart.ps1` script in `.claude/hooks/` that checks for required files (DASHBOARD_STATUS_*.md, ECOSYSTEM_HANDOVER.md, PORTAL.md, NEXT_SESSION_HANDOVER_*.md, CLAUDE.md, WHATS_DONE.md) and is configured via `.claude/settings.json` to run at every session start.
+- **Data-to-Brain Protocol toolchain**:
+  - `New-BrainNote.ps1` in `scripts/` — interactive helper for following the 5-step protocol (CAPTURE→TAG→LINK→SPLIT→VERIFY) with prompts for source, title, content, tagging, linking, micro-task extraction, and verification.
+  - `Verify-BrainNote.ps1` in `scripts/` — scanner that validates all notes in the HyperFocus Zone vault have the required frontmatter tags: `#notebooklm-import`, `#hfz-map`, and a skill tag.
+- **Rule enforcement via git hooks**:
+  - Created pre-commit hook that blocks committing `.env` files and any staged changes containing the string `supabase db push` (reminding to use `apply_migration` instead).
+  - Installed this hook in 9 repos across the ecosystem: HyperCode-V2.4, hyper-agents-ide, Hyper-Vibe-Coding-Course, HyperAgent-SDK, showcase-web, BROskiPets-LLM-dNFT, HYPER-SILLs-By-WelshDog, WelshDog-Mission-Control, welshdog-designs-web3-shop (already present in BROski-Obsidian-Brain-for-HyperFocus-z0ne).
+- **Updated dashboard files** to resolve session start verification warnings:
+  - Created `DASHBOARD_STATUS_2026-08-29.md` in workspace root with current status and live-truth declaration.
+  - Updated `ECOSYSTEM_HANDOVER.md` to reflect level-up completion and current open actions.
+  - Updated `PORTAL.md` to point to the latest dashboard and reflect level-up status.
+- **Updated local repo documentation**:
+  - `CLAUDE.md` — added "Last updated" note and referenced today's accomplishments.
+  - `NEXT_SESSION_HANDOVER_2026-08-29.md` — created to satisfy session start verification and document completed level-up tasks.
+- **Verification**: Session start verification now passes (only shows warnings for files >24h old, which is expected during active development).
+
+---
 
 ## 2026-08-16 — AIFS Claude Code enforcement hook (real prevention, not just logging)
 

@@ -1,0 +1,11 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "powershell -ExecutionPolicy Bypass -File \"$PSScriptRoot\\hooks\\SessionStart.ps1\"",
+        "description": "Verify required session start files are present and up to date"
+      }
+    ]
+  }
+}
