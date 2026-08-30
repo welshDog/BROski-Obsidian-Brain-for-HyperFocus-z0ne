@@ -2,9 +2,13 @@
   "hooks": {
     "SessionStart": [
       {
-        "type": "command",
-        "command": "powershell -ExecutionPolicy Bypass -File \"$PSScriptRoot\\hooks\\SessionStart.ps1\"",
-        "description": "Verify required session start files are present and up to date"
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -ExecutionPolicy Bypass -File \"${CLAUDE_PROJECT_DIR}\\.claude\\hooks\\SessionStart.ps1\"",
+            "timeout": 30
+          }
+        ]
       }
     ]
   }
