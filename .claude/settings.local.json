@@ -1,4 +1,7 @@
 {
+  "enabledMcpjsonServers": [
+    "supabase"
+  ],
   "hooks": {
     "PreToolUse": [
       {
@@ -6,8 +9,8 @@
         "hooks": [
           {
             "type": "command",
-            "if": "Bash(docker compose*)",
             "command": "python3 \"H:/HYPERFOCUSZONE/HperCore/BROski-Obsidian-Brain-for-HyperFocus-z0ne/scripts/hfz_env_guard.py\"; exit 0",
+            "if": "Bash(docker compose*)",
             "shell": "powershell",
             "timeout": 15,
             "statusMessage": "Checking Brain env vars..."
@@ -81,5 +84,6 @@
         ]
       }
     ]
-  }
+  },
+  "enableAllProjectMcpServers": true
 }

@@ -7,7 +7,7 @@
     "updated": "2026-08-31",
     "tool": "brain-graph-analysis (AST + static import trace)",
     "root": "BROski-Obsidian-Brain-for-HyperFocus-z0ne",
-    "total_nodes": 251,
+    "total_nodes": 255,
     "total_edges": 479,
     "layers": [
       "code",
@@ -15,7 +15,7 @@
       "mentions",
       "skills"
     ],
-    "notes_scanned": 87,
+    "notes_scanned": 91,
     "skills_indexed": 123
   },
   "nodes": [
@@ -540,6 +540,27 @@
       "status": "live"
     },
     {
+      "id": "note:HYPERAGENT_LOOP_2026-08-31T00-55-57Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-08-31T00-55-57Z.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-08-31T01-29-32Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-08-31T01-29-32Z.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-08-31T01-31-56Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-08-31T01-31-56Z.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
       "id": "note:Health-Dashboard",
       "layer": "note",
       "path": "02-Areas/Health/Health-Dashboard.md",
@@ -683,6 +704,13 @@
       "id": "note:NEXT_SESSION_HANDOVER_2026-08-16",
       "layer": "note",
       "path": "00-Inbox/NEXT_SESSION_HANDOVER_2026-08-16.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:NEXT_SESSION_HANDOVER_2026-08-31",
+      "layer": "note",
+      "path": "00-Inbox/NEXT_SESSION_HANDOVER_2026-08-31.md",
       "centrality": 0,
       "status": "live"
     },
@@ -5044,17 +5072,12 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
-      "to": "skill:HS-098",
-      "type": "mentions"
-    },
-    {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "to": "skill:HS-100",
       "type": "mentions"
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
-      "to": "skill:HS-089",
+      "to": "skill:HS-098",
       "type": "mentions"
     },
     {
@@ -5068,8 +5091,8 @@
       "type": "mentions"
     },
     {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
-      "to": "skill:HS-098",
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "to": "skill:HS-089",
       "type": "mentions"
     },
     {
@@ -5079,7 +5102,7 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
-      "to": "skill:HS-089",
+      "to": "skill:HS-098",
       "type": "mentions"
     },
     {
@@ -5093,12 +5116,7 @@
       "type": "mentions"
     },
     {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
-      "to": "skill:HS-008",
-      "type": "mentions"
-    },
-    {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
       "to": "skill:HS-089",
       "type": "mentions"
     },
@@ -5109,12 +5127,22 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-097",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
       "to": "skill:HS-016",
       "type": "mentions"
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
-      "to": "skill:HS-097",
+      "to": "skill:HS-089",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-008",
       "type": "mentions"
     }
   ],
