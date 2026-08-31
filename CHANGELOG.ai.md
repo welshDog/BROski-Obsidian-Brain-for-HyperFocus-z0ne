@@ -14,3 +14,7 @@
 - `2026-06-03 01:24:42` 🚫 **DELETE** `PORTAL.md` — BLOCK — delete not allowed — MUST NOT delete (agent: unknown)
 - `2026-06-03 01:24:42` ✅ **CREATE** `PORTAL.md` — ALLOW — ✅ permitted by contract (agent: unknown)
 - `2026-06-03 01:24:42` ✅ **EDIT** `PORTAL.md` — ALLOW — ✅ permitted by contract (agent: unknown)
+
+## 2026-08-31
+- `2026-08-31 19:18:49` ✅ **EDIT** `CLAUDE.md` — ALLOW — ✅ permitted by contract (agent: claude-code)
+- `2026-08-31 19:19:43` ✅ **EDIT** `CLAUDE.md` — ALLOW — ✅ permitted by contract (agent: claude-code)
