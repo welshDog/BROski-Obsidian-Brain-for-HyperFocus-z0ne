@@ -7,15 +7,15 @@
     "updated": "2026-09-01",
     "tool": "brain-graph-analysis (AST + static import trace)",
     "root": "BROski-Obsidian-Brain-for-HyperFocus-z0ne",
-    "total_nodes": 262,
-    "total_edges": 479,
+    "total_nodes": 268,
+    "total_edges": 482,
     "layers": [
       "code",
       "notes",
       "mentions",
       "skills"
     ],
-    "notes_scanned": 98,
+    "notes_scanned": 104,
     "skills_indexed": 123
   },
   "nodes": [
@@ -204,6 +204,48 @@
       "status": "orphan-mirror"
     },
     {
+      "id": "note:01-deep-dive-audit-ecosystem-view-2026-09-01",
+      "layer": "note",
+      "path": "03-Resources/Hyper-Merge-Audits/01-deep-dive-audit-ecosystem-view-2026-09-01.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:02-counter-audit-what-runs-2026-09-01",
+      "layer": "note",
+      "path": "03-Resources/Hyper-Merge-Audits/02-counter-audit-what-runs-2026-09-01.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:03-github-academic-report-2026-09-01",
+      "layer": "note",
+      "path": "03-Resources/Hyper-Merge-Audits/03-github-academic-report-2026-09-01.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:04-synthesis-2026-09-01",
+      "layer": "note",
+      "path": "03-Resources/Hyper-Merge-Audits/04-synthesis-2026-09-01.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:05-academic-assessment-hypercode-rev1",
+      "layer": "note",
+      "path": "03-Resources/Hyper-Merge-Audits/05-academic-assessment-hypercode-rev1.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
+      "id": "note:06-academic-assessment-hypercode-rev2",
+      "layer": "note",
+      "path": "03-Resources/Hyper-Merge-Audits/06-academic-assessment-hypercode-rev2.md",
+      "centrality": 0,
+      "status": "live"
+    },
+    {
       "id": "note:2026-05-05",
       "layer": "note",
       "path": "00-Inbox/2026-05-05.md",
@@ -332,7 +374,7 @@
     {
       "id": "note:CHANGELOG.ai",
       "layer": "note",
-      "path": "CHANGELOG.ai.md",
+      "path": "03-Resources/Hyper-Merge-Audits/CHANGELOG.ai.md",
       "centrality": 0,
       "status": "live"
     },
@@ -2933,6 +2975,21 @@
       "type": "wikilink"
     },
     {
+      "from": "note:01-deep-dive-audit-ecosystem-view-2026-09-01",
+      "to": "analytics_engine",
+      "type": "mentions"
+    },
+    {
+      "from": "note:01-deep-dive-audit-ecosystem-view-2026-09-01",
+      "to": "constellation_builder",
+      "type": "mentions"
+    },
+    {
+      "from": "note:01-deep-dive-audit-ecosystem-view-2026-09-01",
+      "to": "gamification_summary",
+      "type": "mentions"
+    },
+    {
       "from": "note:2026-05-07-The-Day-The-Brain-Woke-Up",
       "to": "hyper_brain_core",
       "type": "mentions"
@@ -5121,6 +5178,11 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "to": "skill:HS-098",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "to": "skill:HS-089",
       "type": "mentions"
     },
@@ -5131,7 +5193,7 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
-      "to": "skill:HS-098",
+      "to": "skill:HS-099",
       "type": "mentions"
     },
     {
@@ -5140,8 +5202,8 @@
       "type": "mentions"
     },
     {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
-      "to": "skill:HS-099",
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
+      "to": "skill:HS-098",
       "type": "mentions"
     },
     {
@@ -5156,7 +5218,7 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
-      "to": "skill:HS-098",
+      "to": "skill:HS-099",
       "type": "mentions"
     },
     {
@@ -5165,8 +5227,13 @@
       "type": "mentions"
     },
     {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
-      "to": "skill:HS-099",
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-089",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-008",
       "type": "mentions"
     },
     {
@@ -5176,17 +5243,7 @@
     },
     {
       "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
-      "to": "skill:HS-089",
-      "type": "mentions"
-    },
-    {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
       "to": "skill:HS-114",
-      "type": "mentions"
-    },
-    {
-      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
-      "to": "skill:HS-008",
       "type": "mentions"
     },
     {
