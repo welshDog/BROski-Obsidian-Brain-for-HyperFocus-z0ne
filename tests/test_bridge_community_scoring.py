@@ -50,11 +50,14 @@ def test_community_only_node_is_surfaced_with_no_edge_path(tmp_path):
     assert "edge_hit" in out_ids
     assert "comm_hit" in out_ids                        # pulled in by community
     assert out_ids.index("edge_hit") < out_ids.index("comm_hit")   # ranked below the edge hit
+    assert "far" not in out_ids                         # negative control: different community, no edge path
 
 
 def test_v4_graph_output_is_identical_to_legacy_ranker(tmp_path):
     b5 = _bridge(tmp_path / "a", _V5)
     b4 = _bridge(tmp_path / "b", _v4(_V5))
+    # v5 path still ranks the edge hit first (sanity — same fixture, v5 graph)
+    assert [n["id"] for n in b5.related_nodes(["s"], limit=5)][0] == "edge_hit"
     # on v4 (no community/centrality_global) only the edge hit comes back
     assert [n["id"] for n in b4.related_nodes(["s"], limit=5)] == ["edge_hit"]
     # and community-seeding must NOT fire for v4
