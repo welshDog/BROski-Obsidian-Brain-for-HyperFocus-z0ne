@@ -1,0 +1,2 @@
+# Gamma
+Links to [[Beta]].

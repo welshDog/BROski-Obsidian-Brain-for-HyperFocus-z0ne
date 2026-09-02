@@ -303,6 +303,25 @@ def merge(graph, note_nodes, note_edges, mention_edges, notes_scanned,
     meta["skills_indexed"] = sum(1 for n in skill_nodes if n.get("status") != "phantom")
     meta["total_nodes"] = len(graph["nodes"])
     meta["total_edges"] = len(graph["edges"])
+
+    # ── v5: native communities + PageRank over the retrieval topology ──
+    try:
+        from communities import detect_communities, pagerank, derive_labels
+        pr = pagerank(graph["nodes"], graph["edges"])
+        node_comm, comm_members = detect_communities(graph["nodes"], graph["edges"])
+        labels = derive_labels(comm_members, graph["nodes"], pr)
+        for n in graph["nodes"]:
+            cid = node_comm[n["id"]]
+            n["community"] = cid
+            n["community_label"] = labels[cid]
+            n["centrality_global"] = round(pr.get(n["id"], 0.0), 6)
+        meta["version"] = 5
+        meta["layers"] = ["code", "notes", "mentions", "skills", "communities"]
+        meta["communities_count"] = len(set(node_comm.values()))
+        meta["community_algo"] = "greedy-modularity"
+    except Exception as exc:  # fail-open — same posture as the skills-layer preserve path
+        print(f"communities: skipped ({exc})")
+
     return graph
 
 
