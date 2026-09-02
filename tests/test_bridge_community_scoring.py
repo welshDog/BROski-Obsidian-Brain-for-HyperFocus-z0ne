@@ -17,18 +17,20 @@ def _bridge(tmp_path, graph):
 
 
 # seed 's' is edge-linked to 'edge_hit'. 'comm_hit' shares s's community but has
-# NO edge path. 'far' is in neither.
-# centrality_global values per Ruling 2: sum ~= 1.0 (realistic PageRank) and
-# comm_hit's _cent (= centrality_global * n_count, n_count=4) = 0.38 * 4 = 1.52,
-# comfortably >= the default GRAPH_COMMUNITY_SEED_FLOOR of 1.0 so the
-# default-path community-seeding tests surface comm_hit.
+# NO edge path. 'far' is in a DIFFERENT community and has no edge path.
+# centrality_global values per Ruling 2: sum == 1.0 (realistic PageRank).
+# n_count = 4, so _cent = centrality_global * 4:
+#   comm_hit -> 0.36 * 4 = 1.44  >= GRAPH_COMMUNITY_SEED_FLOOR (1.0)  -> surfaced
+#   far      -> 0.30 * 4 = 1.20  >= 1.0 too, so 'far' clears the floor and the
+#              ONLY thing keeping it out of the results is its different community
+#              ("far" not in seed_comms == {"s"}) — this unmasks the negative control.
 _V5 = {
     "meta": {"version": 5},
     "nodes": [
-        {"id": "s",        "layer": "note", "path": "s.md",        "community": "s", "centrality_global": 0.20},
-        {"id": "edge_hit", "layer": "note", "path": "edge_hit.md", "community": "s", "centrality_global": 0.22},
-        {"id": "comm_hit", "layer": "note", "path": "comm_hit.md", "community": "s", "centrality_global": 0.38},
-        {"id": "far",      "layer": "note", "path": "far.md",      "community": "far", "centrality_global": 0.20},
+        {"id": "s",        "layer": "note", "path": "s.md",        "community": "s", "centrality_global": 0.16},
+        {"id": "edge_hit", "layer": "note", "path": "edge_hit.md", "community": "s", "centrality_global": 0.18},
+        {"id": "comm_hit", "layer": "note", "path": "comm_hit.md", "community": "s", "centrality_global": 0.36},
+        {"id": "far",      "layer": "note", "path": "far.md",      "community": "far", "centrality_global": 0.30},
     ],
     "edges": [{"from": "s", "to": "edge_hit", "type": "wikilink"}],
     "issues": [],
