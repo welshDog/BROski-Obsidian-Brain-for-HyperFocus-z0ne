@@ -319,7 +319,7 @@ def merge(graph, note_nodes, note_edges, mention_edges, notes_scanned,
         meta["layers"] = ["code", "notes", "mentions", "skills", "communities"]
         meta["communities_count"] = len(set(node_comm.values()))
         meta["community_algo"] = "greedy-modularity"
-    except Exception as exc:  # fail-open — same posture as the skills-layer preserve path
+    except Exception as exc:  # fail-open — enrichment is non-critical; a missing or broken communities.py leaves the graph at v4
         print(f"communities: skipped ({exc})")
 
     return graph

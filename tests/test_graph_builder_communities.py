@@ -37,7 +37,8 @@ def test_v5_fields_stamped_on_every_node():
         assert graph["meta"]["version"] == 5
         assert graph["meta"]["layers"][-1] == "communities"
         assert graph["meta"]["community_algo"] == "greedy-modularity"
-        assert isinstance(graph["meta"]["communities_count"], int)
+        # fixture partition: {hyper_brain_core, note:Alpha}, {note:Beta, note:Gamma}, {note:Delta}
+        assert graph["meta"]["communities_count"] == 3
         for n in graph["nodes"]:
             assert "community" in n
             assert "community_label" in n
@@ -70,7 +71,10 @@ def test_fail_open_when_communities_module_raises(monkeypatch, capsys):
     graph = {
         "meta": {},
         "nodes": [
-            {"id": "x", "layer": "note", "path": "x.md", "centrality": 0, "status": "live"}
+            # layer "code" so merge()'s kept_nodes filter retains it — a "note"
+            # node would be dropped (rebuilt from the []'s passed) and the
+            # per-node absence loop below would run over an empty list.
+            {"id": "x", "layer": "code", "path": "x.py", "centrality": 0, "status": "live"}
         ],
         "edges": [],
         "issues": [],
@@ -81,6 +85,7 @@ def test_fail_open_when_communities_module_raises(monkeypatch, capsys):
     captured = capsys.readouterr()
     assert "communities: skipped" in captured.out
     assert out["meta"]["version"] == 4
+    assert out["nodes"]  # guard: the absence loop below must not be vacuous
     for n in out["nodes"]:
         assert "community" not in n
         assert "community_label" not in n
