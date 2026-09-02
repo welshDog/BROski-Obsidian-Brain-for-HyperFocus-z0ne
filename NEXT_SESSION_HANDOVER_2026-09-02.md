@@ -4,38 +4,35 @@
 
 None.
 
-## 🟡 Pending — `agent-mcp-bridge` container is HOTPATCHED, not rebuilt
+## 🟢 RESOLVED — `agent-mcp-bridge` properly rebuilt
 
 Graph Brain v5 (native communities + PageRank; branch `graph-brain-v5-communities`
-merged to `main` as `b7bed40`, pushed to origin) is **live** on `agent-mcp-bridge`
-(:3302) — but only via a hot-patch, not a real image build.
+merged to `main` as `b7bed40`, pushed to origin) is **live and baked in** on
+`agent-mcp-bridge` (:3302).
 
-**What was done (2026-09-02 ~22:30):**
+**Timeline 2026-09-02:**
+- ~22:30 — hot-patched first (`docker cp` + `docker restart`) because WSL RAM was
+  ~150 MB free.
+- ~23:11 — **properly rebuilt.** Image `hypercode-v24-agent-mcp-bridge:latest`
+  rebuilt (manifest `sha256:3586c657…`; pip layer did NOT cache-hit — reinstalled
+  aiohttp/fastapi/uvicorn in ~26 s, box survived), container `--force-recreate`d
+  on it. No `docker cp` overlay any more — survives recreates.
 
-```
-docker cp .agents/mcp-bridge/mcp_bridge.py agent-mcp-bridge:/app/mcp_bridge.py
-docker restart agent-mcp-bridge
-```
-
-Rebuild was skipped on purpose: WSL RAM was at ~150 MB free / swap 83% used, and
-the ecosystem rule is **never build while the stack is up** (8 GB ceiling).
-
-**Consequence:** the running container's `/app/mcp_bridge.py` no longer matches
-its image. Any recreate — `docker compose up`, `docker compose down && up`, a host
-reboot, a Docker Desktop restart — reverts it to the June image (no
-community-aware scoring, no `/graph/related` `related_by_community`).
-
-**To make it permanent** (run when the stack is down OR RAM is free):
+**Rebuild command used** (the container belongs to compose project `hypercode-v24`,
+NOT the Brain repo's own compose — must go through V2.4):
 
 ```
-docker compose -f docker-compose.hyper-brain.yml build agent-mcp-bridge
-docker compose -f docker-compose.hyper-brain.yml up -d agent-mcp-bridge
+cd H:\HYPERFOCUSZONE\HperCore\HyperCode-V2.4
+docker compose -f docker-compose.yml -f docker-compose.secrets.yml -f docker-compose.registry.yml -f docker-compose.hyperhealth.yml --profile brain-agents build agent-mcp-bridge
+docker compose -f docker-compose.yml -f docker-compose.secrets.yml -f docker-compose.registry.yml -f docker-compose.hyperhealth.yml --profile brain-agents up -d --no-deps --force-recreate agent-mcp-bridge
 ```
 
-`.agents/mcp-bridge/Dockerfile` is `COPY . .` + `CMD ["python","mcp_bridge.py"]`,
-so a plain build picks up the merged source. No other brain agent changed.
+`agent-mcp-bridge` is profile-gated `["brain-agents"]` in `docker-compose.brain.yml`
+(pulled via `docker-compose.yml` `include:`). `--no-deps` keeps `hyper-brain` and
+the other 3 brain agents untouched. The "orphan containers" warning is expected
+with a partial file set — do NOT pass `--remove-orphans`.
 
-**Verify after rebuild** (all should already pass on the hot-patched container):
+**Verified live (2026-09-02 23:13):**
 
 ```
 curl -s http://127.0.0.1:3302/graph | python -c "import sys,json;m=json.load(sys.stdin)['meta'];print(m['version'],m.get('communities_count'),m.get('community_algo'))"
@@ -50,6 +47,8 @@ curl -s "http://127.0.0.1:3302/route?query=focus&limit=3" | python -c "import sy
 
 - Graph Brain v5 shipped end-to-end via full SDD run (spec → plan → 7 tasks →
   whole-branch review + 1 fix wave). 65 tests (from 32). Merged `b7bed40`, pushed.
+- `agent-mcp-bridge` properly rebuilt + recreated on the baked v5 image (23:11) —
+  see the RESOLVED section above. Other 3 brain agents untouched.
 - `communities.py` (new, stdlib): deterministic greedy-modularity communities +
   PageRank. `graph_builder.py` stamps `community` / `community_label` /
   `centrality_global`, `meta.version` 5, fail-open. `mcp_bridge.py`
