@@ -80,7 +80,7 @@ docs/                           — analysis, roadmap, insights, upgrade notes
 ## 🕸️ Graph Brain
 
 **Last ran:** 2026-06-09 · Tool: AST static analysis (brain-graph-analysis)
-**CANONICAL artifact:** `HYPERFOCUS_ZONE/06-AI-Context/graph.json` (v2, layers: code + notes) — THE memory-hub source of truth for all agents.
+**CANONICAL artifact:** `HYPERFOCUS_ZONE/06-AI-Context/graph.json` (v5, layers: code + notes + mentions + skills + communities) — THE memory-hub source of truth for all agents.
 Inside containers: `/vault/06-AI-Context/graph.json` (all 4 brain agents mount the vault).
 Served live by `agent-mcp-bridge` (:3302) via `GET /graph`, `GET /graph/node/{id}`, `GET /graph/related/{id}` (note ids look like `note:Dashboard`), `GET /route?query=` (Phase 6 skill routing) and `GET /constellation` (D3 force-graph UI).
 **Graph-aware RAG (Phase 3+4):** `query_vault` seeds via stopword-filtered keyword search, expands **2-hop with 0.4 decay** through wikilink + mentions edges, cites real sources. Budget env knobs: `RAG_MAX_FILES`/`RAG_CHARS_PER_FILE`/`RAG_NUM_PREDICT`/`OLLAMA_TIMEOUT_S` — keep small, CPU Ollama.
@@ -90,6 +90,18 @@ Served live by `agent-mcp-bridge` (:3302) via `GET /graph`, `GET /graph/node/{id
 **Briefing citations (2026-06-11):** morning-briefing AI prioritization runs graph-aware RAG (`skip_context=False`) — `ai_suggestions` carries `sources` (vault notes) + `skills`; bot renders a "🧠 Brain Citations" embed field. Timeout chain: bridge→Ollama 180s < agent→bridge 240s < bot→agent 270s.
 **Constellation (2026-06-11):** `GET :3302/constellation` — single-file D3 page, same-origin with /graph (bridge has NO CORS middleware — serve graph UIs from the bridge).
 **Regenerate notes + skills layers:** `python graph_builder.py` (stdlib-only; preserves the curated code layer + issues).
+**Communities layer (v5, 2026-09-02):** `graph_builder.py` now also computes a
+deterministic greedy-modularity partition and undirected PageRank over the
+retrieval topology (`wikilink | mentions | skill-link`), stamping `community`,
+`community_label`, and `centrality_global` onto every node (`meta.version` 5).
+Stdlib only, recomputed every run, fail-open (a raising/absent `communities.py`
+leaves the graph at v4). `mcp_bridge` `related_nodes()` and `route_skills()` use
+these for a same-community score bonus and a bounded community-seeded expansion
+that surfaces topically-related notes/skills with no explicit edge. Knobs:
+`GRAPH_COMMUNITY_BONUS` (1.5), `GRAPH_COMMUNITY_SEED_FLOOR` (1.0),
+`GRAPH_COMMUNITY_SEED_MAX` (3), `GRAPH_ROUTE_COMMUNITY_BONUS` (1.0).
+Deferred: graphify LLM-inferred concept edges as a `type:"inferred"` layer —
+see `docs/superpowers/specs/2026-09-02-graph-brain-v5-communities-design.md` §10.
 **Auto-refresh:** `.github/workflows/graph-refresh.yml` reruns the builder on every push that touches vault `.md` files (loop-safe — bot commit only touches graph.json).
 Human report: `HYPERFOCUS_ZONE/06-AI-Context/GRAPHIFY_BRAIN_MAP.md`. (Old `graphify-out/` duplicate removed 2026-06-10; folder moved into the vault per the PARA plan — slot 06 was reserved for exactly this.)
 

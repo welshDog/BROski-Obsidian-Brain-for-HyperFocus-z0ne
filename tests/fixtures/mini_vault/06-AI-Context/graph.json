@@ -1,0 +1,8 @@
+{
+  "meta": {"version": 4, "layers": ["code", "notes", "mentions", "skills"]},
+  "nodes": [
+    {"id": "hyper_brain_core", "layer": "monolith", "centrality": 5, "status": "live"}
+  ],
+  "edges": [],
+  "issues": []
+}
