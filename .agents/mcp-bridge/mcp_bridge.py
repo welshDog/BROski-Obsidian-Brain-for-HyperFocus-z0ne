@@ -258,6 +258,24 @@ class MCPBridge:
         ranked = sorted(scored.items(), key=lambda kv: (-kv[1], kv[0]))
         return [nodes[nid] for nid, _ in ranked[:limit]]
 
+    def community_members(self, node_id: str, limit: int = 5,
+                          exclude: Optional[set] = None) -> List[str]:
+        """Node ids sharing node_id's community, top by centrality_global.
+        Empty list if the graph is v4 or the node has no community."""
+        graph = self.load_graph()
+        if not graph:
+            return []
+        nodes = {n["id"]: n for n in graph.get("nodes", [])}
+        node = nodes.get(node_id)
+        if not node or not node.get("community"):
+            return []
+        exclude = exclude or set()
+        pool = [n for nid, n in nodes.items()
+                if nid != node_id and nid not in exclude
+                and n.get("community") == node["community"]]
+        pool.sort(key=lambda n: (-(n.get("centrality_global") or 0.0), n["id"]))
+        return [n["id"] for n in pool[:limit]]
+
     def graph_neighbors(self, rel_paths: List[str], limit: int = 5) -> List[str]:
         """Vault rel paths -> related note rel paths (2-hop, decayed).
         Phantom notes (no file yet) and code nodes are skipped for RAG."""
@@ -342,6 +360,8 @@ class MCPBridge:
         scored.sort(key=lambda x: -x[0])
         seeds = [n for _, n in scored[:6]]
         seed_ids = [n["id"] for n in seeds]
+        # v5 — communities the token seeds belong to (empty on a v4 graph)
+        seed_comms = {n.get("community") for n in seeds if n.get("community")}
 
         expanded = self.related_nodes(seed_ids, limit=30)
 
@@ -356,6 +376,13 @@ class MCPBridge:
                 skill_rank[n["id"]] = (skill_rank.get(n["id"], 0.0)
                                        + max(0.5, 2.0 - i * 0.05))
                 skill_meta[n["id"]] = n
+
+        # v5 — nudge skills that live in a seed's community (fail-open: seed_comms
+        # is empty on a v4 graph, so this is a no-op and the ranking is unchanged)
+        if seed_comms:
+            for nid in list(skill_rank):
+                if skill_meta.get(nid, {}).get("community") in seed_comms:
+                    skill_rank[nid] += GRAPH_ROUTE_COMMUNITY_BONUS
 
         ranked = sorted(skill_rank.items(), key=lambda kv: -kv[1])[:limit]
         skills = [{
@@ -673,6 +700,11 @@ if __name__ == "__main__":
             raise HTTPException(status_code=404,
                                 detail=f"node '{node_id}' not in graph")
         related = _bridge.related_nodes([node_id], limit=max(limit * 3, 15))
+        # v5 transparency: same-community node ids the edge walk did NOT already
+        # surface (fail-open: [] on a v4 graph / a node with no community)
+        already = {node_id}
+        already.update(n["id"] for n in related)
+        by_community = _bridge.community_members(node_id, limit=limit, exclude=already)
         return {
             "node": node_id,
             "related_paths": [n["path"] for n in related
@@ -681,6 +713,7 @@ if __name__ == "__main__":
                              if n.get("layer") not in ("note", "skill")][:limit],
             "related_skills": [n["id"] for n in related
                                if n.get("layer") == "skill"][:limit],
+            "related_by_community": by_community,
         }
 
     @_app.get("/graph/node/{node_id}")
