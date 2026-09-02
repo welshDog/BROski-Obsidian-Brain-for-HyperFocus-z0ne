@@ -239,7 +239,9 @@ class MCPBridge:
             weight *= decay
 
         # v5: community-seeded expansion — same-community nodes with no edge path.
-        # Ranked strictly below any edge-connected hit (virtual weight = decay**hops).
+        # Scored at a virtual weight one hop beyond the last real hop, so they rank
+        # below edge hits of comparable centrality (and are gated off entirely once
+        # enough real hits exist).
         if seed_comms and len(scored) < limit * 3:
             virtual_weight = decay ** hops
             candidates = []

@@ -90,3 +90,42 @@ def test_fail_open_when_communities_module_raises(monkeypatch, capsys):
         assert "community" not in n
         assert "community_label" not in n
         assert "centrality_global" not in n
+
+
+def test_fail_open_strips_stale_v5_fields_from_preserved_nodes(monkeypatch, capsys):
+    """Merge-blocker regression: on a real run the loaded graph IS the previously
+    committed v5 graph.json, so preserved code-layer nodes already carry the prior
+    run's community fields. A communities.py failure must strip them — otherwise a
+    graph stamped version:4 still ships stale per-node community data that
+    mcp_bridge keys on (spec §5.5 / §7.4)."""
+    monkeypatch.setattr("communities.pagerank", _boom)
+    graph = {
+        # simulate the previously-committed v5 graph being reloaded
+        "meta": {
+            "version": 5,
+            "layers": ["code", "notes", "mentions", "skills", "communities"],
+            "communities_count": 7,
+            "community_algo": "greedy-modularity",
+        },
+        "nodes": [
+            {"id": "x", "layer": "code", "path": "x.py", "centrality": 0,
+             "status": "live", "community": "STALE",
+             "community_label": "stale label", "centrality_global": 0.123},
+        ],
+        "edges": [],
+        "issues": [],
+    }
+    out = graph_builder.merge(
+        graph, [], [], [], 0, skill_nodes=[], skill_edges=[]
+    )
+    captured = capsys.readouterr()
+    assert "communities: skipped" in captured.out
+    assert out["meta"]["version"] == 4
+    assert "communities" not in out["meta"].get("layers", [])
+    assert "communities_count" not in out["meta"]
+    assert "community_algo" not in out["meta"]
+    assert out["nodes"]  # guard: the absence loop must not be vacuous
+    for n in out["nodes"]:
+        assert "community" not in n
+        assert "community_label" not in n
+        assert "centrality_global" not in n

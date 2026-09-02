@@ -321,6 +321,17 @@ def merge(graph, note_nodes, note_edges, mention_edges, notes_scanned,
         meta["community_algo"] = "greedy-modularity"
     except Exception as exc:  # fail-open — enrichment is non-critical; a missing or broken communities.py leaves the graph at v4
         print(f"communities: skipped ({exc})")
+        # kept_nodes came from the loaded graph, which on a real run is the
+        # previously-committed v5 graph.json — preserved code-layer nodes still
+        # carry the PRIOR run's community fields. Strip them so a fail-open graph
+        # is genuinely v4-shaped (spec §5.5 / §7.4).
+        for _n in graph["nodes"]:
+            _n.pop("community", None)
+            _n.pop("community_label", None)
+            _n.pop("centrality_global", None)
+        meta["layers"] = ["code", "notes", "mentions", "skills"]
+        meta.pop("communities_count", None)
+        meta.pop("community_algo", None)
 
     return graph
 
