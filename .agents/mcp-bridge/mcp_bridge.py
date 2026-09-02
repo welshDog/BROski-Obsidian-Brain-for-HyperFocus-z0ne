@@ -35,6 +35,12 @@ EMBED_MODEL        = os.environ.get("EMBED_MODEL", "nomic-embed-text")
 EMBED_KEEP_ALIVE   = os.environ.get("EMBED_KEEP_ALIVE", "5m")
 EMBED_MAX_CHARS    = int(os.environ.get("EMBED_MAX_CHARS", "4000"))
 
+# v5 — community-aware retrieval scoring (fail-open on a v4 graph)
+GRAPH_COMMUNITY_BONUS       = float(os.environ.get("GRAPH_COMMUNITY_BONUS", "1.5"))
+GRAPH_COMMUNITY_SEED_FLOOR  = float(os.environ.get("GRAPH_COMMUNITY_SEED_FLOOR", "1.0"))
+GRAPH_COMMUNITY_SEED_MAX    = int(os.environ.get("GRAPH_COMMUNITY_SEED_MAX", "3"))
+GRAPH_ROUTE_COMMUNITY_BONUS = float(os.environ.get("GRAPH_ROUTE_COMMUNITY_BONUS", "1.0"))
+
 
 class MCPBridge:
     """Bridge between Hyper Brain and Ollama local LLM."""
@@ -186,13 +192,16 @@ class MCPBridge:
 
     def related_nodes(self, seed_ids: List[str], limit: int = 5,
                       hops: int = 2, decay: float = 0.4) -> List[Dict[str, Any]]:
-        """Multi-hop expansion over wikilink + mentions + skill-link edges
-        with hop decay.
-        Score = hop_weight * (1 + centrality); best score wins on revisit paths."""
+        """Multi-hop expansion over wikilink + mentions + skill-link edges with
+        hop decay. v5: adds a same-community score bonus and a bounded
+        community-seeded expansion for nodes with no edge path to the seeds.
+        Fail-open — on a v4 graph (no community / centrality_global) the result
+        is identical to the pre-v5 ranker."""
         graph = self.load_graph()
         if not graph:
             return []
         nodes = {n["id"]: n for n in graph.get("nodes", [])}
+        n_count = len(nodes) or 1
         adjacency: Dict[str, set] = {}
         for e in graph.get("edges", []):
             if e.get("type") not in ("wikilink", "mentions", "skill-link"):
@@ -200,6 +209,15 @@ class MCPBridge:
             adjacency.setdefault(e["from"], set()).add(e["to"])
             adjacency.setdefault(e["to"], set()).add(e["from"])
         seeds = {s for s in seed_ids if s in nodes}
+        seed_comms = {nodes[s].get("community") for s in seeds
+                      if nodes[s].get("community")}
+
+        def _cent(node: Dict[str, Any]) -> float:
+            pr = node.get("centrality_global")
+            if pr is not None:
+                return pr * n_count            # ~1.0 = average node; hubs ~5-13
+            return node.get("centrality") or 0  # legacy fallback
+
         visited = set(seeds)
         frontier = set(seeds)
         scored: Dict[str, float] = {}
@@ -210,14 +228,34 @@ class MCPBridge:
                 for nb in adjacency.get(nid, ()):
                     if nb in visited or nb not in nodes:
                         continue
-                    score = weight * (1 + (nodes[nb].get("centrality") or 0))
+                    score = weight * (1 + _cent(nodes[nb]))
+                    if nodes[nb].get("community") in seed_comms:
+                        score *= GRAPH_COMMUNITY_BONUS
                     if score > scored.get(nb, 0.0):
                         scored[nb] = score
                     nxt.add(nb)
             visited |= nxt
             frontier = nxt
             weight *= decay
-        ranked = sorted(scored.items(), key=lambda kv: -kv[1])
+
+        # v5: community-seeded expansion — same-community nodes with no edge path.
+        # Ranked strictly below any edge-connected hit (virtual weight = decay**hops).
+        if seed_comms and len(scored) < limit * 3:
+            virtual_weight = decay ** hops
+            candidates = []
+            for nid, node in nodes.items():
+                if nid in visited or nid in scored:
+                    continue
+                if node.get("community") not in seed_comms:
+                    continue
+                c = _cent(node)
+                if c >= GRAPH_COMMUNITY_SEED_FLOOR:
+                    candidates.append((nid, c))
+            candidates.sort(key=lambda t: (-t[1], t[0]))
+            for nid, c in candidates[:GRAPH_COMMUNITY_SEED_MAX]:
+                scored[nid] = virtual_weight * (1 + c)
+
+        ranked = sorted(scored.items(), key=lambda kv: (-kv[1], kv[0]))
         return [nodes[nid] for nid, _ in ranked[:limit]]
 
     def graph_neighbors(self, rel_paths: List[str], limit: int = 5) -> List[str]:
