@@ -65,3 +65,85 @@ def test_pagerank_converges_quickly_on_medium_graph():
     pr = pagerank(nodes, edges)
     assert time.time() - start < 2.0
     assert abs(sum(pr.values()) - 1.0) < 1e-4
+
+
+from communities import detect_communities, derive_labels  # noqa: E402
+
+
+def test_detect_two_cliques_joined_by_one_bridge():
+    nodes = _n("a1", "a2", "a3", "b1", "b2", "b3")
+    edges = _e(("a1", "a2"), ("a2", "a3"), ("a3", "a1"),
+               ("b1", "b2"), ("b2", "b3"), ("b3", "b1"),
+               ("a1", "b1"))                       # single bridge
+    node_comm, members = detect_communities(nodes, edges)
+    assert node_comm["a1"] == node_comm["a2"] == node_comm["a3"]
+    assert node_comm["b1"] == node_comm["b2"] == node_comm["b3"]
+    assert node_comm["a1"] != node_comm["b1"]
+    assert node_comm["a1"] == "a1"                 # id == smallest member
+    assert members["a1"] == ["a1", "a2", "a3"]
+
+
+def test_detect_is_deterministic():
+    nodes = _n(*[f"z{i:02d}" for i in range(20)])
+    edges = _e(*[(f"z{i:02d}", f"z{(i + 1) % 20:02d}") for i in range(20)],
+               *[(f"z{i:02d}", f"z{(i + 2) % 20:02d}") for i in range(0, 20, 4)])
+    assert detect_communities(nodes, edges)[0] == detect_communities(nodes, edges)[0]
+
+
+def test_detect_stable_ids_when_a_node_is_added():
+    base_nodes = _n("a1", "a2", "a3", "b1", "b2", "b3")
+    base_edges = _e(("a1", "a2"), ("a2", "a3"), ("a3", "a1"),
+                    ("b1", "b2"), ("b2", "b3"), ("b3", "b1"), ("a1", "b1"))
+    comm_before, _ = detect_communities(base_nodes, base_edges)
+    # add a4 attached to the a-clique; b-clique ids must not renumber
+    nodes2 = base_nodes + _n("a4")
+    edges2 = base_edges + _e(("a4", "a2"), ("a4", "a3"))
+    comm_after, _ = detect_communities(nodes2, edges2)
+    assert comm_after["b1"] == comm_before["b1"]
+    assert comm_after["a4"] == comm_after["a1"]
+
+
+def test_detect_isolated_node_is_its_own_singleton():
+    nodes = _n("a", "b", "iso")
+    edges = _e(("a", "b"))
+    node_comm, members = detect_communities(nodes, edges)
+    assert node_comm["iso"] == "iso"
+    assert members["iso"] == ["iso"]
+
+
+def test_detect_no_edges_all_singletons():
+    nodes = _n("a", "b", "c")
+    node_comm, members = detect_communities(nodes, [])
+    assert set(node_comm.values()) == {"a", "b", "c"}
+
+
+def test_detect_wall_clock_guard_500_nodes():
+    nodes = _n(*[f"n{i:03d}" for i in range(500)])
+    edges = _e(*[(f"n{i:03d}", f"n{(i * 13 + 7) % 500:03d}") for i in range(500)])
+    start = time.time()
+    detect_communities(nodes, edges)
+    assert time.time() - start < 5.0
+
+
+def test_derive_labels_common_path_segment():
+    members = {"note:02-Areas/Focus-Analytics/weekly": [
+        "note:02-Areas/Focus-Analytics/weekly",
+        "note:02-Areas/Focus-Analytics/heatmap",
+        "note:02-Areas/Focus-Analytics/trends",
+    ]}
+    nodes = [{"id": i, "layer": "note", "path": i.split("note:")[1] + ".md"}
+             for i in members["note:02-Areas/Focus-Analytics/weekly"]]
+    labels = derive_labels(members, nodes, {})
+    assert labels["note:02-Areas/Focus-Analytics/weekly"] == "02-Areas"
+
+
+def test_derive_labels_skill_category_then_fallback():
+    members = {"skill:HS-010": ["skill:HS-010", "skill:HS-011"], "x": ["x"]}
+    nodes = [
+        {"id": "skill:HS-010", "layer": "skill", "category": "focus"},
+        {"id": "skill:HS-011", "layer": "skill", "category": "focus"},
+        {"id": "x", "layer": "engine"},
+    ]
+    labels = derive_labels(members, nodes, {"x": 0.01})
+    assert labels["skill:HS-010"] == "focus skills"
+    assert labels["x"] == "x cluster"
