@@ -1,0 +1,6101 @@
+{
+  "meta": {
+    "version": 5,
+    "canonical_path": "HYPERFOCUS_ZONE/06-AI-Context/graph.json",
+    "container_path": "/vault/06-AI-Context/graph.json",
+    "generated": "2026-06-09",
+    "updated": "2026-09-02",
+    "tool": "brain-graph-analysis (AST + static import trace)",
+    "root": "BROski-Obsidian-Brain-for-HyperFocus-z0ne",
+    "total_nodes": 268,
+    "total_edges": 482,
+    "layers": [
+      "code",
+      "notes",
+      "mentions",
+      "skills",
+      "communities"
+    ],
+    "notes_scanned": 104,
+    "skills_indexed": 123,
+    "communities_count": 116,
+    "community_algo": "greedy-modularity"
+  },
+  "nodes": [
+    {
+      "id": "hyper_brain_core",
+      "layer": "monolith",
+      "port": 8100,
+      "centrality": 10,
+      "size": 432,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.009852
+    },
+    {
+      "id": "analytics_engine",
+      "layer": "engine",
+      "port": null,
+      "centrality": 2,
+      "size": 280,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.007263
+    },
+    {
+      "id": "mcp_bridge",
+      "layer": "engine",
+      "port": null,
+      "centrality": 2,
+      "size": 275,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.009639
+    },
+    {
+      "id": "focus_tracker",
+      "layer": "engine",
+      "port": null,
+      "centrality": 2,
+      "size": 383,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.0129
+    },
+    {
+      "id": "morning_briefing_ai",
+      "layer": "engine",
+      "port": null,
+      "centrality": 2,
+      "size": 434,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.011785
+    },
+    {
+      "id": "difficulty_dial",
+      "layer": "engine",
+      "port": null,
+      "centrality": 1,
+      "size": 80,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.001748
+    },
+    {
+      "id": "constellation_builder",
+      "layer": "engine",
+      "port": null,
+      "centrality": 1,
+      "size": 149,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.003705
+    },
+    {
+      "id": "hyper_split",
+      "layer": "engine",
+      "port": null,
+      "centrality": 1,
+      "size": null,
+      "status": "no-tests",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.006974
+    },
+    {
+      "id": "ai_distraction_filter",
+      "layer": "engine",
+      "port": null,
+      "centrality": 1,
+      "size": null,
+      "status": "no-tests",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.005134
+    },
+    {
+      "id": "session_snapshot",
+      "layer": "engine",
+      "port": null,
+      "centrality": 1,
+      "size": null,
+      "status": "no-tests",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.005868
+    },
+    {
+      "id": "gamification_summary",
+      "layer": "engine",
+      "port": null,
+      "centrality": 1,
+      "size": null,
+      "status": "has-tests",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.003705
+    },
+    {
+      "id": "events_feed",
+      "layer": "engine",
+      "port": null,
+      "centrality": 1,
+      "size": 31,
+      "status": "has-tests",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.002623
+    },
+    {
+      "id": "github_webhook_server",
+      "layer": "root",
+      "port": null,
+      "centrality": 0,
+      "size": null,
+      "status": "orphan",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.005309
+    },
+    {
+      "id": "agent_hyper_brain_core",
+      "layer": "agent",
+      "port": 3301,
+      "centrality": 10,
+      "size": 432,
+      "status": "live",
+      "community": "agent_hyper_brain_core",
+      "community_label": "dev skills",
+      "centrality_global": 0.001806
+    },
+    {
+      "id": "agent_mcp_bridge",
+      "layer": "agent",
+      "port": 3302,
+      "centrality": 1,
+      "size": 275,
+      "status": "live",
+      "community": "agent_mcp_bridge",
+      "community_label": "agent_mcp_bridge cluster",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "agent_focus_tracker",
+      "layer": "agent",
+      "port": 3303,
+      "centrality": 1,
+      "size": 383,
+      "status": "live",
+      "community": "agent_focus_tracker",
+      "community_label": "agent_focus_tracker cluster",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "agent_morning_briefing",
+      "layer": "agent",
+      "port": 3304,
+      "centrality": 0,
+      "size": 434,
+      "status": "live",
+      "community": "agent_morning_briefing",
+      "community_label": "agent_morning_briefing cluster",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "aifs_watcher",
+      "layer": "aifs",
+      "port": null,
+      "centrality": 2,
+      "size": 530,
+      "status": "standalone",
+      "community": "aifs_watcher",
+      "community_label": "aifs_watcher cluster",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "aifs_mcp_server",
+      "layer": "aifs",
+      "port": null,
+      "centrality": 1,
+      "size": 551,
+      "status": "standalone",
+      "community": "aifs_mcp_server",
+      "community_label": "aifs_mcp_server cluster",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "aifs_hub_server",
+      "layer": "aifs",
+      "port": 7331,
+      "centrality": 1,
+      "size": null,
+      "status": "standalone",
+      "community": "aifs_hub_server",
+      "community_label": "aifs_hub_server cluster",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "aifs_registry",
+      "layer": "aifs",
+      "port": null,
+      "centrality": 0,
+      "size": null,
+      "status": "standalone",
+      "community": "aifs_registry",
+      "community_label": "aifs_registry cluster",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "aifs_sign",
+      "layer": "aifs",
+      "port": null,
+      "centrality": 0,
+      "size": null,
+      "status": "standalone",
+      "community": "aifs_sign",
+      "community_label": "aifs_sign cluster",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "scripts_dir",
+      "layer": "dead",
+      "port": null,
+      "centrality": 0,
+      "size": null,
+      "status": "orphan-mirror",
+      "community": "scripts_dir",
+      "community_label": "scripts_dir cluster",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:01-deep-dive-audit-ecosystem-view-2026-09-01",
+      "layer": "note",
+      "path": "03-Resources/Hyper-Merge-Audits/01-deep-dive-audit-ecosystem-view-2026-09-01.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.003821
+    },
+    {
+      "id": "note:02-counter-audit-what-runs-2026-09-01",
+      "layer": "note",
+      "path": "03-Resources/Hyper-Merge-Audits/02-counter-audit-what-runs-2026-09-01.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:02-counter-audit-what-runs-2026-09-01",
+      "community_label": "03-Resources",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:03-github-academic-report-2026-09-01",
+      "layer": "note",
+      "path": "03-Resources/Hyper-Merge-Audits/03-github-academic-report-2026-09-01.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:03-github-academic-report-2026-09-01",
+      "community_label": "03-Resources",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:04-synthesis-2026-09-01",
+      "layer": "note",
+      "path": "03-Resources/Hyper-Merge-Audits/04-synthesis-2026-09-01.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:04-synthesis-2026-09-01",
+      "community_label": "03-Resources",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:05-academic-assessment-hypercode-rev1",
+      "layer": "note",
+      "path": "03-Resources/Hyper-Merge-Audits/05-academic-assessment-hypercode-rev1.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:05-academic-assessment-hypercode-rev1",
+      "community_label": "03-Resources",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:06-academic-assessment-hypercode-rev2",
+      "layer": "note",
+      "path": "03-Resources/Hyper-Merge-Audits/06-academic-assessment-hypercode-rev2.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:06-academic-assessment-hypercode-rev2",
+      "community_label": "03-Resources",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:2026-05-05",
+      "layer": "note",
+      "path": "00-Inbox/2026-05-05.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:2026-05-05",
+      "community_label": "00-Inbox",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:2026-05-07-The-Day-The-Brain-Woke-Up",
+      "layer": "note",
+      "path": "04-Archive/2026-05-07-The-Day-The-Brain-Woke-Up.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.004698
+    },
+    {
+      "id": "note:2026-05-08",
+      "layer": "note",
+      "path": "00-Inbox/2026-05-08.md",
+      "centrality": 2,
+      "status": "live",
+      "community": "note:2026-05-08",
+      "community_label": "note:HyperCode-V2.4 cluster",
+      "centrality_global": 0.002988
+    },
+    {
+      "id": "note:2026-05-31",
+      "layer": "note",
+      "path": "00-Inbox/2026-05-31.md",
+      "centrality": 3,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.004447
+    },
+    {
+      "id": "note:AIFS_ROAST_AUDIT_2026-06-03",
+      "layer": "note",
+      "path": "AIFS_ROAST_AUDIT_2026-06-03.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:AIFS_ROAST_AUDIT_2026-06-03",
+      "community_label": "AIFS_ROAST_AUDIT_2026-06-03.md",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:AIONUI_VS_HYPERAGENT_SDK_2026-06-03",
+      "layer": "note",
+      "path": "AIONUI_VS_HYPERAGENT_SDK_2026-06-03.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:AIONUI_VS_HYPERAGENT_SDK_2026-06-03",
+      "community_label": "AIONUI_VS_HYPERAGENT_SDK_2026-06-03.md",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:Admin-Radar",
+      "layer": "note",
+      "path": "02-Areas/Admin/Admin-Radar.md",
+      "centrality": 2,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.004295
+    },
+    {
+      "id": "note:Agent Wishlists (Index)",
+      "layer": "note",
+      "path": "Agents/Agent Wishlists (Index).md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:Agent Wishlists (Index)",
+      "community_label": "Agents",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:BROski-Economy",
+      "layer": "note",
+      "path": "03-Resources/BROski-Economy.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:BROski-Economy",
+      "community_label": "03-Resources",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:BROski-Task",
+      "layer": "note",
+      "path": "99-Templates/BROski-Task.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:BROski-Task",
+      "community_label": "99-Templates",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:BROskiPets",
+      "layer": "note",
+      "path": "01-Projects/BROskiPets.md",
+      "centrality": 8,
+      "status": "live",
+      "community": "note:2026-05-08",
+      "community_label": "note:HyperCode-V2.4 cluster",
+      "centrality_global": 0.007584
+    },
+    {
+      "id": "note:BROskiPets-2026-05-07",
+      "layer": "note",
+      "path": "State/BROskiPets-2026-05-07.md",
+      "centrality": 2,
+      "status": "live",
+      "community": "note:BROskiPets-2026-05-07",
+      "community_label": "note:BROskiPets-2026-05-07 cluster",
+      "centrality_global": 0.008165
+    },
+    {
+      "id": "note:BROskiPets-AutoBuilder",
+      "layer": "note",
+      "path": "Agents/BROskiPets-AutoBuilder.md",
+      "centrality": 1,
+      "status": "live",
+      "community": "note:BROskiPets-2026-05-07",
+      "community_label": "note:BROskiPets-2026-05-07 cluster",
+      "centrality_global": 0.004309
+    },
+    {
+      "id": "note:Brain-Constellation",
+      "layer": "note",
+      "path": "Hub/Brain-Constellation.md",
+      "centrality": 2,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.013386
+    },
+    {
+      "id": "note:Brain-Constellation-Live",
+      "layer": "note",
+      "path": "Hub/Brain-Constellation-Live.md",
+      "centrality": 3,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.01603
+    },
+    {
+      "id": "note:Brain-Dump",
+      "layer": "note",
+      "path": "99-Templates/Brain-Dump.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:Brain-Dump",
+      "community_label": "99-Templates",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:Briefing_2026-05-07",
+      "layer": "note",
+      "path": "00-Inbox/Briefings/Briefing_2026-05-07.md",
+      "centrality": 5,
+      "status": "live",
+      "community": "note:2026-05-08",
+      "community_label": "note:HyperCode-V2.4 cluster",
+      "centrality_global": 0.0065
+    },
+    {
+      "id": "note:Briefing_2026-07-12",
+      "layer": "note",
+      "path": "00-Inbox/Briefings/Briefing_2026-07-12.md",
+      "centrality": 5,
+      "status": "live",
+      "community": "note:2026-05-08",
+      "community_label": "note:HyperCode-V2.4 cluster",
+      "centrality_global": 0.0065
+    },
+    {
+      "id": "note:CHANGELOG.ai",
+      "layer": "note",
+      "path": "03-Resources/Hyper-Merge-Audits/CHANGELOG.ai.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:CHANGELOG.ai",
+      "community_label": "03-Resources",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:DATA_TO_BRAIN_PROTOCOL",
+      "layer": "note",
+      "path": "DATA_TO_BRAIN_PROTOCOL.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.00175
+    },
+    {
+      "id": "note:DECISIONS",
+      "layer": "note",
+      "path": "Hub/Truth-Pack/DECISIONS.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:DECISIONS",
+      "community_label": "Hub",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:Daily",
+      "layer": "note",
+      "path": "99-Templates/Daily.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:Daily",
+      "community_label": "99-Templates",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:Dashboard",
+      "layer": "note",
+      "path": "Hub/Dashboard.md",
+      "centrality": 10,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.014014
+    },
+    {
+      "id": "note:Decision Log",
+      "layer": "note",
+      "path": "Hub/Decision Log.md",
+      "centrality": 4,
+      "status": "live",
+      "community": "note:CLAUDE.md",
+      "community_label": "Hub",
+      "centrality_global": 0.01123
+    },
+    {
+      "id": "note:DevOps-Runbook",
+      "layer": "note",
+      "path": "02-Areas/DevOps/DevOps-Runbook.md",
+      "centrality": 2,
+      "status": "live",
+      "community": "note:2026-05-08",
+      "community_label": "note:HyperCode-V2.4 cluster",
+      "centrality_global": 0.003133
+    },
+    {
+      "id": "note:FUTURE_STACK_DISCOVERY_2026-06-03",
+      "layer": "note",
+      "path": "FUTURE_STACK_DISCOVERY_2026-06-03.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:FUTURE_STACK_DISCOVERY_2026-06-03",
+      "community_label": "FUTURE_STACK_DISCOVERY_2026-06-03.md",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:First BROski Task",
+      "layer": "note",
+      "path": "01-Projects/First BROski Task.md",
+      "centrality": 2,
+      "status": "live",
+      "community": "note:2026-05-08",
+      "community_label": "note:HyperCode-V2.4 cluster",
+      "centrality_global": 0.003049
+    },
+    {
+      "id": "note:Focus Metrics Dashboard",
+      "layer": "note",
+      "path": "Hub/Focus Metrics Dashboard.md",
+      "centrality": 1,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.003861
+    },
+    {
+      "id": "note:Focus-Command-Center",
+      "layer": "note",
+      "path": "Hub/Focus-Command-Center.md",
+      "centrality": 3,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.012615
+    },
+    {
+      "id": "note:Focus-Session",
+      "layer": "note",
+      "path": "99-Templates/Focus-Session.md",
+      "centrality": 2,
+      "status": "live",
+      "community": "note:Analytics",
+      "community_label": "99-Templates",
+      "centrality_global": 0.005715
+    },
+    {
+      "id": "note:HYPER-TRAE-SKILLS",
+      "layer": "note",
+      "path": "HYPER-TRAE-SKILLS.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPER-TRAE-SKILLS",
+      "community_label": "HYPER-TRAE-SKILLS.md",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENTLOOPSYNCv1",
+      "layer": "note",
+      "path": "03-Resources/Agent-YAMLs/HYPERAGENTLOOPSYNCv1.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENTLOOPSYNCv1",
+      "community_label": "03-Resources",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-04T22-15-36Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-04T22-15-36Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-06-04T22-15-36Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-07T11-18-58Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-07T11-18-58Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-06-07T11-18-58Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-07T11-27-41Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-07T11-27-41Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-06-07T11-27-41Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-07T11-29-19Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-07T11-29-19Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-06-07T11-29-19Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-07T11-41-49Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-07T11-41-49Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-06-07T11-41-49Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-07T11-42-28Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-07T11-42-28Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-06-07T11-42-28Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-07T11-44-06Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-07T11-44-06Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-06-07T11-44-06Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-11T16-25-00Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-11T16-25-00Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-06-11T16-25-00Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-11T16-25-49Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-11T16-25-49Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-06-11T16-25-49Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-12T06-55-29Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-12T06-55-29Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-06-12T06-55-29Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-12T06-56-24Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-12T06-56-24Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-06-12T06-56-24Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-19T09-08-13Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-19T09-08-13Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-08-13Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-19T09-15-52Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.005088
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-19T09-16-24Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.005088
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-06-19T12-59-59Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.004823
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-07-12T21-51-21Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-07-12T21-51-21Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-07-12T21-51-21Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-08-31T00-55-57Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-08-31T00-55-57Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-08-31T00-55-57Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-08-31T01-29-32Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-08-31T01-29-32Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-08-31T01-29-32Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-08-31T01-31-56Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-08-31T01-31-56Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-08-31T01-31-56Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-08-31T13-58-38Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-08-31T13-58-38Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-08-31T13-58-38Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-08-31T13-59-36Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-08-31T13-59-36Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-08-31T13-59-36Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-08-31T14-06-39Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-08-31T14-06-39Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-08-31T14-06-39Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-08-31T15-40-57Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-08-31T15-40-57Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-08-31T15-40-57Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-08-31T15-46-03Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-08-31T15-46-03Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-08-31T15-46-03Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-08-31T15-50-18Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-08-31T15-50-18Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-08-31T15-50-18Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:HYPERAGENT_LOOP_2026-08-31T16-13-26Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-08-31T16-13-26Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-08-31T16-13-26Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:Health-Dashboard",
+      "layer": "note",
+      "path": "02-Areas/Health/Health-Dashboard.md",
+      "centrality": 5,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.005444
+    },
+    {
+      "id": "note:Hyper-Vibe-Course",
+      "layer": "note",
+      "path": "01-Projects/Hyper-Vibe-Course.md",
+      "centrality": 7,
+      "status": "live",
+      "community": "note:2026-05-08",
+      "community_label": "note:HyperCode-V2.4 cluster",
+      "centrality_global": 0.007584
+    },
+    {
+      "id": "note:HyperAgent-SDK",
+      "layer": "note",
+      "path": "01-Projects/HyperAgent-SDK.md",
+      "centrality": 4,
+      "status": "live",
+      "community": "note:2026-05-08",
+      "community_label": "note:HyperCode-V2.4 cluster",
+      "centrality_global": 0.005239
+    },
+    {
+      "id": "note:HyperCode-V2.4",
+      "layer": "note",
+      "path": "01-Projects/HyperCode-V2.4.md",
+      "centrality": 9,
+      "status": "live",
+      "community": "note:2026-05-08",
+      "community_label": "note:HyperCode-V2.4 cluster",
+      "centrality_global": 0.010381
+    },
+    {
+      "id": "note:HyperSplit-Session",
+      "layer": "note",
+      "path": "99-Templates/HyperSplit-Session.md",
+      "centrality": 1,
+      "status": "live",
+      "community": "note:Analytics",
+      "community_label": "99-Templates",
+      "centrality_global": 0.003925
+    },
+    {
+      "id": "note:HyperSplit_Get_first_paying_student_20260507",
+      "layer": "note",
+      "path": "01-Projects/HyperSplit-Tasks/HyperSplit_Get_first_paying_student_20260507.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HyperSplit_Get_first_paying_student_20260507",
+      "community_label": "01-Projects",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:INTEGRATIONS",
+      "layer": "note",
+      "path": "Hub/Truth-Pack/INTEGRATIONS.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:INTEGRATIONS",
+      "community_label": "Hub",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:InProgress_1ede55cf_2026-06-13",
+      "layer": "note",
+      "path": "05-Focus-Sessions/InProgress_1ede55cf_2026-06-13.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:InProgress_1ede55cf_2026-06-13",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:InProgress_7f4f5389_2026-05-07",
+      "layer": "note",
+      "path": "05-Focus-Sessions/InProgress_7f4f5389_2026-05-07.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:InProgress_7f4f5389_2026-05-07",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:InProgress_be8c73c5_2026-07-12",
+      "layer": "note",
+      "path": "05-Focus-Sessions/InProgress_be8c73c5_2026-07-12.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:InProgress_be8c73c5_2026-07-12",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:KNOWN_ISSUES",
+      "layer": "note",
+      "path": "Hub/Truth-Pack/KNOWN_ISSUES.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:KNOWN_ISSUES",
+      "community_label": "Hub",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:MASTER_AUDIT_2026-06-03",
+      "layer": "note",
+      "path": "MASTER_AUDIT_2026-06-03.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:MASTER_AUDIT_2026-06-03",
+      "community_label": "MASTER_AUDIT_2026-06-03.md",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:Maps-of-Content",
+      "layer": "note",
+      "path": "Hub/Maps-of-Content.md",
+      "centrality": 5,
+      "status": "live",
+      "community": "note:2026-05-08",
+      "community_label": "note:HyperCode-V2.4 cluster",
+      "centrality_global": 0.006395
+    },
+    {
+      "id": "note:Morning-Briefing",
+      "layer": "note",
+      "path": "99-Templates/Morning-Briefing.md",
+      "centrality": 1,
+      "status": "live",
+      "community": "note:2026-05-08",
+      "community_label": "note:HyperCode-V2.4 cluster",
+      "centrality_global": 0.001942
+    },
+    {
+      "id": "note:NEXTSESSIONHANDOVER_2026-06-04",
+      "layer": "note",
+      "path": "00-Inbox/NEXTSESSIONHANDOVER_2026-06-04.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:NEXTSESSIONHANDOVER_2026-06-04",
+      "community_label": "00-Inbox",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:NEXTSESSIONHANDOVER_2026-06-07",
+      "layer": "note",
+      "path": "00-Inbox/NEXTSESSIONHANDOVER_2026-06-07.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:NEXTSESSIONHANDOVER_2026-06-07",
+      "community_label": "00-Inbox",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:NEXTSESSIONHANDOVER_2026-06-11",
+      "layer": "note",
+      "path": "00-Inbox/NEXTSESSIONHANDOVER_2026-06-11.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:NEXTSESSIONHANDOVER_2026-06-11",
+      "community_label": "00-Inbox",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:NEXTSESSIONHANDOVER_2026-06-12",
+      "layer": "note",
+      "path": "00-Inbox/NEXTSESSIONHANDOVER_2026-06-12.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:NEXTSESSIONHANDOVER_2026-06-12",
+      "community_label": "00-Inbox",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:NEXTSESSIONHANDOVER_2026-06-19",
+      "layer": "note",
+      "path": "00-Inbox/NEXTSESSIONHANDOVER_2026-06-19.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:NEXTSESSIONHANDOVER_2026-06-19",
+      "community_label": "00-Inbox",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:NEXT_SESSION_HANDOVER_2026-07-12",
+      "layer": "note",
+      "path": "00-Inbox/NEXT_SESSION_HANDOVER_2026-07-12.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:NEXT_SESSION_HANDOVER_2026-07-12",
+      "community_label": "00-Inbox",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:NEXT_SESSION_HANDOVER_2026-08-16",
+      "layer": "note",
+      "path": "00-Inbox/NEXT_SESSION_HANDOVER_2026-08-16.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.003534
+    },
+    {
+      "id": "note:NEXT_SESSION_HANDOVER_2026-08-31",
+      "layer": "note",
+      "path": "00-Inbox/NEXT_SESSION_HANDOVER_2026-08-31.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:NEXT_SESSION_HANDOVER_2026-08-31",
+      "community_label": "00-Inbox",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:NOTEBOOKLM_INSIGHTS",
+      "layer": "note",
+      "path": "NOTEBOOKLM_INSIGHTS.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.00175
+    },
+    {
+      "id": "note:Project",
+      "layer": "note",
+      "path": "99-Templates/Project.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:Project",
+      "community_label": "99-Templates",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:README",
+      "layer": "note",
+      "path": "Hub/Truth-Pack/README.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:README",
+      "community_label": "Hub",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:RUNBOOKS",
+      "layer": "note",
+      "path": "Hub/Truth-Pack/RUNBOOKS.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:RUNBOOKS",
+      "community_label": "Hub",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:Recommended-Plugins",
+      "layer": "note",
+      "path": "03-Resources/Recommended-Plugins.md",
+      "centrality": 1,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.00203
+    },
+    {
+      "id": "note:SYSTEM_STATUS",
+      "layer": "note",
+      "path": "Hub/Truth-Pack/SYSTEM_STATUS.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:SYSTEM_STATUS",
+      "community_label": "Hub",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:Session_1ede55cf_2026-06-13",
+      "layer": "note",
+      "path": "05-Focus-Sessions/Session_1ede55cf_2026-06-13.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:Session_1ede55cf_2026-06-13",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:Session_7f4f5389_2026-05-07",
+      "layer": "note",
+      "path": "05-Focus-Sessions/Session_7f4f5389_2026-05-07.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:Session_7f4f5389_2026-05-07",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:Subscriptions-and-Wishlist",
+      "layer": "note",
+      "path": "03-Resources/Subscriptions-and-Wishlist.md",
+      "centrality": 1,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.002665
+    },
+    {
+      "id": "note:Tag-Architecture",
+      "layer": "note",
+      "path": "03-Resources/Tag-Architecture.md",
+      "centrality": 1,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.00203
+    },
+    {
+      "id": "note:Today Focus",
+      "layer": "note",
+      "path": "Hub/Today Focus.md",
+      "centrality": 4,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.004447
+    },
+    {
+      "id": "note:Tools Registry",
+      "layer": "note",
+      "path": "Hub/Tools Registry.md",
+      "centrality": 2,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.00708
+    },
+    {
+      "id": "note:VIBE_COURSE_REVIEW_BRAIN",
+      "layer": "note",
+      "path": "VIBE_COURSE_REVIEW_BRAIN.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:VIBE_COURSE_REVIEW_BRAIN",
+      "community_label": "VIBE_COURSE_REVIEW_BRAIN.md",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:Weekly",
+      "layer": "note",
+      "path": "99-Templates/Weekly.md",
+      "centrality": 2,
+      "status": "live",
+      "community": "note:01-Projects",
+      "community_label": "99-Templates",
+      "centrality_global": 0.008165
+    },
+    {
+      "id": "note:Wishlist - focus-tracker",
+      "layer": "note",
+      "path": "Agents/Wishlist - focus-tracker.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.001753
+    },
+    {
+      "id": "note:Wishlist - hyper-brain-core",
+      "layer": "note",
+      "path": "Agents/Wishlist - hyper-brain-core.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.001886
+    },
+    {
+      "id": "note:Wishlist - mcp-bridge",
+      "layer": "note",
+      "path": "Agents/Wishlist - mcp-bridge.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.001749
+    },
+    {
+      "id": "note:Wishlist - morning-briefing",
+      "layer": "note",
+      "path": "Agents/Wishlist - morning-briefing.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:Wishlist - morning-briefing",
+      "community_label": "Agents",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "note:01-Projects",
+      "layer": "note",
+      "path": null,
+      "centrality": 1,
+      "status": "phantom",
+      "community": "note:01-Projects",
+      "community_label": "99-Templates",
+      "centrality_global": 0.004309
+    },
+    {
+      "id": "note:04-Archive",
+      "layer": "note",
+      "path": null,
+      "centrality": 1,
+      "status": "phantom",
+      "community": "note:01-Projects",
+      "community_label": "99-Templates",
+      "centrality_global": 0.004309
+    },
+    {
+      "id": "note:07-Streaks-Achievements",
+      "layer": "note",
+      "path": null,
+      "centrality": 1,
+      "status": "phantom",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.00248
+    },
+    {
+      "id": "note:Analytics",
+      "layer": "note",
+      "path": null,
+      "centrality": 2,
+      "status": "phantom",
+      "community": "note:Analytics",
+      "community_label": "99-Templates",
+      "centrality_global": 0.004936
+    },
+    {
+      "id": "note:BROskiPets-LLM-dNFT",
+      "layer": "note",
+      "path": null,
+      "centrality": 1,
+      "status": "phantom",
+      "community": "note:BROskiPets-2026-05-07",
+      "community_label": "note:BROskiPets-2026-05-07 cluster",
+      "centrality_global": 0.004309
+    },
+    {
+      "id": "note:CLAUDE.md",
+      "layer": "note",
+      "path": null,
+      "centrality": 1,
+      "status": "phantom",
+      "community": "note:CLAUDE.md",
+      "community_label": "Hub",
+      "centrality_global": 0.002748
+    },
+    {
+      "id": "note:NEXT_SESSION_HANDOVER_2026-05-27.md",
+      "layer": "note",
+      "path": null,
+      "centrality": 1,
+      "status": "phantom",
+      "community": "note:CLAUDE.md",
+      "community_label": "Hub",
+      "centrality_global": 0.002748
+    },
+    {
+      "id": "note:Snapshots",
+      "layer": "note",
+      "path": null,
+      "centrality": 1,
+      "status": "phantom",
+      "community": "note:Analytics",
+      "community_label": "99-Templates",
+      "centrality_global": 0.003268
+    },
+    {
+      "id": "note:WHATS_DONE.md",
+      "layer": "note",
+      "path": null,
+      "centrality": 1,
+      "status": "phantom",
+      "community": "note:CLAUDE.md",
+      "community_label": "Hub",
+      "centrality_global": 0.002748
+    },
+    {
+      "id": "note:cluster.json",
+      "layer": "note",
+      "path": null,
+      "centrality": 1,
+      "status": "phantom",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.001842
+    },
+    {
+      "id": "note:related note",
+      "layer": "note",
+      "path": null,
+      "centrality": 1,
+      "status": "phantom",
+      "community": "note:CLAUDE.md",
+      "community_label": "Hub",
+      "centrality_global": 0.002748
+    },
+    {
+      "id": "skill:DS-002",
+      "layer": "skill",
+      "title": "CLI LAUNCHER",
+      "emoji": "⚡",
+      "description": "CLI Args Launch Pattern",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/CLI_ARGS_LAUNCH_PATTERN_v1.md",
+      "centrality": 1,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.001658
+    },
+    {
+      "id": "skill:DS-009",
+      "layer": "skill",
+      "title": "PREFLIGHT",
+      "emoji": "🛫",
+      "description": "Preflight Checks System (Boot Validation)",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/PREFLIGHT_CHECKS_SYSTEM_v1.md",
+      "centrality": 2,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.002604
+    },
+    {
+      "id": "skill:DS-028",
+      "layer": "skill",
+      "title": "HEALTH WAITER",
+      "emoji": "⏳",
+      "description": "Progressive Health Wait (Smart Backoff)",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/PROGRESSIVE_HEALTH_WAIT_v1.md",
+      "centrality": 3,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.003671
+    },
+    {
+      "id": "skill:HS-007",
+      "layer": "skill",
+      "title": "SWARM CROWN",
+      "emoji": "🐝",
+      "description": "Hyperfocus Agent Swarm Core",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/HYPERFOCUS_AGENT_SWARM_CORE_v1.md",
+      "centrality": 11,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.009136
+    },
+    {
+      "id": "skill:HS-008",
+      "layer": "skill",
+      "title": "THE CONDUCTOR",
+      "emoji": "🎭",
+      "description": "BROski Orchestrator Pattern",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/BROSKI_ORCHESTRATOR_PATTERN_v1.md",
+      "centrality": 22,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.016341
+    },
+    {
+      "id": "skill:HS-010",
+      "layer": "skill",
+      "title": "THE AESTHETE",
+      "emoji": "🎨",
+      "description": "Design Brain",
+      "category": "broski",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "broski/DESIGN_BRAIN_v1.md",
+      "centrality": 6,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.004361
+    },
+    {
+      "id": "skill:HS-011",
+      "layer": "skill",
+      "title": "MIND BLOCKS",
+      "emoji": "🧩",
+      "description": "Hyper Brain Modules",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/HYPER_BRAIN_MODULES_v1.md",
+      "centrality": 18,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.013957
+    },
+    {
+      "id": "skill:HS-012",
+      "layer": "skill",
+      "title": "THE ASCENT",
+      "emoji": "🪜",
+      "description": "Level Progression",
+      "category": "broski",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "broski/LEVEL_PROGRESSION_v1.md",
+      "centrality": 9,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.007786
+    },
+    {
+      "id": "skill:HS-013",
+      "layer": "skill",
+      "title": "DAWN HERALD",
+      "emoji": "🌅",
+      "description": "Morning Briefing AI",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/MORNING_BRIEFING_AI_v1.md",
+      "centrality": 10,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.006614
+    },
+    {
+      "id": "skill:HS-014",
+      "layer": "skill",
+      "title": "VAULT KEEPER",
+      "emoji": "🔮",
+      "description": "Obsidian Git Vault",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/OBSIDIAN_GIT_VAULT_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-014",
+      "community_label": "dev skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-015",
+      "layer": "skill",
+      "title": "THE FOUR DRAWERS",
+      "emoji": "🗂️",
+      "description": "Vault PARA Structure",
+      "category": "broski",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "broski/VAULT_PARA_STRUCTURE_v1.md",
+      "centrality": 7,
+      "status": "active",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.006157
+    },
+    {
+      "id": "skill:HS-016",
+      "layer": "skill",
+      "title": "BRAIN PRIMER",
+      "emoji": "📖",
+      "description": "Agents Brain README",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AGENTS_BRAIN_README_v1.md",
+      "centrality": 16,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.010736
+    },
+    {
+      "id": "skill:HS-017",
+      "layer": "skill",
+      "title": "MIND CORE",
+      "emoji": "🧠",
+      "description": "Hyper Brain Core Manifest",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AGENT_MANIFEST_HYPER_BRAIN_CORE_v1.md",
+      "centrality": 10,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.006772
+    },
+    {
+      "id": "skill:HS-018",
+      "layer": "skill",
+      "title": "BRIDGE KEEPER",
+      "emoji": "🌉",
+      "description": "MCP Bridge Manifest",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AGENT_MANIFEST_MCP_BRIDGE_v1.md",
+      "centrality": 6,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.004123
+    },
+    {
+      "id": "skill:HS-019",
+      "layer": "skill",
+      "title": "THE ALL-SEEING",
+      "emoji": "👁️",
+      "description": "Observable Agent Operations Pattern",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/OBSERVABLE_AGENT_OPERATIONS_v1.md",
+      "centrality": 20,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.022876
+    },
+    {
+      "id": "skill:HS-020",
+      "layer": "skill",
+      "title": "HERALD'S SCROLL",
+      "emoji": "🌄",
+      "description": "Morning Briefing Manifest",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AGENT_MANIFEST_MORNING_BRIEFING_v1.md",
+      "centrality": 8,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.006782
+    },
+    {
+      "id": "skill:HS-021",
+      "layer": "skill",
+      "title": "VAULT SYNC",
+      "emoji": "🔄",
+      "description": "Obsidian Brain Sync Skill",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/OBSIDIAN_BRAIN_SYNC_SKILL_v1.md",
+      "centrality": 6,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.005763
+    },
+    {
+      "id": "skill:HS-022",
+      "layer": "skill",
+      "title": "SDK SOVEREIGN",
+      "emoji": "📦",
+      "description": "HyperCode SDK Master",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/HYPERCODE_SDK_MASTER_v1.md",
+      "centrality": 2,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.002588
+    },
+    {
+      "id": "skill:HS-023",
+      "layer": "skill",
+      "title": "REPO BRIDGE",
+      "emoji": "🔗",
+      "description": "Cross-Repo Sync",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/CROSS_REPO_SYNC_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-023",
+      "community_label": "dev skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-024",
+      "layer": "skill",
+      "title": "PUBLISH RITE",
+      "emoji": "🚀",
+      "description": "SDK Publish Workflow",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/SDK_PUBLISH_WORKFLOW_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-024",
+      "community_label": "dev skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-025",
+      "layer": "skill",
+      "title": "COIN MENDER",
+      "emoji": "🪙",
+      "description": "Token Sync Debug",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/TOKEN_SYNC_DEBUG_v1.md",
+      "centrality": 1,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.001811
+    },
+    {
+      "id": "skill:HS-026",
+      "layer": "skill",
+      "title": "GRADUATION GATE",
+      "emoji": "🎓",
+      "description": "Phase 4 Graduation Flow",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/PHASE4_GRADUATION_FLOW_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-026",
+      "community_label": "dev skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-027",
+      "layer": "skill",
+      "title": "TEST HERALD",
+      "emoji": "📋",
+      "description": "Test Status Report",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/TEST_STATUS_REPORT_v1.md",
+      "centrality": 1,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.001811
+    },
+    {
+      "id": "skill:HS-028",
+      "layer": "skill",
+      "title": "SDK PRIMER",
+      "emoji": "📖",
+      "description": "HyperAgent SDK Agents README",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/HYPERAGENT_SDK_AGENTS_README_v1.md",
+      "centrality": 5,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.003211
+    },
+    {
+      "id": "skill:HS-029",
+      "layer": "skill",
+      "title": "PUBLISH FORGE",
+      "emoji": "📮",
+      "description": "HyperAgent SDK Publish Skill",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/HYPERAGENT_SDK_PUBLISH_SKILL_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-029",
+      "community_label": "dev skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-030",
+      "layer": "skill",
+      "title": "HYPERFOCUS MASTER CONSTITUTION",
+      "emoji": "🏆",
+      "description": "HyperFocus Master Constitution",
+      "category": "hypercode",
+      "pack": null,
+      "path": "hypercode/HYPERFOCUS_MASTER_CONSTITUTION_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-030",
+      "community_label": "hypercode skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-031",
+      "layer": "skill",
+      "title": "V2.4 SACRED RULES",
+      "emoji": "🔴",
+      "description": "V2.4 Sacred Rules (20 Rules)",
+      "category": "hypercode",
+      "pack": null,
+      "path": "hypercode/V2_4_SACRED_RULES_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-031",
+      "community_label": "hypercode skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-032",
+      "layer": "skill",
+      "title": "COURSE SACRED RULES",
+      "emoji": "🔴",
+      "description": "Course Sacred Rules (11 Rules)",
+      "category": "hypercode",
+      "pack": null,
+      "path": "hypercode/COURSE_SACRED_RULES_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-032",
+      "community_label": "hypercode skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-033",
+      "layer": "skill",
+      "title": "BROSKI SHOP SACRED RULES",
+      "emoji": "🔴",
+      "description": "BROski$ Shop Sacred Rules",
+      "category": "hypercode",
+      "pack": null,
+      "path": "hypercode/BROSKI_SHOP_SACRED_RULES_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-033",
+      "community_label": "hypercode skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-034",
+      "layer": "skill",
+      "title": "BEAT ARCHITECT",
+      "emoji": "🎯",
+      "description": "7-Beat Module Teaching Structure",
+      "category": "broski",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "broski/SEVEN_BEAT_MODULE_STRUCTURE_v1.md",
+      "centrality": 7,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.005419
+    },
+    {
+      "id": "skill:HS-035",
+      "layer": "skill",
+      "title": "PROTOCOL PRIME",
+      "emoji": "🤖",
+      "description": "AI Behaviour Rules + Tool Matrix",
+      "category": "hypercode",
+      "pack": null,
+      "path": "hypercode/AI_BEHAVIOUR_RULES_TOOL_MATRIX_v1.md",
+      "centrality": 1,
+      "status": "active",
+      "community": "ai_distraction_filter",
+      "community_label": "broski skills",
+      "centrality_global": 0.001837
+    },
+    {
+      "id": "skill:HS-036",
+      "layer": "skill",
+      "title": "ANALOGY ARSENAL",
+      "emoji": "🧠",
+      "description": "ND-Friendly Analogy Library",
+      "category": "broski",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "broski/ANALOGY_ARSENAL_v1.md",
+      "centrality": 7,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.005554
+    },
+    {
+      "id": "skill:HS-037",
+      "layer": "skill",
+      "title": "GRID MASTER",
+      "emoji": "⚡",
+      "description": "Architecture Quick Ref (Ports + Networks)",
+      "category": "hypercode",
+      "pack": null,
+      "path": "hypercode/ARCHITECTURE_QUICK_REF_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-037",
+      "community_label": "hypercode skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-038",
+      "layer": "skill",
+      "title": "PHASE WARDEN",
+      "emoji": "🛡️",
+      "description": "Server Guardian Bot Phase Map",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/GUARDIAN_BOT_PHASE_MAP_v1.md",
+      "centrality": 7,
+      "status": "active",
+      "community": "skill:HS-038",
+      "community_label": "agents skills",
+      "centrality_global": 0.005285
+    },
+    {
+      "id": "skill:HS-039",
+      "layer": "skill",
+      "title": "CLOSE PROTOCOL",
+      "emoji": "✅",
+      "description": "Session End Checklist",
+      "category": "hypercode",
+      "pack": null,
+      "path": "hypercode/SESSION_END_CHECKLIST_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-039",
+      "community_label": "hypercode skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-040",
+      "layer": "skill",
+      "title": "GOALKEEPER",
+      "emoji": "🥅",
+      "description": "Self-Improving Goal-Tracking Agent",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/GOALKEEPER_SELF_IMPROVING_AGENT_v1.md",
+      "centrality": 7,
+      "status": "active",
+      "community": "skill:HS-040",
+      "community_label": "agents skills",
+      "centrality_global": 0.004984
+    },
+    {
+      "id": "skill:HS-041",
+      "layer": "skill",
+      "title": "METRICS FORGE",
+      "emoji": "⚡",
+      "description": "Prometheus + Grafana Agent Metrics Integration",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/METRICS_ENGINE_INTEGRATION_v1.md",
+      "centrality": 8,
+      "status": "active",
+      "community": "skill:HS-038",
+      "community_label": "agents skills",
+      "centrality_global": 0.006495
+    },
+    {
+      "id": "skill:HS-042",
+      "layer": "skill",
+      "title": "REGISTRY LORD",
+      "emoji": "📋",
+      "description": "Skill Registry Agent Pattern (Yellow Pages)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/SKILL_REGISTRY_AGENT_PATTERN_v1.md",
+      "centrality": 5,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.004711
+    },
+    {
+      "id": "skill:HS-043",
+      "layer": "skill",
+      "title": "LOOP MASTER",
+      "emoji": "🔄",
+      "description": "Self-Improvement 5-Loop Pattern (Reference)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/SELF_IMPROVEMENT_5_LOOP_LOGIC_v1.md",
+      "centrality": 10,
+      "status": "active",
+      "community": "skill:HS-040",
+      "community_label": "agents skills",
+      "centrality_global": 0.006651
+    },
+    {
+      "id": "skill:HS-044",
+      "layer": "skill",
+      "title": "AB SPLITTER",
+      "emoji": "🧪",
+      "description": "A/B Testing Framework (Prompt Block)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AB_TESTING_FRAMEWORK_v1.md",
+      "centrality": 7,
+      "status": "active",
+      "community": "skill:HS-040",
+      "community_label": "agents skills",
+      "centrality_global": 0.00406
+    },
+    {
+      "id": "skill:HS-045",
+      "layer": "skill",
+      "title": "FRUGAL ENGINE",
+      "emoji": "💰",
+      "description": "Cost Optimisation Auto-Pattern",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/COST_OPTIMISATION_AUTO_PATTERN_v1.md",
+      "centrality": 5,
+      "status": "active",
+      "community": "skill:HS-040",
+      "community_label": "agents skills",
+      "centrality_global": 0.005093
+    },
+    {
+      "id": "skill:HS-046",
+      "layer": "skill",
+      "title": "LAUNCH SOVEREIGN",
+      "emoji": "🚀",
+      "description": "HyperLaunch Unified Commander",
+      "category": "hypercode",
+      "pack": null,
+      "path": "hypercode/HYPERLAUNCH_UNIFIED_COMMANDER_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-046",
+      "community_label": "hypercode skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-047",
+      "layer": "skill",
+      "title": "TIER FORGE",
+      "emoji": "🏗️",
+      "description": "4-Tier ServiceSpec Launch Pattern",
+      "category": "hypercode",
+      "pack": null,
+      "path": "hypercode/FOUR_TIER_SERVICESPEC_LAUNCH_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-047",
+      "community_label": "hypercode skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-050",
+      "layer": "skill",
+      "title": "WATCHDOG PRIME",
+      "emoji": "🛡️",
+      "description": "Post-Launch Watchdog Monitoring Pattern",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/GUARDIAN_WATCHDOG_POST_LAUNCH_v1.md",
+      "centrality": 6,
+      "status": "active",
+      "community": "skill:HS-038",
+      "community_label": "agents skills",
+      "centrality_global": 0.003709
+    },
+    {
+      "id": "skill:HS-052",
+      "layer": "skill",
+      "title": "PET MASTER",
+      "emoji": "🐾",
+      "description": "BROskiPets Full Integration Plan",
+      "category": "web3",
+      "pack": null,
+      "path": "web3/BROSKI_PETS_INTEGRATION_PLAN_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-052",
+      "community_label": "web3 skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-053",
+      "layer": "skill",
+      "title": "FATE ROLLER",
+      "emoji": "🎲",
+      "description": "Pet Rarity Roll Formula",
+      "category": "web3",
+      "pack": null,
+      "path": "web3/PET_RARITY_ROLL_FORMULA_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-053",
+      "community_label": "web3 skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-054",
+      "layer": "skill",
+      "title": "XP SPARK",
+      "emoji": "⚡",
+      "description": "Dev Action XP Trigger System",
+      "category": "web3",
+      "pack": null,
+      "path": "web3/DEV_ACTION_XP_TRIGGER_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-054",
+      "community_label": "web3 skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-055",
+      "layer": "skill",
+      "title": "CHAIN LEDGER",
+      "emoji": "📜",
+      "description": "dNFT On-Chain Portfolio Pattern",
+      "category": "web3",
+      "pack": null,
+      "path": "web3/DNFT_ONCHAIN_PORTFOLIO_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-055",
+      "community_label": "web3 skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-056",
+      "layer": "skill",
+      "title": "BEAST CODEX",
+      "emoji": "🦈",
+      "description": "Pet Species Power Mapping",
+      "category": "web3",
+      "pack": null,
+      "path": "web3/PET_SPECIES_POWER_MAPPING_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-056",
+      "community_label": "web3 skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-057",
+      "layer": "skill",
+      "title": "GENESIS PROMPT",
+      "emoji": "🥚",
+      "description": "BROskiPets Phase 0 Build Prompt",
+      "category": "web3",
+      "pack": null,
+      "path": "web3/BROSKI_PETS_PHASE_0_BUILD_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-057",
+      "community_label": "web3 skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-058",
+      "layer": "skill",
+      "title": "HATCH PROMPT",
+      "emoji": "🐣",
+      "description": "BROskiPets Phase 1 Build Prompt",
+      "category": "web3",
+      "pack": null,
+      "path": "web3/BROSKI_PETS_PHASE_1_BUILD_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-058",
+      "community_label": "web3 skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-059",
+      "layer": "skill",
+      "title": "THE CARTOGRAPHER",
+      "emoji": "🗺️",
+      "description": "Complete Ecosystem Inventory",
+      "category": "hypercode",
+      "pack": null,
+      "path": "hypercode/ECOSYSTEM_INVENTORY_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-059",
+      "community_label": "hypercode skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-060",
+      "layer": "skill",
+      "title": "FLEET ADMIRAL",
+      "emoji": "🐳",
+      "description": "Container Stack Reference",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/CONTAINER_STACK_REFERENCE_v1.md",
+      "centrality": 13,
+      "status": "active",
+      "community": "agent_hyper_brain_core",
+      "community_label": "dev skills",
+      "centrality_global": 0.011376
+    },
+    {
+      "id": "skill:HS-061",
+      "layer": "skill",
+      "title": "THE PORT WARDEN",
+      "emoji": "🔌",
+      "description": "Port + Network Map",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/PORT_NETWORK_MAP_v1.md",
+      "centrality": 7,
+      "status": "active",
+      "community": "agent_hyper_brain_core",
+      "community_label": "dev skills",
+      "centrality_global": 0.005019
+    },
+    {
+      "id": "skill:HS-062",
+      "layer": "skill",
+      "title": "THE SCHEMA SCRIBE",
+      "emoji": "🗄️",
+      "description": "Database Schema Reference",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/DATABASE_SCHEMA_REFERENCE_v1.md",
+      "centrality": 6,
+      "status": "active",
+      "community": "agent_hyper_brain_core",
+      "community_label": "dev skills",
+      "centrality_global": 0.004032
+    },
+    {
+      "id": "skill:HS-063",
+      "layer": "skill",
+      "title": "THE QUARTERMASTER",
+      "emoji": "📦",
+      "description": "Backend Deps Stack",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/BACKEND_DEPS_STACK_v1.md",
+      "centrality": 5,
+      "status": "active",
+      "community": "agent_hyper_brain_core",
+      "community_label": "dev skills",
+      "centrality_global": 0.004091
+    },
+    {
+      "id": "skill:HS-064",
+      "layer": "skill",
+      "title": "THE QUICK HAND",
+      "emoji": "⚡",
+      "description": "Dev Commands Cheat Sheet",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/DEV_COMMANDS_CHEAT_SHEET_v1.md",
+      "centrality": 5,
+      "status": "active",
+      "community": "agent_hyper_brain_core",
+      "community_label": "dev skills",
+      "centrality_global": 0.004032
+    },
+    {
+      "id": "skill:HS-065",
+      "layer": "skill",
+      "title": "THE CONNECTOR",
+      "emoji": "🔗",
+      "description": "External Integrations Map",
+      "category": "hypercode",
+      "pack": null,
+      "path": "hypercode/EXTERNAL_INTEGRATIONS_MAP_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-065",
+      "community_label": "hypercode skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-066",
+      "layer": "skill",
+      "title": "THE MILESTONE KEEPER",
+      "emoji": "🏆",
+      "description": "Milestone Tracker Template",
+      "category": "hypercode",
+      "pack": null,
+      "path": "hypercode/MILESTONE_TRACKER_TEMPLATE_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-066",
+      "community_label": "hypercode skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-067",
+      "layer": "skill",
+      "title": "THE THRONE LADDER",
+      "emoji": "👑",
+      "description": "Agent Role Hierarchy Pattern",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AGENT_ROLE_HIERARCHY_PATTERN_v1.md",
+      "centrality": 13,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.009484
+    },
+    {
+      "id": "skill:HS-069",
+      "layer": "skill",
+      "title": "MERCY MESSAGE",
+      "emoji": "💚",
+      "description": "ND-First Error Messages Template",
+      "category": "broski",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "broski/ND_FIRST_ERROR_MESSAGES_TEMPLATE_v1.md",
+      "centrality": 5,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.003477
+    },
+    {
+      "id": "skill:HS-071",
+      "layer": "skill",
+      "title": "SOFT LANDING",
+      "emoji": "🪂",
+      "description": "Fail Gracefully + Fallback Chain",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/FAIL_GRACEFULLY_FALLBACK_CHAIN_v1.md",
+      "centrality": 5,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.005212
+    },
+    {
+      "id": "skill:HS-072",
+      "layer": "skill",
+      "title": "THE MEMORY VAULT",
+      "emoji": "🗃️",
+      "description": "Context Store Architecture (Redis)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/CONTEXT_STORE_ARCHITECTURE_v1.md",
+      "centrality": 4,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.003971
+    },
+    {
+      "id": "skill:HS-073",
+      "layer": "skill",
+      "title": "PULSE STREAM",
+      "emoji": "📡",
+      "description": "SSE Agent Event Schema",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/SSE_AGENT_EVENT_SCHEMA_v1.md",
+      "centrality": 7,
+      "status": "active",
+      "community": "skill:HS-038",
+      "community_label": "agents skills",
+      "centrality_global": 0.005591
+    },
+    {
+      "id": "skill:HS-074",
+      "layer": "skill",
+      "title": "THE API CODEX",
+      "emoji": "🚀",
+      "description": "API Standards (FastAPI Agent Pattern)",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/FASTAPI_AGENT_API_STANDARDS_v1.md",
+      "centrality": 1,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.001811
+    },
+    {
+      "id": "skill:HS-075",
+      "layer": "skill",
+      "title": "THE CHOICE MATRIX",
+      "emoji": "🎯",
+      "description": "Agent Decision Framework Matrix",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AGENT_DECISION_FRAMEWORK_MATRIX_v1.md",
+      "centrality": 8,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.00543
+    },
+    {
+      "id": "skill:HS-076",
+      "layer": "skill",
+      "title": "THE GATEKEEPER",
+      "emoji": "✅",
+      "description": "Pre-Commit Testing Checklist",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/PRE_COMMIT_TESTING_CHECKLIST_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-076",
+      "community_label": "dev skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-077",
+      "layer": "skill",
+      "title": "CONSENT GUARDIAN",
+      "emoji": "🛑",
+      "description": "User Agency Approval Gate Pattern",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/USER_AGENCY_APPROVAL_GATE_v1.md",
+      "centrality": 11,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.008098
+    },
+    {
+      "id": "skill:HS-078",
+      "layer": "skill",
+      "title": "FLOW KEEPER",
+      "emoji": "🌊",
+      "description": "Context Retention / Anti-Interrupt Pattern",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/CONTEXT_RETENTION_ANTI_INTERRUPT_v1.md",
+      "centrality": 7,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.004799
+    },
+    {
+      "id": "skill:HS-079",
+      "layer": "skill",
+      "title": "THE CREW CHARTER",
+      "emoji": "👥",
+      "description": "Specialist Agent Role Definitions",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/SPECIALIST_AGENT_ROLES_v1.md",
+      "centrality": 10,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.007029
+    },
+    {
+      "id": "skill:HS-080",
+      "layer": "skill",
+      "title": "THE TOOL BELT",
+      "emoji": "🧰",
+      "description": "Universal Agent Tools API",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/UNIVERSAL_AGENT_TOOLS_API_v1.md",
+      "centrality": 7,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.005657
+    },
+    {
+      "id": "skill:HS-081",
+      "layer": "skill",
+      "title": "PORTAL FORGE",
+      "emoji": "🔌",
+      "description": "MCP Server + Agent Registration Pattern",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/MCP_SERVER_AGENT_REGISTRATION_v1.md",
+      "centrality": 3,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.003186
+    },
+    {
+      "id": "skill:HS-082",
+      "layer": "skill",
+      "title": "THE NAMING LAW",
+      "emoji": "🏷️",
+      "description": "Context Key Naming Convention + Value Schema",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/CONTEXT_KEY_NAMING_CONVENTION_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-082",
+      "community_label": "dev skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-083",
+      "layer": "skill",
+      "title": "THE THREE VOICES",
+      "emoji": "🗣️",
+      "description": "Agent Communication Patterns (Req-Res, Stream, Error)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AGENT_COMMUNICATION_PATTERNS_v1.md",
+      "centrality": 6,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.004055
+    },
+    {
+      "id": "skill:HS-084",
+      "layer": "skill",
+      "title": "THE STYLE CODEX",
+      "emoji": "📐",
+      "description": "Code Style Standards (Python + TS/React)",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/CODE_STYLE_STANDARDS_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-084",
+      "community_label": "dev skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-085",
+      "layer": "skill",
+      "title": "THE FIVE WARDS",
+      "emoji": "🚧",
+      "description": "5 Mandatory Agent Guardrails",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/FIVE_MANDATORY_GUARDRAILS_v1.md",
+      "centrality": 4,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.004088
+    },
+    {
+      "id": "skill:HS-086",
+      "layer": "skill",
+      "title": "THE FOUR TIERS",
+      "emoji": "🔺",
+      "description": "Test Pyramid (4 Levels)",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/TEST_PYRAMID_FOUR_LEVELS_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-086",
+      "community_label": "dev skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-087",
+      "layer": "skill",
+      "title": "THE BRANCHING PATH",
+      "emoji": "🌳",
+      "description": "Agent Decision Tree (Quick Ref Flowchart)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AGENT_DECISION_TREE_FLOWCHART_v1.md",
+      "centrality": 8,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.005399
+    },
+    {
+      "id": "skill:HS-088",
+      "layer": "skill",
+      "title": "THE MIRROR OATH",
+      "emoji": "🪞",
+      "description": "Agent Final Self-Audit (8-Point Checklist)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AGENT_FINAL_SELF_AUDIT_v1.md",
+      "centrality": 8,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.005752
+    },
+    {
+      "id": "skill:HS-089",
+      "layer": "skill",
+      "title": "THE GRAND ROSTER",
+      "emoji": "🗺️",
+      "description": "Hyper Agent Roster (22 Confirmed + 5 Expansion)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/HYPER_AGENT_ROSTER_v1.md",
+      "centrality": 7,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.006589
+    },
+    {
+      "id": "skill:HS-090",
+      "layer": "skill",
+      "title": "SOUL SCROLL",
+      "emoji": "📜",
+      "description": "Universal Life Plan YAML v2.0 Template",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/UNIVERSAL_LIFE_PLAN_YAML_v1.md",
+      "centrality": 4,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.003306
+    },
+    {
+      "id": "skill:HS-091",
+      "layer": "skill",
+      "title": "THE FOUNDING SIX",
+      "emoji": "🪪",
+      "description": "Top-Tier Agent Identity Cards *(v1.1 — +AutoEvo)*",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/TOP_TIER_AGENT_IDENTITY_CARDS_v1.md",
+      "centrality": 5,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.004775
+    },
+    {
+      "id": "skill:HS-092",
+      "layer": "skill",
+      "title": "CONTRACT FORGE",
+      "emoji": "🧪",
+      "description": "Agent Contract Test Suite",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/AGENT_CONTRACT_TEST_SUITE_v1.md",
+      "centrality": 2,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.002417
+    },
+    {
+      "id": "skill:HS-093",
+      "layer": "skill",
+      "title": "NIGHT TENDER",
+      "emoji": "🌙",
+      "description": "Nightly Continuous Learning Loop",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/NIGHTLY_LEARNING_LOOP_v1.md",
+      "centrality": 14,
+      "status": "active",
+      "community": "skill:HS-040",
+      "community_label": "agents skills",
+      "centrality_global": 0.010131
+    },
+    {
+      "id": "skill:HS-094",
+      "layer": "skill",
+      "title": "THE SIX-SPRINT MARCH",
+      "emoji": "🚀",
+      "description": "6-Sprint Production Roadmap (with KPI Gates)",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/SIX_SPRINT_PRODUCTION_ROADMAP_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-094",
+      "community_label": "dev skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-095",
+      "layer": "skill",
+      "title": "THE LEDGER LAW",
+      "emoji": "📒",
+      "description": "Governance Ledger Entry Schema",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/GOVERNANCE_LEDGER_ENTRY_SCHEMA_v1.md",
+      "centrality": 1,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.001811
+    },
+    {
+      "id": "skill:HS-096",
+      "layer": "skill",
+      "title": "THE LONG MARCH",
+      "emoji": "🗓️",
+      "description": "4-Phase / 8-Sprint Production Roadmap (Alt Cadence)",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/FOUR_PHASE_EIGHT_SPRINT_ROADMAP_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-096",
+      "community_label": "dev skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-097",
+      "layer": "skill",
+      "title": "THE WEB OF NEEDS",
+      "emoji": "🕸️",
+      "description": "Hyper Agent Dependency Graph (8-Agent Worked Example)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/HYPER_AGENT_DEPENDENCY_GRAPH_v1.md",
+      "centrality": 6,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.004967
+    },
+    {
+      "id": "skill:HS-098",
+      "layer": "skill",
+      "title": "THE SACRED SIX",
+      "emoji": "🏛️",
+      "description": "The 6 Laws of Agents",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/SIX_LAWS_OF_AGENTS_v1.md",
+      "centrality": 6,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.005757
+    },
+    {
+      "id": "skill:HS-099",
+      "layer": "skill",
+      "title": "SIX-ORGAN HEART",
+      "emoji": "🧬",
+      "description": "Anatomy of an Agent",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/ANATOMY_OF_AN_AGENT_v1.md",
+      "centrality": 5,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.005082
+    },
+    {
+      "id": "skill:HS-100",
+      "layer": "skill",
+      "title": "CRADLE-TO-GRAVE",
+      "emoji": "🔄",
+      "description": "Agent Lifecycle State Machine (BIRTH → DEATH)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AGENT_LIFECYCLE_STATE_MACHINE_v1.md",
+      "centrality": 7,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.00679
+    },
+    {
+      "id": "skill:HS-101",
+      "layer": "skill",
+      "title": "DREAM GUARD",
+      "emoji": "😴",
+      "description": "Sleep Cycle + 5-Minute Anti-Thrash Hold",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/SLEEP_CYCLE_ANTI_THRASH_v1.md",
+      "centrality": 3,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.003576
+    },
+    {
+      "id": "skill:HS-102",
+      "layer": "skill",
+      "title": "SLOPE ORACLE",
+      "emoji": "📈",
+      "description": "Predictive Trend via Linear Regression",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/PREDICTIVE_TREND_LINEAR_REGRESSION_v1.md",
+      "centrality": 1,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.001811
+    },
+    {
+      "id": "skill:HS-103",
+      "layer": "skill",
+      "title": "HEALER'S CHORUS",
+      "emoji": "🤝",
+      "description": "Healer Circuit-Breaker Protocol",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/HEALER_CIRCUIT_BREAKER_PROTOCOL_v1.md",
+      "centrality": 5,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.005173
+    },
+    {
+      "id": "skill:HS-104",
+      "layer": "skill",
+      "title": "THE THREE WALLS",
+      "emoji": "🛡️",
+      "description": "Tier Protection Rules (Hardcoded + Configurable + Self)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/TIER_PROTECTION_RULES_v1.md",
+      "centrality": 5,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.004842
+    },
+    {
+      "id": "skill:HS-105",
+      "layer": "skill",
+      "title": "THE METRICS OATH",
+      "emoji": "📊",
+      "description": "Core Agent Metrics Contract (5 Mandatory)",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/CORE_AGENT_METRICS_CONTRACT_v1.md",
+      "centrality": 1,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.001811
+    },
+    {
+      "id": "skill:HS-106",
+      "layer": "skill",
+      "title": "THE BIRTH RITE",
+      "emoji": "🌱",
+      "description": "New Agent Build Checklist (10-Point)",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/NEW_AGENT_BUILD_CHECKLIST_v1.md",
+      "centrality": 3,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.003335
+    },
+    {
+      "id": "skill:HS-107",
+      "layer": "skill",
+      "title": "THE RANK & THE NAME",
+      "emoji": "🏆",
+      "description": "Agent Ranks + Self-Naming Protocol + The Creed",
+      "category": "broski",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "broski/AGENT_RANKS_NAMING_CREED_v1.md",
+      "centrality": 5,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.00468
+    },
+    {
+      "id": "skill:HS-108",
+      "layer": "skill",
+      "title": "REALITY ANCHOR",
+      "emoji": "🔱",
+      "description": "Truth-vs-Claim Audit Pattern",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/TRUTH_VS_CLAIM_AUDIT_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-108",
+      "community_label": "dev skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-109",
+      "layer": "skill",
+      "title": "GREP HOUND",
+      "emoji": "🐕",
+      "description": "Cross-Reference Before You Write",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/CROSS_REFERENCE_BEFORE_WRITING_v1.md",
+      "centrality": 1,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.001678
+    },
+    {
+      "id": "skill:HS-110",
+      "layer": "skill",
+      "title": "TRIM LORD",
+      "emoji": "⚔️",
+      "description": "Lean Raid Discipline (Anti-Inflation)",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/LEAN_RAID_DISCIPLINE_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-110",
+      "community_label": "dev skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-111",
+      "layer": "skill",
+      "title": "TRUTH FLAGGER",
+      "emoji": "🚩",
+      "description": "Surface Contradictions, Don't Pick Sides",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/SURFACE_CONTRADICTIONS_DONT_PICK_SIDES_v1.md",
+      "centrality": 1,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.001607
+    },
+    {
+      "id": "skill:HS-112",
+      "layer": "skill",
+      "title": "WEB WEAVER",
+      "emoji": "🕸️",
+      "description": "Wikilink Knowledge Graph for Docs",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/WIKILINK_KNOWLEDGE_GRAPH_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-112",
+      "community_label": "dev skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-113",
+      "layer": "skill",
+      "title": "FETCH FORGE",
+      "emoji": "⚒️",
+      "description": "Parallel Git Workflow Survival Guide",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/PARALLEL_GIT_WORKFLOW_SURVIVAL_v1.md",
+      "centrality": 0,
+      "status": "active",
+      "community": "skill:HS-113",
+      "community_label": "dev skills",
+      "centrality_global": 0.000839
+    },
+    {
+      "id": "skill:HS-114",
+      "layer": "skill",
+      "title": "BRAIN OPS",
+      "emoji": "🛠️",
+      "description": "Hyper Brain Infrastructure Runbook",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/HYPER_BRAIN_OPS_v1.md",
+      "centrality": 5,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.004987
+    },
+    {
+      "id": "skill:HS-120",
+      "layer": "skill",
+      "title": "AB FORGE",
+      "emoji": "🧪",
+      "description": "A/B Testing Framework (Python Code)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AB_TESTING_FRAMEWORK_AGENTS_v1.md",
+      "centrality": 5,
+      "status": "active",
+      "community": "skill:HS-040",
+      "community_label": "agents skills",
+      "centrality_global": 0.00406
+    },
+    {
+      "id": "skill:HS-121",
+      "layer": "skill",
+      "title": "LOOP FORGE",
+      "emoji": "🔄",
+      "description": "Self-Improvement 5-Loop (Python Implementation)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/SELF_IMPROVEMENT_5_LOOP_v1.md",
+      "centrality": 4,
+      "status": "active",
+      "community": "skill:HS-040",
+      "community_label": "agents skills",
+      "centrality_global": 0.004095
+    },
+    {
+      "id": "skill:HS-122",
+      "layer": "skill",
+      "title": "GUARDIAN WATCHDOG",
+      "emoji": "🔭",
+      "description": "Watchdog Monitor Code Pattern",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/GUARDIAN_WATCHDOG_MONITOR_v1.md",
+      "centrality": 5,
+      "status": "active",
+      "community": "skill:HS-038",
+      "community_label": "agents skills",
+      "centrality_global": 0.003709
+    },
+    {
+      "id": "skill:HS-123",
+      "layer": "skill",
+      "title": "GODFLOW",
+      "emoji": "⚡",
+      "description": "GOD Mode Hyperflow",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/GOD_MODE_HYPERFLOW_v1.md",
+      "centrality": 6,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.004815
+    },
+    {
+      "id": "skill:HS-124",
+      "layer": "skill",
+      "title": "FOCUS HAWK",
+      "emoji": "🦅",
+      "description": "Focus Tracker Manifest",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/AGENT_MANIFEST_FOCUS_TRACKER_v1.md",
+      "centrality": 9,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.006536
+    },
+    {
+      "id": "skill:HS-125",
+      "layer": "skill",
+      "title": "THE GRAND CODEX",
+      "emoji": "🏆",
+      "description": "Hyperfocus Zone Master Context",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/HYPERFOCUS_ZONE_MASTER_CONTEXT_v1.md",
+      "centrality": 8,
+      "status": "active",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.005768
+    },
+    {
+      "id": "skill:HS-126",
+      "layer": "skill",
+      "title": "NODE SMITH",
+      "emoji": "🔗",
+      "description": "HyperGraph Node Skill",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/HYPERGRAPH_NODE_SKILL_v1.md",
+      "centrality": 4,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.003155
+    },
+    {
+      "id": "skill:HS-127",
+      "layer": "skill",
+      "title": "SIGNAL HUNTER",
+      "emoji": "📊",
+      "description": "YT Analytics Debugger",
+      "category": "youtube",
+      "pack": "YouTube Growth Pack",
+      "path": "youtube/YT_DEBUGGER_v1.md",
+      "centrality": 5,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.006002
+    },
+    {
+      "id": "skill:HS-128",
+      "layer": "skill",
+      "title": "PLUGIN FORGE",
+      "emoji": "🏗️",
+      "description": "Build & Publish a Claude Code Plugin Marketplace",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/PLUGIN_FORGE_v1.md",
+      "centrality": 4,
+      "status": "active",
+      "community": "skill:HS-038",
+      "community_label": "agents skills",
+      "centrality_global": 0.003602
+    },
+    {
+      "id": "skill:HS-129",
+      "layer": "skill",
+      "title": "SKILLS-OVER-MCP",
+      "emoji": "🌐",
+      "description": "Expose Skills as MCP Resources (SEP-2640)",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/SKILLS_OVER_MCP_v1.md",
+      "centrality": 5,
+      "status": "active",
+      "community": "skill:HS-038",
+      "community_label": "agents skills",
+      "centrality_global": 0.005796
+    },
+    {
+      "id": "skill:HS-130",
+      "layer": "skill",
+      "title": "OCI SKILL SHIP",
+      "emoji": "🚢",
+      "description": "Distribute Skills as OCI Artifacts",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/OCI_SKILL_SHIP_v1.md",
+      "centrality": 3,
+      "status": "active",
+      "community": "skill:HS-038",
+      "community_label": "agents skills",
+      "centrality_global": 0.003602
+    },
+    {
+      "id": "skill:HS-131",
+      "layer": "skill",
+      "title": "THE NESTED SWARM",
+      "emoji": "🪆",
+      "description": "Sub-Agents That Spawn Sub-Agents (Bounded Depth)",
+      "category": "agents",
+      "pack": "Agent Builder Pack",
+      "path": "agents/NESTED_SWARM_v1.md",
+      "centrality": 5,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.004793
+    },
+    {
+      "id": "skill:HS-132",
+      "layer": "skill",
+      "title": "THUMBNAIL DUELIST",
+      "emoji": "🥊",
+      "description": "Title + Thumbnail A/B Testing",
+      "category": "youtube",
+      "pack": "YouTube Growth Pack",
+      "path": "youtube/THUMBNAIL_DUELIST_v1.md",
+      "centrality": 5,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.006002
+    },
+    {
+      "id": "skill:HS-133",
+      "layer": "skill",
+      "title": "SHORTS ALCHEMIST",
+      "emoji": "✂️",
+      "description": "Long-Form → Shorts Repurposing Engine",
+      "category": "youtube",
+      "pack": "YouTube Growth Pack",
+      "path": "youtube/SHORTS_ALCHEMIST_v1.md",
+      "centrality": 3,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.004018
+    },
+    {
+      "id": "skill:HS-134",
+      "layer": "skill",
+      "title": "SIGNAL-TO-SCRIPT LOOP",
+      "emoji": "🔁",
+      "description": "Analytics → Next Video Script",
+      "category": "youtube",
+      "pack": "YouTube Growth Pack",
+      "path": "youtube/SIGNAL_TO_SCRIPT_LOOP_v1.md",
+      "centrality": 3,
+      "status": "active",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.004018
+    },
+    {
+      "id": "skill:HS-135",
+      "layer": "skill",
+      "title": "GATEWAY SOVEREIGN",
+      "emoji": "🐳",
+      "description": "Docker MCP Toolkit Profile + Claude Code Wiring",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/GATEWAY_SOVEREIGN_v1.md",
+      "centrality": 7,
+      "status": "active",
+      "community": "agent_hyper_brain_core",
+      "community_label": "dev skills",
+      "centrality_global": 0.005561
+    },
+    {
+      "id": "skill:HS-136",
+      "layer": "skill",
+      "title": "AGENT SCRIBE",
+      "emoji": "📜",
+      "description": "Docker Agent YAML Declaration Pattern",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/AGENT_SCRIBE_v1.md",
+      "centrality": 10,
+      "status": "active",
+      "community": "agent_hyper_brain_core",
+      "community_label": "dev skills",
+      "centrality_global": 0.008407
+    },
+    {
+      "id": "skill:HS-137",
+      "layer": "skill",
+      "title": "DOCKER SOVEREIGN",
+      "emoji": "🐳",
+      "description": "Docker 2026 Best Practices (Production Dockerfiles)",
+      "category": "dev",
+      "pack": "ND-Friendly Coding Pack",
+      "path": "dev/DOCKER_2026_BEST_PRACTICES_v1.md",
+      "centrality": 5,
+      "status": "active",
+      "community": "agent_hyper_brain_core",
+      "community_label": "dev skills",
+      "centrality_global": 0.00546
+    },
+    {
+      "id": "skill:HS-001",
+      "layer": "skill",
+      "path": null,
+      "centrality": 16,
+      "status": "phantom",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.01442
+    },
+    {
+      "id": "skill:HS-002",
+      "layer": "skill",
+      "path": null,
+      "centrality": 21,
+      "status": "phantom",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.018962
+    },
+    {
+      "id": "skill:HS-003",
+      "layer": "skill",
+      "path": null,
+      "centrality": 16,
+      "status": "phantom",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.015406
+    },
+    {
+      "id": "skill:HS-004",
+      "layer": "skill",
+      "path": null,
+      "centrality": 8,
+      "status": "phantom",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.007644
+    },
+    {
+      "id": "skill:HS-005",
+      "layer": "skill",
+      "path": null,
+      "centrality": 6,
+      "status": "phantom",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.006682
+    },
+    {
+      "id": "skill:HS-006",
+      "layer": "skill",
+      "path": null,
+      "centrality": 5,
+      "status": "phantom",
+      "community": "skill:DS-002",
+      "community_label": "agents skills",
+      "centrality_global": 0.00537
+    },
+    {
+      "id": "skill:HS-009",
+      "layer": "skill",
+      "path": null,
+      "centrality": 9,
+      "status": "phantom",
+      "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.008886
+    }
+  ],
+  "edges": [
+    {
+      "from": "hyper_brain_core",
+      "to": "focus_tracker",
+      "type": "import"
+    },
+    {
+      "from": "hyper_brain_core",
+      "to": "analytics_engine",
+      "type": "import"
+    },
+    {
+      "from": "hyper_brain_core",
+      "to": "hyper_split",
+      "type": "import"
+    },
+    {
+      "from": "hyper_brain_core",
+      "to": "ai_distraction_filter",
+      "type": "import"
+    },
+    {
+      "from": "hyper_brain_core",
+      "to": "mcp_bridge",
+      "type": "import"
+    },
+    {
+      "from": "hyper_brain_core",
+      "to": "session_snapshot",
+      "type": "import"
+    },
+    {
+      "from": "hyper_brain_core",
+      "to": "morning_briefing_ai",
+      "type": "import"
+    },
+    {
+      "from": "hyper_brain_core",
+      "to": "events_feed",
+      "type": "import"
+    },
+    {
+      "from": "hyper_brain_core",
+      "to": "gamification_summary",
+      "type": "import"
+    },
+    {
+      "from": "hyper_brain_core",
+      "to": "difficulty_dial",
+      "type": "import"
+    },
+    {
+      "from": "hyper_brain_core",
+      "to": "constellation_builder",
+      "type": "import"
+    },
+    {
+      "from": "morning_briefing_ai",
+      "to": "mcp_bridge",
+      "type": "optional-call",
+      "note": "only when mcp.connected"
+    },
+    {
+      "from": "morning_briefing_ai",
+      "to": "analytics_engine",
+      "type": "data-overlap",
+      "note": "both read streak-data.json"
+    },
+    {
+      "from": "focus_tracker",
+      "to": "difficulty_dial",
+      "type": "data-overlap",
+      "note": "both write/read difficulty state"
+    },
+    {
+      "from": "constellation_builder",
+      "to": "gamification_summary",
+      "type": "call"
+    },
+    {
+      "from": "constellation_builder",
+      "to": "focus_tracker",
+      "type": "call"
+    },
+    {
+      "from": "agent_hyper_brain_core",
+      "to": "hyper_brain_core",
+      "type": "same-file"
+    },
+    {
+      "from": "agent_mcp_bridge",
+      "to": "mcp_bridge",
+      "type": "same-file"
+    },
+    {
+      "from": "agent_focus_tracker",
+      "to": "focus_tracker",
+      "type": "same-file"
+    },
+    {
+      "from": "agent_morning_briefing",
+      "to": "morning_briefing_ai",
+      "type": "same-file"
+    },
+    {
+      "from": "agent_morning_briefing",
+      "to": "agent_mcp_bridge",
+      "type": "http-call",
+      "note": "wired 2026-06-09 via RemoteMCPBridge (fix landed after this scan); :3304 /health shows connected:true"
+    },
+    {
+      "from": "aifs_mcp_server",
+      "to": "aifs_watcher",
+      "type": "import"
+    },
+    {
+      "from": "aifs_hub_server",
+      "to": "aifs_watcher",
+      "type": "import"
+    },
+    {
+      "from": "aifs_watcher",
+      "to": "agent_hyper_brain_core",
+      "type": "DISCONNECTED"
+    },
+    {
+      "from": "aifs_watcher",
+      "to": "agent_mcp_bridge",
+      "type": "DISCONNECTED"
+    },
+    {
+      "from": "aifs_watcher",
+      "to": "agent_focus_tracker",
+      "type": "DISCONNECTED"
+    },
+    {
+      "from": "aifs_watcher",
+      "to": "agent_morning_briefing",
+      "type": "DISCONNECTED"
+    },
+    {
+      "from": "scripts_dir",
+      "to": "hyper_brain_core",
+      "type": "stale-mirror"
+    },
+    {
+      "from": "scripts_dir",
+      "to": "focus_tracker",
+      "type": "stale-mirror"
+    },
+    {
+      "from": "scripts_dir",
+      "to": "morning_briefing_ai",
+      "type": "stale-mirror"
+    },
+    {
+      "from": "scripts_dir",
+      "to": "mcp_bridge",
+      "type": "stale-mirror"
+    },
+    {
+      "from": "note:2026-05-08",
+      "to": "note:Hyper-Vibe-Course",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:2026-05-08",
+      "to": "note:BROskiPets",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:2026-05-31",
+      "to": "note:Today Focus",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:2026-05-31",
+      "to": "note:Dashboard",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:2026-05-31",
+      "to": "note:Health-Dashboard",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Briefing_2026-05-07",
+      "to": "note:BROskiPets",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Briefing_2026-05-07",
+      "to": "note:First BROski Task",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Briefing_2026-05-07",
+      "to": "note:Hyper-Vibe-Course",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Briefing_2026-05-07",
+      "to": "note:HyperAgent-SDK",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Briefing_2026-05-07",
+      "to": "note:HyperCode-V2.4",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Briefing_2026-07-12",
+      "to": "note:BROskiPets",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Briefing_2026-07-12",
+      "to": "note:First BROski Task",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Briefing_2026-07-12",
+      "to": "note:Hyper-Vibe-Course",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Briefing_2026-07-12",
+      "to": "note:HyperAgent-SDK",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Briefing_2026-07-12",
+      "to": "note:HyperCode-V2.4",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:BROskiPets",
+      "to": "note:Hyper-Vibe-Course",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:BROskiPets",
+      "to": "note:HyperCode-V2.4",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Hyper-Vibe-Course",
+      "to": "note:BROskiPets",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Hyper-Vibe-Course",
+      "to": "note:HyperCode-V2.4",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:HyperCode-V2.4",
+      "to": "note:HyperAgent-SDK",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:HyperCode-V2.4",
+      "to": "note:BROskiPets",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Admin-Radar",
+      "to": "note:Subscriptions-and-Wishlist",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:DevOps-Runbook",
+      "to": "note:HyperCode-V2.4",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Health-Dashboard",
+      "to": "note:Focus-Command-Center",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Health-Dashboard",
+      "to": "note:Today Focus",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Focus-Session",
+      "to": "note:Snapshots",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Focus-Session",
+      "to": "note:Analytics",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:HyperSplit-Session",
+      "to": "note:Analytics",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Morning-Briefing",
+      "to": "note:HyperCode-V2.4",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Weekly",
+      "to": "note:04-Archive",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Weekly",
+      "to": "note:01-Projects",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:BROskiPets-AutoBuilder",
+      "to": "note:BROskiPets-2026-05-07",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "note:Brain-Constellation",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "note:Brain-Constellation-Live",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Dashboard",
+      "to": "note:Today Focus",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Dashboard",
+      "to": "note:Focus-Command-Center",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Dashboard",
+      "to": "note:Brain-Constellation-Live",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Dashboard",
+      "to": "note:Health-Dashboard",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Dashboard",
+      "to": "note:Admin-Radar",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Dashboard",
+      "to": "note:DevOps-Runbook",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Dashboard",
+      "to": "note:Tag-Architecture",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Dashboard",
+      "to": "note:Recommended-Plugins",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Decision Log",
+      "to": "note:related note",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Decision Log",
+      "to": "note:CLAUDE.md",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Decision Log",
+      "to": "note:WHATS_DONE.md",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Decision Log",
+      "to": "note:NEXT_SESSION_HANDOVER_2026-05-27.md",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Focus Metrics Dashboard",
+      "to": "note:07-Streaks-Achievements",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Maps-of-Content",
+      "to": "note:HyperCode-V2.4",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Maps-of-Content",
+      "to": "note:HyperAgent-SDK",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Maps-of-Content",
+      "to": "note:Hyper-Vibe-Course",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Maps-of-Content",
+      "to": "note:BROskiPets",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Maps-of-Content",
+      "to": "note:Dashboard",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Today Focus",
+      "to": "note:Health-Dashboard",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Tools Registry",
+      "to": "note:cluster.json",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:Tools Registry",
+      "to": "note:Focus-Command-Center",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:BROskiPets-2026-05-07",
+      "to": "note:BROskiPets-LLM-dNFT",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:01-deep-dive-audit-ecosystem-view-2026-09-01",
+      "to": "analytics_engine",
+      "type": "mentions"
+    },
+    {
+      "from": "note:01-deep-dive-audit-ecosystem-view-2026-09-01",
+      "to": "constellation_builder",
+      "type": "mentions"
+    },
+    {
+      "from": "note:01-deep-dive-audit-ecosystem-view-2026-09-01",
+      "to": "gamification_summary",
+      "type": "mentions"
+    },
+    {
+      "from": "note:2026-05-07-The-Day-The-Brain-Woke-Up",
+      "to": "hyper_brain_core",
+      "type": "mentions"
+    },
+    {
+      "from": "note:2026-05-07-The-Day-The-Brain-Woke-Up",
+      "to": "mcp_bridge",
+      "type": "mentions"
+    },
+    {
+      "from": "note:2026-05-07-The-Day-The-Brain-Woke-Up",
+      "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "note:2026-05-07-The-Day-The-Brain-Woke-Up",
+      "to": "hyper_split",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "hyper_brain_core",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "analytics_engine",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "mcp_bridge",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "morning_briefing_ai",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "constellation_builder",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "hyper_split",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "ai_distraction_filter",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "session_snapshot",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "gamification_summary",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "events_feed",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation",
+      "to": "github_webhook_server",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "hyper_brain_core",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "analytics_engine",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "mcp_bridge",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "morning_briefing_ai",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "difficulty_dial",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "constellation_builder",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "hyper_split",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "ai_distraction_filter",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "session_snapshot",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "gamification_summary",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "events_feed",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Brain-Constellation-Live",
+      "to": "github_webhook_server",
+      "type": "mentions"
+    },
+    {
+      "from": "note:DATA_TO_BRAIN_PROTOCOL",
+      "to": "morning_briefing_ai",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Decision Log",
+      "to": "hyper_brain_core",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Focus Metrics Dashboard",
+      "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Focus-Command-Center",
+      "to": "hyper_brain_core",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Focus-Command-Center",
+      "to": "analytics_engine",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Focus-Command-Center",
+      "to": "mcp_bridge",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Focus-Command-Center",
+      "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Focus-Command-Center",
+      "to": "morning_briefing_ai",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Focus-Command-Center",
+      "to": "hyper_split",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Focus-Command-Center",
+      "to": "ai_distraction_filter",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Focus-Command-Center",
+      "to": "session_snapshot",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Focus-Command-Center",
+      "to": "github_webhook_server",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HyperSplit-Session",
+      "to": "hyper_split",
+      "type": "mentions"
+    },
+    {
+      "from": "note:NEXT_SESSION_HANDOVER_2026-08-16",
+      "to": "analytics_engine",
+      "type": "mentions"
+    },
+    {
+      "from": "note:NEXT_SESSION_HANDOVER_2026-08-16",
+      "to": "morning_briefing_ai",
+      "type": "mentions"
+    },
+    {
+      "from": "note:NEXT_SESSION_HANDOVER_2026-08-16",
+      "to": "github_webhook_server",
+      "type": "mentions"
+    },
+    {
+      "from": "note:NOTEBOOKLM_INSIGHTS",
+      "to": "morning_briefing_ai",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Tools Registry",
+      "to": "hyper_brain_core",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Tools Registry",
+      "to": "mcp_bridge",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Tools Registry",
+      "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Tools Registry",
+      "to": "morning_briefing_ai",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Wishlist - focus-tracker",
+      "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Wishlist - hyper-brain-core",
+      "to": "hyper_brain_core",
+      "type": "mentions"
+    },
+    {
+      "from": "note:Wishlist - mcp-bridge",
+      "to": "mcp_bridge",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:DS-002",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:DS-009",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:DS-009",
+      "to": "skill:HS-005",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:DS-028",
+      "to": "skill:HS-005",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:DS-028",
+      "to": "skill:HS-006",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:DS-028",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-007",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-007",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-007",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-007",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-007",
+      "to": "skill:HS-009",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-007",
+      "to": "skill:HS-016",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-008",
+      "to": "skill:HS-007",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-008",
+      "to": "skill:HS-009",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-008",
+      "to": "skill:HS-083",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-008",
+      "to": "skill:HS-067",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-008",
+      "to": "skill:HS-075",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-008",
+      "to": "skill:HS-087",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-010",
+      "to": "skill:HS-069",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-010",
+      "to": "skill:HS-015",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "skill:HS-016",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "skill:HS-017",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "skill:HS-013",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "skill:HS-124",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "skill:HS-018",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-012",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-012",
+      "to": "skill:HS-107",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-012",
+      "to": "skill:HS-034",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-013",
+      "to": "skill:HS-011",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-013",
+      "to": "skill:HS-016",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-013",
+      "to": "skill:HS-020",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-013",
+      "to": "skill:HS-124",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-013",
+      "to": "skill:HS-021",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-015",
+      "to": "skill:HS-021",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-015",
+      "to": "skill:HS-010",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-016",
+      "to": "skill:HS-125",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-016",
+      "to": "skill:HS-017",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-016",
+      "to": "skill:HS-018",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-016",
+      "to": "skill:HS-028",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-017",
+      "to": "skill:HS-016",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-017",
+      "to": "skill:HS-018",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-017",
+      "to": "skill:HS-011",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-017",
+      "to": "skill:HS-125",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-018",
+      "to": "skill:HS-017",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-018",
+      "to": "skill:HS-016",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-019",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-019",
+      "to": "skill:HS-005",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-019",
+      "to": "skill:HS-006",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-019",
+      "to": "skill:HS-012",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-019",
+      "to": "skill:HS-020",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-020",
+      "to": "skill:HS-013",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-020",
+      "to": "skill:HS-016",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-020",
+      "to": "skill:HS-124",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-020",
+      "to": "skill:HS-021",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-021",
+      "to": "skill:HS-016",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-021",
+      "to": "skill:HS-125",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-022",
+      "to": "skill:HS-007",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-022",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-025",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-027",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-028",
+      "to": "skill:HS-125",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-028",
+      "to": "skill:HS-016",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-034",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-034",
+      "to": "skill:HS-036",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-034",
+      "to": "skill:HS-012",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-036",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-036",
+      "to": "skill:HS-069",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-036",
+      "to": "skill:HS-034",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-038",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-038",
+      "to": "skill:HS-004",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-038",
+      "to": "skill:HS-077",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-038",
+      "to": "skill:HS-050",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-038",
+      "to": "skill:HS-122",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-040",
+      "to": "skill:HS-043",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-040",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-040",
+      "to": "skill:HS-093",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-040",
+      "to": "skill:HS-045",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-041",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-041",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-041",
+      "to": "skill:HS-050",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-041",
+      "to": "skill:HS-073",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-042",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-042",
+      "to": "skill:HS-067",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-042",
+      "to": "skill:HS-079",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-042",
+      "to": "skill:HS-125",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-043",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-043",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-043",
+      "to": "skill:HS-093",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-043",
+      "to": "skill:HS-040",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-043",
+      "to": "skill:HS-044",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-044",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-044",
+      "to": "skill:HS-043",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-044",
+      "to": "skill:HS-120",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-044",
+      "to": "skill:HS-093",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-045",
+      "to": "skill:HS-041",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-045",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-045",
+      "to": "skill:HS-093",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-045",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-050",
+      "to": "skill:HS-038",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-050",
+      "to": "skill:HS-041",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-050",
+      "to": "skill:HS-122",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-060",
+      "to": "skill:HS-061",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-060",
+      "to": "skill:HS-062",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-060",
+      "to": "skill:HS-135",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-061",
+      "to": "skill:HS-060",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-061",
+      "to": "skill:HS-062",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-061",
+      "to": "skill:HS-064",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-062",
+      "to": "skill:HS-060",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-062",
+      "to": "skill:HS-061",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-062",
+      "to": "skill:HS-063",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-063",
+      "to": "skill:HS-062",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-063",
+      "to": "skill:HS-064",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-063",
+      "to": "skill:HS-060",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-064",
+      "to": "skill:HS-060",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-064",
+      "to": "skill:HS-061",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-064",
+      "to": "skill:HS-063",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-067",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-067",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-067",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-067",
+      "to": "skill:HS-079",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-069",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-069",
+      "to": "skill:HS-036",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-069",
+      "to": "skill:HS-010",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-071",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-071",
+      "to": "skill:HS-004",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-071",
+      "to": "skill:HS-005",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-071",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-071",
+      "to": "skill:HS-020",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-072",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-072",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-072",
+      "to": "skill:HS-078",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-072",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-073",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-073",
+      "to": "skill:HS-083",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-073",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-073",
+      "to": "skill:HS-041",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-074",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-075",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-075",
+      "to": "skill:HS-077",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-075",
+      "to": "skill:HS-087",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-075",
+      "to": "skill:HS-078",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-077",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-077",
+      "to": "skill:HS-078",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-077",
+      "to": "skill:HS-088",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-077",
+      "to": "skill:HS-004",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-078",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-078",
+      "to": "skill:HS-077",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-078",
+      "to": "skill:HS-075",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-079",
+      "to": "skill:HS-067",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-079",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-079",
+      "to": "skill:HS-080",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-079",
+      "to": "skill:HS-075",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-080",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-080",
+      "to": "skill:HS-067",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-080",
+      "to": "skill:HS-079",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-080",
+      "to": "skill:HS-077",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-081",
+      "to": "skill:HS-009",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-081",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-081",
+      "to": "skill:HS-007",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-083",
+      "to": "skill:HS-067",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-083",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-083",
+      "to": "skill:HS-073",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-083",
+      "to": "skill:HS-080",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-085",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-085",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-085",
+      "to": "skill:HS-011",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-085",
+      "to": "skill:HS-015",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-087",
+      "to": "skill:HS-075",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-087",
+      "to": "skill:HS-067",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-087",
+      "to": "skill:HS-077",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-087",
+      "to": "skill:HS-088",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-087",
+      "to": "skill:HS-079",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-088",
+      "to": "skill:HS-087",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-088",
+      "to": "skill:HS-004",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-088",
+      "to": "skill:HS-077",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-088",
+      "to": "skill:HS-078",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-088",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-089",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-089",
+      "to": "skill:HS-007",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-089",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-089",
+      "to": "skill:HS-010",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-090",
+      "to": "skill:HS-097",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-090",
+      "to": "skill:HS-093",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-090",
+      "to": "skill:HS-009",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-091",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-091",
+      "to": "skill:HS-009",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-091",
+      "to": "skill:HS-007",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-091",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-091",
+      "to": "skill:HS-104",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-092",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-092",
+      "to": "skill:HS-004",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-093",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-093",
+      "to": "skill:HS-043",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-093",
+      "to": "skill:HS-004",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-093",
+      "to": "skill:HS-040",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-093",
+      "to": "skill:HS-044",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-093",
+      "to": "skill:HS-088",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-095",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-097",
+      "to": "skill:HS-090",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-097",
+      "to": "skill:HS-009",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-097",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-097",
+      "to": "skill:HS-042",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-098",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-098",
+      "to": "skill:HS-004",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-098",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-098",
+      "to": "skill:HS-011",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-099",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-099",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-099",
+      "to": "skill:HS-010",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-100",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-100",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-100",
+      "to": "skill:HS-005",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-100",
+      "to": "skill:HS-006",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-100",
+      "to": "skill:HS-012",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-101",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-101",
+      "to": "skill:HS-005",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-101",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-102",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-103",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-103",
+      "to": "skill:HS-006",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-103",
+      "to": "skill:HS-012",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-103",
+      "to": "skill:HS-013",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-103",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-104",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-104",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-104",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-104",
+      "to": "skill:HS-009",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-105",
+      "to": "skill:HS-019",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-106",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-107",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-107",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-107",
+      "to": "skill:HS-067",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-107",
+      "to": "skill:HS-079",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-109",
+      "to": "skill:HS-009",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-111",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-114",
+      "to": "skill:HS-016",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-114",
+      "to": "skill:HS-017",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-114",
+      "to": "skill:HS-021",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-120",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-120",
+      "to": "skill:HS-043",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-120",
+      "to": "skill:HS-044",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-120",
+      "to": "skill:HS-093",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-121",
+      "to": "skill:HS-043",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-121",
+      "to": "skill:HS-003",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-121",
+      "to": "skill:HS-040",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-121",
+      "to": "skill:HS-093",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-122",
+      "to": "skill:HS-038",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-122",
+      "to": "skill:HS-041",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-122",
+      "to": "skill:HS-050",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-123",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-123",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-123",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-123",
+      "to": "skill:HS-126",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-123",
+      "to": "skill:HS-125",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-124",
+      "to": "skill:HS-016",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-124",
+      "to": "skill:HS-011",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-124",
+      "to": "skill:HS-017",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-124",
+      "to": "skill:HS-013",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-124",
+      "to": "skill:HS-093",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-125",
+      "to": "skill:HS-016",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-125",
+      "to": "skill:HS-028",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-126",
+      "to": "skill:HS-001",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-126",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-126",
+      "to": "skill:HS-123",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-127",
+      "to": "skill:HS-034",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-127",
+      "to": "skill:HS-036",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-128",
+      "to": "skill:HS-129",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-128",
+      "to": "skill:HS-130",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-129",
+      "to": "skill:HS-128",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-129",
+      "to": "skill:HS-073",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-130",
+      "to": "skill:HS-128",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-130",
+      "to": "skill:HS-129",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-131",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-131",
+      "to": "skill:HS-004",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-131",
+      "to": "skill:HS-067",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-131",
+      "to": "skill:HS-006",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-131",
+      "to": "skill:HS-077",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-132",
+      "to": "skill:HS-127",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-132",
+      "to": "skill:HS-034",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-132",
+      "to": "skill:HS-036",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-133",
+      "to": "skill:HS-127",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-133",
+      "to": "skill:HS-132",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-134",
+      "to": "skill:HS-127",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-134",
+      "to": "skill:HS-133",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-134",
+      "to": "skill:HS-132",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-135",
+      "to": "skill:HS-129",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-135",
+      "to": "skill:HS-136",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-135",
+      "to": "skill:HS-060",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-135",
+      "to": "skill:HS-080",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-136",
+      "to": "skill:HS-028",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-136",
+      "to": "skill:HS-079",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-136",
+      "to": "skill:HS-009",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-136",
+      "to": "skill:HS-135",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-136",
+      "to": "skill:HS-008",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-136",
+      "to": "skill:HS-067",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-136",
+      "to": "skill:HS-060",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-136",
+      "to": "skill:HS-002",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-137",
+      "to": "skill:HS-060",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-137",
+      "to": "skill:HS-114",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-137",
+      "to": "skill:HS-136",
+      "type": "skill-link",
+      "rel": "depends_on"
+    },
+    {
+      "from": "skill:HS-137",
+      "to": "skill:HS-061",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-137",
+      "to": "skill:HS-135",
+      "type": "skill-link",
+      "rel": "related"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "analytics_engine",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "mcp_bridge",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "morning_briefing_ai",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "hyper_split",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "ai_distraction_filter",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "session_snapshot",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-011",
+      "to": "github_webhook_server",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-012",
+      "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-012",
+      "to": "ai_distraction_filter",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-013",
+      "to": "morning_briefing_ai",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-015",
+      "to": "analytics_engine",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-015",
+      "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-015",
+      "to": "morning_briefing_ai",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-017",
+      "to": "hyper_brain_core",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-018",
+      "to": "mcp_bridge",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-020",
+      "to": "morning_briefing_ai",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-035",
+      "to": "session_snapshot",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-060",
+      "to": "mcp_bridge",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-060",
+      "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-060",
+      "to": "agent_hyper_brain_core",
+      "type": "mentions"
+    },
+    {
+      "from": "skill:HS-124",
+      "to": "focus_tracker",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "to": "skill:HS-098",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "to": "skill:HS-100",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "to": "skill:HS-089",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "to": "skill:HS-106",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
+      "to": "skill:HS-099",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
+      "to": "skill:HS-098",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
+      "to": "skill:HS-100",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
+      "to": "skill:HS-089",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
+      "to": "skill:HS-106",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
+      "to": "skill:HS-099",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-008",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-089",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-097",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-016",
+      "type": "mentions"
+    },
+    {
+      "from": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
+      "to": "skill:HS-114",
+      "type": "mentions"
+    }
+  ],
+  "issues": [
+    {
+      "severity": "HIGH",
+      "node": "agent_morning_briefing",
+      "issue": "AI suggestions always null — MorningBriefingAI instantiated without mcp_bridge in agent mode",
+      "resolved": "2026-06-09 — RemoteMCPBridge HTTP adapter live; :3304 /health reports mcp_bridge.connected=true"
+    },
+    {
+      "severity": "HIGH",
+      "node": "focus_tracker",
+      "issue": "asyncio.create_task() called from watchdog thread — will fail silently under load"
+    },
+    {
+      "severity": "MEDIUM",
+      "node": "constellation_builder",
+      "issue": "ECOSYSTEM_REPOS missing WelshDog-Mission-Control (6th repo)",
+      "resolved": "2026-06-10 — repo added (+ 06-AI-Context in VAULT_FOLDERS); lands in containers on next monolith/brain-core rebuild"
+    },
+    {
+      "severity": "MEDIUM",
+      "node": "scripts_dir",
+      "issue": "scripts/ is a stale mirror of root scripts — no container or agent imports from it"
+    },
+    {
+      "severity": "MEDIUM",
+      "node": "aifs_watcher",
+      "issue": "AIFS completely disconnected from brain agents — contracts not enforced at runtime"
+    },
+    {
+      "severity": "LOW",
+      "node": "github_webhook_server",
+      "issue": "Root github_webhook_server.py is orphaned — webhook handling embedded in hyper_brain_core"
+    },
+    {
+      "severity": "LOW",
+      "node": "hyper_split",
+      "issue": "hyper_split.py, session_snapshot.py, ai_distraction_filter.py have zero test coverage"
+    }
+  ]
+}

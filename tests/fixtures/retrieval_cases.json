@@ -1,0 +1,18 @@
+{
+  "_doc": "Hand-labelled precision@5 ground truth for tests/test_retrieval_regression.py. Every expect_* id is a real node in graph_v5_snapshot.json (verified in-suite by test_ground_truth_ids_are_real_nodes). 'gap: true' marks a case whose expected note shares the route seed's community (ai_distraction_filter) AND is not reachable within 2 hops of ANY route seed over wikilink/mentions/skill-link edges, so ONLY the v5 community-seeded expansion in related_nodes() can surface it in the top 5. Both gap cases are seeded solely on 'difficulty_dial' because it is the one snapshot node whose 2-hop retrieval closure excludes a high-centrality note-layer community-mate (see task-6-report.md). The two non-gap cases that also label note:Focus-Command-Center (constellation builder / gamification summary) are real v5 improvements too, but there the note IS 2-hop reachable, so the win is bonus reordering / crowd-out recovery, not an edge-less gap -- they are left untagged on purpose.",
+  "cases": [
+    {"query": "morning briefing generation", "expect_notes": [], "expect_skills": ["skill:HS-013", "skill:HS-020"], "gap": false},
+    {"query": "mcp bridge graph endpoints", "expect_notes": [], "expect_skills": ["skill:HS-018"], "gap": false},
+    {"query": "PARA vault structure where does a note go", "expect_notes": [], "expect_skills": ["skill:HS-015"], "gap": false},
+    {"query": "obsidian git auto commit vault backup", "expect_notes": [], "expect_skills": ["skill:HS-021"], "gap": false},
+    {"query": "container stack docker compose reference", "expect_notes": [], "expect_skills": ["skill:HS-060"], "gap": false},
+    {"query": "nightly continuous learning loop", "expect_notes": [], "expect_skills": ["skill:HS-093"], "gap": false},
+    {"query": "observable agent operations metrics", "expect_notes": [], "expect_skills": ["skill:HS-019"], "gap": false},
+    {"query": "focus tracker manifest agent port", "expect_notes": ["note:Focus-Command-Center"], "expect_skills": ["skill:HS-124"], "gap": false},
+    {"query": "focus session analytics and heatmap", "expect_notes": [], "expect_skills": ["skill:HS-124"], "gap": false},
+    {"query": "constellation builder d3 graph json", "expect_notes": ["note:Focus-Command-Center"], "expect_skills": [], "gap": false},
+    {"query": "gamification summary rollup module", "expect_notes": ["note:Focus-Command-Center"], "expect_skills": [], "gap": false},
+    {"query": "difficulty dial dynamic xp multiplier", "expect_notes": ["note:Focus-Command-Center"], "expect_skills": [], "gap": true},
+    {"query": "difficulty dial adaptive challenge tuning", "expect_notes": ["note:Tools Registry"], "expect_skills": [], "gap": true}
+  ]
+}
