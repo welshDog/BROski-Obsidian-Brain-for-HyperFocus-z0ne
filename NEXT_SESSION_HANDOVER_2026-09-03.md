@@ -1,5 +1,30 @@
 # NEXT_SESSION_HANDOVER 2026-09-03
 
+## 🔶 STACK STATE RIGHT NOW — full observability UP, ~31 agents DOWN (deliberate trade)
+
+2026-09-03 ~16:35, at Lyndz's call ("free room first, then full stack"):
+- **Stopped ~31 containers** to make RAM headroom (idle specialist agents + `healer-agent`
+  + `hyperhealth-*` + `fcc-proxy` + `broski-pets-bridge` + `hypercode-dashboard`).
+  Full list + one-line `docker start` restore command:
+  **`…/scratchpad/obs-stack-restore-list.txt`** (session scratchpad).
+- **Brought up the full `--profile observability` stack** — `loki, tempo, pyroscope,
+  promtail, node-exporter, cadvisor, alertmanager, celery-exporter` (the 8 that were
+  down; `prometheus`/`grafana`/`minio`/`chroma` were already up). All 8
+  `running`/`healthy`, restarts=0, **zero OOM**, no damage to the 4 brain agents /
+  `hypercode-core` / `postgres` / `redis` / `agent-mcp-bridge` (all `restarts=0 oom=false`).
+- **Prometheus obs (:9090) targets: 12/14 UP** (was 5/14) — every observability
+  exporter now scraping. The 2 still DOWN (`broski-bot`, `crew-orchestrator`) are
+  pre-existing scrape-config mismatches, not from today.
+- Grafana **:3001** now has a fully-populated Prometheus datasource + Loki (logs) +
+  Tempo (traces) + Pyroscope (profiling).
+- Post-bringup: 38 running, free ~90 MB, available ~1.1 GB, swap 768/2048.
+
+⚠️ **Do NOT `docker start` the stopped agents while observability is up** — that
+re-blows the 8 GB ceiling. Choose one:
+  (a) keep observability, leave the agents down;
+  (b) `docker compose -f docker-compose.yml -f docker-compose.secrets.yml -f docker-compose.registry.yml -f docker-compose.hyperhealth.yml -f docker-compose.observability.yml --profile observability down`
+      (or stop just the heavy trio `loki tempo pyroscope`), THEN `docker start` the agents from the restore list.
+
 ## ✅ NEXT-SESSION QUEUE — all cleared this session (2026-09-03)
 
 **Two-Prometheus shared-volume collision — FIXED (HyperCode-V2.4 `994f3b24`, pushed).**
