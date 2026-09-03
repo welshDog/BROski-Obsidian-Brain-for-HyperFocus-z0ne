@@ -12,7 +12,42 @@ Executed. Result:
 
 The plan as written below is the pre-execution runbook; steps 2–3 (rebuild + baked-image verify) were deferred by the RAM fallback and remain the one open item.
 
-## Next-session bake checklist — do this FIRST, before anything else (~30 min)
+## Outcome (2026-09-03 ~14:15) — BAKE LANDED ✅
+
+The one open item is closed.
+
+- **Baked** into `hypercode-v24-agent-mcp-bridge:latest` =
+  `sha256:0e8693ac26e2883c53334d668fd48036b46e0b8f6aef66d129452d0829d9ccfb`
+  (pre-build baseline was `sha256:3586c657731664746e9383dc12ef9f9eaea1e63c07906d55a2aa9a7d4b7e9e6c`),
+  `--force-recreate`d, `restarts=0`.
+- **RAM gate cleared by reversible teardown.** `docker stats` showed the real eaters
+  were `grafana` (249 MB), `hypercode-core` (157, kept), `fcc-proxy` (139, kept),
+  `grafana-agent`/`prometheus-cloud` (176), then a long tail of idle specialist agents.
+  Stopped 32 (observability + grafana-cloud push agents + idle specialist agents);
+  never touched `redis`/`postgres`/`data-net`, the 4 brain agents, `hyper-brain`, or
+  `hypercode-core`. Post-teardown `wsl -e free -m`: **free 1155 MB, swap-used 792 MB**
+  — both hard conditions PASS. Swap drained on its own (1795 → 792), so **no gate
+  amendment was needed**. Restored all 32 with `docker start` afterward (list saved to
+  the session scratchpad); 58 running, same as session start.
+- **Build was cheap:** pip layer `CACHED` (`requirements.txt` untouched since
+  2026-06-27), only the `COPY . .` layer rebuilt. No OOM, box stayed responsive.
+- **Verified:** container `.Image` == fresh `docker images --no-trunc -q` == new digest,
+  ≠ baseline; in-container `grep -c community` = 23, `grep -c node.interrupt` = 1,
+  size 22586 B (== repo file); `/graph` v5 / 116 / greedy-modularity, 268 n / 482 e;
+  `/graph/related/difficulty_dial` `related_by_community` len 4; `/constellation`
+  serves `community` ×23; the 3 sibling brain agents + `hyper-brain` untouched
+  (`restarts=0`).
+- **FOLLOWUP #3 still recapture: not done** — no browser this session (Chrome
+  extension not connected, Playwright MCP down). In-container file byte-identical to
+  the one screenshotted this morning ⇒ layout unchanged; the existing still stands.
+  Grab the panel-open still opportunistically next browser-capable session.
+- **Pre-existing (not bake-caused):** observability `prometheus` and grafana-cloud
+  `prometheus-cloud` share volume `hypercode-v24_prometheus-data` → TSDB lock
+  contention; the observability one crash-loops (`lock DB directory: resource
+  temporarily unavailable`). It was already `0B/0B` at session start. Give them
+  separate volumes or run only one — ~15 min, its own task.
+
+## Next-session bake checklist — ✅ DONE 2026-09-03 ~14:15 (kept below for the record)
 
 > ⚠️ **Until the bake lands, do not `--force-recreate` `agent-mcp-bridge` or restart the stack.** The live page is a `docker cp` overlay — any recreate silently reverts it to the pre-feature `constellation.html`. If it does get wiped: `docker cp .agents/mcp-bridge/constellation.html agent-mcp-bridge:/app/constellation.html` from the Brain repo, then bake.
 

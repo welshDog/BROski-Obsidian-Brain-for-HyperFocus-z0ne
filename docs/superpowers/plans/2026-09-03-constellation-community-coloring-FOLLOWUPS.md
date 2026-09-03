@@ -31,5 +31,13 @@ The CSS `@media (prefers-reduced-motion: reduce)` block only reaches CSS transit
 `docs/superpowers/plans/2026-09-03-constellation-community-coloring.md` Task 3 Step 1 shows `assert "function group" in s` — the source is `const group = l => …`, so the committed test correctly uses `"const group"`. Update the plan line or the next reader re-introduces the permanently-red assertion.
 **Fixed:** plan doc line updated to `"const group"` to match the committed test.
 
-## Deploy note
-The branch's `docker cp` deploys to `agent-mcp-bridge` are hand-patches that revert on the next image rebuild. When the branch merges, fold `constellation.html` into the next proper rebuild (`HyperCode-V2.4/` four-file compose + `--profile brain-agents`, per `NEXT_SESSION_HANDOVER_2026-09-02.md`). The spec §6 manual click-through checklist is still unrun — do it once on the deployed page (no browser was available during the build).
+## Deploy note — ✅ CLOSED 2026-09-03
+The branch's `docker cp` deploys were hand-patches. **Baked 2026-09-03 ~14:15** into
+`hypercode-v24-agent-mcp-bridge:latest` = `sha256:0e8693ac26e2883c53334d668fd48036b46e0b8f6aef66d129452d0829d9ccfb`
+via the HyperCode-V2.4 four-file compose + `--profile brain-agents` build + `--force-recreate`
+(pip layer cache-hit, `COPY . .` only). Verified: container on the fresh digest, in-container
+`grep -c community` = 23 / `node.interrupt` = 1, `/graph` still v5/116/greedy-modularity,
+sibling brain agents untouched. Details in the DEPLOY runbook's "Outcome (2026-09-03 ~14:15)".
+Spec §6 click-through was run on the deployed page this morning (Playwright, 6/6 + FOLLOWUP #1);
+the FOLLOWUP #3 panel-open still recapture is still pending a browser-capable session (file is
+byte-identical to the screenshotted one, so layout is unchanged).

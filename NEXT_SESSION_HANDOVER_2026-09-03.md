@@ -11,24 +11,50 @@
 - `tests/test_constellation_page.py` added (static structure + node --check gate);
   `test_constellation.py` untouched.
 
-## 🟡 Deploy state 2026-09-03 (~08:30) — LIVE via docker cp, baked rebuild STILL PENDING
+## 🟢 Deploy state 2026-09-03 (~14:15) — BAKED + CONFIRMED
 
-- `:3302/constellation` **is serving the merged page + FOLLOWUP #1 fix** — pushed in
-  via `docker cp .agents/mcp-bridge/constellation.html agent-mcp-bridge:/app/constellation.html`
-  (FileResponse, re-read per request, no restart). In-container file = 22586 bytes,
-  `grep -c community` = 23, `node.interrupt()` present.
-- **NOT baked into the image.** WSL RAM was too tight to rebuild safely
-  (free 118 MB, swap 2021/2048 MB used, 58 containers up — `hyperfocuszone-8gb-ram-ceiling`
-  rule in force). The `docker cp` overlay **reverts on the next `--force-recreate`**.
-  ⚠️ **Until the bake lands, do not `--force-recreate` `agent-mcp-bridge` or restart the stack** —
-  a recreate silently reverts the live page to the pre-feature `constellation.html`.
-  → **Next session, do the bake FIRST:** see the full numeric checklist in
-  `docs/superpowers/plans/2026-09-03-constellation-community-coloring-DEPLOY.md`
-  ("Next-session bake checklist"). Quiet-box gate = `free ≥ 900 MB AND swap-used < 1024 MB`
-  (WSL is 4 GB-capped so "free > 4 GB" is impossible — 900 MB free + swap under half is the bar).
-  `pre-build-check.sh` line 50 memory gate is broken (`[: : integer expression expected`) —
-  it reports "safe to build" without checking RAM; check `wsl -e free -m` by hand.
-  Also re-capture the FOLLOWUP #3 evidence still (panel-open) while the page is up.
+- **Baked into `hypercode-v24-agent-mcp-bridge:latest` =
+  `sha256:0e8693ac26e2883c53334d668fd48036b46e0b8f6aef66d129452d0829d9ccfb`**
+  on 2026-09-03 (~14:07), `--force-recreate`d. Prior (pre-feature) image was
+  `sha256:3586c657731664746e9383dc12ef9f9eaea1e63c07906d55a2aa9a7d4b7e9e6c`.
+  The `docker cp` asterisk is gone — the feature now survives `--force-recreate`.
+- **Bake ran safely.** RAM gate was cleared by a reversible teardown: stopped 32
+  containers (observability `grafana`/`prometheus`/`grafana-cloud` push agents +
+  idle specialist agents — never `redis`/`postgres`/`data-net`, never the 4 brain
+  agents or `hyper-brain` or `hypercode-core`). Post-teardown `wsl -e free -m`:
+  **free 1155 MB / swap-used 792 MB → both gate conditions PASS** (swap drained on
+  its own from 1795 MB, no amendment needed). Build: pip layer **CACHED**
+  (`requirements.txt` unchanged since 2026-06-27), only `COPY . .` rebuilt — fast,
+  low-RAM. All 32 containers restored afterward (`docker start`, list in the
+  session scratchpad); stack back to 58 running.
+- **Verified live** (numbers, not vibes):
+  - container `.Image` == `docker images --no-trunc -q hypercode-v24-agent-mcp-bridge:latest`
+    == `sha256:0e8693ac…`, ≠ the pre-build baseline. `restarts=0`.
+  - `docker exec agent-mcp-bridge grep -c community /app/constellation.html` → **23**;
+    `grep -c node.interrupt` → **1**; file size **22586 bytes** (byte-identical to the
+    repo working-tree file — proves it's baked, not `docker cp`-ed).
+  - `curl 127.0.0.1:3302/graph` → `meta` v5 / communities 116 / greedy-modularity,
+    268 nodes / 482 edges. `/graph/related/difficulty_dial?limit=4` →
+    `related_by_community` len 4 (non-empty). `/constellation` serves `community` ×23.
+  - `agent-hyper-brain-core` / `agent-focus-tracker` / `agent-morning-briefing` /
+    `hyper-brain` — all `running`, `restarts=0`, untouched (started 2026-09-02T09:00).
+- **FOLLOWUP #3 still NOT re-captured** — the Chrome extension was not connected this
+  session and the Playwright MCP was down. Not load-bearing: the in-container file is
+  byte-identical (22586 B) to the one Playwright screenshotted this morning, so the
+  panel-covers-legend layout is unchanged. The existing still
+  (`06-AI-Context/snapshots/2026-09-03-constellation-community-coloring.png`) stands.
+  Grab the panel-open still next time a browser is available.
+- **Pre-existing infra note (NOT caused by the bake):** `prometheus` (observability
+  profile) and `prometheus-cloud` (grafana-cloud push) both mount volume
+  `hypercode-v24_prometheus-data` at `/prometheus` → TSDB lock contention. Whichever
+  starts first wins; the other crash-loops on `opening storage failed: lock DB
+  directory: resource temporarily unavailable`. `prometheus` was already `0B/0B`
+  (crash-looping) at session start; `prometheus-cloud` holds the lock and runs.
+  Stop/start during the teardown just resumed the identical pre-existing loop.
+  Fix (future, ~15 min): give the two Promethei separate data volumes, or don't run
+  both. Out of scope for the bake.
+- `pre-build-check.sh` line 50 memory gate is still broken (`[: : integer expression
+  expected`) — check `wsl -e free -m` by hand.
 - **FOLLOWUP #6 — ship decision CLOSED: shipped as-is** (top-3 communities = 42% of nodes
   wear the brand three in both modes). Legitimate documented ship state. Open work = a
   ~1 hr `design-brain` pass to sub-assign `PALETTE[0..2]` to distinct hues; batch it with
