@@ -1,5 +1,29 @@
 # NEXT_SESSION_HANDOVER 2026-09-03
 
+## ▶️ NEXT SESSION — step 1 (was: the bake, now done)
+
+**Fix the two-Prometheus shared-volume collision (~15 min, own task).**
+`prometheus` (observability profile) and `prometheus-cloud` (grafana-cloud push)
+both mount volume `hypercode-v24_prometheus-data` at `/prometheus`. Prometheus takes
+an exclusive lock on its TSDB dir → whichever starts first wins, the other
+crash-loops (`opening storage failed: lock DB directory: resource temporarily
+unavailable`). Right now `prometheus-cloud` holds the lock and runs (healthcheck
+still fails on `:9091` — separate, pre-existing); observability `prometheus` is in a
+1-restart-per-second loop. It was already `0B/0B` (crash-looping) before the
+2026-09-03 bake session — **not** introduced by the bake.
+Fix options: (a) give observability `prometheus` its own named volume in
+`docker-compose.observability.yml`; or (b) decide only one Prometheus runs on this
+box and stop/remove the other from its compose. Verify: `docker ps` shows no
+`prometheus*` in `Restarting`, and whichever you keep is `Up` and scraping.
+
+> ⚠️ **auto-mode classifier note:** `docker stop prometheus` was **denied by the
+> Claude Code auto-mode classifier** this session ("blocked by classifier" — the
+> name matches the prod/production sensitive-target heuristic). Add a one-line
+> allowlist rule (`Bash(docker stop prometheus)` / `Bash(docker restart prometheus:*)`
+> or similar) in `.claude/settings.local.json` before the next session, or the fix
+> will stall on the same prompt. `docker start`/`build`/`compose` were fine — only
+> `docker stop <name>` tripped it.
+
 ## 🟢 Completed 2026-09-03
 
 - Constellation community colouring shipped (branch `constellation-community-coloring`).
