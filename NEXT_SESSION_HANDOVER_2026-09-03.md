@@ -26,7 +26,7 @@ box and stop/remove the other from its compose. Verify: `docker ps` shows no
 > session should pass; if it still prompts, the rule is there — just approve once.
 > `docker start`/`build`/`compose`/`--force-recreate` were never blocked.
 
-## ▶️ NEXT SESSION — one small item left (was two)
+## ▶️ NEXT SESSION — the two catches are CLOSED
 
 **A. Back up the cp1252 hook fix into a repo — ✅ DONE 2026-09-03 (`4d25464`).**
 Mirrored `HperCore/scripts/git_xp_post_commit.py` + `install_xp_hooks.sh` into the
@@ -34,14 +34,13 @@ Brain repo at `scripts/xp-hooks/` (+ README with restore procedure + parity chec
 md5-verified equal to the root copies. Canonical stays at the (non-repo) root; this
 is the machine-survivable backup. Re-copy + commit whenever the root scripts change.
 
-**B. `git pull` HyperCode-V2.4 before any rebuild there — it's `behind 1`.**
-The 2026-09-03 baked `agent-mcp-bridge` image was built from that working tree. If
-origin's new commit touches `docker-compose*.yml`, the `.agents/mcp-bridge` build
-context, or `requirements.txt` (cache-critical in the bake), the current image is
-one commit stale. One-minute check: `git -C HyperCode-V2.4 pull` →
-`git diff HEAD~1 --stat` → confirm nothing bridge-adjacent moved; if it did,
-rebuild `agent-mcp-bridge` from the fresh tree (same 4-file compose + `--profile
-brain-agents`). Also sanity-check who moved origin (parallel session vs teammate).
+**B. `git pull` HyperCode-V2.4 + bridge-adjacent diff — ✅ DONE 2026-09-03.**
+Fast-forwarded `8839ae1b` → `ff969f23` (clean, `main == origin/main`). The one
+incoming commit is **"Add HyperCode Evolution Plan 2026 research doc"** — a single
+new file `docs/evolution/HYPERCODE_EVOLUTION_2026.md` (+165 lines), pure docs.
+**Zero bridge-adjacent changes** (no `docker-compose*.yml`, no `.agents/mcp-bridge`,
+no `requirements.txt`). → The baked `agent-mcp-bridge` image `sha256:0e8693ac` is
+**current — no rebuild needed.** Origin move was a research-doc commit, not infra.
 
 ## 🟢 Completed 2026-09-03
 
