@@ -26,6 +26,26 @@ box and stop/remove the other from its compose. Verify: `docker ps` shows no
 > session should pass; if it still prompts, the rule is there — just approve once.
 > `docker start`/`build`/`compose`/`--force-recreate` were never blocked.
 
+## ▶️ NEXT SESSION — also do these two (small)
+
+**A. Back up the cp1252 hook fix into a repo (~5 min). 🔴 one-disk risk.**
+`H:\HYPERFOCUSZONE\HperCore\scripts\git_xp_post_commit.py` +
+`scripts\install_xp_hooks.sh` now carry the `encoding="utf-8"` / `PYTHONUTF8=1`
+class-fix that 13 repos' post-commit hooks depend on — but HperCore root is **not a
+git repo**, so the fix is unversioned/unpushed/unbacked-up. One `rm` or disk loss
+and every fresh hook install regresses. Fix: commit a copy into the Brain repo
+(`scripts/xp-hooks/` — canonical stays on disk, but a versioned copy survives the
+machine). Same lesson as the `docker cp` asterisk: if it matters, it lives in a repo.
+
+**B. `git pull` HyperCode-V2.4 before any rebuild there — it's `behind 1`.**
+The 2026-09-03 baked `agent-mcp-bridge` image was built from that working tree. If
+origin's new commit touches `docker-compose*.yml`, the `.agents/mcp-bridge` build
+context, or `requirements.txt` (cache-critical in the bake), the current image is
+one commit stale. One-minute check: `git -C HyperCode-V2.4 pull` →
+`git diff HEAD~1 --stat` → confirm nothing bridge-adjacent moved; if it did,
+rebuild `agent-mcp-bridge` from the fresh tree (same 4-file compose + `--profile
+brain-agents`). Also sanity-check who moved origin (parallel session vs teammate).
+
 ## 🟢 Completed 2026-09-03
 
 - Constellation community colouring shipped (branch `constellation-community-coloring`).
