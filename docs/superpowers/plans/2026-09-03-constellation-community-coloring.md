@@ -434,7 +434,7 @@ def test_palette_shape():
 
 def test_no_regression_of_kept_features():
     s = _script()
-    for ident in ("const COLORS", "function group", "const radius", "edgeColor",
+    for ident in ("const COLORS", "const group", "const radius", "edgeColor",
                   "getElementById(\"search\")", "/graph/related/"):
         assert ident in s, f"spec 4.5 says this stays, but it's gone: {ident}"
 ```

@@ -445,6 +445,7 @@
       if (focusedComms.size) { applyCommunityFocus(); return; }
       node.attr("fill-opacity", 0.85); label.attr("opacity", 1); return;
     }
+    node.interrupt();   // cancel an in-flight applyCommunityFocus() transition from a just-cleared box
     node.attr("fill-opacity", n =>
       (n.id.toLowerCase().includes(q) || (n.label || "").toLowerCase().includes(q) ||
        (n.path || "").toLowerCase().includes(q)) ? 1 : 0.08);

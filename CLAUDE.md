@@ -30,6 +30,7 @@
 | 5 | **Brain agents = `hyper-brain-core`, `mcp-bridge`, `focus-tracker`, `morning-briefing`** | These 4 only — don't add agents without Lyndz sign-off |
 | 6 | **Morning Briefing agent = Level 13 — LIVE on :3304** | Profile `brain-agents` — `/brain-briefing` Discord command + daily 7am UTC auto-DM |
 | 7 | **NEVER commit `__pycache__/` or `output/`** | Already in `.gitignore` — delete tracked copies if they appear |
+| 8 | **`agent-mcp-bridge` file changes (`constellation.html`, `mcp_bridge.py`, …) = rebuild the image, NEVER ship via `docker cp` alone** | `docker cp` overlays silently revert on the next `--force-recreate`; the baked image is the source of truth (`e0ba3c4`). Rebuild path: HyperCode-V2.4 four-file compose + `--profile brain-agents` (container lives in project `hypercode-v24`, not the Brain compose). A `docker cp` hot-patch is OK only as a stopgap when WSL RAM blocks a build — and must be logged as "rebuild pending" until it's baked. |
 
 ---
 
