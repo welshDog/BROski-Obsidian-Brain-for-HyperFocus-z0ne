@@ -439,7 +439,10 @@
   // ── search ─────────────────────────────
   document.getElementById("search").addEventListener("input", e => {
     const q = e.target.value.trim().toLowerCase();
-    if (!q) { node.attr("fill-opacity", 0.85); label.attr("opacity", 1); return; }
+    if (!q) {
+      if (focusedComms.size) { applyCommunityFocus(); return; }
+      node.attr("fill-opacity", 0.85); label.attr("opacity", 1); return;
+    }
     node.attr("fill-opacity", n =>
       (n.id.toLowerCase().includes(q) || (n.label || "").toLowerCase().includes(q) ||
        (n.path || "").toLowerCase().includes(q)) ? 1 : 0.08);
