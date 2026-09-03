@@ -26,16 +26,13 @@ box and stop/remove the other from its compose. Verify: `docker ps` shows no
 > session should pass; if it still prompts, the rule is there — just approve once.
 > `docker start`/`build`/`compose`/`--force-recreate` were never blocked.
 
-## ▶️ NEXT SESSION — also do these two (small)
+## ▶️ NEXT SESSION — one small item left (was two)
 
-**A. Back up the cp1252 hook fix into a repo (~5 min). 🔴 one-disk risk.**
-`H:\HYPERFOCUSZONE\HperCore\scripts\git_xp_post_commit.py` +
-`scripts\install_xp_hooks.sh` now carry the `encoding="utf-8"` / `PYTHONUTF8=1`
-class-fix that 13 repos' post-commit hooks depend on — but HperCore root is **not a
-git repo**, so the fix is unversioned/unpushed/unbacked-up. One `rm` or disk loss
-and every fresh hook install regresses. Fix: commit a copy into the Brain repo
-(`scripts/xp-hooks/` — canonical stays on disk, but a versioned copy survives the
-machine). Same lesson as the `docker cp` asterisk: if it matters, it lives in a repo.
+**A. Back up the cp1252 hook fix into a repo — ✅ DONE 2026-09-03 (`4d25464`).**
+Mirrored `HperCore/scripts/git_xp_post_commit.py` + `install_xp_hooks.sh` into the
+Brain repo at `scripts/xp-hooks/` (+ README with restore procedure + parity check).
+md5-verified equal to the root copies. Canonical stays at the (non-repo) root; this
+is the machine-survivable backup. Re-copy + commit whenever the root scripts change.
 
 **B. `git pull` HyperCode-V2.4 before any rebuild there — it's `behind 1`.**
 The 2026-09-03 baked `agent-mcp-bridge` image was built from that working tree. If
