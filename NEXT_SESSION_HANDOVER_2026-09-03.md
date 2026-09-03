@@ -15,26 +15,30 @@
 - **Prometheus obs (:9090) targets: 12/14 UP** (was 5/14) — every observability
   exporter now scraping. The 2 still DOWN (`broski-bot`, `crew-orchestrator`) are
   pre-existing scrape-config mismatches, not from today.
-- Grafana **:3001** — datasource *backends* all reachable from inside the grafana
-  container (Prometheus "Healthy", Loki "ready", Tempo "ready", Pyroscope up), and
-  `provisioning/datasources/datasource.yml` is correct (5 datasources + full
-  Prom↔Loki↔Tempo correlation wiring). **BUT could not verify dashboards render** —
-  no browser this session (Chrome ext + Playwright MCP both down) AND Grafana's own
-  control plane is degraded **(pre-existing, errors date to ~2026-08-30):**
-  - `authn` has **no admin user** — `[identity.not-found] no user found` on every
-    login (UI + API locked out). `GF_SECURITY_ADMIN_USER/PASSWORD` only apply on
-    first DB init; the persistent `grafana.db` (bind `${HC_DATA_ROOT}/grafana`) has
-    no working admin. No `grafana-cli` in the v13 image, no anon access.
-  - `secrets.kvstore` → `error getting secret value … namespace=Prometheus …
-    context deadline exceeded` (recurring) — Grafana can't read its own encrypted
-    datasource secret; panels may fail even with the backend up.
-  - Grafana-13 `dashboard-service` stuck logging "No last resource version found,
-    starting from scratch" every 30 s + `grafana-apiserver` loopback timeouts.
-  - **None of this is from today's bringup** — the observability *data plane* is
-    healthy (Prometheus 12/14 targets, Loki/Tempo ready). Grafana itself needs a
-    repair pass (reset admin via `GF_SECURITY_ADMIN_PASSWORD__FILE` + recreate, or
-    SQLite surgery on `grafana.db`; and chase the secrets.kvstore timeout) before
-    the dashboards are usable. Own task, not started.
+- Grafana **:3001 — REPAIRED 2026-09-03.** Root cause was a **username mismatch,
+  not DB corruption**: `grafana.db` user id 1 has login **`welshdog`** (email
+  `lyndzwills@gmail.com`, is_admin), but `.env` had `GF_SECURITY_ADMIN_USER=lyndzwills`
+  → Grafana's `[identity.not-found] no user found` was literally correct, every
+  login rejected. Fix:
+  1. `docker exec grafana sh -c 'printf "%s" "$GF_SECURITY_ADMIN_PASSWORD" | /usr/share/grafana/bin/grafana cli --homepath /usr/share/grafana admin reset-admin-password --password-from-stdin'`
+     (resets user id 1 = `welshdog` to the `.env` password).
+  2. `.env` line changed: `GF_SECURITY_ADMIN_USER=lyndzwills` → **`welshdog`**
+     (local only — `.env` is gitignored). Comment added explaining the mismatch trap.
+  3. `--force-recreate grafana` — the restart also cleared the `secrets.kvstore
+     context deadline exceeded` errors (0 since) and the dashboard-service re-init loop.
+  - **Verified:** login `welshdog` → `isGrafanaAdmin:true`; survives `--force-recreate`;
+    **datasource health: Prometheus / Loki / Tempo / Pyroscope all `OK`**; panel
+    queries through `/api/ds/query` return real data (Prometheus `count(up)=14`,
+    Loki `count_over_time` OK); **11 dashboards provisioned**.
+  - **Backups:** `grafana.db.bak-2026-09-03` (in container) + host copy at
+    `…/scratchpad/grafana.db.broken-2026-09-03`.
+  - **One separate item left:** the 5th datasource **HyperCode Postgres** (P1-2
+    Governance Ledger, *not* part of the telemetry stack) health-checks
+    `failed to connect to user= database=` — empty values despite the grafana
+    container now having `POSTGRES_USER/DB/PASSWORD` env. Likely a provisioning
+    interpolation gap (`${VAR}` vs Grafana's `$__env{VAR}` in
+    `provisioning/datasources/datasource.yml`) or a stale stored value. Doesn't
+    affect the observability dashboards. Own task.
 - Post-bringup: 38 running, free ~90 MB, available ~1.1 GB, swap 768/2048.
 
 ⚠️ **Do NOT `docker start` the stopped agents while observability is up** — that
