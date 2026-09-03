@@ -17,11 +17,19 @@ crash-loop → **`running (healthy)`, restarts=0**, fresh TSDB, `:9090/-/healthy
   `(unhealthy)`. Changed to `:9090`, recreated live → `running (healthy)`,
   restarts=0, 248 MB / 8.6d TSDB preserved (the compose "data will be lost?" line
   is a non-interactive prompt compose ignores; existing bind volume reused).
-- **Still left (not blocking anything):** the full 5-file `--profile observability`
-  up is blocked by a pre-existing `security_opt` merge dup — `minio` is defined in
-  both `docker-compose.secrets.yml` and `docker-compose.observability.yml`, each
-  with `no-new-privileges:true`, so the merge yields "items 0 and 1 are equal".
-  Single-file recreate sidesteps it. Fix = drop the dup from one of the two files.
+- **`security_opt` merge dup — FIXED (V2.4 `97f2cd6c`, pushed).** Root cause was
+  wider than "minio dup": docker compose v5.5 **concatenates** single-item list
+  fields when `docker-compose.observability.yml` merges with any other file, so
+  `[no-new-privileges:true]` → `[…, …]` → "items 0 and 1 are equal". The failing
+  service rotated (minio/prometheus/grafana/pyroscope/cadvisor) by map order — a
+  merge bug, not a config typo. Fix: `security_opt: !override` on all 6 blocks in
+  `docker-compose.observability.yml` (replace-not-append). Verified: single-file,
+  yml+obs, full 5-file `--profile observability`, AND the 4-file bake path all
+  `config` exit 0; one `no-new-privileges:true` per service in the rendered config.
+  No runtime change — `grafana`/`prometheus` not recreated (value identical).
+- **The full `--profile observability` stack is now launchable** if local dashboards
+  are wanted — but weigh RAM first (8 GB box, chronically swap-pressured; that pulls
+  up loki/tempo/pyroscope/promtail/node-exporter/cadvisor/alertmanager too).
 
 > **auto-mode classifier note (RESOLVED 2026-09-03):** `docker stop prometheus` was
 > denied by the classifier's soft-deny layer (not the permission system —
