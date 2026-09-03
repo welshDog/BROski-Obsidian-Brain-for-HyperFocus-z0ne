@@ -287,7 +287,7 @@
   node.on("mouseover", (ev, d) => {
       if (!pinned) focus(d);
       tip.innerHTML = `${(d.label || d.id)} <span class="layer">· ${d.layer}` +
-        `${d.community ? " · " + (d.community_label || d.community) : ""}</span>`;
+        `${d.community ? (isMuted(d) ? " · isolated" : " · " + (d.community_label || d.community)) : ""}</span>`;
       tip.classList.add("show");
     })
     .on("mousemove", ev => {
@@ -314,10 +314,11 @@
       const b = document.getElementById("panelBadge");
       b.style.color = fillFor(pinned); b.style.borderColor = fillFor(pinned);
     }
-    if (typeof focusedComms !== "undefined") focusedComms.clear();
+    focusedComms.clear();
     Object.keys(visible).forEach(k => visible[k] = true);
     node.attr("display", null); label.attr("display", null); link.attr("display", null);
-    if (typeof renderLegend === "function") renderLegend();
+    renderLegend();
+    pinned = null;                              // spec §4.1 — mode switch clears prior focus state
     unfocus();
   }
   modeToggle.addEventListener("click", () => setMode(colorMode === "community" ? "layer" : "community"));
@@ -430,6 +431,7 @@
 
   function toggleComm(key) {
     focusedComms.has(key) ? focusedComms.delete(key) : focusedComms.add(key);
+    pinned = null;                 // community focus supersedes a pinned node
     renderLegend();               // refresh the .off dimming on chips
     applyCommunityFocus();
   }

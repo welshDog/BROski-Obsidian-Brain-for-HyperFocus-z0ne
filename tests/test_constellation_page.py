@@ -7,7 +7,6 @@ v5 community machinery or landing a JS syntax error in the inline script.
 import re
 import shutil
 import subprocess
-import sys
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -40,6 +39,7 @@ def test_page_is_one_wellformed_html_doc():
 
     P().feed(html)
     assert worst == 0, f"unbalanced tags (min depth {worst})"
+    assert depth == 0, f"unclosed tags (final depth {depth})"
     assert html.count("<script") == 2, "expected exactly 2 <script> tags (d3 CDN + inline)"
 
 
