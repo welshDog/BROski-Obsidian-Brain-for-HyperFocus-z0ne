@@ -20,12 +20,19 @@
 - **NOT baked into the image.** WSL RAM was too tight to rebuild safely
   (free 118 MB, swap 2021/2048 MB used, 58 containers up — `hyperfocuszone-8gb-ram-ceiling`
   rule in force). The `docker cp` overlay **reverts on the next `--force-recreate`**.
-  → Next session: when RAM allows, rebuild + force-recreate via the
-  HyperCode-V2.4 four-file compose + `--profile brain-agents` (command in
-  `NEXT_SESSION_HANDOVER_2026-09-02.md`), then `docker exec agent-mcp-bridge grep -c community /app/constellation.html` → 23
-  and confirm the container `.Image` == the freshly-built image id.
-  Note `pre-build-check.sh` line 50 has a broken memory gate (`[: : integer expression expected`)
-  — it reports "safe to build" without actually checking RAM; check `wsl -e free -m` by hand.
+  ⚠️ **Until the bake lands, do not `--force-recreate` `agent-mcp-bridge` or restart the stack** —
+  a recreate silently reverts the live page to the pre-feature `constellation.html`.
+  → **Next session, do the bake FIRST:** see the full numeric checklist in
+  `docs/superpowers/plans/2026-09-03-constellation-community-coloring-DEPLOY.md`
+  ("Next-session bake checklist"). Quiet-box gate = `free ≥ 900 MB AND swap-used < 1024 MB`
+  (WSL is 4 GB-capped so "free > 4 GB" is impossible — 900 MB free + swap under half is the bar).
+  `pre-build-check.sh` line 50 memory gate is broken (`[: : integer expression expected`) —
+  it reports "safe to build" without checking RAM; check `wsl -e free -m` by hand.
+  Also re-capture the FOLLOWUP #3 evidence still (panel-open) while the page is up.
+- **FOLLOWUP #6 — ship decision CLOSED: shipped as-is** (top-3 communities = 42% of nodes
+  wear the brand three in both modes). Legitimate documented ship state. Open work = a
+  ~1 hr `design-brain` pass to sub-assign `PALETTE[0..2]` to distinct hues; batch it with
+  the bake session. Details in the DEPLOY runbook + FOLLOWUPS #6.
 - **Spec §6 manual click-through: PASSED** (Playwright on the deployed page, 2026-09-03 ~08:25).
   All 6 checks green + FOLLOWUP #1 verified live, 0 console errors:
   1. mode toggle community⇄layer — click / Enter / Space, `aria-pressed` tracks,

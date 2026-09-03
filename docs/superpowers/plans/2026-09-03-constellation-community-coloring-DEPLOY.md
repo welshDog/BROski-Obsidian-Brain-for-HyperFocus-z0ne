@@ -12,6 +12,32 @@ Executed. Result:
 
 The plan as written below is the pre-execution runbook; steps 2–3 (rebuild + baked-image verify) were deferred by the RAM fallback and remain the one open item.
 
+## Next-session bake checklist — do this FIRST, before anything else (~30 min)
+
+> ⚠️ **Until the bake lands, do not `--force-recreate` `agent-mcp-bridge` or restart the stack.** The live page is a `docker cp` overlay — any recreate silently reverts it to the pre-feature `constellation.html`. If it does get wiped: `docker cp .agents/mcp-bridge/constellation.html agent-mcp-bridge:/app/constellation.html` from the Brain repo, then bake.
+
+1. **Quiet-box gate (numeric, not vibes).** `wsl -e free -m` → proceed only if **`free` ≥ 900 MB AND swap-used < 1024 MB (< 50%)**. (WSL total is ~3.9 GB on this box — `.wslconfig` 4 GB cap, never raise it — so "free > 4 GB" is impossible; 900 MB free + swap under half is the real "quiet" bar.) If under: stop `--profile observability` + any idle agents, or wait. Ignore `pre-build-check.sh`'s verdict — its line-50 memory gate is broken.
+2. **Baseline.** `docker inspect agent-mcp-bridge --format '{{.Image}}'` → record the id.
+3. **Build + recreate** from `H:\HYPERFOCUSZONE\HperCore\HyperCode-V2.4`:
+   ```
+   docker compose -f docker-compose.yml -f docker-compose.secrets.yml -f docker-compose.registry.yml -f docker-compose.hyperhealth.yml --profile brain-agents build agent-mcp-bridge
+   docker compose -f docker-compose.yml -f docker-compose.secrets.yml -f docker-compose.registry.yml -f docker-compose.hyperhealth.yml --profile brain-agents up -d --no-deps --force-recreate agent-mcp-bridge
+   ```
+   `requirements.txt` is unchanged → pip layer should cache-hit → only the `COPY . .` layer rebuilds (fast, low RAM). Do NOT pass `--remove-orphans`.
+4. **Verify the bake took:**
+   - container `.Image` == `docker images hypercode-v24-agent-mcp-bridge:latest -q` (fresh), ≠ step-2 baseline
+   - `docker exec agent-mcp-bridge grep -c community /app/constellation.html` → **23**
+   - `docker exec agent-mcp-bridge grep -c node.interrupt /app/constellation.html` → **1**
+   - `curl -s http://127.0.0.1:3302/graph` → `meta` v5 / 116 / greedy-modularity; `/graph/related/difficulty_dial` non-empty `related_by_community`
+   - `docker ps` → `hyper-brain` + the other 3 brain agents untouched
+5. **Re-capture the FOLLOWUP #3 evidence still** while the page is up (Playwright is wired; other stills are in `06-AI-Context/snapshots/`): panel-open state → `06-AI-Context/snapshots/2026-09-03-constellation-panel-covers-legend.png`.
+6. **Flip the record** — `NEXT_SESSION_HANDOVER_2026-09-03.md` and `brain-graph-memory-hub.md`: "STILL PENDING" → "baked + confirmed `<image-id>` `<date>`".
+7. **`git fetch` → commit → push** (Brain repo). Then the deploy is genuinely done.
+
+### FOLLOWUP #6 — ship decision (closed, not deferred)
+
+**Decision 2026-09-03: SHIPPED with mono-mega-communities.** The top-3 communities (46/38/29 nodes = 42%) wear the brand three (`#22d3ee`/`#a78bfa`/`#f59e0b`) in *both* modes, so the toggle's "see the map differently" promise is muted for ~42% of the graph. Accepted because: the other 58% genuinely re-reads, and community focus/dim works regardless of colour — a legitimate ship state, documented. **Open work tracked as FOLLOWUP #6:** a size-aware sub-assignment of `PALETTE[0..2]` to distinct-but-harmonious hues for the 3 biggest communities (keep brand harmony + muted-tail contrast). ~1 hr, batchable with the bake session as a `design-brain` pass. Revisit then; do not leave it nagging past that.
+
 ## Context
 
 The `constellation-community-coloring` feature is **already built, tested, merged to `main`, and pushed** in the Brain repo (`BROski-Obsidian-Brain-for-HyperFocus-z0ne`, merge `3e79136`). The whole feature is one file: `.agents/mcp-bridge/constellation.html` — `:3302/constellation` now colours nodes by Graph Brain v5 community with a `colour · community ⇄ layer` toggle (default community) and a click-to-focus community legend. ~70 tests green.
