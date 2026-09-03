@@ -32,13 +32,16 @@
     Loki `count_over_time` OK); **11 dashboards provisioned**.
   - **Backups:** `grafana.db.bak-2026-09-03` (in container) + host copy at
     `…/scratchpad/grafana.db.broken-2026-09-03`.
-  - **One separate item left:** the 5th datasource **HyperCode Postgres** (P1-2
-    Governance Ledger, *not* part of the telemetry stack) health-checks
-    `failed to connect to user= database=` — empty values despite the grafana
-    container now having `POSTGRES_USER/DB/PASSWORD` env. Likely a provisioning
-    interpolation gap (`${VAR}` vs Grafana's `$__env{VAR}` in
-    `provisioning/datasources/datasource.yml`) or a stale stored value. Doesn't
-    affect the observability dashboards. Own task.
+  - **5th datasource HyperCode Postgres — also FIXED (V2.4 `11578cc3`, pushed).**
+    Grafana provisioning interpolation doesn't support `${VAR:-default}` (bash
+    syntax) — `user: ${POSTGRES_USER:-postgres}` / `database: ${POSTGRES_DB:-hypercode}`
+    were read as missing vars → stored empty → Postgres FATAL "no PostgreSQL user
+    name specified". Changed both to plain `${POSTGRES_USER}` / `${POSTGRES_DB}` in
+    `provisioning/datasources/datasource.yml` (container already has the env),
+    restarted grafana → stored `user=postgres db=hypercode`, health "Database
+    Connection OK", query returns 34 tables. Feeds `hypercode_overview.json`.
+  - **All 5 Grafana datasources now OK** (Prometheus / Loki / Tempo / Pyroscope /
+    Postgres). Grafana `:3001` is fully operational — log in as `welshdog`.
 - Post-bringup: 38 running, free ~90 MB, available ~1.1 GB, swap 768/2048.
 
 ⚠️ **Do NOT `docker start` the stopped agents while observability is up** — that
