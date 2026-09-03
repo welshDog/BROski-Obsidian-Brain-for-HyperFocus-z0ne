@@ -11,14 +11,17 @@ with its own host bind dir `${HC_DATA_ROOT}/prometheus-obs` in
 --no-deps --force-recreate prometheus` → `prometheus` went `restarts=113`
 crash-loop → **`running (healthy)`, restarts=0**, fresh TSDB, `:9090/-/healthy` 200;
 `prometheus-cloud` unaffected, `:9091/-/healthy` 200. Both on distinct volumes now.
-- **Left for a later pass (not blocking anything):** (1) the full 5-file
-  `--profile observability` up is blocked by a pre-existing `security_opt` merge dup
-  — `minio` is defined in both `docker-compose.secrets.yml` and
-  `docker-compose.observability.yml`, each with `no-new-privileges:true`, so the
-  merge yields "items 0 and 1 are equal". Single-file recreate sidesteps it.
-  (2) `prometheus-cloud`'s healthcheck probes `:9091` but the container listens on
-  `9090` internally → shows `(unhealthy)` despite being fine; one-char fix in
-  `docker-compose.grafana-cloud.yml`.
+- **`prometheus-cloud` healthcheck — FIXED (V2.4 `5c51d1a6`, pushed).** Probe was
+  `http://localhost:9091/-/healthy` run *inside* the container (which listens on
+  9090; 9091 is only the host publish) → connection refused → perpetual
+  `(unhealthy)`. Changed to `:9090`, recreated live → `running (healthy)`,
+  restarts=0, 248 MB / 8.6d TSDB preserved (the compose "data will be lost?" line
+  is a non-interactive prompt compose ignores; existing bind volume reused).
+- **Still left (not blocking anything):** the full 5-file `--profile observability`
+  up is blocked by a pre-existing `security_opt` merge dup — `minio` is defined in
+  both `docker-compose.secrets.yml` and `docker-compose.observability.yml`, each
+  with `no-new-privileges:true`, so the merge yields "items 0 and 1 are equal".
+  Single-file recreate sidesteps it. Fix = drop the dup from one of the two files.
 
 > **auto-mode classifier note (RESOLVED 2026-09-03):** `docker stop prometheus` was
 > denied by the classifier's soft-deny layer (not the permission system —
