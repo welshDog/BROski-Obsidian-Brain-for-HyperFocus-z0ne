@@ -124,6 +124,10 @@
 <div class="controls">
   <input class="search" id="search" type="search" placeholder="find a star…"
          autocomplete="off" spellcheck="false">
+  <div class="chip" id="modeToggle" role="button" tabindex="0" aria-pressed="true"
+       title="Toggle node colour: community clusters vs code layer">
+    <span class="dot" id="modeDot"></span><span id="modeLabel">colour · community</span>
+  </div>
   <div class="legend" id="legend"></div>
 </div>
 
@@ -157,6 +161,26 @@
     .filter(e => ids.has(e.from) && ids.has(e.to) && e.type !== "DISCONNECTED")
     .map(e => ({ source: e.from, target: e.to, type: e.type }));
 
+  // ── community colouring (v5) ───────────
+  let colorMode = "community";                 // "community" | "layer"
+
+  const PALETTE = ["#22d3ee","#a78bfa","#f59e0b","#34d399","#f472b6",
+                   "#60a5fa","#fb7185","#a3e635","#c084fc","#fbbf24","#2dd4bf"];
+  const MUTED = "#4b5563";
+
+  const commSize = new Map();
+  nodes.forEach(n => {
+    if (n.community) commSize.set(n.community, (commSize.get(n.community) || 0) + 1);
+  });
+  const realComms = [...commSize.entries()]
+    .filter(([, c]) => c >= 2)
+    .sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1));   // size desc, id asc
+  const communityColorMap = new Map();
+  realComms.forEach(([id], i) => { if (i < PALETTE.length) communityColorMap.set(id, PALETTE[i]); });
+
+  const communityColor = d => communityColorMap.get(d.community) ?? MUTED;
+  const fillFor = d => colorMode === "community" ? communityColor(d) : COLORS[d.g];
+
   const counts = { note: 0, skill: 0, code: 0, dead: 0 };
   nodes.forEach(n => counts[n.g]++);
   document.getElementById("stats").innerHTML =
@@ -188,7 +212,7 @@
 
   const node = root.append("g").selectAll("circle").data(nodes).join("circle")
     .attr("r", radius)
-    .attr("fill", d => COLORS[d.g])
+    .attr("fill", d => fillFor(d))
     .attr("fill-opacity", 0.85)
     .attr("stroke", "rgba(255,255,255,0.15)")
     .attr("stroke-width", 0.5)
@@ -225,6 +249,22 @@
   const tip = document.getElementById("tip");
   let pinned = null;
 
+  const focusedComms = new Set();              // community ids (+ "__isolated__" sentinel)
+  const isMuted = d => !communityColorMap.has(d.community);
+  const litByComm = d =>
+    focusedComms.has(d.community) ||
+    (focusedComms.has("__isolated__") && isMuted(d));
+
+  function applyCommunityFocus() {
+    if (focusedComms.size === 0) { unfocus(); return; }
+    const lit = new Set(nodes.filter(litByComm).map(n => n.id));
+    node.transition().duration(150).attr("fill-opacity", n => lit.has(n.id) ? 1 : 0.12);
+    label.transition().duration(150).attr("opacity", n => lit.has(n.id) ? 1 : 0.15);
+    link.transition().duration(150)
+      .attr("stroke-opacity", l => (lit.has(l.source.id) || lit.has(l.target.id)) ? 1 : 0.15)
+      .attr("stroke", l => edgeColor(l.type));
+  }
+
   function focus(d) {
     const keep = new Set([d.id, ...(adj.get(d.id) ?? [])]);
     node.transition().duration(150)
@@ -237,6 +277,7 @@
   }
   function unfocus() {
     if (pinned) return;
+    if (focusedComms.size > 0) { applyCommunityFocus(); return; }
     node.transition().duration(150).attr("fill-opacity", 0.85);
     link.transition().duration(150).attr("stroke-opacity", 1)
       .attr("stroke", l => edgeColor(l.type));
@@ -245,7 +286,8 @@
 
   node.on("mouseover", (ev, d) => {
       if (!pinned) focus(d);
-      tip.innerHTML = `${(d.label || d.id)} <span class="layer">· ${d.layer}</span>`;
+      tip.innerHTML = `${(d.label || d.id)} <span class="layer">· ${d.layer}` +
+        `${d.community ? (isMuted(d) ? " · isolated" : " · " + (d.community_label || d.community)) : ""}</span>`;
       tip.classList.add("show");
     })
     .on("mousemove", ev => {
@@ -255,7 +297,35 @@
     .on("mouseout", () => { tip.classList.remove("show"); unfocus(); })
     .on("click", (ev, d) => { ev.stopPropagation(); pinned = d; focus(d); openPanel(d); });
 
-  svg.on("click", () => { pinned = null; unfocus(); closePanel(); });
+  svg.on("click", () => { pinned = null; focusedComms.clear(); renderLegend(); unfocus(); closePanel(); });
+
+  // ── colour mode toggle ─────────────────
+  const modeToggle = document.getElementById("modeToggle");
+  const modeDot = document.getElementById("modeDot");
+  const modeLabel = document.getElementById("modeLabel");
+
+  function setMode(next) {
+    colorMode = next;
+    modeLabel.textContent = `colour · ${next}`;
+    modeToggle.setAttribute("aria-pressed", String(next === "community"));
+    modeDot.style.background = next === "community" ? PALETTE[0] : COLORS.note;
+    node.transition("fill").duration(200).attr("fill", d => fillFor(d));
+    if (pinned) {                               // keep an open panel's badge in sync
+      const b = document.getElementById("panelBadge");
+      b.style.color = fillFor(pinned); b.style.borderColor = fillFor(pinned);
+    }
+    focusedComms.clear();
+    Object.keys(visible).forEach(k => visible[k] = true);
+    node.attr("display", null); label.attr("display", null); link.attr("display", null);
+    renderLegend();
+    pinned = null;                              // spec §4.1 — mode switch clears prior focus state
+    unfocus();
+  }
+  modeToggle.addEventListener("click", () => setMode(colorMode === "community" ? "layer" : "community"));
+  modeToggle.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); modeToggle.click(); }
+  });
+  modeDot.style.background = PALETTE[0];        // initial: community mode
 
   // ── side panel ─────────────────────────
   const panel = document.getElementById("panel");
@@ -282,11 +352,12 @@
     document.getElementById("panelTitle").textContent = d.label || d.id;
     const badge = document.getElementById("panelBadge");
     badge.textContent = d.layer;
-    badge.style.color = COLORS[d.g]; badge.style.borderColor = COLORS[d.g];
+    badge.style.color = fillFor(d); badge.style.borderColor = fillFor(d);
     document.getElementById("panelMeta").innerHTML = [
       d.path && `path <b>${d.path}</b>`,
       d.port && `port <b>${d.port}</b>`,
       d.status && `status <b>${d.status}</b>`,
+      d.community && `community <b>${d.community_label || d.community}</b> · <b>${commSize.get(d.community) ?? 1}</b> nodes`,
       `centrality <b>${d.centrality ?? 0}</b>`,
       `links <b>${(adj.get(d.id) ?? new Set()).size}</b>`,
     ].filter(Boolean).join("<br>");
@@ -305,31 +376,75 @@
   function closePanel() { panel.classList.remove("open"); }
   document.getElementById("panelClose").onclick = () => { pinned = null; unfocus(); closePanel(); };
   addEventListener("keydown", e => {
-    if (e.key === "Escape") { pinned = null; unfocus(); closePanel(); }
+    if (e.key === "Escape") { pinned = null; focusedComms.clear(); renderLegend(); unfocus(); closePanel(); }
   });
 
-  // ── legend filters ─────────────────────
+  // ── legend (rebuilt per colour mode) ───
   const legend = document.getElementById("legend");
   const visible = { note: true, skill: true, code: true, dead: true };
-  [["note", "notes"], ["skill", "skills"], ["code", "code"], ["dead", "dead"]].forEach(([g, name]) => {
-    if (!counts[g]) return;
-    const chip = document.createElement("div");
-    chip.className = "chip";
-    chip.innerHTML = `<span class="dot" style="background:${COLORS[g]}"></span>${name} <span class="n">${counts[g]}</span>`;
-    chip.onclick = () => {
-      visible[g] = !visible[g];
-      chip.classList.toggle("off", !visible[g]);
-      node.attr("display", n => visible[n.g] ? null : "none");
-      label.attr("display", n => visible[n.g] ? null : "none");
-      link.attr("display", l => (visible[l.source.g] && visible[l.target.g]) ? null : "none");
-    };
-    legend.appendChild(chip);
-  });
+  legend.style.flexWrap = "wrap";
+  legend.style.maxWidth = "min(60vw, 520px)";
+  legend.style.justifyContent = "flex-end";
+
+  function chip(dotColor, name, count, extra) {
+    const el = document.createElement("div");
+    el.className = "chip";
+    el.innerHTML = `<span class="dot" style="background:${dotColor}"></span>${name} <span class="n">${count}</span>`;
+    if (extra) el.title = extra;
+    legend.appendChild(el);
+    return el;
+  }
+
+  function renderLegend() {
+    legend.innerHTML = "";
+    if (colorMode === "layer") {
+      [["note","notes"],["skill","skills"],["code","code"],["dead","dead"]].forEach(([g, nm]) => {
+        if (!counts[g]) return;
+        const c = chip(COLORS[g], nm, counts[g]);
+        c.classList.toggle("off", !visible[g]);
+        c.onclick = () => {
+          visible[g] = !visible[g];
+          c.classList.toggle("off", !visible[g]);
+          node.attr("display", n => visible[n.g] ? null : "none");
+          label.attr("display", n => visible[n.g] ? null : "none");
+          link.attr("display", l => (visible[l.source.g] && visible[l.target.g]) ? null : "none");
+        };
+      });
+      return;
+    }
+    // community mode — focus toggles
+    realComms.forEach(([id, cnt], i) => {
+      if (i >= PALETTE.length) return;
+      const member = nodes.find(n => n.community === id);
+      const label_ = (member && member.community_label) || id;
+      const c = chip(communityColorMap.get(id), label_, cnt, id);
+      c.classList.toggle("off", focusedComms.size > 0 && !focusedComms.has(id));
+      c.onclick = () => { toggleComm(id); };
+    });
+    const isoCount = nodes.filter(isMuted).length;
+    if (isoCount) {
+      const c = chip(MUTED, "isolated", isoCount, "singletons + tail communities");
+      c.classList.toggle("off", focusedComms.size > 0 && !focusedComms.has("__isolated__"));
+      c.onclick = () => { toggleComm("__isolated__"); };
+    }
+  }
+
+  function toggleComm(key) {
+    focusedComms.has(key) ? focusedComms.delete(key) : focusedComms.add(key);
+    pinned = null;                 // community focus supersedes a pinned node
+    renderLegend();               // refresh the .off dimming on chips
+    applyCommunityFocus();
+  }
+
+  renderLegend();
 
   // ── search ─────────────────────────────
   document.getElementById("search").addEventListener("input", e => {
     const q = e.target.value.trim().toLowerCase();
-    if (!q) { node.attr("fill-opacity", 0.85); label.attr("opacity", 1); return; }
+    if (!q) {
+      if (focusedComms.size) { applyCommunityFocus(); return; }
+      node.attr("fill-opacity", 0.85); label.attr("opacity", 1); return;
+    }
     node.attr("fill-opacity", n =>
       (n.id.toLowerCase().includes(q) || (n.label || "").toLowerCase().includes(q) ||
        (n.path || "").toLowerCase().includes(q)) ? 1 : 0.08);
