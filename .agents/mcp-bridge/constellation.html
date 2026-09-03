@@ -124,6 +124,10 @@
 <div class="controls">
   <input class="search" id="search" type="search" placeholder="find a star…"
          autocomplete="off" spellcheck="false">
+  <div class="chip" id="modeToggle" role="button" tabindex="0" aria-pressed="true"
+       title="Toggle node colour: community clusters vs code layer">
+    <span class="dot" id="modeDot"></span><span id="modeLabel">colour · community</span>
+  </div>
   <div class="legend" id="legend"></div>
 </div>
 
@@ -157,6 +161,26 @@
     .filter(e => ids.has(e.from) && ids.has(e.to) && e.type !== "DISCONNECTED")
     .map(e => ({ source: e.from, target: e.to, type: e.type }));
 
+  // ── community colouring (v5) ───────────
+  let colorMode = "community";                 // "community" | "layer"
+
+  const PALETTE = ["#22d3ee","#a78bfa","#f59e0b","#34d399","#f472b6",
+                   "#60a5fa","#fb7185","#a3e635","#c084fc","#fbbf24","#2dd4bf"];
+  const MUTED = "#4b5563";
+
+  const commSize = new Map();
+  nodes.forEach(n => {
+    if (n.community) commSize.set(n.community, (commSize.get(n.community) || 0) + 1);
+  });
+  const realComms = [...commSize.entries()]
+    .filter(([, c]) => c >= 2)
+    .sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1));   // size desc, id asc
+  const communityColorMap = new Map();
+  realComms.forEach(([id], i) => { if (i < PALETTE.length) communityColorMap.set(id, PALETTE[i]); });
+
+  const communityColor = d => communityColorMap.get(d.community) ?? MUTED;
+  const fillFor = d => colorMode === "community" ? communityColor(d) : COLORS[d.g];
+
   const counts = { note: 0, skill: 0, code: 0, dead: 0 };
   nodes.forEach(n => counts[n.g]++);
   document.getElementById("stats").innerHTML =
@@ -188,7 +212,7 @@
 
   const node = root.append("g").selectAll("circle").data(nodes).join("circle")
     .attr("r", radius)
-    .attr("fill", d => COLORS[d.g])
+    .attr("fill", d => fillFor(d))
     .attr("fill-opacity", 0.85)
     .attr("stroke", "rgba(255,255,255,0.15)")
     .attr("stroke-width", 0.5)
@@ -257,6 +281,33 @@
 
   svg.on("click", () => { pinned = null; unfocus(); closePanel(); });
 
+  // ── colour mode toggle ─────────────────
+  const modeToggle = document.getElementById("modeToggle");
+  const modeDot = document.getElementById("modeDot");
+  const modeLabel = document.getElementById("modeLabel");
+
+  function setMode(next) {
+    colorMode = next;
+    modeLabel.textContent = `colour · ${next}`;
+    modeToggle.setAttribute("aria-pressed", String(next === "community"));
+    modeDot.style.background = next === "community" ? PALETTE[0] : COLORS.code;
+    node.transition("fill").duration(200).attr("fill", d => fillFor(d));
+    if (pinned) {                               // keep an open panel's badge in sync
+      const b = document.getElementById("panelBadge");
+      b.style.color = fillFor(pinned); b.style.borderColor = fillFor(pinned);
+    }
+    if (typeof focusedComms !== "undefined") focusedComms.clear();
+    Object.keys(visible).forEach(k => visible[k] = true);
+    node.attr("display", null); label.attr("display", null); link.attr("display", null);
+    if (typeof renderLegend === "function") renderLegend();
+    unfocus();
+  }
+  modeToggle.addEventListener("click", () => setMode(colorMode === "community" ? "layer" : "community"));
+  modeToggle.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); modeToggle.click(); }
+  });
+  modeDot.style.background = PALETTE[0];        // initial: community mode
+
   // ── side panel ─────────────────────────
   const panel = document.getElementById("panel");
   const li = (ul, items, color) => {
@@ -282,7 +333,7 @@
     document.getElementById("panelTitle").textContent = d.label || d.id;
     const badge = document.getElementById("panelBadge");
     badge.textContent = d.layer;
-    badge.style.color = COLORS[d.g]; badge.style.borderColor = COLORS[d.g];
+    badge.style.color = fillFor(d); badge.style.borderColor = fillFor(d);
     document.getElementById("panelMeta").innerHTML = [
       d.path && `path <b>${d.path}</b>`,
       d.port && `port <b>${d.port}</b>`,
