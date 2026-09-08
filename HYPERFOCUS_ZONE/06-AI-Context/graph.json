@@ -9,6 +9,8 @@
     "root": "BROski-Obsidian-Brain-for-HyperFocus-z0ne",
     "total_nodes": 272,
     "total_edges": 485,
+    "total_nodes": 272,
+    "total_edges": 485,
     "layers": [
       "code",
       "notes",
@@ -3563,6 +3565,21 @@
     },
     {
       "from": "note:2026-05-31",
+      "to": "note:Health-Dashboard",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:2026-09-06",
+      "to": "note:Today Focus",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:2026-09-06",
+      "to": "note:Dashboard",
+      "type": "wikilink"
+    },
+    {
+      "from": "note:2026-09-06",
       "to": "note:Health-Dashboard",
       "type": "wikilink"
     },
