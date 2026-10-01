@@ -48,16 +48,24 @@ MIN_CONFIDENCE = 0.7
 
 GRAPHIFY_EXCLUDES = [
     ".obsidian/", "node_modules/", "brain-bundle*/", "openhuman-build/",
-    "*.min.js",
+    "*.min.js", "scripts/", "docs/", "tests/", ".superpowers/", ".claude/",
+    ".github/",
 ]
 
 
-def vault_relative_md_id(source_file, vault_root):
+def vault_relative_md_id(source_file, vault_root, repo_root):
     """HYPERFOCUS_ZONE/**/Foo.md -> 'note:Foo'. None if not a .md file or
-    outside the vault."""
+    outside the vault. graphify emits source_file RELATIVE to the scanned
+    corpus root -- a relative path is anchored to repo_root, never to the
+    process's current working directory (resolving against Path.cwd()
+    silently mapped every note to None when this script was invoked from
+    anywhere but repo_root, which then made write_inferred_edges() overwrite
+    a good sidecar with an empty edge list)."""
     p = Path(source_file)
     if p.suffix.lower() != ".md":
         return None
+    if not p.is_absolute():
+        p = Path(repo_root) / p
     try:
         p.resolve().relative_to(Path(vault_root).resolve())
     except ValueError:
@@ -88,10 +96,10 @@ def skill_id_for_file(source_file, skills_file_map):
     return None
 
 
-def map_to_canonical_id(source_file, vault_root, code_ids, skills_file_map):
+def map_to_canonical_id(source_file, vault_root, repo_root, code_ids, skills_file_map):
     if not source_file:
         return None
-    return (vault_relative_md_id(source_file, vault_root)
+    return (vault_relative_md_id(source_file, vault_root, repo_root)
             or code_module_id(source_file, code_ids)
             or skill_id_for_file(source_file, skills_file_map))
 
@@ -115,7 +123,7 @@ def load_skills_file_map(skills_root):
     return file_map
 
 
-def extract_inferred_edges(raw_extraction, canonical_graph, vault_root,
+def extract_inferred_edges(raw_extraction, canonical_graph, vault_root, repo_root,
                             skills_file_map, min_confidence=MIN_CONFIDENCE):
     nodes_by_id = {n["id"]: n for n in raw_extraction.get("nodes", [])}
     code_ids = {n["id"] for n in canonical_graph.get("nodes", [])
@@ -137,8 +145,8 @@ def extract_inferred_edges(raw_extraction, canonical_graph, vault_root,
         tgt_node = nodes_by_id.get(e.get("target")) or {}
         src_file = src_node.get("source_file") or e.get("source_file")
         tgt_file = tgt_node.get("source_file") or e.get("source_file")
-        from_id = map_to_canonical_id(src_file, vault_root, code_ids, skills_file_map)
-        to_id = map_to_canonical_id(tgt_file, vault_root, code_ids, skills_file_map)
+        from_id = map_to_canonical_id(src_file, vault_root, repo_root, code_ids, skills_file_map)
+        to_id = map_to_canonical_id(tgt_file, vault_root, repo_root, code_ids, skills_file_map)
         if not from_id or not to_id or from_id == to_id:
             continue
         pair = frozenset((from_id, to_id))
@@ -152,6 +160,21 @@ def extract_inferred_edges(raw_extraction, canonical_graph, vault_root,
                 "confidence_score": score,
             }
     return list(best_by_pair.values())
+
+
+def merge_raw_extractions(*extractions):
+    """Combine several graphify raw-extraction dicts (e.g. one pass over the
+    Brain repo, one over the separate skills registry repo) into a single
+    {"nodes": [...], "edges": [...]} for extract_inferred_edges(). None
+    entries are skipped (a target that was unreachable or produced no
+    extraction this run)."""
+    nodes, edges = [], []
+    for ext in extractions:
+        if not ext:
+            continue
+        nodes.extend(ext.get("nodes", []))
+        edges.extend(ext.get("edges", []))
+    return {"nodes": nodes, "edges": edges}
 
 
 def run_graphify_extract(target, out_dir, backend="gemini", excludes=None):
@@ -225,10 +248,22 @@ def main():
                   "graph_inferred_edges.json (if any) untouched")
             return 0
         with open(raw_path, "r", encoding="utf-8") as f:
-            raw_extraction = json.load(f)
+            repo_extraction = json.load(f)
 
-        edges = extract_inferred_edges(raw_extraction, canonical_graph, args.vault,
-                                        skills_file_map, args.min_confidence)
+    # The skills registry is a separate sibling repo (spec §10: "vault *.md +
+    # Brain *.py + skills registry") -- graphify only scans one target per
+    # invocation, so it needs its own pass, merged with the repo pass below.
+    skills_extraction = None
+    if skills_file_map is not None:
+        with tempfile.TemporaryDirectory(prefix="graph_enrich_skills_") as tmp:
+            skills_raw_path = run_graphify_extract(args.skills, tmp, backend=args.backend)
+            if skills_raw_path is not None:
+                with open(skills_raw_path, "r", encoding="utf-8") as f:
+                    skills_extraction = json.load(f)
+
+    combined_extraction = merge_raw_extractions(repo_extraction, skills_extraction)
+    edges = extract_inferred_edges(combined_extraction, canonical_graph, args.vault,
+                                    args.repo_root, skills_file_map, args.min_confidence)
 
     write_inferred_edges(edges, args.out, args.min_confidence)
     print(f"graph_enrich: wrote {len(edges)} inferred edges -> {args.out}")

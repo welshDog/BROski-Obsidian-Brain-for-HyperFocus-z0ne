@@ -113,6 +113,11 @@ Host/CI only, manual invocation — **not** wired into `.github/workflows/graph-
 yet; requires `graphify` on PATH (`uv tool install graphifyy`) plus a backend API key
 (`GEMINI_API_KEY` by default). Communities + centrality (`communities.py`) are
 untouched by this layer — it stays native, per spec.
+**After running `graph_enrich.py`, always run `python graph_builder.py` next and
+commit BOTH `graph_inferred_edges.json` and the resulting `graph.json`** — the
+sidecar alone doesn't trigger `graph-refresh.yml` (its path filter only matches
+vault `.md` changes), and a `graph.json` rebuilt without a matching sidecar
+present silently drops the whole `inferred` layer with no warning.
 **Auto-refresh:** `.github/workflows/graph-refresh.yml` reruns the builder on every push that touches vault `.md` files (loop-safe — bot commit only touches graph.json).
 Human report: `HYPERFOCUS_ZONE/06-AI-Context/GRAPHIFY_BRAIN_MAP.md`. (Old `graphify-out/` duplicate removed 2026-06-10; folder moved into the vault per the PARA plan — slot 06 was reserved for exactly this.)
 

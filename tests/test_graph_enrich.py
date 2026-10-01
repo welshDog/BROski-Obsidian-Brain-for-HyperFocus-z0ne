@@ -10,6 +10,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..",
 import graph_enrich  # noqa: E402
 
 VAULT = "/vault"
+REPO_ROOT = "/repo"
 
 CANONICAL = {
     "nodes": [
@@ -33,15 +34,39 @@ def _raw_edge(source_id, target_id, score=0.85, relation="conceptually_related_t
 
 def test_maps_vault_md_to_note_id():
     assert graph_enrich.vault_relative_md_id(
-        "/vault/01-Projects/Alpha.md", VAULT) == "note:Alpha"
+        "/vault/01-Projects/Alpha.md", VAULT, REPO_ROOT) == "note:Alpha"
 
 
 def test_md_outside_vault_is_unmapped():
-    assert graph_enrich.vault_relative_md_id("/elsewhere/Alpha.md", VAULT) is None
+    assert graph_enrich.vault_relative_md_id("/elsewhere/Alpha.md", VAULT, REPO_ROOT) is None
 
 
 def test_non_md_is_unmapped_by_note_mapper():
-    assert graph_enrich.vault_relative_md_id("/vault/foo.py", VAULT) is None
+    assert graph_enrich.vault_relative_md_id("/vault/foo.py", VAULT, REPO_ROOT) is None
+
+
+def test_vault_relative_md_id_anchors_relative_path_to_repo_root_not_cwd(tmp_path, monkeypatch):
+    """Regression: graphify emits source_file relative to the scanned corpus
+    root, not absolute. Resolving a relative source_file against
+    Path.cwd() (the pre-fix behavior) silently maps every note to None
+    whenever graph_enrich.py is invoked from any directory other than
+    repo_root -- and a mapping failure means write_inferred_edges() happily
+    overwrites a previously-good sidecar with an empty edge list. Anchoring
+    to the passed-in repo_root instead of the process CWD must make this
+    independent of where the script is launched from."""
+    monkeypatch.chdir(tmp_path)  # CWD is now unrelated to repo_root/vault_root
+    repo_root = "/myrepo"
+    vault_root = "/myrepo/HYPERFOCUS_ZONE"
+    assert graph_enrich.vault_relative_md_id(
+        "HYPERFOCUS_ZONE/02-Areas/Foo.md", vault_root, repo_root) == "note:Foo"
+
+
+def test_vault_relative_md_id_relative_path_outside_vault_is_unmapped(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    repo_root = "/myrepo"
+    vault_root = "/myrepo/HYPERFOCUS_ZONE"
+    assert graph_enrich.vault_relative_md_id(
+        "docs/Foo.md", vault_root, repo_root) is None
 
 
 def test_maps_tracked_python_module_to_its_stem():
@@ -73,7 +98,27 @@ def test_extract_inferred_edges_keeps_high_confidence_cross_layer_edge():
         ],
         "edges": [_raw_edge("a", "b", score=0.85)],
     }
-    out = graph_enrich.extract_inferred_edges(raw, CANONICAL, VAULT, None, 0.7)
+    out = graph_enrich.extract_inferred_edges(raw, CANONICAL, VAULT, REPO_ROOT, None, 0.7)
+    assert out == [{"from": "note:Gamma", "to": "hyper_brain_core",
+                     "relation": "conceptually_related_to", "confidence_score": 0.85}]
+
+
+def test_extract_inferred_edges_maps_relative_source_files_via_repo_root():
+    """Regression for the CWD-anchoring bug: graphify's real output uses
+    paths relative to the scanned corpus root, not absolute paths."""
+    raw = {
+        "nodes": [
+            {"id": "a", "source_file": "HYPERFOCUS_ZONE/02-Areas/Gamma.md"},
+            {"id": "b", "source_file": "hyper_brain_core.py"},
+        ],
+        "edges": [_raw_edge("a", "b", score=0.85)],
+    }
+    canonical = {
+        "nodes": [{"id": "hyper_brain_core", "layer": "monolith"}],
+        "edges": [],
+    }
+    out = graph_enrich.extract_inferred_edges(
+        raw, canonical, "/myrepo/HYPERFOCUS_ZONE", "/myrepo", None, 0.7)
     assert out == [{"from": "note:Gamma", "to": "hyper_brain_core",
                      "relation": "conceptually_related_to", "confidence_score": 0.85}]
 
@@ -86,7 +131,7 @@ def test_extract_inferred_edges_drops_low_confidence():
         ],
         "edges": [_raw_edge("a", "b", score=0.65)],
     }
-    assert graph_enrich.extract_inferred_edges(raw, CANONICAL, VAULT, None, 0.7) == []
+    assert graph_enrich.extract_inferred_edges(raw, CANONICAL, VAULT, REPO_ROOT, None, 0.7) == []
 
 
 def test_extract_inferred_edges_drops_extracted_and_ambiguous_confidence_classes():
@@ -102,7 +147,7 @@ def test_extract_inferred_edges_drops_extracted_and_ambiguous_confidence_classes
              "confidence": "AMBIGUOUS", "confidence_score": 0.2},
         ],
     }
-    assert graph_enrich.extract_inferred_edges(raw, CANONICAL, VAULT, None, 0.7) == []
+    assert graph_enrich.extract_inferred_edges(raw, CANONICAL, VAULT, REPO_ROOT, None, 0.7) == []
 
 
 def test_extract_inferred_edges_drops_unmappable_endpoint():
@@ -113,7 +158,7 @@ def test_extract_inferred_edges_drops_unmappable_endpoint():
         ],
         "edges": [_raw_edge("a", "b")],
     }
-    assert graph_enrich.extract_inferred_edges(raw, CANONICAL, VAULT, None, 0.7) == []
+    assert graph_enrich.extract_inferred_edges(raw, CANONICAL, VAULT, REPO_ROOT, None, 0.7) == []
 
 
 def test_extract_inferred_edges_drops_self_loop_after_mapping():
@@ -127,7 +172,7 @@ def test_extract_inferred_edges_drops_self_loop_after_mapping():
         ],
         "edges": [_raw_edge("a", "b")],
     }
-    assert graph_enrich.extract_inferred_edges(raw, CANONICAL, VAULT, None, 0.7) == []
+    assert graph_enrich.extract_inferred_edges(raw, CANONICAL, VAULT, REPO_ROOT, None, 0.7) == []
 
 
 def test_extract_inferred_edges_dedupes_against_existing_wikilink():
@@ -138,7 +183,7 @@ def test_extract_inferred_edges_dedupes_against_existing_wikilink():
         ],
         "edges": [_raw_edge("a", "b")],
     }
-    assert graph_enrich.extract_inferred_edges(raw, CANONICAL, VAULT, None, 0.7) == []
+    assert graph_enrich.extract_inferred_edges(raw, CANONICAL, VAULT, REPO_ROOT, None, 0.7) == []
 
 
 def test_extract_inferred_edges_keeps_highest_confidence_on_duplicate_pair():
@@ -152,10 +197,36 @@ def test_extract_inferred_edges_keeps_highest_confidence_on_duplicate_pair():
             _raw_edge("b", "a", score=0.9, relation="strong_link"),
         ],
     }
-    out = graph_enrich.extract_inferred_edges(raw, CANONICAL, VAULT, None, 0.7)
+    out = graph_enrich.extract_inferred_edges(raw, CANONICAL, VAULT, REPO_ROOT, None, 0.7)
     assert len(out) == 1
     assert out[0]["confidence_score"] == 0.9
     assert out[0]["relation"] == "strong_link"
+
+
+def test_merge_raw_extractions_combines_nodes_and_edges():
+    a = {"nodes": [{"id": "a"}], "edges": [{"source": "a", "target": "b"}]}
+    b = {"nodes": [{"id": "b"}], "edges": [{"source": "b", "target": "c"}]}
+    merged = graph_enrich.merge_raw_extractions(a, b)
+    assert merged["nodes"] == [{"id": "a"}, {"id": "b"}]
+    assert merged["edges"] == [{"source": "a", "target": "b"}, {"source": "b", "target": "c"}]
+
+
+def test_merge_raw_extractions_skips_none():
+    a = {"nodes": [{"id": "a"}], "edges": []}
+    merged = graph_enrich.merge_raw_extractions(a, None)
+    assert merged["nodes"] == [{"id": "a"}]
+
+
+def test_graphify_excludes_cover_non_mappable_repo_dirs():
+    """scripts/ holds stale mirror copies of tracked modules (CLAUDE.md:
+    'Dead code identified: scripts/ (stale mirror)') -- code_module_id()
+    matches by bare filename stem regardless of directory, so a stale
+    scripts/hyper_brain_core.py would otherwise be misattributed to the
+    canonical hyper_brain_core node. docs/, tests/, .superpowers/, .claude/
+    and .github/ can never map to any canonical id and are pure LLM-token
+    waste to scan."""
+    for pattern in ("scripts/", "docs/", "tests/", ".superpowers/", ".claude/", ".github/"):
+        assert pattern in graph_enrich.GRAPHIFY_EXCLUDES
 
 
 def test_run_graphify_extract_invokes_expected_cli_shape(monkeypatch, tmp_path):
