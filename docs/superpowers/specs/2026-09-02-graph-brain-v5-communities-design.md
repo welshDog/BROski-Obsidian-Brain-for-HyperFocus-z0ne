@@ -414,6 +414,12 @@ the full suite + `python graph_builder.py` pass.
 
 ## 10. Deferred increment — graphify LLM-inferred concept edges (NOT this spec)
 
+> **Status: implemented 2026-10-01.** See `scripts/graph_enrich.py`,
+> `graph_builder.py::load_inferred_edges()`, and `mcp_bridge.py::EDGE_TYPE_WEIGHT`.
+> Not yet run against the real vault/production graph — see the open follow-up
+> at the end of this plan (`docs/superpowers/plans/2026-10-01-graph-brain-inferred-edges.md`)
+> before picking real `retrieval_cases.json` "should-connect" pairs for §11 Q3.
+
 Ships independently on top of C:
 
 - `scripts/graph_enrich.py` (host / CI only, non-stdlib permitted): runs a

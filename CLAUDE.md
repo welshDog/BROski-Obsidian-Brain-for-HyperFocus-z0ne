@@ -101,8 +101,18 @@ these for a same-community score bonus and a bounded community-seeded expansion
 that surfaces topically-related notes/skills with no explicit edge. Knobs:
 `GRAPH_COMMUNITY_BONUS` (1.5), `GRAPH_COMMUNITY_SEED_FLOOR` (1.0),
 `GRAPH_COMMUNITY_SEED_MAX` (3), `GRAPH_ROUTE_COMMUNITY_BONUS` (1.0).
-Deferred: graphify LLM-inferred concept edges as a `type:"inferred"` layer —
-see `docs/superpowers/specs/2026-09-02-graph-brain-v5-communities-design.md` §10.
+**Inferred-edges layer (§10, implemented 2026-10-01):** `python scripts/graph_enrich.py`
+runs a scoped `graphify extract` pass (vault `.md` + tracked Brain `.py` + skills
+registry; excludes `.obsidian/`, `node_modules/`, `brain-bundle*`,
+`openhuman-build/`, minified JS) and writes high-confidence (`>=0.7`) `INFERRED`
+concept edges to `06-AI-Context/graph_inferred_edges.json`. `graph_builder.py`
+merges that file in as an optional `{type:"inferred"}` layer (file absent =
+no-op); `mcp_bridge.py`'s `related_nodes()` traverses it at a lower weight than
+`wikilink`/`mentions`/`skill-link` (`EDGE_TYPE_WEIGHT`, env `GRAPH_INFERRED_EDGE_WEIGHT`).
+Host/CI only, manual invocation — **not** wired into `.github/workflows/graph-refresh.yml`
+yet; requires `graphify` on PATH (`uv tool install graphifyy`) plus a backend API key
+(`GEMINI_API_KEY` by default). Communities + centrality (`communities.py`) are
+untouched by this layer — it stays native, per spec.
 **Auto-refresh:** `.github/workflows/graph-refresh.yml` reruns the builder on every push that touches vault `.md` files (loop-safe — bot commit only touches graph.json).
 Human report: `HYPERFOCUS_ZONE/06-AI-Context/GRAPHIFY_BRAIN_MAP.md`. (Old `graphify-out/` duplicate removed 2026-06-10; folder moved into the vault per the PARA plan — slot 06 was reserved for exactly this.)
 
