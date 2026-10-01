@@ -41,6 +41,14 @@ GRAPH_COMMUNITY_SEED_FLOOR  = float(os.environ.get("GRAPH_COMMUNITY_SEED_FLOOR",
 GRAPH_COMMUNITY_SEED_MAX    = int(os.environ.get("GRAPH_COMMUNITY_SEED_MAX", "3"))
 GRAPH_ROUTE_COMMUNITY_BONUS = float(os.environ.get("GRAPH_ROUTE_COMMUNITY_BONUS", "1.0"))
 
+# §10 -- graphify-sourced inferred concept edges (optional; a graph with no
+# "inferred" edges is unaffected). Weighted below the three explicit layers
+# so an LLM guess never outranks a real wikilink/mentions/skill-link link.
+EDGE_TYPE_WEIGHT = {
+    "wikilink": 1.0, "mentions": 1.0, "skill-link": 1.0,
+    "inferred": float(os.environ.get("GRAPH_INFERRED_EDGE_WEIGHT", "0.5")),
+}
+
 
 class MCPBridge:
     """Bridge between Hyper Brain and Ollama local LLM."""
@@ -202,12 +210,17 @@ class MCPBridge:
             return []
         nodes = {n["id"]: n for n in graph.get("nodes", [])}
         n_count = len(nodes) or 1
-        adjacency: Dict[str, set] = {}
+        adjacency: Dict[str, Dict[str, float]] = {}
         for e in graph.get("edges", []):
-            if e.get("type") not in ("wikilink", "mentions", "skill-link"):
+            etype = e.get("type")
+            if etype not in EDGE_TYPE_WEIGHT:
                 continue
-            adjacency.setdefault(e["from"], set()).add(e["to"])
-            adjacency.setdefault(e["to"], set()).add(e["from"])
+            w = EDGE_TYPE_WEIGHT[etype]
+            a, b = e.get("from"), e.get("to")
+            if w > adjacency.setdefault(a, {}).get(b, 0.0):
+                adjacency[a][b] = w
+            if w > adjacency.setdefault(b, {}).get(a, 0.0):
+                adjacency[b][a] = w
         seeds = {s for s in seed_ids if s in nodes}
         seed_comms = {nodes[s].get("community") for s in seeds
                       if nodes[s].get("community")}
@@ -225,10 +238,10 @@ class MCPBridge:
         for _ in range(hops):
             nxt: set = set()
             for nid in frontier:
-                for nb in adjacency.get(nid, ()):
+                for nb, edge_w in adjacency.get(nid, {}).items():
                     if nb in visited or nb not in nodes:
                         continue
-                    score = weight * (1 + _cent(nodes[nb]))
+                    score = weight * edge_w * (1 + _cent(nodes[nb]))
                     if nodes[nb].get("community") in seed_comms:
                         score *= GRAPH_COMMUNITY_BONUS
                     if score > scored.get(nb, 0.0):
