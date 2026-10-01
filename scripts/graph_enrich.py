@@ -18,7 +18,7 @@ never see this layer -- it stays native, per spec §10.
 Host/CI only. This is the one script in the repo allowed to depend on a
 non-stdlib package (the `graphifyy` PyPI package, via its `graphify` CLI).
 Requires `graphify` on PATH (`pip install graphifyy` or
-`uv tool install graphifyy`) and a backend API key (GEMINI_API_KEY by
+`uv tool install graphifyy`) and a backend API key (ANTHROPIC_API_KEY by
 default) -- missing either is a clean no-op, not a failure.
 
 Usage:
@@ -177,7 +177,7 @@ def merge_raw_extractions(*extractions):
     return {"nodes": nodes, "edges": edges}
 
 
-def run_graphify_extract(target, out_dir, backend="gemini", excludes=None):
+def run_graphify_extract(target, out_dir, backend="claude", excludes=None):
     """Shell out to the headless `graphify extract` CLI. Returns the path to
     the raw extraction graph.json, or None if graphify isn't installed or
     the run failed (fail-open -- enrichment is optional, never blocks
@@ -227,7 +227,7 @@ def main():
     parser.add_argument("--graph", default=str(DEFAULT_GRAPH))
     parser.add_argument("--skills", default=str(DEFAULT_SKILLS))
     parser.add_argument("--out", default=str(DEFAULT_OUT))
-    parser.add_argument("--backend", default="gemini")
+    parser.add_argument("--backend", default="claude")
     parser.add_argument("--min-confidence", type=float, default=MIN_CONFIDENCE)
     args = parser.parse_args()
 

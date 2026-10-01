@@ -262,6 +262,33 @@ def test_run_graphify_extract_returns_none_when_graphify_not_installed(monkeypat
     assert graph_enrich.run_graphify_extract("/repo", str(tmp_path)) is None
 
 
+def test_run_graphify_extract_defaults_to_claude_backend(monkeypatch, tmp_path):
+    """Defaults to the claude backend (ANTHROPIC_API_KEY) rather than gemini --
+    spends already-funded Anthropic API credits instead of requiring a
+    separate Gemini key."""
+    calls = {}
+
+    def _fake_which(name):
+        return "/usr/bin/graphify" if name == "graphify" else None
+
+    def _fake_run(cmd, **kwargs):
+        calls["cmd"] = cmd
+        out_graphify = tmp_path / "graphify-out"
+        out_graphify.mkdir(parents=True, exist_ok=True)
+        (out_graphify / "graph.json").write_text("{}", encoding="utf-8")
+        class _Result:
+            returncode = 0
+            stderr = ""
+        return _Result()
+
+    monkeypatch.setattr(graph_enrich.shutil, "which", _fake_which)
+    monkeypatch.setattr(graph_enrich.subprocess, "run", _fake_run)
+
+    graph_enrich.run_graphify_extract("/repo", str(tmp_path))
+    cmd = calls["cmd"]
+    assert cmd[cmd.index("--backend") + 1] == "claude"
+
+
 def test_write_inferred_edges_is_atomic_and_round_trips(tmp_path):
     out_path = tmp_path / "06-AI-Context" / "graph_inferred_edges.json"
     edges = [{"from": "a", "to": "b", "relation": "r", "confidence_score": 0.8}]

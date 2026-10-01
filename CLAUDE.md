@@ -111,7 +111,8 @@ no-op); `mcp_bridge.py`'s `related_nodes()` traverses it at a lower weight than
 `wikilink`/`mentions`/`skill-link` (`EDGE_TYPE_WEIGHT`, env `GRAPH_INFERRED_EDGE_WEIGHT`).
 Host/CI only, manual invocation — **not** wired into `.github/workflows/graph-refresh.yml`
 yet; requires `graphify` on PATH (`uv tool install graphifyy`) plus a backend API key
-(`GEMINI_API_KEY` by default). Communities + centrality (`communities.py`) are
+(`ANTHROPIC_API_KEY` by default, `--backend claude` — switched from Gemini to spend
+already-funded Anthropic credits). Communities + centrality (`communities.py`) are
 untouched by this layer — it stays native, per spec.
 **After running `graph_enrich.py`, always run `python graph_builder.py` next and
 commit BOTH `graph_inferred_edges.json` and the resulting `graph.json`** — the
