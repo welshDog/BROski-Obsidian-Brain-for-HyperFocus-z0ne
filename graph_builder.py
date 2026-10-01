@@ -273,15 +273,42 @@ def _touches_skill(edge):
             or str(edge.get("to", "")).startswith("skill:"))
 
 
+def load_inferred_edges(node_ids, inferred_path):
+    """Load scripts/graph_enrich.py's sidecar file (spec §10), dropping edges
+    whose endpoints no longer exist in the current graph or that are
+    self-loops after mapping. Missing/unreadable file = no-op (preserve
+    contract -- this enrichment layer is entirely optional)."""
+    if not inferred_path or not os.path.isfile(inferred_path):
+        return []
+    try:
+        with open(inferred_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except (OSError, json.JSONDecodeError) as exc:
+        print(f"inferred edges: skipped ({exc})")
+        return []
+    edges = []
+    for e in data.get("edges", []):
+        src, dst = e.get("from"), e.get("to")
+        if src in node_ids and dst in node_ids and src != dst:
+            edges.append({
+                "from": src, "to": dst, "type": "inferred",
+                "relation": e.get("relation"),
+                "confidence_score": e.get("confidence_score"),
+            })
+    return edges
+
+
 def merge(graph, note_nodes, note_edges, mention_edges, notes_scanned,
-          skill_nodes=None, skill_edges=None):
+          skill_nodes=None, skill_edges=None, inferred_path=None):
     """Replace the generated layers inside the existing graph, preserve the rest.
-    skill_nodes/skill_edges None = skills repo unreachable this run — the
-    previous skill layer is carried over untouched instead of being wiped."""
+    skill_nodes/skill_edges None = skills repo unreachable this run -- the
+    previous skill layer is carried over untouched instead of being wiped.
+    inferred_path (spec §10, optional) = sidecar file from
+    scripts/graph_enrich.py; missing file = no inferred layer this run."""
     kept_nodes = [n for n in graph.get("nodes", [])
                   if n.get("layer") not in ("note", "skill")]
     kept_edges = [e for e in graph.get("edges", [])
-                  if e.get("type") not in ("wikilink", "mentions", "skill-link")]
+                  if e.get("type") not in ("wikilink", "mentions", "skill-link", "inferred")]
 
     if skill_nodes is None:
         skill_nodes = [n for n in graph.get("nodes", []) if n.get("layer") == "skill"]
@@ -293,11 +320,20 @@ def merge(graph, note_nodes, note_edges, mention_edges, notes_scanned,
                        if not str(e["from"]).startswith("note:") or e["from"] in note_ids]
 
     graph["nodes"] = kept_nodes + note_nodes + skill_nodes
-    graph["edges"] = kept_edges + note_edges + mention_edges + skill_edges
+
+    node_ids = {n["id"] for n in graph["nodes"]}
+    inferred_edges = load_inferred_edges(node_ids, inferred_path)
+
+    graph["edges"] = kept_edges + note_edges + mention_edges + skill_edges + inferred_edges
 
     meta = graph.setdefault("meta", {})
     meta["version"] = 4
     meta["layers"] = ["code", "notes", "mentions", "skills"]
+    if inferred_edges:
+        meta["layers"] = meta["layers"] + ["inferred"]
+        meta["inferred_edges_count"] = len(inferred_edges)
+    else:
+        meta.pop("inferred_edges_count", None)
     meta["updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     meta["notes_scanned"] = notes_scanned
     meta["skills_indexed"] = sum(1 for n in skill_nodes if n.get("status") != "phantom")
@@ -316,7 +352,7 @@ def merge(graph, note_nodes, note_edges, mention_edges, notes_scanned,
             n["community_label"] = labels[cid]
             n["centrality_global"] = round(pr.get(n["id"], 0.0), 6)
         meta["version"] = 5
-        meta["layers"] = ["code", "notes", "mentions", "skills", "communities"]
+        meta["layers"] = meta["layers"] + ["communities"]
         meta["communities_count"] = len(set(node_comm.values()))
         meta["community_algo"] = "greedy-modularity"
     except Exception as exc:  # fail-open — enrichment is non-critical; a missing or broken communities.py leaves the graph at v4
@@ -330,6 +366,8 @@ def merge(graph, note_nodes, note_edges, mention_edges, notes_scanned,
             _n.pop("community_label", None)
             _n.pop("centrality_global", None)
         meta["layers"] = ["code", "notes", "mentions", "skills"]
+        if inferred_edges:
+            meta["layers"] = meta["layers"] + ["inferred"]
         meta.pop("communities_count", None)
         meta.pop("community_algo", None)
 
@@ -345,6 +383,10 @@ def main():
     parser.add_argument("--skills", default=DEFAULT_SKILLS,
                         help="HYPER-SILLs repo root (env BRAIN_SKILLS_PATH; "
                              "missing = preserve existing skill layer)")
+    parser.add_argument("--inferred", default=None,
+                        help="graph_inferred_edges.json path (default: "
+                             "<vault>/06-AI-Context/graph_inferred_edges.json; "
+                             "missing file = no inferred layer, spec §10)")
     args = parser.parse_args()
 
     graph_path = args.graph or os.path.join(args.vault, "06-AI-Context", "graph.json")
@@ -370,8 +412,9 @@ def main():
         skill_nodes, skill_edges = build_skills_layer(
             graph, skills, skill_contents, contents, aliases)
 
+    inferred_path = args.inferred or os.path.join(args.vault, "06-AI-Context", "graph_inferred_edges.json")
     graph = merge(graph, note_nodes, note_edges, mention_edges, len(notes),
-                  skill_nodes, skill_edges)
+                  skill_nodes, skill_edges, inferred_path=inferred_path)
 
     # atomic write so a half-written file is never served by /graph
     fd, tmp = tempfile.mkstemp(dir=os.path.dirname(graph_path), suffix=".tmp")
@@ -380,12 +423,13 @@ def main():
         f.write("\n")
     os.replace(tmp, graph_path)
 
+    inferred_count = graph["meta"].get("inferred_edges_count", 0)
     skill_count = len([n for n in graph["nodes"] if n.get("layer") == "skill"])
     print(f"graph.json v{graph['meta']['version']} — "
           f"{graph['meta']['total_nodes']} nodes / {graph['meta']['total_edges']} edges "
           f"({len(note_nodes)} note nodes, {len(note_edges)} wikilink edges, "
           f"{len(mention_edges)} mentions edges, {skill_count} skill nodes, "
-          f"{len(notes)} notes scanned)")
+          f"{inferred_count} inferred edges, {len(notes)} notes scanned)")
 
 
 if __name__ == "__main__":
