@@ -7,7 +7,7 @@
     "updated": "2026-10-03",
     "tool": "brain-graph-analysis (AST + static import trace)",
     "root": "BROski-Obsidian-Brain-for-HyperFocus-z0ne",
-    "total_nodes": 297,
+    "total_nodes": 298,
     "total_edges": 485,
     "layers": [
       "code",
@@ -16,9 +16,9 @@
       "skills",
       "communities"
     ],
-    "notes_scanned": 133,
+    "notes_scanned": 134,
     "skills_indexed": 123,
-    "communities_count": 144,
+    "communities_count": 145,
     "community_algo": "greedy-modularity"
   },
   "nodes": [
@@ -31,7 +31,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.009547
+      "centrality_global": 0.009539
     },
     {
       "id": "analytics_engine",
@@ -42,7 +42,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.007034
+      "centrality_global": 0.007028
     },
     {
       "id": "mcp_bridge",
@@ -53,7 +53,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.009339
+      "centrality_global": 0.009331
     },
     {
       "id": "focus_tracker",
@@ -64,7 +64,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.012505
+      "centrality_global": 0.012494
     },
     {
       "id": "morning_briefing_ai",
@@ -75,7 +75,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.011421
+      "centrality_global": 0.011412
     },
     {
       "id": "difficulty_dial",
@@ -86,7 +86,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.001693
+      "centrality_global": 0.001692
     },
     {
       "id": "constellation_builder",
@@ -97,7 +97,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.003591
+      "centrality_global": 0.003588
     },
     {
       "id": "hyper_split",
@@ -108,7 +108,7 @@
       "status": "no-tests",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.006754
+      "centrality_global": 0.006749
     },
     {
       "id": "ai_distraction_filter",
@@ -119,7 +119,7 @@
       "status": "no-tests",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.00497
+      "centrality_global": 0.004966
     },
     {
       "id": "session_snapshot",
@@ -130,7 +130,7 @@
       "status": "no-tests",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.005681
+      "centrality_global": 0.005677
     },
     {
       "id": "gamification_summary",
@@ -141,7 +141,7 @@
       "status": "has-tests",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.003591
+      "centrality_global": 0.003588
     },
     {
       "id": "events_feed",
@@ -152,7 +152,7 @@
       "status": "has-tests",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.002541
+      "centrality_global": 0.002539
     },
     {
       "id": "github_webhook_server",
@@ -163,7 +163,7 @@
       "status": "orphan",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.005138
+      "centrality_global": 0.005134
     },
     {
       "id": "agent_hyper_brain_core",
@@ -174,7 +174,7 @@
       "status": "live",
       "community": "agent_hyper_brain_core",
       "community_label": "dev skills",
-      "centrality_global": 0.001754
+      "centrality_global": 0.001753
     },
     {
       "id": "agent_mcp_bridge",
@@ -283,7 +283,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.003704
+      "centrality_global": 0.003701
     },
     {
       "id": "note:02-counter-audit-what-runs-2026-09-01",
@@ -353,7 +353,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.004554
+      "centrality_global": 0.004551
     },
     {
       "id": "note:2026-05-08",
@@ -363,7 +363,7 @@
       "status": "live",
       "community": "note:2026-05-08",
       "community_label": "note:HyperCode-V2.4 cluster",
-      "centrality_global": 0.002893
+      "centrality_global": 0.002891
     },
     {
       "id": "note:2026-05-31",
@@ -373,7 +373,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.004131
+      "centrality_global": 0.004127
     },
     {
       "id": "note:2026-09-06",
@@ -383,7 +383,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.004131
+      "centrality_global": 0.004127
     },
     {
       "id": "note:AIFS_ROAST_AUDIT_2026-06-03",
@@ -413,7 +413,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.004109
+      "centrality_global": 0.004105
     },
     {
       "id": "note:Agent Wishlists (Index)",
@@ -453,7 +453,7 @@
       "status": "live",
       "community": "note:2026-05-08",
       "community_label": "note:HyperCode-V2.4 cluster",
-      "centrality_global": 0.007334
+      "centrality_global": 0.007328
     },
     {
       "id": "note:BROskiPets-2026-05-07",
@@ -463,7 +463,7 @@
       "status": "live",
       "community": "note:BROskiPets-2026-05-07",
       "community_label": "note:BROskiPets-2026-05-07 cluster",
-      "centrality_global": 0.007934
+      "centrality_global": 0.007928
     },
     {
       "id": "note:BROskiPets-AutoBuilder",
@@ -473,7 +473,7 @@
       "status": "live",
       "community": "note:BROskiPets-2026-05-07",
       "community_label": "note:BROskiPets-2026-05-07 cluster",
-      "centrality_global": 0.004187
+      "centrality_global": 0.004184
     },
     {
       "id": "note:Brain-Constellation",
@@ -483,7 +483,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.012968
+      "centrality_global": 0.012958
     },
     {
       "id": "note:Brain-Constellation-Live",
@@ -493,7 +493,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.015493
+      "centrality_global": 0.015481
     },
     {
       "id": "note:Brain-Dump",
@@ -513,7 +513,7 @@
       "status": "live",
       "community": "note:2026-05-08",
       "community_label": "note:HyperCode-V2.4 cluster",
-      "centrality_global": 0.006291
+      "centrality_global": 0.006285
     },
     {
       "id": "note:Briefing_2026-07-12",
@@ -523,7 +523,7 @@
       "status": "live",
       "community": "note:2026-05-08",
       "community_label": "note:HyperCode-V2.4 cluster",
-      "centrality_global": 0.006291
+      "centrality_global": 0.006285
     },
     {
       "id": "note:CHANGELOG.ai",
@@ -543,7 +543,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.001698
+      "centrality_global": 0.001697
     },
     {
       "id": "note:DECISIONS",
@@ -573,7 +573,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.014441
+      "centrality_global": 0.014429
     },
     {
       "id": "note:Decision Log",
@@ -583,7 +583,7 @@
       "status": "live",
       "community": "note:CLAUDE.md",
       "community_label": "Hub",
-      "centrality_global": 0.010906
+      "centrality_global": 0.010897
     },
     {
       "id": "note:DevOps-Runbook",
@@ -593,7 +593,7 @@
       "status": "live",
       "community": "note:2026-05-08",
       "community_label": "note:HyperCode-V2.4 cluster",
-      "centrality_global": 0.002997
+      "centrality_global": 0.002994
     },
     {
       "id": "note:FUTURE_STACK_DISCOVERY_2026-06-03",
@@ -613,7 +613,7 @@
       "status": "live",
       "community": "note:2026-05-08",
       "community_label": "note:HyperCode-V2.4 cluster",
-      "centrality_global": 0.002954
+      "centrality_global": 0.002952
     },
     {
       "id": "note:Focus Metrics Dashboard",
@@ -623,7 +623,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.003748
+      "centrality_global": 0.003745
     },
     {
       "id": "note:Focus-Command-Center",
@@ -633,7 +633,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.012128
+      "centrality_global": 0.012118
     },
     {
       "id": "note:Focus-Session",
@@ -643,7 +643,7 @@
       "status": "live",
       "community": "note:Analytics",
       "community_label": "99-Templates",
-      "centrality_global": 0.005551
+      "centrality_global": 0.005547
     },
     {
       "id": "note:HYPER-TRAE-SKILLS",
@@ -793,7 +793,7 @@
       "status": "live",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.004943
+      "centrality_global": 0.004939
     },
     {
       "id": "note:HYPERAGENT_LOOP_2026-06-19T09-16-24Z",
@@ -803,7 +803,7 @@
       "status": "live",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.004943
+      "centrality_global": 0.004939
     },
     {
       "id": "note:HYPERAGENT_LOOP_2026-06-19T12-59-59Z",
@@ -813,7 +813,7 @@
       "status": "live",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.004685
+      "centrality_global": 0.004681
     },
     {
       "id": "note:HYPERAGENT_LOOP_2026-07-12T21-51-21Z",
@@ -1176,6 +1176,16 @@
       "centrality_global": 0.000815
     },
     {
+      "id": "note:HYPERAGENT_LOOP_2026-10-03T14-06-59Z",
+      "layer": "note",
+      "path": "05-Focus-Sessions/HYPERAGENT_LOOP_2026-10-03T14-06-59Z.md",
+      "centrality": 0,
+      "status": "live",
+      "community": "note:HYPERAGENT_LOOP_2026-10-03T14-06-59Z",
+      "community_label": "05-Focus-Sessions",
+      "centrality_global": 0.000815
+    },
+    {
       "id": "note:Health-Dashboard",
       "layer": "note",
       "path": "02-Areas/Health/Health-Dashboard.md",
@@ -1183,7 +1193,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.006265
+      "centrality_global": 0.00626
     },
     {
       "id": "note:Hyper-Vibe-Course",
@@ -1193,7 +1203,7 @@
       "status": "live",
       "community": "note:2026-05-08",
       "community_label": "note:HyperCode-V2.4 cluster",
-      "centrality_global": 0.007334
+      "centrality_global": 0.007328
     },
     {
       "id": "note:HyperAgent-SDK",
@@ -1203,7 +1213,7 @@
       "status": "live",
       "community": "note:2026-05-08",
       "community_label": "note:HyperCode-V2.4 cluster",
-      "centrality_global": 0.005065
+      "centrality_global": 0.005061
     },
     {
       "id": "note:HyperCode-V2.4",
@@ -1213,7 +1223,7 @@
       "status": "live",
       "community": "note:2026-05-08",
       "community_label": "note:HyperCode-V2.4 cluster",
-      "centrality_global": 0.010026
+      "centrality_global": 0.010018
     },
     {
       "id": "note:HyperSplit-Session",
@@ -1223,7 +1233,7 @@
       "status": "live",
       "community": "note:Analytics",
       "community_label": "99-Templates",
-      "centrality_global": 0.00381
+      "centrality_global": 0.003807
     },
     {
       "id": "note:HyperSplit_Get_first_paying_student_20260507",
@@ -1303,7 +1313,7 @@
       "status": "live",
       "community": "note:2026-05-08",
       "community_label": "note:HyperCode-V2.4 cluster",
-      "centrality_global": 0.006151
+      "centrality_global": 0.006146
     },
     {
       "id": "note:Morning-Briefing",
@@ -1313,7 +1323,7 @@
       "status": "live",
       "community": "note:2026-05-08",
       "community_label": "note:HyperCode-V2.4 cluster",
-      "centrality_global": 0.001881
+      "centrality_global": 0.001879
     },
     {
       "id": "note:NEXTSESSIONHANDOVER_2026-06-04",
@@ -1383,7 +1393,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.003426
+      "centrality_global": 0.003423
     },
     {
       "id": "note:NEXT_SESSION_HANDOVER_2026-08-31",
@@ -1433,7 +1443,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.001698
+      "centrality_global": 0.001697
     },
     {
       "id": "note:Project",
@@ -1473,7 +1483,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.001931
+      "centrality_global": 0.00193
     },
     {
       "id": "note:SYSTEM_STATUS",
@@ -1513,7 +1523,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.002562
+      "centrality_global": 0.00256
     },
     {
       "id": "note:Tag-Architecture",
@@ -1523,7 +1533,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.001931
+      "centrality_global": 0.00193
     },
     {
       "id": "note:Today Focus",
@@ -1533,7 +1543,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.005337
+      "centrality_global": 0.005333
     },
     {
       "id": "note:Tools Registry",
@@ -1543,7 +1553,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.006858
+      "centrality_global": 0.006853
     },
     {
       "id": "note:VIBE_COURSE_REVIEW_BRAIN",
@@ -1563,7 +1573,7 @@
       "status": "live",
       "community": "note:01-Projects",
       "community_label": "99-Templates",
-      "centrality_global": 0.007934
+      "centrality_global": 0.007928
     },
     {
       "id": "note:Wishlist - focus-tracker",
@@ -1573,7 +1583,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.001701
+      "centrality_global": 0.0017
     },
     {
       "id": "note:Wishlist - hyper-brain-core",
@@ -1583,7 +1593,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.00183
+      "centrality_global": 0.001828
     },
     {
       "id": "note:Wishlist - mcp-bridge",
@@ -1593,7 +1603,7 @@
       "status": "live",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.001697
+      "centrality_global": 0.001696
     },
     {
       "id": "note:Wishlist - morning-briefing",
@@ -1613,7 +1623,7 @@
       "status": "phantom",
       "community": "note:01-Projects",
       "community_label": "99-Templates",
-      "centrality_global": 0.004187
+      "centrality_global": 0.004184
     },
     {
       "id": "note:04-Archive",
@@ -1623,7 +1633,7 @@
       "status": "phantom",
       "community": "note:01-Projects",
       "community_label": "99-Templates",
-      "centrality_global": 0.004187
+      "centrality_global": 0.004184
     },
     {
       "id": "note:07-Streaks-Achievements",
@@ -1633,7 +1643,7 @@
       "status": "phantom",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.002409
+      "centrality_global": 0.002407
     },
     {
       "id": "note:Analytics",
@@ -1643,7 +1653,7 @@
       "status": "phantom",
       "community": "note:Analytics",
       "community_label": "99-Templates",
-      "centrality_global": 0.004794
+      "centrality_global": 0.00479
     },
     {
       "id": "note:BROskiPets-LLM-dNFT",
@@ -1653,7 +1663,7 @@
       "status": "phantom",
       "community": "note:BROskiPets-2026-05-07",
       "community_label": "note:BROskiPets-2026-05-07 cluster",
-      "centrality_global": 0.004187
+      "centrality_global": 0.004184
     },
     {
       "id": "note:CLAUDE.md",
@@ -1663,7 +1673,7 @@
       "status": "phantom",
       "community": "note:CLAUDE.md",
       "community_label": "Hub",
-      "centrality_global": 0.002669
+      "centrality_global": 0.002667
     },
     {
       "id": "note:NEXT_SESSION_HANDOVER_2026-05-27.md",
@@ -1673,7 +1683,7 @@
       "status": "phantom",
       "community": "note:CLAUDE.md",
       "community_label": "Hub",
-      "centrality_global": 0.002669
+      "centrality_global": 0.002667
     },
     {
       "id": "note:Snapshots",
@@ -1683,7 +1693,7 @@
       "status": "phantom",
       "community": "note:Analytics",
       "community_label": "99-Templates",
-      "centrality_global": 0.003175
+      "centrality_global": 0.003172
     },
     {
       "id": "note:WHATS_DONE.md",
@@ -1693,7 +1703,7 @@
       "status": "phantom",
       "community": "note:CLAUDE.md",
       "community_label": "Hub",
-      "centrality_global": 0.002669
+      "centrality_global": 0.002667
     },
     {
       "id": "note:cluster.json",
@@ -1703,7 +1713,7 @@
       "status": "phantom",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.001787
+      "centrality_global": 0.001786
     },
     {
       "id": "note:related note",
@@ -1713,7 +1723,7 @@
       "status": "phantom",
       "community": "note:CLAUDE.md",
       "community_label": "Hub",
-      "centrality_global": 0.002669
+      "centrality_global": 0.002667
     },
     {
       "id": "skill:DS-002",
@@ -1728,7 +1738,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.001611
+      "centrality_global": 0.001609
     },
     {
       "id": "skill:DS-009",
@@ -1743,7 +1753,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.00253
+      "centrality_global": 0.002528
     },
     {
       "id": "skill:DS-028",
@@ -1758,7 +1768,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.003567
+      "centrality_global": 0.003564
     },
     {
       "id": "skill:HS-007",
@@ -1773,7 +1783,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.008876
+      "centrality_global": 0.008869
     },
     {
       "id": "skill:HS-008",
@@ -1788,7 +1798,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.015876
+      "centrality_global": 0.015864
     },
     {
       "id": "skill:HS-010",
@@ -1803,7 +1813,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.004236
+      "centrality_global": 0.004232
     },
     {
       "id": "skill:HS-011",
@@ -1818,7 +1828,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.013533
+      "centrality_global": 0.013522
     },
     {
       "id": "skill:HS-012",
@@ -1833,7 +1843,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.007559
+      "centrality_global": 0.007553
     },
     {
       "id": "skill:HS-013",
@@ -1848,7 +1858,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.00642
+      "centrality_global": 0.006415
     },
     {
       "id": "skill:HS-014",
@@ -1878,7 +1888,7 @@
       "status": "active",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.005974
+      "centrality_global": 0.005969
     },
     {
       "id": "skill:HS-016",
@@ -1893,7 +1903,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.010424
+      "centrality_global": 0.010416
     },
     {
       "id": "skill:HS-017",
@@ -1908,7 +1918,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.006572
+      "centrality_global": 0.006567
     },
     {
       "id": "skill:HS-018",
@@ -1923,7 +1933,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.004001
+      "centrality_global": 0.003998
     },
     {
       "id": "skill:HS-019",
@@ -1938,7 +1948,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.022225
+      "centrality_global": 0.022207
     },
     {
       "id": "skill:HS-020",
@@ -1953,7 +1963,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.006585
+      "centrality_global": 0.006579
     },
     {
       "id": "skill:HS-021",
@@ -1968,7 +1978,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.005596
+      "centrality_global": 0.005592
     },
     {
       "id": "skill:HS-022",
@@ -1983,7 +1993,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.002515
+      "centrality_global": 0.002512
     },
     {
       "id": "skill:HS-023",
@@ -2028,7 +2038,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.00176
+      "centrality_global": 0.001759
     },
     {
       "id": "skill:HS-026",
@@ -2058,7 +2068,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.00176
+      "centrality_global": 0.001759
     },
     {
       "id": "skill:HS-028",
@@ -2073,7 +2083,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.003119
+      "centrality_global": 0.003116
     },
     {
       "id": "skill:HS-029",
@@ -2163,7 +2173,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.005264
+      "centrality_global": 0.00526
     },
     {
       "id": "skill:HS-035",
@@ -2178,7 +2188,7 @@
       "status": "active",
       "community": "ai_distraction_filter",
       "community_label": "broski skills",
-      "centrality_global": 0.001781
+      "centrality_global": 0.00178
     },
     {
       "id": "skill:HS-036",
@@ -2193,7 +2203,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.005396
+      "centrality_global": 0.005392
     },
     {
       "id": "skill:HS-037",
@@ -2223,7 +2233,7 @@
       "status": "active",
       "community": "skill:HS-038",
       "community_label": "agents skills",
-      "centrality_global": 0.005135
+      "centrality_global": 0.005131
     },
     {
       "id": "skill:HS-039",
@@ -2253,7 +2263,7 @@
       "status": "active",
       "community": "skill:HS-040",
       "community_label": "agents skills",
-      "centrality_global": 0.004843
+      "centrality_global": 0.004839
     },
     {
       "id": "skill:HS-041",
@@ -2268,7 +2278,7 @@
       "status": "active",
       "community": "skill:HS-038",
       "community_label": "agents skills",
-      "centrality_global": 0.006311
+      "centrality_global": 0.006306
     },
     {
       "id": "skill:HS-042",
@@ -2283,7 +2293,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.004577
+      "centrality_global": 0.004574
     },
     {
       "id": "skill:HS-043",
@@ -2298,7 +2308,7 @@
       "status": "active",
       "community": "skill:HS-040",
       "community_label": "agents skills",
-      "centrality_global": 0.006462
+      "centrality_global": 0.006457
     },
     {
       "id": "skill:HS-044",
@@ -2313,7 +2323,7 @@
       "status": "active",
       "community": "skill:HS-040",
       "community_label": "agents skills",
-      "centrality_global": 0.003945
+      "centrality_global": 0.003941
     },
     {
       "id": "skill:HS-045",
@@ -2328,7 +2338,7 @@
       "status": "active",
       "community": "skill:HS-040",
       "community_label": "agents skills",
-      "centrality_global": 0.004948
+      "centrality_global": 0.004944
     },
     {
       "id": "skill:HS-046",
@@ -2373,7 +2383,7 @@
       "status": "active",
       "community": "skill:HS-038",
       "community_label": "agents skills",
-      "centrality_global": 0.003603
+      "centrality_global": 0.003601
     },
     {
       "id": "skill:HS-052",
@@ -2508,7 +2518,7 @@
       "status": "active",
       "community": "agent_hyper_brain_core",
       "community_label": "dev skills",
-      "centrality_global": 0.011047
+      "centrality_global": 0.011038
     },
     {
       "id": "skill:HS-061",
@@ -2523,7 +2533,7 @@
       "status": "active",
       "community": "agent_hyper_brain_core",
       "community_label": "dev skills",
-      "centrality_global": 0.004875
+      "centrality_global": 0.004871
     },
     {
       "id": "skill:HS-062",
@@ -2538,7 +2548,7 @@
       "status": "active",
       "community": "agent_hyper_brain_core",
       "community_label": "dev skills",
-      "centrality_global": 0.003916
+      "centrality_global": 0.003913
     },
     {
       "id": "skill:HS-063",
@@ -2553,7 +2563,7 @@
       "status": "active",
       "community": "agent_hyper_brain_core",
       "community_label": "dev skills",
-      "centrality_global": 0.003974
+      "centrality_global": 0.00397
     },
     {
       "id": "skill:HS-064",
@@ -2568,7 +2578,7 @@
       "status": "active",
       "community": "agent_hyper_brain_core",
       "community_label": "dev skills",
-      "centrality_global": 0.003916
+      "centrality_global": 0.003913
     },
     {
       "id": "skill:HS-065",
@@ -2613,7 +2623,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.009214
+      "centrality_global": 0.009207
     },
     {
       "id": "skill:HS-069",
@@ -2628,7 +2638,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.003378
+      "centrality_global": 0.003376
     },
     {
       "id": "skill:HS-071",
@@ -2643,7 +2653,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.005064
+      "centrality_global": 0.005059
     },
     {
       "id": "skill:HS-072",
@@ -2658,7 +2668,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.003858
+      "centrality_global": 0.003855
     },
     {
       "id": "skill:HS-073",
@@ -2673,7 +2683,7 @@
       "status": "active",
       "community": "skill:HS-038",
       "community_label": "agents skills",
-      "centrality_global": 0.005432
+      "centrality_global": 0.005428
     },
     {
       "id": "skill:HS-074",
@@ -2688,7 +2698,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.00176
+      "centrality_global": 0.001759
     },
     {
       "id": "skill:HS-075",
@@ -2703,7 +2713,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.005276
+      "centrality_global": 0.005272
     },
     {
       "id": "skill:HS-076",
@@ -2733,7 +2743,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.007868
+      "centrality_global": 0.007862
     },
     {
       "id": "skill:HS-078",
@@ -2748,7 +2758,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.004663
+      "centrality_global": 0.004659
     },
     {
       "id": "skill:HS-079",
@@ -2763,7 +2773,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.006829
+      "centrality_global": 0.006824
     },
     {
       "id": "skill:HS-080",
@@ -2778,7 +2788,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.005496
+      "centrality_global": 0.005492
     },
     {
       "id": "skill:HS-081",
@@ -2793,7 +2803,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.003096
+      "centrality_global": 0.003093
     },
     {
       "id": "skill:HS-082",
@@ -2823,7 +2833,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.00394
+      "centrality_global": 0.003937
     },
     {
       "id": "skill:HS-084",
@@ -2853,7 +2863,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.003969
+      "centrality_global": 0.003966
     },
     {
       "id": "skill:HS-086",
@@ -2883,7 +2893,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.005246
+      "centrality_global": 0.005241
     },
     {
       "id": "skill:HS-088",
@@ -2898,7 +2908,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.005589
+      "centrality_global": 0.005584
     },
     {
       "id": "skill:HS-089",
@@ -2913,7 +2923,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.006402
+      "centrality_global": 0.006396
     },
     {
       "id": "skill:HS-090",
@@ -2928,7 +2938,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.003212
+      "centrality_global": 0.003209
     },
     {
       "id": "skill:HS-091",
@@ -2943,7 +2953,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.00464
+      "centrality_global": 0.004636
     },
     {
       "id": "skill:HS-092",
@@ -2958,7 +2968,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.002349
+      "centrality_global": 0.002347
     },
     {
       "id": "skill:HS-093",
@@ -2973,7 +2983,7 @@
       "status": "active",
       "community": "skill:HS-040",
       "community_label": "agents skills",
-      "centrality_global": 0.009843
+      "centrality_global": 0.009835
     },
     {
       "id": "skill:HS-094",
@@ -3003,7 +3013,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.00176
+      "centrality_global": 0.001759
     },
     {
       "id": "skill:HS-096",
@@ -3033,7 +3043,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.004826
+      "centrality_global": 0.004822
     },
     {
       "id": "skill:HS-098",
@@ -3048,7 +3058,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.005591
+      "centrality_global": 0.005587
     },
     {
       "id": "skill:HS-099",
@@ -3063,7 +3073,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.004937
+      "centrality_global": 0.004933
     },
     {
       "id": "skill:HS-100",
@@ -3078,7 +3088,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.006596
+      "centrality_global": 0.006591
     },
     {
       "id": "skill:HS-101",
@@ -3093,7 +3103,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.003475
+      "centrality_global": 0.003472
     },
     {
       "id": "skill:HS-102",
@@ -3108,7 +3118,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.00176
+      "centrality_global": 0.001759
     },
     {
       "id": "skill:HS-103",
@@ -3123,7 +3133,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.005025
+      "centrality_global": 0.005021
     },
     {
       "id": "skill:HS-104",
@@ -3138,7 +3148,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.004705
+      "centrality_global": 0.004701
     },
     {
       "id": "skill:HS-105",
@@ -3153,7 +3163,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.00176
+      "centrality_global": 0.001759
     },
     {
       "id": "skill:HS-106",
@@ -3168,7 +3178,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.00324
+      "centrality_global": 0.003238
     },
     {
       "id": "skill:HS-107",
@@ -3183,7 +3193,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.004546
+      "centrality_global": 0.004542
     },
     {
       "id": "skill:HS-108",
@@ -3213,7 +3223,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.001631
+      "centrality_global": 0.00163
     },
     {
       "id": "skill:HS-110",
@@ -3243,7 +3253,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.001561
+      "centrality_global": 0.00156
     },
     {
       "id": "skill:HS-112",
@@ -3288,7 +3298,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.004843
+      "centrality_global": 0.004839
     },
     {
       "id": "skill:HS-120",
@@ -3303,7 +3313,7 @@
       "status": "active",
       "community": "skill:HS-040",
       "community_label": "agents skills",
-      "centrality_global": 0.003945
+      "centrality_global": 0.003941
     },
     {
       "id": "skill:HS-121",
@@ -3318,7 +3328,7 @@
       "status": "active",
       "community": "skill:HS-040",
       "community_label": "agents skills",
-      "centrality_global": 0.003979
+      "centrality_global": 0.003976
     },
     {
       "id": "skill:HS-122",
@@ -3333,7 +3343,7 @@
       "status": "active",
       "community": "skill:HS-038",
       "community_label": "agents skills",
-      "centrality_global": 0.003603
+      "centrality_global": 0.003601
     },
     {
       "id": "skill:HS-123",
@@ -3348,7 +3358,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.004678
+      "centrality_global": 0.004674
     },
     {
       "id": "skill:HS-124",
@@ -3363,7 +3373,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.006344
+      "centrality_global": 0.006339
     },
     {
       "id": "skill:HS-125",
@@ -3378,7 +3388,7 @@
       "status": "active",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.005602
+      "centrality_global": 0.005597
     },
     {
       "id": "skill:HS-126",
@@ -3393,7 +3403,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.003065
+      "centrality_global": 0.003063
     },
     {
       "id": "skill:HS-127",
@@ -3408,7 +3418,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.005832
+      "centrality_global": 0.005827
     },
     {
       "id": "skill:HS-128",
@@ -3423,7 +3433,7 @@
       "status": "active",
       "community": "skill:HS-038",
       "community_label": "agents skills",
-      "centrality_global": 0.0035
+      "centrality_global": 0.003497
     },
     {
       "id": "skill:HS-129",
@@ -3438,7 +3448,7 @@
       "status": "active",
       "community": "skill:HS-038",
       "community_label": "agents skills",
-      "centrality_global": 0.005632
+      "centrality_global": 0.005627
     },
     {
       "id": "skill:HS-130",
@@ -3453,7 +3463,7 @@
       "status": "active",
       "community": "skill:HS-038",
       "community_label": "agents skills",
-      "centrality_global": 0.0035
+      "centrality_global": 0.003497
     },
     {
       "id": "skill:HS-131",
@@ -3468,7 +3478,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.004657
+      "centrality_global": 0.004653
     },
     {
       "id": "skill:HS-132",
@@ -3483,7 +3493,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.005832
+      "centrality_global": 0.005827
     },
     {
       "id": "skill:HS-133",
@@ -3498,7 +3508,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.003904
+      "centrality_global": 0.003901
     },
     {
       "id": "skill:HS-134",
@@ -3513,7 +3523,7 @@
       "status": "active",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.003904
+      "centrality_global": 0.003901
     },
     {
       "id": "skill:HS-135",
@@ -3528,7 +3538,7 @@
       "status": "active",
       "community": "agent_hyper_brain_core",
       "community_label": "dev skills",
-      "centrality_global": 0.005403
+      "centrality_global": 0.005398
     },
     {
       "id": "skill:HS-136",
@@ -3543,7 +3553,7 @@
       "status": "active",
       "community": "agent_hyper_brain_core",
       "community_label": "dev skills",
-      "centrality_global": 0.008167
+      "centrality_global": 0.00816
     },
     {
       "id": "skill:HS-137",
@@ -3558,7 +3568,7 @@
       "status": "active",
       "community": "agent_hyper_brain_core",
       "community_label": "dev skills",
-      "centrality_global": 0.005303
+      "centrality_global": 0.005299
     },
     {
       "id": "skill:HS-001",
@@ -3568,7 +3578,7 @@
       "status": "phantom",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.01401
+      "centrality_global": 0.013998
     },
     {
       "id": "skill:HS-002",
@@ -3578,7 +3588,7 @@
       "status": "phantom",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.018422
+      "centrality_global": 0.018407
     },
     {
       "id": "skill:HS-003",
@@ -3588,7 +3598,7 @@
       "status": "phantom",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.014967
+      "centrality_global": 0.014955
     },
     {
       "id": "skill:HS-004",
@@ -3598,7 +3608,7 @@
       "status": "phantom",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.007427
+      "centrality_global": 0.007421
     },
     {
       "id": "skill:HS-005",
@@ -3608,7 +3618,7 @@
       "status": "phantom",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.006492
+      "centrality_global": 0.006487
     },
     {
       "id": "skill:HS-006",
@@ -3618,7 +3628,7 @@
       "status": "phantom",
       "community": "skill:DS-002",
       "community_label": "agents skills",
-      "centrality_global": 0.005217
+      "centrality_global": 0.005213
     },
     {
       "id": "skill:HS-009",
@@ -3628,7 +3638,7 @@
       "status": "phantom",
       "community": "note:HYPERAGENT_LOOP_2026-06-19T09-15-52Z",
       "community_label": "05-Focus-Sessions",
-      "centrality_global": 0.008634
+      "centrality_global": 0.008627
     }
   ],
   "edges": [
