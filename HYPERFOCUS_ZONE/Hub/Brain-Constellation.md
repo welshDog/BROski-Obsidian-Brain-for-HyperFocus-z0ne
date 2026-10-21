@@ -1,20 +1,18 @@
 ---
 created: 2026-05-05
-updated: 2026-05-22
+updated: 2026-10-21
 type: constellation-map
 tags: [constellation, ecosystem, map, hub]
 ---
 # 🌌 THE HYPER BRAIN — Constellation
 
 > The living map of the whole z0ne. Every node links to where it actually lives.
-> **Level 20 — COMPLETE.** Phase 1 = this navigable map · Phase 2 = `constellation_builder.py` auto-writing the live counterpart.
+> **Live status:** 20/20 levels active. This static map is navigation; runtime truth comes from `/health`, `graph.json`, and `Brain-Constellation-Live.md`.
 
-> [!success] 20 / 20 — THE HYPER BRAIN IS COMPLETE (2026-05-22)
-> All 20 levels built **and verified working** — engine boots, every endpoint
-> returns real data. Levels 18 (`/distraction/status`), 19 (DifficultyDial)
-> and 20 Phase 2 (`constellation_builder.py`) landed May 22 — the engine was
-> also fixed to boot on Windows (UTF-8 stdio). The live auto-generated
-> counterpart of this map is [[Brain-Constellation-Live]].
+> [!success] 20 / 20 — verified live on 2026-10-21
+> The engine health endpoint reports Level 20, while the graph artifact reports
+> v5 with 382 nodes and 521 edges. The auto-generated counterpart is
+> [[Brain-Constellation-Live]]. Refresh it with `GET /constellation/map`.
 
 ---
 
@@ -55,9 +53,9 @@ graph TD
 
 ## 🧠 Layer 0 — The Engine · `hyper-brain` (Container #30)
 
-> [!info] [docker-compose.hyper-brain.yml](../../docker/docker-compose.hyper-brain.yml) · port **8100** · 256 MB cap
-> Wake it: `docker compose -f docker/docker-compose.hyper-brain.yml up -d`
-> Pulse:  `curl http://localhost:8100/health`
+> [!info] Canonical runtime: HyperCode-V2.4 `docker-compose.brain.yml` · port **8100**
+> Brain agents run through the HyperCode `brain-agents` profile. Standalone Compose is for local sync tooling only.
+> Pulse: `Invoke-WebRequest http://127.0.0.1:8100/health`
 
 | Module | Role | Level |
 |---|---|---|
@@ -91,7 +89,7 @@ graph TD
 | [99-Templates](../99-Templates) | Daily · Project · Focus-Session · HyperSplit |
 | [Hub](.) | [Dashboard](Dashboard.md) · [Focus Command Center](Focus-Command-Center.md) · [Maps of Content](Maps-of-Content.md) · this map |
 
-> [!note] The roadmap also planned `06-AI-Context/` (RAG chunks + embeddings) — not yet created. Tracked under Level 20 Phase 2.
+> [!note] `06-AI-Context/graph.json` is live and canonical: graph v5, 382 nodes, 521 edges, updated 2026-10-21.
 
 ---
 
@@ -100,12 +98,12 @@ graph TD
 - **BROski$** — earned per focus session, awarded on `/focus/end`
 - **XP / Levels** — `gamification_summary.py` → `/gamification/summary`
 - **Streaks** — `analytics_engine.py` → `/analytics/streaks`; recovery tokens in [07-Streaks-Achievements](../07-Streaks-Achievements)
-- **DifficultyDial** — low / medium / hyper / chaos reward multipliers — **Level 19, partial** (spec in the [roadmap](../../ANALYSIS_AND_ROADMAP.md))
+- **DifficultyDial** — low / medium / hyper / chaos reward multipliers — **Level 19, active**
 
 ## 🐾 Layer 3 — Pets & NFTs
 
 - **BROskiPets** — focus XP feeds the dNFT pet-evolution pipeline
-- Bridge: brain XP → BROskiPets API → on-chain pet update *(Level 19 wiring)*
+- Bridge: brain XP → BROskiPets API → on-chain pet update *(integration path)*
 
 ## 🎓 Layer 4 — The Ecosystem (5 repos)
 
@@ -136,7 +134,7 @@ Agent cluster: [cluster.json](../../cluster.json) — 4 agents (`hyper-brain-cor
 
 ## 🎮 Level Progression — honest count
 
-> **20 / 20 — all levels live and verified working** 🏆
+> **20 / 20 — all levels active and verified against the live engine** 🏆
 
 | Lvl | Feature | Status |
 |---|---|---|
@@ -150,9 +148,9 @@ Agent cluster: [cluster.json](../../cluster.json) — 4 agents (`hyper-brain-cor
 | 15 | HyperAgent MCP bridge | ✅ Live |
 | 16 | Focus tracker + analytics | ✅ Live |
 | 17 | HyperSplit decomposition | ✅ Live |
-| 18 | AI Distraction Filter | ✅ Live — `/distraction/status` live drift monitoring |
-| 19 | DifficultyDial + Dynamic XP | ✅ Live — low/med/hyper/chaos dial, XP ×0.5–×2.0 |
-| 20 | THE HYPER BRAIN Constellation | ✅ Live — Phase 1 map + Phase 2 `constellation_builder.py` |
+| 18 | AI Distraction Filter | ✅ Active — runtime health reports Level 20 |
+| 19 | DifficultyDial + Dynamic XP | ✅ Active — runtime module and XP paths present |
+| 20 | THE HYPER BRAIN Constellation | ✅ Active — runtime map, Canvas, and graph v5 |
 
 Full specs for 18–20: [ANALYSIS_AND_ROADMAP.md](../../ANALYSIS_AND_ROADMAP.md).
 
@@ -160,14 +158,14 @@ Full specs for 18–20: [ANALYSIS_AND_ROADMAP.md](../../ANALYSIS_AND_ROADMAP.md)
 
 ## 📡 Live Status
 
-> [!tip] Manual snapshot — 2026-05-22. **Level 20 Phase 2** (`constellation_builder.py`) will pull this live from `GET /health` + module statuses and auto-write it here.
+> [!tip] Verified snapshot — 2026-10-21. Refresh runtime details with `GET /constellation/map`; graph metadata is tracked in `06-AI-Context/graph.json`.
 
 ```
-System ........... 20/20 levels live (100%) ✅
-Container #30 .... hyper-brain — docker compose -f docker/docker-compose.hyper-brain.yml up -d
-Engine API ....... :8100  — 23 endpoints
+System ........... 20/20 levels active (100%) ✅
+Canonical runtime . HyperCode-V2.4 `brain-agents` profile
+Engine API ....... :8100  — health verified 200
+Graph ............ v5 · 382 nodes · 521 edges
 Vault ............ PARA intact · Obsidian Git auto-commit (10 min)
-Next build ....... cross-repo issue bridge · 07:00 briefing cron
 ```
 
 ---

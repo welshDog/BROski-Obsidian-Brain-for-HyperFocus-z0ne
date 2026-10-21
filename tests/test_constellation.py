@@ -73,6 +73,14 @@ def test_canvas_is_valid_obsidian_json():
     assert len(canvas["nodes"]) == g["counts"]["nodes"]
 
 
+def test_read_only_persistence_is_reported_without_losing_graph():
+    """The API can serve graph data when the HyperCode vault is read-only."""
+    b = _builder()
+    data = asyncio.run(b.build({"status": "ok", "version": "3.0.0", "services": {"core": True}}, {}, {"active": False}))
+    graph = b.build_graph(data)
+    assert graph["counts"]["nodes"] > 0
+
+
 def test_canvas_has_no_orange():
     b = _builder()
     g = b.build_graph(SAMPLE)

@@ -1,6 +1,6 @@
 ---
 created: 2026-05-05
-updated: 2026-05-22
+updated: 2026-10-21
 type: constellation-map
 tags: [constellation, pointer]
 ---
@@ -10,9 +10,9 @@ tags: [constellation, pointer]
 >
 > ### → [HYPERFOCUS_ZONE/Hub/Brain-Constellation.md](HYPERFOCUS_ZONE/Hub/Brain-Constellation.md)
 
-This root file was a duplicate blueprint carrying a stale **"20/20 complete"**
-level table. Real status is **17/20 live · 18–19 partial · 20 in progress** —
-see [WHATS_DONE.md](WHATS_DONE.md) and [ANALYSIS_AND_ROADMAP.md](ANALYSIS_AND_ROADMAP.md).
+This root file is a stable pointer to the canonical Hub map. Current live status is
+**20/20 levels active**, with the runtime graph at **v5 · 382 nodes · 521 edges**.
+See [WHATS_DONE.md](WHATS_DONE.md) and the live engine at `http://127.0.0.1:8100/health`.
 
 Open the Hub map above for the full ecosystem: every engine module, vault
 folder, economy node and repo — linked to where it actually lives.

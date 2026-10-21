@@ -426,14 +426,28 @@ async def _build_constellation() -> Dict[str, Any]:
     fs = await focus_tracker.get_current_status() if focus_tracker else {"active": False}
     data = await constellation.build(h, g, fs)
     graph = constellation.build_graph(data)
-    note_path = await constellation.write_to_vault(data)
-    canvas_path = await constellation.write_canvas(graph)
+    note_path = None
+    canvas_path = None
+    persistence_error = None
+    try:
+        note_path = await constellation.write_to_vault(data)
+        canvas_path = await constellation.write_canvas(graph)
+    except OSError as exc:
+        # HyperCode mounts the shared vault read-only for most brain agents.
+        # The API must still return the live graph when persistence is unavailable.
+        persistence_error = f"{type(exc).__name__}: {exc}"
     if events_feed:
         events_feed.add(
             "constellation", "Live map regenerated",
-            {"note": note_path, "canvas": canvas_path, **graph["counts"]},
+            {"note": note_path, "canvas": canvas_path, "persistence_error": persistence_error, **graph["counts"]},
         )
-    return {"map": data, "graph": graph, "note_path": note_path, "canvas_path": canvas_path}
+    return {
+        "map": data,
+        "graph": graph,
+        "note_path": note_path,
+        "canvas_path": canvas_path,
+        "persistence_error": persistence_error,
+    }
 
 @app.get("/constellation/map")
 async def constellation_map():
