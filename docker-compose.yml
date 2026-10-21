@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   broski-sync:
     build: .
@@ -10,13 +8,17 @@ services:
       OBSIDIAN_VAULT_PATH: /vault
       PYTHONUNBUFFERED: "1"
     volumes:
-      - ./vault:/vault
+      - ${OBSIDIAN_VAULT_PATH:-./HYPERFOCUS_ZONE}:/vault
       - ./scripts:/app/scripts:ro
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
         max-file: "3"
     restart: unless-stopped
-    # Optional: Uncomment to run on schedule (every 4 hours)
+    # Optional: uncomment to run on schedule (every 4 hours).
     # command: sh -c "while true; do python3 scripts/github_to_obsidian_v2.py; sleep 14400; done"
